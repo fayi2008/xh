@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>西湖采编系统登录</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="keywords" content="西湖,杭州西湖">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link href="/static/Mobile/css/m-news-login.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="wrap">
+    <div class="logo"></div>
+    <div class="login">
+        <ul>
+            <li>
+                <input class="username" placeholder="请输入账号" id="J_name" name="username" type="text" title="用户名"/>
+                <input class="password" placeholder="请输入密码" id="J_password" name="password" type="password" title="密码"/>
+                <input name="redirect_url" type="hidden" value="{$redirect_url}" />
+                <div id="wrongName"></div>
+            </li>
+        </ul>
+        <button type="submit" name="submit" class="J_ajax_submit_btn btn">登录</button>
+    </div>
+</div>
+<script src="/static/public/jquery.js?{$js_version}"></script>
+<script src="/static/Mobile/js/m-news-login.js?{$js_version}"></script>
+
+</body>
+</html>

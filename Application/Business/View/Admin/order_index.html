@@ -1,0 +1,313 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>搜索表单</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="/assets/css/bs3/dpl-min.css" rel="stylesheet" type="text/css" />
+<link href="/assets/css/bs3/bui-min.css" rel="stylesheet" type="text/css" />
+<link href="/assets/css/page-min.css" rel="stylesheet" type="text/css" />
+<link href="/assets/css/loading_mask.css" rel="stylesheet" type="text/css" />
+   <link href="/assets/css/hqtec.css" rel="stylesheet"> 
+<style type="text/css">
+code {
+	padding: 0px 4px;
+	color: #d14;
+	background-color: #f7f7f9;
+	border: 1px solid #e1e1e8;
+}
+</style>
+</head>
+<body>
+
+	<div class="container">
+		<div class="row">
+			<form id="searchForm" class="form-horizontal span24">
+				<div class="row">
+					
+					<div class="control-group span8">
+						<label class="control-label">商品名称：</label>
+						<div class="controls">
+							<input type="text" class="input-normal" name="name">
+						</div>
+					</div>
+
+
+					<div class="control-group span12">
+						<label class="control-label">交易状态：</label>
+						<div class="controls">
+							<select name="trading_status" class="input-normal">
+								<option value="">请选择</option>
+								<option value="0">待付款</option>
+								<option value="1">已支付</option>
+								<!--  <option value="2">待收货</option>-->
+								<option value="3">已完成</option>
+								<option value="4">被关闭</option>
+							</select>
+						</div>
+					</div>
+
+
+				</div>
+				<div class="row">
+					<div class="control-group span14">
+						<label class="control-label">下单时间：</label>
+						<div class="controls">
+							<input type="text" class=" calendar calendar-time"
+								name="start_time" id='start_date'><span> - </span><input
+								name="end_time" type="text" class=" calendar calendar-time"
+								id='end_date'>
+						</div>
+					</div>
+					<div class="span3 offset2">
+						<button type="button" id="btnSearch" class="button button-primary"
+							>搜索</button>
+					</div>
+				</div>
+				<script type="text/javascript">
+				
+function checkDate(e){
+	
+	var start_date = $('#start_date').val();
+	
+	var end_date = $('#end_date').val();
+	var startTime = new Date(start_date).getTime();
+	var endTime = new Date(end_date).getTime();
+    
+	if(startTime>endTime){
+		
+		BUI.Message.Alert('开始日期不能大于结束日期');
+		e.preventDefault();
+		return false;
+	}
+	if(endTime-startTime>86400*1000*60){
+		BUI.Message.Alert('起止时间不能大于60天！');
+		e.preventDefault();
+		return false;
+	}
+	return true;
+}
+</script>
+			</form>
+		</div>
+		<div class="search-grid-container">
+			<div id="grid"></div>
+		</div>
+	</div>
+	<script type="text/javascript" src="/assets/js/jquery-1.8.1.min.js?{$js_version}"></script>
+	<script type="text/javascript" src="/assets/js/bui-min.js?{$js_version}"></script>
+
+
+	<script type="text/javascript" src="/assets/js/config-min.js?{$js_version}"></script>
+	<script type="text/javascript">
+    BUI.use('common/page');
+    $(function(){
+		$('#start_date,#end_date').on('change',function(e){
+			var start_date = $('#start_date').val();
+			var end_date = $('#end_date').val();
+			var startTime = new Date(start_date.replace(/\-/g,'/')).getTime();
+			var endTime = new Date(end_date.replace(/\-/g,'/')).getTime();
+		    
+			if(startTime>endTime){
+				$('#end_date').val('');
+				BUI.Message.Alert('开始日期不能大于结束日期',function(){
+					$('#end_date').val('').focus();
+				});
+				
+			}
+			if(endTime-startTime>86400*1000*60){
+				$('#end_date').val('');
+				BUI.Message.Alert('起止时间不能大于60天！',function(){
+					$('#end_date').focus();
+				});
+			}
+
+		});
+	})
+  </script>
+	<script type="text/javascript">
+
+    BUI.use(['common/search','bui/overlay'],function (Search,Overlay) {
+
+      columns = [
+      {title:'订单编号',dataIndex:'id',width:100},
+      {title:'商品名',dataIndex:'good_name',width:180},
+      {title:'预订人',dataIndex:'booking_name',width:100},
+      {title:'下单时间',dataIndex:'book_time',width:150},
+      {title:'订单状态',dataIndex:'trading_status',width:100,renderer : function(value,obj){
+        var status = obj.trading_status;
+        if(status == '0'){
+          return "<span id = 'f" + obj.id+ "'>待付款</span>";
+        }else if(status == '1'){
+          return "<span id = 'f" + obj.id+ "'>已支付</span>";
+        }else if(status == '2'){
+          return "<span id = 'f" + obj.id+ "'>待收货</span>";
+        }else if(status == '3'){
+          return "<span id = 'f" + obj.id+ "'>已完成</span>";
+        }else if(status == '4'){
+          return "<span id = 'f" + obj.id+ "'>被关闭</span>";
+        }
+      }},
+      {title:'(数量*单价)价格',dataIndex:'allprice',width:200,renderer : function(value,obj){
+        return obj.num + "*" + obj.price + " = " + obj.total_price;
+      }},
+      {title:'操作',dataIndex:'', width:100 , renderer : function(value,obj){
+        var status = obj.trading_status;
+        var releaseStr = "";
+        if(status == '0')
+        {
+          releaseStr = '<span id="s'+ obj.id +'"><a href="javascript:closeItem('+obj.id+')">关闭订单</a></span>';
+        }else if(status == '2'){
+          releaseStr = '<span id="s'+ obj.id +'"><a href="javascript:sendItem('+obj.id+')"</a>确认完成</span>';
+        }
+        if(releaseStr !== "")
+        {
+          detailStr = '<a class="model_detail" id="x' + obj.id + '" data-id = "' + obj.id +'" style="cursor:pointer"> 详情</a>';
+        }else{
+          detailStr = '<a class="model_detail" id="x' + obj.id + '" data-id = "' + obj.id +'" style="cursor:pointer">详情</a>';
+        }
+        return releaseStr + detailStr;
+      }}
+      ],
+      //store = Search.createStore('../data/student.json'),
+      store = Search.createStore('order.json',{autoLoad:false,remoteSort: true}),
+
+      gridCfg = Search.createGridCfg(columns,{
+        tbar : {
+          items : [
+          
+          ]
+        },
+        plugins : [BUI.Grid.Plugins.CheckSelection] // 插件形式引入多选表格
+      });
+
+      var  search = new Search({
+        store : store,
+        gridCfg : gridCfg
+      }),
+      grid = search.get('grid');
+    //删除操作
+    //发布
+  });
+  </script>
+	<script type="text/javascript">
+    var mail_id;
+    var mail_name;
+    var now_id;
+    var mail_status;
+    var other_mail_name;
+    var Overlay = BUI.Overlay
+    $('body').on('click','.model_detail',function () {
+    	
+      var id = $(this).attr('data-id');
+      var lodingDialog = new Overlay.Dialog({
+      title:'订单详情',
+      width:300,
+      height:400,
+      loader : {
+        url : '/Business/admin/detail.json',
+              autoLoad : true, //不自动加载
+              params : {id : id},
+              lazyLoad : false, //不延迟加载
+              loadMask :  {msgCls : 'custom-cls'} ,
+            },
+            mask:true
+          });
+      lodingDialog.show();
+    });
+    Form = BUI.Form;
+    
+    var form = new Form.HForm({
+      srcNode : '#form'
+    }).render();
+    var dialog = new Overlay.Dialog({
+        title:'商品发货',
+        width:'400px',
+        height:'100px',
+          //配置DOM容器的编号
+          contentId:'content',
+          success:function () {
+            if(mail_id&&mail_name&&mail_name!=="请选择")
+            {
+              if(mail_name == "其他"){
+                mail_name = other_mail_name;
+              }
+              $.ajax({
+              url : '/Shop/admin/order_send',
+              dataType : 'json',
+              type: 'put',
+              data : {id:now_id,code:mail_id,name:mail_name},
+              success : function(data){
+                if(data.status == 1){
+                  BUI.Message.Alert('发货成功！！！');
+                  document.getElementById("f" + now_id).innerHTML = "已发货";  
+                  document.getElementById("s" + now_id).innerHTML = '';
+                  document.getElementById("x" + now_id).innerHTML = '详情';    
+              }else{ //删除失败
+                BUI.Message.Alert('发货失败！');
+              }
+            }
+          });
+              this.hide(); 
+            }
+          }
+        });
+    $("#mail_id").change(function(){
+        mail_id = $(this).val();
+    });
+    $("#mail_name").change(function(){
+        mail_name = $(this).val();
+        if(mail_name == "其他"){
+          $("#other").css('display',"block");
+          dialog.set('height','100px');
+        }
+        else{
+          $("#other").css('display',"none");
+          dialog.set('height','100px');
+        }
+    });
+    $("#other_mail_name").change(function(){
+        other_mail_name = $(this).val();
+    });
+    function closeItem(id){
+      BUI.Message.Confirm('确认要关闭此订单吗？',function(){
+        $.ajax({
+          url : '/business/admin/order_close',
+          dataType : 'json',
+          type: 'put',
+          data : {id : id},
+          success : function(data){
+            if(data.status == 1){ 
+              document.getElementById("f" + id).innerHTML = "已关闭";  
+              document.getElementById("s" + id).innerHTML = '';
+              document.getElementById("x" + id).innerHTML = '详情';  
+              }else{ //删除失败
+                BUI.Message.Alert('关闭失败！');
+              }
+            }
+          });
+      },'question');
+    }
+    function sendItem(id){  
+        BUI.Message.Confirm('确认要确认完成吗？',function(){
+            $.ajax({
+              url : '/business/admin/order_send_put',
+              dataType : 'json',
+              type: 'put',
+              data : {id : id},
+              success : function(data){
+                if(data.status == 1){ 
+                	  document.getElementById("s" + id).innerHTML = '';
+                	   document.getElementById("f" + id).innerHTML = "已完成";  
+                  }else{ //删除失败
+                    BUI.Message.Alert('确认失败！');
+                  }
+                }
+              });
+          },'question');
+    }
+    
+
+</script>
+</body>
+</html>

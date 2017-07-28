@@ -1,0 +1,236 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>促销管理</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link href="/assets/css/bs3/dpl-min.css" rel="stylesheet" type="text/css" />
+  <link href="/assets/css/bs3/bui-min.css" rel="stylesheet" type="text/css" />
+  <link href="/assets/css/page-min.css" rel="stylesheet" type="text/css" />
+  <link href="/assets/css/hqtec.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+      <div class="control-group span12">
+        <label class="control-label" id="promotion_name">活动名称：{$promotion.name}</label>
+        <button  type="submit" id="promotionBtn" class="button button-success">编辑</button>
+      </div>
+    </div>
+</div>
+<div class="container">
+  <form id="searchForm" class="form-horizontal">
+    <div class="row">
+      <div class="control-group span8">
+        <label class="control-label">名称：</label>
+        <div class="controls">
+          <input type="text" class="control-text" name="name">
+        </div>
+      </div>
+      <div class="control-group span12">
+        <label class="control-label">状态：</label>
+        <div class="controls" >
+          <select  id="" name="show">
+            <option value="100">全部</option>
+            <option value="1">已上架</option>
+            <option value="0">已下架</option>
+          </select>
+        </div>
+      </div>
+      <div class="span3 offset2">
+        <button  type="button" id="btnSearch" class="button button-primary">搜索</button>
+      </div>
+    </div>
+  </form>
+
+  <div class="search-grid-container">
+    <div id="grid"></div>
+  </div>
+  <div id="content">
+    <form id="promotion_form" class="form-horizontal" action="/Business/admin/promotion"  method='put' >
+      <div class="row">
+        <div class="control-group span8">
+          <label class="control-label">活动名称：</label>
+          <div class="controls">
+            <input type="text" class="input-normal control-text" name="NAME" data-rules="{required : true}" value="{$promotion.name}">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="control-group span15">
+          <label class="control-label">描述：</label>
+          <div class="controls control-row4">
+            <textarea class="input-large" name="DESCRIPTION" type="text">{$promotion.description}</textarea>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<script type="text/javascript" src="/assets/js/jquery-1.8.1.min.js?{$js_version}"></script>
+<script type="text/javascript" src="/assets/js/bui-min.js?{$js_version}"></script>
+<script type="text/javascript" src="/assets/js/config-min.js?{$js_version}"></script>
+<script type="text/javascript">
+  BUI.use(['common/search','common/page','bui/overlay','bui/form'],function (Search,Page,Overlay,Form) {
+
+    columns = [
+      {title:'编号',dataIndex:'id',width:100},
+      {title:'商品名称',dataIndex:'name',width:100},
+      {title:'商品分类',dataIndex:'bname',width:100},
+      {title:'总库存',dataIndex:'total_num',width:100},
+      {title:'剩余库存',dataIndex:'surplus_num',sortable: false,width:100},
+      {title:'点击数',dataIndex:'click',sortable: true,width:100},
+      {title:'上下架',dataIndex:'status',width:100,sortable: false, renderer : function(value,obj) {
+        var show = obj.show;
+        if(show == 0){
+          return "<span id = 'f" + obj.id+ "'>已下架</span>";
+        }else if(show == 1){
+          return "<span id = 'f" + obj.id+ "'>已上架</span>"
+        }
+      }},
+      {title:'操作',width:250,sortable: false,renderer : function(value,obj){
+        var href='/business/admin/goods_edit/id/'+obj.id;
+        var status = obj.status;
+        var show = obj.show;
+        var editStr = '<span class="grid-command" ><a href="'+href+'">编辑</a></span>';//页面操作不需要使用Search.createLink
+        if(show == 0){
+          var releaseStr = '<span class="grid-command" id = "s'+ obj.id + '"> <a href="javascript:relItem('+obj.id+')" >上架</a></span>';
+        }else if(show == 1){
+          var releaseStr = '<span class="grid-command" id = "s'+ obj.id + '"> <a href="javascript:unrelItem('+obj.id+')" >下架</a></span>';
+        }
+        var delStr = '<span class="grid-command btn-del" title="删除商品信息">删除</span>';//页面操作不需要使用Search.createLink
+
+        return editStr + releaseStr + delStr ;
+      }}
+    ];
+    store = Search.createStore('/business/admin/goods_get_json?is_promotion=1',{autoLoad:false,remoteSort: true});
+    gridCfg = Search.createGridCfg(columns,{
+      tbar : {
+        items : [
+          {text : '<i class="icon-plus icon-white"></i>新建',btnCls : 'button button-small button-success',handler:function(){window.location.href='/Business/admin/goods_add';}},
+
+        ]
+      },
+      plugins : [BUI.Grid.Plugins.CheckSelection] // 插件形式引入多选表格
+    });
+
+    var  search = new Search({
+              store : store,
+              gridCfg : gridCfg
+            }),
+            grid = search.get('grid');
+    //删除操作
+    function delFunction(){
+      var selections = grid.getSelection();
+      delItems(selections);
+    }
+    function delItems(items){
+      var ids = [];
+      BUI.each(items,function(item){
+        ids.push(item.id);
+      });
+
+      if(ids.length){
+        BUI.Message.Confirm('确认要删除选中的记录么？',function(){
+          $.ajax({
+            url : '/business/admin/goods_delete',
+            dataType : 'json',
+            data : {ids : ids},
+            success : function(data){
+              if(data.success){ //删除成功
+                search.load();
+              }else{ //删除失败
+                BUI.Message.Alert('删除失败！');
+              }
+            }
+          });
+        },'question');
+      }
+    }
+
+    //监听事件，删除一条记录
+    grid.on('cellclick',function(ev){
+      var sender = $(ev.domTarget); //点击的Dom
+      if(sender.hasClass('btn-del')){
+        var record = ev.record;
+        delItems([record]);
+      }
+    });
+
+    var dialog;
+    var form = new Form.HForm({
+      srcNode : '#promotion_form',
+      submitType : 'ajax',
+      callback : function(data){
+        if(data.status==1)
+        {
+          $('#promotion_name').html('活动名称：'+$('input[name=NAME]').val());
+          BUI.Message.Alert('保存成功！','success');
+          dialog.close();
+        }else{
+          BUI.Message.Alert('保存失败！','error');
+        }
+      }
+    }).render();
+
+    dialog = new Overlay.Dialog({
+      title:'促销活动设置',
+      width:500,
+      height:320,
+      //配置DOM容器的编号
+      contentId:'content',
+      success:function () {
+        form.submit();
+      }
+    });
+    dialog.show();
+    dialog.close();
+    $('#promotionBtn').on('click',function () {
+      dialog.show();
+    });
+
+
+  });
+  function relItem(id){
+    $.ajax({
+      url : '/business/admin/goods_release',
+      dataType : 'json',
+      type : 'put',
+      data : {id : id,unrel : 0},
+      success : function(data){
+        if(data.status){ //删除成功
+          /*BUI.Message.Alert('发布成功！',function(){
+           self.location = data.data;
+           });*/
+          document.getElementById("f" + id).innerHTML = "已上架";
+          document.getElementById("s" + id).innerHTML = ' <a href="javascript:unrelItem(' + id + ')" >下架</a>';
+        }else{ //删除失败
+          BUI.Message.Alert('上架失败！');
+        }
+      }
+    });
+  }
+  function unrelItem(id){
+    $.ajax({
+      url : '/business/admin/goods_release',
+      dataType : 'json',
+      type : 'put',
+      data : {id : id,unrel : 1},
+      success : function(data){
+        if(data.status){ //删除成功
+          /*BUI.Message.Alert('发布成功！',function(){
+           self.location = data.data;
+           });*/
+          document.getElementById("f" + id).innerHTML = "下架";
+          document.getElementById("s" + id).innerHTML = ' <a href="javascript:relItem(' + id + ')" >上架</a>';
+        }else{ //删除失败
+          BUI.Message.Alert('下架失败！');
+        }
+      }
+    });
+  }
+</script>
+
+</body>
+</html>
+

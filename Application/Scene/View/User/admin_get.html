@@ -1,0 +1,187 @@
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <title> 搜索表单</title>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/assets/css/bs3/dpl-min.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/css/bs3/bui-min.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/css/page-min.css" rel="stylesheet" type="text/css" />
+ </head>
+ <body>
+  
+  <div class="container">
+ 
+    <form id="searchForm" class="form-horizontal">
+      <div class="row">
+        
+        <div class="control-group span8">
+          <label class="control-label">管理员登录名：</label>
+          <div class="controls">
+            <input type="text" class="control-text" name="acount">
+          </div>
+        </div>
+        <div class="control-group span8">
+          <label class="control-label">状态：</label>
+          <div class="controls" >
+            <select  id="" name="status">
+              <option value="100">全部</option>
+              <option value="1">有效</option>
+              <option value="0">无效</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+       
+        <div class="span3 offset2">
+          <button  type="button" id="btnSearch" class="button button-primary">搜索</button>
+        </div>
+      </div>
+    </form>
+ 
+    <div class="search-grid-container">
+      <div id="grid"></div>
+    </div>
+  </div>
+  <script type="text/javascript" src="/assets/js/jquery-1.8.1.min.js?{$js_version}"></script>
+  <script type="text/javascript" src="/assets/js/bui-min.js?{$js_version}"></script>
+  <script type="text/javascript" src="/assets/js/config-min.js?{$js_version}"></script>
+<script type="text/javascript">
+
+var storeHref;
+var hasPoi = "{$hasPoi}";
+if (hasPoi === "1"){
+  storeHref = '/Merchant/user/admin_get_json?id='+"{$poi}";
+}else{
+  storeHref = '/Merchant/user/admin_get_json';
+}
+  BUI.use(['common/search','common/page'],function (Search,Page) {
+    
+    
+      columns = [
+          {title:'编号',dataIndex:'id',width:100},
+          {title:'登陆名',dataIndex:'account',width:100},
+          {title:'昵称',dataIndex:'nickname',width:100},
+          {title:'邮箱',dataIndex:'email',width:60},
+          {title:'最后登陆ip',dataIndex:'last_login_ip',width:100},
+          {title:'最后登陆时间',dataIndex:'last_login_time',width:100},
+          {title:'状态',dataIndex:'status',width:100, renderer : function(value,obj) {
+            var status = obj.status;
+            if(status == 0){
+              return "<span id = 'f" + obj.id+ "'>已删除</span>";
+            }else if(status == 1){
+              return "<span id = 'f" + obj.id+ "'>有效</span>";
+            }
+          }},
+          {title:'操作',width:250,renderer : function(value,obj){
+              var href='/Merchant/user/Admin_edit/id/'+obj.id;
+              var status = obj.status;
+              var editStr = '<span class="grid-command" title="编辑会员信息"><a href="'+href+'">编辑</a></span>';
+              if(status == 0){
+                var releaseStr = '<span class="grid-command" id = "s'+ obj.id + '"> <a href="javascript:relItem('+obj.id+')" >恢复</a></span>';
+              }else if(status == 1){
+                var releaseStr = '<span class="grid-command" id = "s'+ obj.id + '"> <a href="javascript:unrelItem('+obj.id+')" >删除</a></span>';
+              }
+              
+            
+            
+            return editStr  + releaseStr;
+          }}
+        ];
+     
+      gridCfg = Search.createGridCfg(columns,{
+        tbar : {
+          items : [
+            {text : '<i class="icon-plus"></i>新建',btnCls : 'button button-small',handler:function(){window.location.href='/Merchant/user/admin_add/id/'+"{$poi}";}},
+           
+          ]
+        },
+        plugins : [BUI.Grid.Plugins.CheckSelection] // 插件形式引入多选表格
+      });
+      store = Search.createStore(storeHref,{autoLoad:false});
+    var  search = new Search({
+        store : store,
+        gridCfg : gridCfg
+      }),
+      grid = search.get('grid');
+    //删除操作
+    function delFunction(){
+      var selections = grid.getSelection();
+      delItems(selections);
+    }
+    function delItems(items){
+      var ids = [];
+      BUI.each(items,function(item){
+        ids.push(item.id);
+      });
+ 
+      if(ids.length){
+        BUI.Message.Confirm('确认要删除选中的记录么？',function(){
+          $.ajax({
+            url : '/Merchant/admin/admin_delete',
+            dataType : 'json',
+            data : {ids : ids},
+            success : function(data){
+              if(data.success){ //删除成功
+                search.load();
+              }else{ //删除失败
+                BUI.Message.Alert('删除失败！');
+              }
+            }
+        });
+        },'question');
+      }
+    }
+ 
+    //监听事件，删除一条记录
+    grid.on('cellclick',function(ev){
+      var sender = $(ev.domTarget); //点击的Dom
+      if(sender.hasClass('btn-del')){
+        var record = ev.record;
+        delItems([record]);
+      }
+    });
+  });
+   function relItem(id){
+      $.ajax({
+            url : '/Merchant/user/admin_delete',
+            dataType : 'json',
+            type : 'put',
+            data : {id : id,unrel : 0},
+            success : function(data){
+              if(data.status){ //删除成功
+                /*BUI.Message.Alert('发布成功！',function(){
+                  self.location = data.data;
+                });*/
+                document.getElementById("f" + id).innerHTML = "有效";  
+                document.getElementById("s" + id).innerHTML = ' <a href="javascript:unrelItem(' + id + ')" >删除</a>'; 
+              }else{ //删除失败
+                BUI.Message.Alert('发布失败！');
+              }
+            }
+        });
+    }
+    function unrelItem(id){  
+        $.ajax({
+            url : '/Merchant/user/admin_delete',
+            dataType : 'json',
+            type : 'put',
+            data : {id : id,unrel : 1},
+            success : function(data){
+              if(data.status){ //删除成功
+                /*BUI.Message.Alert('发布成功！',function(){
+                  self.location = data.data;
+                });*/
+                document.getElementById("f" + id).innerHTML = "无效";  
+                document.getElementById("s" + id).innerHTML = ' <a href="javascript:relItem(' + id + ')" >恢复</a>'; 
+              }else{ //删除失败
+                BUI.Message.Alert('取消发布失败！');
+              }
+            }
+        });
+    }
+</script>
+ 
+</body>
+</html>  
+

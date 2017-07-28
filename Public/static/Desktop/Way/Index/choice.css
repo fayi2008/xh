@@ -1,0 +1,264 @@
+.main{
+    background: url(/static/Desktop/Img/way/choice.jpg) no-repeat center;
+    background-size: cover;
+    min-height: 100%;
+}
+.crumbs{
+    margin: 0 auto;
+    width: 1000px;
+    padding-top: 20px;
+    height: 20px;
+    line-height: 20px;
+}
+.crumbs>a{
+    color: #000;
+}
+
+.choice-box1{
+    width: 1000px;
+    margin: 0 auto;
+    padding-top: 20px;
+}
+.choice-box-title{
+    font-size: 24px;
+    text-align: center;
+
+}
+.choice-list{
+    overflow: hidden;
+    width:1000px;
+    padding-top: 50px;
+}
+.choice-list>li{
+    float: left;
+
+    width: 200px;
+    margin-left: 40px;
+}
+.choice-list>li.checked .choice-list-img{
+    box-shadow: 0 0 1px #3f89ec;
+}
+.choice-list>li.checked .choice-list-hook{
+    border: none;
+    background-color: #3f89ec;
+    background-image: url(/static/Desktop/Img/break_hook.png);
+    background-position: center;
+    background-size: 80% auto;
+    background-repeat: no-repeat;
+}
+.choice-list-img{
+    width: 134px;
+    height: 134px;
+    margin-left: 33px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-size: cover;
+    -ms-behavior: url(/static/Desktop/Public/backgroundsize.min.htc);
+    behavior: url(/static/Desktop/Public/backgroundsize.min.htc);
+}
+.choice-list-name-box{
+    overflow: hidden;
+    margin-top: 20px;
+}
+.item1{
+    background-image: url(/static/Desktop/Img/way/choice/1.png);
+}
+.item2{
+    background-image: url(/static/Desktop/Img/way/choice/2.png);
+}
+.item3{
+    background-image: url(/static/Desktop/Img/way/choice/3.png);
+}
+.item4{
+    background-image: url(/static/Desktop/Img/way/choice/4.png);
+}
+
+.choice-list-hook{
+    display: block;
+    float: left;
+    height: 20px;
+    width: 20px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin-left: 50px;
+}
+.choice-list-name{
+    display: block;
+    float: left;
+    margin-left: 10px;
+    height: 20px;
+    line-height: 20px;
+}
+.add-tour{
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    box-shadow: 0 0 1px #ccc;
+    background-color: #fff;
+    text-align: center;
+    border-radius: 50px;
+    width: 200px;
+    margin: 0 auto;
+    cursor: pointer;
+    margin-top: 50px;
+    font-size: 16px;
+}
+.to-way-list{
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    box-shadow: 0 0 1px #ccc;
+    background-color: #3f89ec;
+    color: #fff;
+    text-align: center;
+    border-radius: 50px;
+    width: 200px;
+    margin: 0 auto;
+    cursor: pointer;
+    margin-top: 30px;
+    font-size: 16px;
+}
+
+/*选择景点*/
+.choice-box2{
+    width: 550px;
+    margin: 0 auto;
+    display: none;
+}
+.choice-box2-title{
+    font-size: 18px;
+    margin-top: 20px;
+}
+.choice-box2-tag{
+    overflow: hidden;
+    padding-top: 20px;
+
+}
+.choice-box2-tag>li{
+    float: left;
+    width: 80px;
+    position: relative;
+    margin-left: 20px;
+}
+
+.choice-box2-tag-img{
+    width: 80px;
+
+    height: 80px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-size: cover;
+    -ms-behavior: url(/static/Desktop/Public/backgroundsize.min.htc);
+    behavior: url(/static/Desktop/Public/backgroundsize.min.htc);
+}
+.choice-box2-tag-name{
+
+    text-align: center;
+}
+.choice-box2-tag-close{
+    position: absolute;
+    right: -5px;
+    top:10px;
+    width: 20px;
+    cursor: pointer;
+    height: 20px;
+    background: url(/static/Desktop/Img/way/close.png);
+
+}
+
+.choice-box2-name{
+    display: block;
+    width: 100%;
+    border-radius: 40px;
+    height: 40px;
+    font-size: 14px;
+    padding:10px 20px;
+    box-sizing: border-box;
+}
+.choice-box2-tour{
+    width: 560px;
+    overflow: hidden;
+}
+.choice-box2-tour>li{
+    width: 130px;
+    height: 100px;
+    border: 2px solid #fff;
+    box-shadow: 1px 1px 1px #ccc;
+    float: left;
+    margin-top: 10px;
+    margin-right: 10px;
+    box-sizing: border-box;
+    cursor: pointer;
+    position: relative;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-size: cover;
+    -ms-behavior: url(/static/Desktop/Public/backgroundsize.min.htc);
+    behavior: url(/static/Desktop/Public/backgroundsize.min.htc);
+}
+.choice-box2-tour>li>.tour-name{
+    position: absolute;
+    background: url(/static/Desktop/Img/mask_bg.png) ;
+    padding: 10px;
+    width: 100%;
+    bottom:0px;
+    left: 0px;
+    color: #fff;
+    box-sizing: border-box;
+}
+.tour2>li>.tour-close{
+    display: none;
+}
+.tour1>li>.tour-close{
+    position: absolute;
+    right: -10px;
+    top:-10px;
+    width: 20px;
+    cursor: pointer;
+    height: 20px;
+    background: url(/static/Desktop/Img/way/close.png);
+}
+.choice-btn-box{
+    margin: 0 auto;
+    overflow: hidden;
+    padding-top: 30px;
+}
+.choice-btn-box .to-last{
+    float: left;
+    border-radius: 40px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 16px;
+    text-align: center;
+    width: 45%;
+    background-color: #fff;
+    cursor: pointer;
+}
+.choice-btn-box .to-way-list{
+    float: left;
+    width: 45%;
+    margin: 0px;
+    margin-left: 10%;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+}
+.choice-box2-input{
+    position: relative;
+
+}
+.input-close{
+    position: absolute;
+    top:9px;
+    right: 10px;
+    background: url(/static/Desktop/Img/way/close.png);
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}

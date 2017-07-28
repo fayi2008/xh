@@ -1,0 +1,263 @@
+body, html {
+    background-color: #faf8f6;
+    background: url(/static/Desktop/Img/wh/whbg.jpg) center top repeat-y;
+}
+
+body {
+
+    width: 100%;
+    position: relative;
+}
+
+.top {
+    width: 1016px;
+    height: 100px;
+    margin: 0 auto;
+    background: url(/static/Desktop/Img/wh/top.png) center bottom no-repeat;
+}
+
+.top > a {
+    width: 139px;
+    height: 36px;
+    position: absolute;
+    left: 50%;
+    top: 52px;
+    margin-left: -380px;
+    background: url(/static/Desktop/Img/logo.png) center top no-repeat;
+}
+
+.crumbs {
+    width: 1000px;
+    margin: 0 auto;
+    height: 40px;
+    line-height: 40px;
+
+}
+
+.item-top {
+    margin: 0 auto;
+    width: 1200px;
+    height: 35px;
+    background: url(/static/Desktop/Img/wh/top_bg.png) right bottom no-repeat;
+}
+
+.item {
+    width: 1200px;
+    margin: 0 auto;
+    background: url(/static/Desktop/Img/wh/center_bg.png) right top repeat-y;
+}
+
+.item-box {
+    width: 1200px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.item-left {
+    float: left;
+    width: 360px;
+    min-height: 100px;
+}
+
+.item-head {
+    width: 93px;
+    height: 120px;
+    padding: 20px;
+    box-sizing: border-box;
+    margin: 10px auto;
+    background: url(/static/Desktop/Img/wh/head.png) right top no-repeat;
+}
+
+.item-head > div {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-size: cover;
+    -ms-behavior: url(/static/Desktop/Public/backgroundsize.min.htc);
+    behavior: url(/static/Desktop/Public/backgroundsize.min.htc);
+    width: 100%;
+    height: 100%;
+
+}
+
+.item-head > img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.item-name {
+
+    padding: 10px;
+    text-align: center;
+}
+
+.item-cate {
+    width: 100px;
+    background-color: #ffd800;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 30px;
+    margin: 10px auto;
+    text-align: center;
+}
+
+.item-wh-list-title {
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    padding-top: 50px;
+}
+
+.item-wh-list {
+    padding: 10px;
+
+}
+
+.item-wh-list h1,.item-wh-list a {
+    display: block;
+    font-weight: bold;
+    font-size: 14px;
+    padding: 10px 0px;
+    padding-left: 20px;
+    margin: 0;
+    border-left: #ccc solid 1px;
+    margin-left: 120px;
+}
+
+.item-right {
+    float: left;
+    width: 840px;
+    min-height: 100px;
+    padding: 20px;
+    padding-left: 50px;
+    box-sizing: border-box;
+}
+
+.item-list-wh h1, .item-desc h1 {
+    font-size: 16px;
+}
+
+.item-content h1 {
+    font-size: 16px;
+    padding: 5px 0;
+}
+
+.item-list-wh h1 {
+    display: inline-block;
+    font-size: 16px;
+}
+
+.item-list-wh-desc {
+    color: #656564;
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.item-bottom {
+    margin: 0 auto;
+    width: 1200px;
+    height: 35px;
+    background: url(/static/Desktop/Img/wh/bottom_bg.png) right top no-repeat;
+}
+
+.item-content img {
+    max-width: 100%;
+}
+
+.item-desc-pic {
+    width: 770px;
+    height: 180px;
+    padding: 10px 0;
+}
+
+.item-desc-pic-left {
+    float: left;
+    width: 35px;
+    height: 180px;
+    background: url(/static/Tablet/Img/left_w.png) center center no-repeat;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.item-desc-pic-box {
+    width: 700px;
+    float: left;
+    height: 180px;
+    overflow: hidden;
+    position: relative;
+}
+
+.item-desc-pic-right {
+    float: left;
+    width: 35px;
+    height: 180px;
+    background: url(/static/Tablet/Img/right_w.png) center center no-repeat;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.item-desc-pics {
+    height: 180px;
+    overflow: hidden;
+}
+
+.item-desc-pic-item {
+    width: 175px;
+    height: 180px;
+    float: left;
+    background-repeat: no-repeat;
+    background-position: center;
+    box-sizing: border-box;
+    border: 10px solid #fff;
+    background-color: #000;
+    background-size: cover;
+    -ms-behavior: url(/static/Desktop/Public/backgroundsize.min.htc);
+    behavior: url(/static/Desktop/Public/backgroundsize.min.htc);
+}
+
+.culture-image {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    border: 10px solid #fff;
+    z-index: 99999;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+#video_culture{
+    margin: 10px 0;
+    height: 30px;
+    width: 500px;
+}
+.item-content iframe{
+    max-width: 100%;
+}
+.item-content object{
+    max-width: 100%;
+}
+.item-tuijian{
+    margin-top: 10px;
+}
+.item-tuijian h1 {
+    font-size : 16px;
+    padding: 5px 0;
+}
+.data-tuijian{
+    padding: 5px 0;
+}
+.data-tuijian>a{
+    display: block;
+    color: #3195eb;
+    margin-bottom: 5px;
+}
+.culture-image-close{
+    position: absolute;
+    right: -20px;
+    top:-20px;
+    width: 30px;
+    height: 30px;
+    background-image: url(/static/Desktop/Img/close.png);
+    background-repeat: no-repeat;
+    background-position: center;
+     background-size: cover;
+    -ms-behavior: url(/static/Desktop/Public/backgroundsize.min.htc);
+    behavior: url(/static/Desktop/Public/backgroundsize.min.htc);
+}

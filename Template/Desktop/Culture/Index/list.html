@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta name="keywords" content="西湖,杭州西湖">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <title>文化知识</title>
+    <link href="/static/Desktop/Public/main.css" rel="stylesheet" type="text/css">
+    <link href="/static/Desktop/Public/login.css" rel="stylesheet" type="text/css">
+    <link href="/static/Desktop/Culture/Index/list.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<include file="../Template/Desktop/Home/Index/top.html"/>
+<div class="top">
+    <div class="search-boxs">
+        <div class="search-box"><input class="search" type="text" placeholder="搜索文化">
+            <div class="submit-search"></div>
+        </div>
+        <div class="search-list"></div>
+    </div>
+</div>
+<div class="main">
+    <div class="tag">
+
+    </div>
+    <div class="wh-list">
+
+    </div>
+    <div class="wh-page">
+        <div class="last"></div>
+        <div class="next"></div>
+    </div>
+</div>
+<include file="../Template/Desktop/Home/Index/bottom.html"/>
+</body>
+<script>
+    window.LIST_CATE = {$cate};
+
+</script>
+<script src="/static/public/jquery.js?{$js_version}"></script>
+<script src="/static/Desktop/Public/main.js?{$js_version}"></script>
+<script src="/static/Desktop/Public/login.js?{$js_version}"></script>
+<script src="/static/Desktop/Culture/Index/list.js?{$js_version}"></script>
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?21a3095477990ab53b7d2a97f78155eb";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+</html>

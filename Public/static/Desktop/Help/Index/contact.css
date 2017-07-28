@@ -1,0 +1,126 @@
+.main_box{ 
+    width: 100%;
+    padding: 105px 0 45px 0;
+    background: #e7e7e7;
+    font-family: "微软雅黑";
+}
+.main_con{
+    width: 1000px;
+    margin: 0px auto;
+    min-height: 1000px;
+    background: url(/static/Desktop/Help/Index/index.tiles/contactBg.jpg) left top repeat-y;
+}
+.clear{
+    clear: both
+}
+.mian_left{
+    width: 250px;
+    min-height: 1000px;
+    float: left;
+}
+.mian_left ul li a{
+    width: 250px;
+    height: 65px;
+    line-height: 65px;
+    display: block;
+    font-size: 20px;
+    color: #979797;
+    text-align: center;
+    border-bottom: 1px solid #e8e7e7;
+}
+.mian_left ul li a.select{
+    background: url(/static/Desktop/Help/Index/index.tiles/selectBg.jpg) no-repeat;
+}
+.mian_left ul li.last a{
+    border-bottom: none;
+}
+/***************************/
+.main_right{ 
+    width: 750px;
+    min-height: 1000px;
+    float: left;
+    color: #6b6b6b;
+    font-size: 16px;
+}
+.contactus{ padding: 15px 40px;}
+.contactus p{
+    width: 100%;
+    line-height: 40px;
+
+}
+/************* faq **************/
+.faq_box,.link_box,.map_box{
+    padding: 0px 40px;
+}
+.faq_con ul li{
+    width: 100%;
+}
+.faq_con_tit{
+    color: #37b1f1;
+    font-size: 18px;
+    padding-top: 20px;
+    line-height: 32px;
+    height: 32px;
+    width: 100%;
+}
+.faq_con_ask{
+    color: #6b6b6b;
+    font-size: 16px;
+    line-height: 30px;
+    height: 30px;
+    width: 100%;
+}
+.faq_con_answer p{
+    color: #979797;
+    font-size: 14px;
+    line-height: 32px;
+    width: 100%;
+}
+/************* link **************/
+.link_box ul li{
+    padding-top: 20px;
+    width: 100%;
+}
+.link_box ul li p{
+    width: 100%;
+    line-height: 32px;
+    color: #37b1f1;
+    font-size: 20px;
+}
+.link_box ul li a{
+    width: 100%;
+    line-height: 30px;
+    font-size: 18px;
+    color: #979797;
+}
+.link_box ul li a:hover{
+    color: #1691d1;
+    text-decoration: underline;
+}
+/************* map **************/
+.map_box ul li{
+    width: 100%;
+    padding-top: 45px;
+    line-height: 40px;
+}
+.map_tit{
+    font-size: 20px;
+    color: #37b1f1;
+}
+.map_titer span{
+    color: #6b6b6b;
+    font-size: 18px;
+    padding-right: 35px;
+    cursor: pointer;
+}
+.map_titer span.current{
+    text-decoration: underline;
+}
+.map_con a{
+    padding-right: 25px;
+    font-size: 16px;
+    color: #979797;
+}
+.map_con a:hover{
+    color: #1691d1;
+}

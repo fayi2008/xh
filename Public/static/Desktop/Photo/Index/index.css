@@ -1,0 +1,231 @@
+body{
+    background-color: #d8f2f6;
+    background-image: url(/static/Desktop/Img/photo/bg.jpg);
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    background-position: center 60px;
+}
+
+.content{
+
+    margin: 0 auto;
+}
+.content-list{
+    background-color: #fff;
+    border-radius: 3px;
+    opacity: 0.9;
+    color: #000;
+    overflow: hidden;
+    width: 1000px;
+    margin: 0 auto;
+
+}
+.order-item{
+    float: left;
+    height: 42px;
+    line-height: 42px;
+    width: 100px;
+    text-align: center;
+    cursor: pointer;
+}
+.order-item.checked{
+    float: left;
+    height: 42px;
+    line-height: 42px;
+    width: 100px;
+    text-align: center;
+    cursor: pointer;
+    color: #fff;
+    background-color: #3f89ec;
+}
+.oreder-release{
+    float: right;
+    width: 120px;
+    border-radius: 3px;
+    height: 32px;
+    line-height: 32px;
+    margin-top: 5px;
+    margin-right: 10px;
+    text-align: center;
+    color: #fff;
+    background-color: #3f89ec;
+    cursor: pointer;
+}
+
+
+.photo-list{
+    width: 1000px;
+    overflow: hidden;
+    margin: 0 auto;
+    padding: 10px;
+
+}
+.photo-falls{
+    width: 250px;
+    float: left;
+    box-sizing: border-box;
+
+
+}
+.photo-item{
+    width: 240px;
+
+    background-color: #fff;
+    box-shadow: 0 0 1px #333;
+    margin: 0 auto;
+    margin-bottom: 20px;
+}
+.photo-item:hover{
+    box-shadow: 0 0 10px #0366b1;
+}
+.photo-img{
+    width: 100%;
+    cursor: pointer;
+}
+.photo-img>img{
+    display: block;
+    width: 100%;
+}
+.photo-content{
+    box-sizing: border-box;
+    padding: 10px;
+    overflow: hidden;
+    cursor: pointer;
+}
+.photo-tool{
+    padding: 10px;
+    overflow: hidden;
+}
+.zan{
+    float: left;
+    color: #6c8ab1;
+    cursor: pointer;
+}
+.zan:before{
+    content: '';
+    padding: 5px 8px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-image: url(/static/Desktop/Img/index/xin.png);
+    background-position: center;
+    margin-right: 5px;
+}
+.pl{
+    float: left;
+    color: #6c8ab1;
+    margin-left: 10px;
+}
+.pl:before{
+    content: '';
+    padding: 5px 8px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-image: url(/static/Desktop/Img/index/pl.png);
+    background-position: center;
+    margin-right: 5px;
+}
+
+
+.next{
+    width: 1000px;
+    height: 36px;
+    line-height: 36px;
+    text-align: center;
+    margin: 20px auto;
+    border-radius: 2px;
+    box-shadow: 0 0 2px #333;
+    color: #333;
+    cursor: pointer;
+    background-color: #fff;
+}
+
+/*/内容弹窗*/
+.submit-box{
+    position: fixed;
+    width: 300px;
+    top:100px;
+    left: 50%;
+    margin-left: -140px;
+    z-index: 99999;
+    padding: 20px;
+    background-color: #fff;
+}
+.submit-box-title{
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+}
+.image-box{
+    width: 300px;
+    height: 300px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    background-image: url(/static/Desktop/Img/photo/add.jpg);
+    position: relative;
+    overflow: hidden;
+}
+.image-box>input{
+    overflow: hidden;
+    width: 300px;
+    height: 300px;
+    position:absolute;
+    right:0;
+    top:0;
+    font-size:100px;
+    opacity: 0;
+    filter:Alpha(Opacity=0);
+}
+.image-box>#img{
+    overflow: hidden;
+}
+.image-box>#img>input{
+    overflow: hidden;
+    width: 300px;
+    height: 300px;
+    position:absolute;
+    right:0;
+    top:0;
+    font-size:54px;
+    opacity: 0;
+    filter:Alpha(Opacity=0);
+}
+#content{
+    display: block;
+    width: 300px;
+    height: 60px;
+    padding: 0;
+    margin: 0px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    margin-top: 10px;
+}
+.release-submit{
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    margin-top: 10px;
+    color: #fff;
+    cursor: pointer;
+    background-color: #3f89ec;
+}
+#image{
+    display: block;
+    width: 300px;
+    height: 300px;
+    opacity: 0;
+    cursor: pointer;
+}
+.submit-box-close{
+    position: absolute;
+    top:-15px;
+    right: -15px;
+    width: 30px;
+    height: 30px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-image: url(/static/Desktop/Img/close.png);
+    background-position: center;
+    cursor: pointer;
+}
+/**/

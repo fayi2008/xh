@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>推荐线路</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="keywords" content="西湖,杭州西湖">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link href="/static/Mobile/css/m-way.css" rel="stylesheet" type="text/css">
+</head>
+<body class="reco" data-page="reco">
+    <div class="wrap">
+        <nav>
+            <div class="header">
+                <h3 id="j_switch_day">天数</h3>
+                <span id="j_swtich_type">
+                    <button  data-type="time">最新线路</button>
+                    <button href="#" data-type="hot">最热线路</button>
+                </span>
+            </div>
+
+            <ul id="j_days">
+                <li class="select" data-num="0">全部</li>
+                <li data-num="1">1日游</li>
+                <li data-num="2">2日游</li>
+                <li data-num="3">3日游</li>
+                <li data-num="4">3日以上</li>
+            </ul>
+        </nav>
+        <div class="cnt" id="j_cnt">
+            <script id="tpl" type="text/template">
+                <%
+                var data = this.data.rows;
+                for(var i in data){
+                %>
+                <section>
+                    <a href="{{data[i].id}}.html">
+                    <div class="thumb">
+                        <img src="{{data[i].image_uri | path}}" alt=""/>
+                        <h3>{{data[i].title}}</h3>
+                        <span>{{data[i].hitsum}}</span>
+                    </div>
+                    <p>
+                        <% for(var j in data[i]["tag"]){
+                            if(data[i]["tag"][j]){
+                        %>
+                        <em>{{data[i]["tag"][j]}}</em>
+                        <% } } %>
+                    </p>
+                    <p>
+                        <%
+                        var pois = [];
+                        for(var j in data[i]["poi"]) {
+                            pois.push(data[i]["poi"][j].name)
+                        }
+                        %>
+                        {{pois.join(' —— ')}}
+                    </p>
+                    </a>
+                </section>
+                <% } %>
+            </script>
+        </div>
+        <footer class="loading">正在加载...</footer>
+    </div>
+    <script type="text/javascript">
+        var data = {$data};
+    </script>
+    <script src="/static/public/jquery.js?{$js_version}"></script>
+    <script src="/static/public/core.base.js?{$js_version}"></script>
+    <script src="/static/Mobile/js/m-way.js?{$js_version}"></script>
+
+</body>
+</html>

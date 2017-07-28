@@ -1,0 +1,178 @@
+
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <title> 审核评论信息</title>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+       <link href="/assets/css/bs3/dpl-min.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/css/bs3/bui-min.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/css/page-min.css" rel="stylesheet" type="text/css" />  
+   <style type="text/css">
+    code {
+      padding: 0px 4px;
+      color: #d14;
+      background-color: #f7f7f9;
+      border: 1px solid #e1e1e8;
+    }
+   </style>
+ </head>
+ <body>
+  
+  <div class="container">
+    <form id ="J_Form" class="form-horizontal" action='/Comment/admin/index' method='put'>
+      <h3>基本信息</h3>
+  
+     <div class='row'>
+     	<div class="control-group span12">
+      		 <label class="control-label">业务类型：</label>
+            <div class="controls">
+              		<input name="type" disabled="disabled" type={:$data['type']==1? '"text"':'"hidden"'} value='咨询'/>
+            		<input name="type" disabled="disabled" type={:$data['type']==2? '"text"':'"hidden"'}  value='投诉'/>
+   
+            </div>
+      
+        </div>
+     </div>
+  
+  
+      <div class="row">
+      	 <div class="control-group span12">
+          <label class="control-label">编号：</label>
+          <div class="controls">
+            <input name="ID" type="text" class="span6 span-width control-text" value='{$data.id}' disabled="disabled" >  
+          </div>        
+        </div>
+         <div class="control-group span12">
+          <label class="control-label">记录时间：</label>
+          <div class="controls">
+            <input type="text" name='CREATE_TIME' class="control-text" value='{$data.create_time}' disabled="disabled">
+          </div>
+        </div>
+        
+      </div>
+      
+    
+      
+
+     <div class="row">
+          <div class="control-group span12">
+          <label class="control-label">记录者</label>
+          	<div class="controls">
+            	<input type="text" name='AUTHOR' class="control-text" value='{$data.author}' disabled="disabled">
+          	</div>
+         </div>
+         <div class="control-group span12">
+          <label class="control-label"><s>*</s>处理状态</label>
+          <div class="controls">
+            	<select name='STATUS'>
+            		<option value=0   {:$data['status']==0?'selected':''}>--请选择---</option>
+            		<option value=1   {:$data['status']==1?'selected':''} >待处理</option>
+            		<option value=2   {:$data['status']==2?'selected':''} >顺利处理</option>
+            		<option value=3   {:$data['status']==3?'selected':''} >处理有难度</option>
+            
+            	</select>
+          </div>
+        </div>
+      </div>
+   
+   
+
+
+     
+	
+     
+      <div class="row"   >
+        <div class="control-group span24">
+          <label class="control-label">反映内容：</label>
+         <div class="controls" style='height: auto;margin-bottom: 15px;'>
+		 <!-- 加载编辑器的容器 -->
+       		 <script id="container_1" name="REFLECT_CONTENT" type="text/plain" style="width:500px;height:200px;">{$data.reflect_content}</script>
+		</div>
+        </div>
+      </div>
+      
+       <div class="row"   >
+        <div class="control-group span24">
+          <label class="control-label">回复内容：</label>
+         <div class="controls" style='height: auto;margin-bottom: 15px;'>
+		 <!-- 加载编辑器的容器 -->
+       		 <script id="container_2" name="REPLY_CONTENT" type="text/plain" style="width:500px;height:200px;">{$data.reply_content}</script>
+		</div>
+        </div>
+      </div>
+       
+      <hr/>
+     
+      
+      <div class="row">
+        <div class="form-actions offset3">
+         <input type="hidden" name="ID" value="{$data.id}">
+         
+          <button type="submit" class="button button-primary">保存</button>
+          <button type="reset" class="button">重置</button>
+        </div>
+      </div>
+    </form>
+    
+   
+     
+     <!-- 配置文件 -->
+   	<script type="text/javascript" charset="utf-8" src="/ueditor/ueditor.config.js?{$js_version}"></script>
+    <!-- 编辑器源码文件 -->
+    <script type="text/javascript" charset="utf-8" src="/ueditor/ueditor.all.min.js?{$js_version}"> </script>
+    <!-- 实例化编辑器 -->
+    <script type="text/javascript">
+        var editor1 = UE.getEditor('container_1');
+        var editor2 = UE.getEditor('container_2');
+    </script> 
+    
+
+    
+  <script type="text/javascript" src="/assets/js/jquery-1.8.1.min.js?{$js_version}"></script>
+  <script type="text/javascript" src="/assets/js/bui-min.js?{$js_version}"></script>
+
+  <script type="text/javascript" src="/assets/js/config-min.js?{$js_version}"></script>
+  <script type="text/javascript">
+    BUI.use('common/page');
+  </script>
+  <script type="text/javascript">
+    BUI.use('bui/form',function (Form) {
+      var form = new Form.HForm({
+        srcNode : '#J_Form'
+      }).render();
+    });
+  </script>
+  	<script type="text/javascript">
+		BUI.use('bui/form', function(Form) {
+			new Form.HForm({
+				srcNode : '#J_Form',
+				submitType : 'ajax',
+				callback : function(data) {
+					if (data.status == 1) {
+						
+						 BUI.Message.Alert('编辑成功！');
+						top.topManager.reloadPage('comment');
+						top.topManager.closePage();
+					} else {
+						if(data.msg){
+							 BUI.Message.Alert(data.msg);
+						}else{
+							 BUI.Message.Alert('编辑失败！');
+						}
+						
+					}
+					//window.location.href = data.url
+				}
+			}).render();
+
+		});
+	</script>
+  
+  
+  
+  
+
+   	
+	
+</body>
+</html>  

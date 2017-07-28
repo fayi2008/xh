@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>菜单管理</title>
+    <link href="/assets/css/bs3/dpl-min.css" rel="stylesheet">
+    <link href="/assets/css/bs3/bui-min.css" rel="stylesheet">
+    <link href="/assets/css/page-min.css" rel="stylesheet">
+    <link href="/assets/css/hqtec.css" rel="stylesheet"> 
+    <style>
+        .input_20{
+            width: 15px !important;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="span24 doc-content">
+       
+            <ul class="toolbar">
+                <li><button class="button button-small button-success" onclick="add()">添加商品分类</button></li>
+            </ul>
+            <div id="menu_body">
+
+            </div>
+        </div>
+    </div>
+    <!-- script end -->
+</div>
+
+    <script src="/assets/js/jquery-1.8.1.min.js?{$js_version}"></script>
+    <script src="/assets/js/bui.js?{$js_version}"></script>
+
+    <!-- script start -->
+    <script type="text/javascript">
+        BUI.use(['bui/extensions/treegrid','bui/common/page'],function (TreeGrid) {
+
+            var data = {$cate_json};
+            //由于这个树，不显示根节点，所以可以不指定根节点
+            var tree = new TreeGrid({
+                render : '#menu_body',
+                nodes : data,
+                dirCls : 'icon-th',
+                leafCls : 'icon-th-list',
+                showLine : false,
+                columns : [
+                    {title : '分类',dataIndex :'listorder',width:250,renderer:function(val,obj){
+                        var str='<input class="input_20" type="text" name="listorder['+obj.id+']" value="'+val+'" /> &nbsp;'+obj.name;
+                        return str;
+                    }},
+                   
+                    {title : '操作',renderer:function(val,obj){
+                        var str='<a href="/business/admin/cate_edit?id='+obj.id+'">编辑</a> ' +
+                                '<a href="javascript:deleteItem('+obj.id+')">删除</a>';
+
+                        return str;
+                    }}],
+                height:'auto'
+            });
+            tree.render();
+        });
+
+        function deleteItem(id)
+        {
+        	BUI.Message.Confirm('是否删除该项？',function(){
+        		$.ajax({
+                    type: "delete",
+                    url: "/business/admin/cate_delete_json?id="+id,
+                    dataType: "json",
+                    success: function(data){
+                    	if(data.success==true)
+                    		{
+                                BUI.Message.Alert('删除成功',function(){
+                                    if(top.topManager){
+                                        //打开左侧菜单中配置过的页面
+                                        top.topManager.openPage({
+                                            id : 'cate',
+                                            reload : 'true'
+                                        });
+                                    }
+                                },'success');
+                    		}else{
+                    			BUI.Message.Alert('删除失败！'+data.msg,'error');
+                    		}
+                    }
+        		});
+                
+            },'question');
+        }
+
+        function add()
+        {
+            top.topManager.openPage({
+                id : 'cate/add',
+                title : '添加商品分类',
+                href : '/business/admin/cate_add.html'
+            });
+        }
+    </script>
+    <!-- script end -->
+</div>
+</body>
+</html>

@@ -1,0 +1,56 @@
+.back-black {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background: rgba(0, 0, 0, 0.8);
+    top: 0;
+    left: 0;
+    z-index: 9999999;
+}
+
+.yalert_box {
+    top: 20%;
+    width: 96%;
+    margin-left: 2%;
+    box-sizing: border-box;
+    background-color: #fff;
+    position: fixed;
+    color: #000;
+    z-index: 9999999;
+    border-radius: 3px;
+}
+
+.yalert_box_tip {
+    text-align: center;
+    padding: 10px
+}
+
+.yalert_box_top {
+
+    text-align: center;
+    padding: 15px 0;
+    font-weight: bold;
+}
+
+.yalert_box_btn {
+    border-radius: 0 0 3px 3px;
+    text-align: center;
+    margin-top: 20px;
+
+}
+
+.yalert_box_btn a {
+    display: inline-block;
+    padding: 15px 0px;
+    width: 50%;
+    color: #3399cc;
+    font-size: 100%;
+    box-sizing: border-box;
+    border-top: 1px solid rgba(237, 237, 237, 1);
+}
+
+#yalert_box_quxiao {
+
+    border-right: 1px solid rgba(237, 237, 237, 1);
+
+}

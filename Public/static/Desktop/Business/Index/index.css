@@ -1,0 +1,99 @@
+body{
+    background-color: #f1f1f1;
+}
+.content{
+    padding: 30px;
+}
+.content-list{
+    width: 1000px;
+    margin: 0 auto;
+    height: 40px;
+    line-height: 40px;
+    background-color: #fff;
+    box-shadow: 0 0 1px #333;
+}
+.order-item{
+    height: 40px;
+    width: 80px;
+    text-align: center;
+    line-height: 40px;
+    cursor: pointer;
+    float: left;
+}
+.order-item.check{
+    background-color: #3f89ec;
+    color: #fff;
+}
+.shop-list{
+    overflow: hidden;
+    width: 1000px;
+    margin: 0 auto;
+    margin-top: 30px;
+    padding: 3px;
+
+}
+.shop-item{
+    width: 300px;
+    height: 330px;
+    float: left;
+    margin-left: 50px;
+    background-color: #fff;
+    margin-bottom: 40px;
+    box-shadow: 0 0 1px #000;
+}
+.shop-item:hover{
+    box-shadow: 0 0 10px #0366b1;
+}
+.shop-item.no-l{
+    margin-left: 0;
+}
+.shop-img{
+    height: 225px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    -ms-behavior: url(/static/Desktop/Public/backgroundsize.min.htc);
+    behavior: url(/static/Desktop/Public/backgroundsize.min.htc);
+
+}
+.shop-desc{
+    height: 105px;
+    box-sizing: border-box;
+    padding: 20px;
+}
+.shop-name{
+    height: 30px;
+    font-size: 18px;
+    overflow: hidden;
+    line-height: 30px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.shop-addr{
+    color: #939393;
+    height: 20px;
+    line-height: 20px;
+    overflow: hidden;
+    text-overflow : ellipsis;
+}
+.shop-tel{
+    color: #939393;
+    height: 20px;
+    line-height: 20px;
+    overflow: hidden;
+    text-overflow : ellipsis;
+
+}
+.d3tips{
+    margin-left: 5px;
+    padding: 0px 8px;
+    background-image: url(/static/Desktop/Img/d3_h.png);
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+
+    -ms-behavior: url(/static/Desktop/Public/backgroundsize.min.htc);
+    behavior: url(/static/Desktop/Public/backgroundsize.min.htc);
+}

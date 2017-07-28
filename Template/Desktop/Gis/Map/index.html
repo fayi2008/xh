@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>西湖</title>
+    <meta name="keywords" content="西湖,杭州西湖">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta http-equiv="x-ua-compatible" content="IE=edge" />
+    <link href="/static/Desktop/Gis/Map/style/main.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=8lO6Y9WE9ea11T0bAVwQfmmX"></script>
+</head>
+<body>
+    <include file="../Template/Desktop/Home/Index/top.html"/>
+    <div class="aside">
+        <h2>热门标签</h2>
+        <div class="cnt">
+            <div id="j_hot" class="scroll">
+                <div class="wrap">
+                    <script data-model="/Gis/poi/getTag" type="text/template" id="tpl_hot_span">
+                    <% for(var i in this.data){ %>
+                    <div class="item">
+                        <h3>{{this.data[i].name}}<i></i></h3>
+                        <ul style="display:none;">
+                            <% for(var j in this.data[i].data){ %>
+                            <% if(this.data[i].data[j].cid){ %>
+                            <li data-id="{{this.data[i].data[j].cid}}">{{this.data[i].data[j].cname}}</li>
+                            <% } %>
+                            <% } %>
+                        </ul>
+                    </div>
+                    <% } %>
+                    </script>
+                </div>
+            </div>
+            <button class="expand"></button>
+        </div>
+    </div>
+    <div class="map">
+        <div class="wrap">
+            <div id="j_map_container"></div>
+            <div class="cat">
+                <h3>全部</h3>
+                <ul style="display:none;">
+                    <li data-id="" class="select">全部</li>
+                    <li data-id="2">景点</li>
+                    <li data-id="1">商户</li>
+                    <li data-id="3">公共设施</li>
+                    <li data-id="4">厕所</li>
+                    <li data-id="5">空中全景</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/public/jquery.js?{$js_version}"></script>
+    <script src="/static/public/iscroll.js?{$js_version}"></script>
+    <script src="/static/public/core.base.js?{$js_version}"></script>
+    <script src="/static/public/core.map.js?{$js_version}"></script>
+    <script src="/static/Desktop/Gis/Map/js/main.js?{$js_version}"></script>
+
+</body>
+</html>

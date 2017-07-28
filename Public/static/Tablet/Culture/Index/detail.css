@@ -1,0 +1,116 @@
+body{
+    min-width: 1280px;
+    font-size: 18px;
+}
+.main{
+    background: url(/static/Tablet/Img/culture.jpg) no-repeat center;
+    position: relative;
+    width: 1280px;
+    height: 1024px;
+    margin:  0 auto;
+}
+.logo{
+    width: 221px;
+    height: 57px;
+    position: absolute;
+    background: url(/static/Tablet/Img/logo.png) no-repeat center;
+    top:50px;
+    left: 20px;
+}
+.tag-box{
+    overflow: hidden;
+    width: 1050px;
+    margin: 70px auto;
+    overflow-x: auto;
+}
+.tag{
+
+    height: 49px;
+
+}
+.tag>div{
+    width: 150px;
+    height: 49px;
+    line-height: 49px;
+    text-align: center;
+    float: left;
+    background: url(/static/Desktop/Img/wh/tag.png) center center no-repeat;
+    cursor: pointer;
+}
+.tag>div.check{
+    background: url(/static/Desktop/Img/wh/tags.png) center center no-repeat;
+}
+.bar{
+
+}
+.culture-detail{
+    width: 1280px;
+    height: 782px;
+    margin-top: 130px;
+    position: relative;
+    background: url(/static/Tablet/Img/detail.png) center center no-repeat;
+}
+.culture-detail-left{
+    width: 500px;
+    overflow: hidden;
+    height: 630px;
+    float: left;
+    margin-left: 115px;
+    margin-top: 50px;
+    position: relative;
+}
+.culture-detail-right{
+    width: 500px;
+    overflow: hidden;
+    height: 630px;
+    margin-top: 50px;
+    margin-left: 55px;
+    float: left;
+    position: relative;
+}
+
+.datas-pic-list{
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    -ms-behavior: url(/static/Desktop/Public/backgroundsize.min.htc);
+    behavior: url(/static/Desktop/Public/backgroundsize.min.htc);
+}
+.datas-pic-left{
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    bottom: 10px;
+    left: 50%;
+    margin-left: -90px;
+    background: url(/static/Tablet/Img/left_w.png) center center no-repeat;
+
+}
+.datas-pic-right{
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    bottom: 10px;
+    right: 50%;
+    margin-right: -75px;
+    background: url(/static/Tablet/Img/right_w.png) center center no-repeat;
+}
+.datas-name{
+    font-size: 30px;
+    margin-top: 50px;
+    text-align: center;
+    height: 35px;
+    line-height: 35px;
+}
+.datas-pic-list{
+    height: 545px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+h1 {
+    font-size: 20px;
+    padding: 5px 0;
+}

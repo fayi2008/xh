@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>周边商户</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="keywords" content="西湖,杭州西湖">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link href="/static/Mobile/css/m-business.css" rel="stylesheet" type="text/css">
+</head>
+
+<body class="index">
+    <div class="wrap">
+        <nav>
+            <ul>
+                <li data-tag="2"><a href="#start=0&tag=2" class="btn rec">美食</a></li>
+                <li data-tag="1"><a href="#start=0&tag=1" class="btn custom">酒店</a></li>
+            </ul>
+        </nav>
+        <section></section>
+        <footer>正在加载...</footer>
+    </div>
+    <script id="tpl" type="text/template">
+        <ul>
+            <each this.data.rows>
+                <li>
+                    <a href="/business/{{id}}.html">
+                        <div class="thumb" style="background-image:url({{image | img}})"></div>
+                        <div class="cnt">
+                            <h3>{{name}}
+                                <iif recommend==1 >
+                                    <span style="background:url(/assets/images/recommend.png);width:24px;height:24px;display: inline-block;"  />
+                                </iif>
+                            </h3>
+                            <p>地址：{{address}}</p>
+                            <p>电话：{{phone}}</p>
+                        </div>
+                    </a>
+                </li>
+            </each>
+        </ul>
+    </script>
+    <script id="home" type="text/template">
+        <nav>
+            <a href="#!start=0&tag=2" class="btn rec">美食</a>
+            <a href="#!start=0&tag=1" class="btn custom">酒店</a>
+        </nav>
+    </script>
+    <script src="/static/public/jquery.js?{$js_version}"></script>
+    <script src="/static/public/core.base.js?{$js_version}"></script>
+    <script src="/static/Mobile/js/m-business.js?{$js_version}"></script>
+</body>
+</html>

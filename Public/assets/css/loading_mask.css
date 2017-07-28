@@ -1,0 +1,16 @@
+.custom-cls{
+	background:none no-repeat scroll 5px 5px #fff;
+	line-height:16px;
+	padding:5px 10px 5px 25px;
+	background-image:url("../img/load-16-16.gif");
+    margin-left: 100px;
+    margin-top: 200px;
+}
+
+#content{
+	display:none;
+}
+
+#other{
+    display:none;
+}

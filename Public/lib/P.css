@@ -1,0 +1,102 @@
+/*
+*//* 分组 *//*
+.p-ctrl-album{
+    background-color:rgba(0,0,0,.5);
+    position: absolute;bottom:0;width:100%;
+    height:134px;
+    transition: all 0.3s;
+    z-index: 3001;
+}
+.p-ctrl-album.hide{
+    bottom:-134px;
+}
+.p-ctrl-album *{margin:0;padding:0;}
+.p-ctrl-album a{cursor: pointer;}
+.p-ctrl-album a.select{ background-color: #2a92dd;}
+.p-ctrl-album ul{height:100px;margin:5px 0;}
+.p-ctrl-album div li{
+    height:100px;width:200px;position: relative;
+    display: inline-block;margin-right:5px;
+    box-sizing: border-box;overflow: hidden;
+    -webkit-user-select: none;
+}
+.p-ctrl-album li.select{
+    border: 1px solid #2a92dd;
+}
+.p-ctrl-album li img{ display: block; width:200px;height:100px;-webkit-user-select: none;}
+.p-ctrl-album li span{
+    display: block;position: absolute;width:100%;bottom:0;left:0;height:32px;color:#fff;line-height: 32px;
+    background-image: -webkit-linear-gradient(transparent,rgba(0,0,0,0.6));
+    background-image: linear-gradient(transparent,rgba(0,0,0,0.6));
+    text-indent: 6px;
+    text-shadow: rgba(0,0,0,0.7) 0px 1px 8px;
+}
+
+.p-ctrl-album .p-expand
+{
+    background: rgba(0,0,0,.5) url(icon@1x.png) no-repeat -89px -5px;
+}
+
+.p-ctrl-album.hide .p-expand{
+    transform: rotate(180deg);
+}*/
+/*
+
+.p-ctrl-info-btn{
+    background: url(icon@1x.png) no-repeat -42px 0;
+}
+
+.p-ctrl-info-close{
+    background: url(icon@1x.png) no-repeat -126px 0;
+}
+
+.p-nav{
+    position: absolute;top:20px;left:20px;
+}
+.p-nav-back{
+    width:42px;height:42px;
+    float:left;
+    background:rgba(0,0,0,.6) url(icon@1x.png) -252px 0 no-repeat;
+}
+
+.p-nav-tm,.p-nav-title{
+    background-color:rgba(0,0,0,.6);height:42px;line-height: 42px;padding:0 1em;display: inline-block;color:#fff;float:left;
+    margin-left:6px;
+}
+.p-nav-tm{height:auto;background:rgba(0,0,0,.6) url(icon@1x.png) -294px 0 no-repeat;}
+.p-nav-tm span{padding-left:32px;display: block;}
+.p-nav-tm ul{
+    margin:0;padding:0;text-align: center;display: block;list-style: none;
+}
+
+.p-nav-map{
+    position: absolute;
+    left: 6px;
+    width: 236px;
+    height: 120px;
+    bottom: 7px;box-sizing: border-box;
+}
+
+*/
+/*.p-nav-map:hover{
+    height: 236px;padding:6px;background-color: rgba(0,0,0,.6);
+}*//*
+
+
+*/
+/* icon *//*
+
+.icon-sound{
+    background: url(icon@1x.png) no-repeat -128px 0 / auto 64px;
+}
+.icon-mute{
+    background: url(icon@1x.png) no-repeat -160px 0 / auto 64px;
+}
+*/
+
+
+/* combo control */
+
+
+/* override */
+.BMap_cpyCtrl{display: none !important;}

@@ -1,0 +1,221 @@
+body, html {
+    background-color: #f1f1f1;
+}
+
+.main {
+
+    margin: 0 auto;
+}
+
+.crumbs {
+    width: 1000px;
+    margin: 0 auto;
+    background-color: #fff;
+    margin-top: 20px;
+    height: 40px;
+    line-height: 40px;
+    padding-left: 20px;
+    box-shadow: 1px 1px 1px #aaa;
+    box-sizing: border-box;
+}
+
+.content {
+    padding-bottom: 60px;
+    position: relative;
+}
+
+.content-list {
+
+    border-bottom: 1px solid #ccc;
+    opacity: 0.9;
+    color: #000;
+    overflow: hidden;
+    width: 1000px;
+    margin: 0 auto;
+
+    margin-top: 20px;
+}
+
+.order-item {
+    float: left;
+    height: 42px;
+    line-height: 42px;
+    width: 100px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.order-item.checked {
+    color: #3f89ec;
+    font-size: 18px;
+}
+
+.oreder-release {
+    float: right;
+    width: 120px;
+    border-radius: 3px;
+    height: 32px;
+    line-height: 32px;
+    margin-top: 5px;
+    margin-right: 10px;
+    text-align: center;
+    color: #fff;
+    background-color: #3f89ec;
+    cursor: pointer;
+    display: block;
+}
+
+/*文章*/
+.travels-box {
+    overflow: hidden;
+    background-color: #fff;
+}
+
+.travels-list {
+    width: 1000px;
+    overflow: hidden;
+    margin: 0 auto;
+    padding: 10px;
+    padding-top: 20px;
+}
+
+.travels-item {
+    display: block;
+    position: relative;
+    margin-top: 10px;
+    padding-left: 180px;
+    height: 180px;
+    box-sizing: border-box;
+    border: 1px solid #ccc \0;
+    box-shadow: 0 0 1px #333;
+    background-color: #fff;
+    margin-bottom: 20px;
+}
+
+.travels-item:hover {
+    box-shadow: 0 0 10px #0366b1;
+}
+
+.travels-item.no-left {
+    margin-left: 0px;
+}
+
+.travels-item-content {
+    padding: 10px;
+    overflow: hidden;
+}
+
+.travels-item-img {
+    height: 180px;
+    width: 180px;
+    top:0px;
+    left: 0;
+    position: absolute;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-image: url(/static/Desktop/Img/way/index_top.jpg);
+    background-size: cover;
+    -ms-behavior: url(/static/Desktop/Public/backgroundsize.min.htc);
+    behavior: url(/static/Desktop/Public/backgroundsize.min.htc);
+}
+
+.travels-item-title {
+    font-size: 18px;
+    font-weight: bold;
+    height: 30px;
+    line-height: 30px;
+    overflow: hidden;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.travels-item-desc {
+    color: #939393;
+    line-height: 120%;
+    height: 70px;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.travels-item-tool {
+    padding-bottom: 10px;
+    overflow: hidden;
+    padding-top: 5px;
+    position: absolute;
+    right: 10px;
+    top:10px;
+}
+
+.zan {
+    float: left;
+    color: #6c8ab1;
+}
+
+.zan:before {
+    content: '';
+    padding: 5px 8px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-image: url(/static/Desktop/Img/index/xin.png);
+    background-position: center;
+    margin-right: 5px;
+}
+
+.pl {
+    float: left;
+    color: #6c8ab1;
+    margin-left: 10px;
+}
+
+.pl:before {
+    content: '';
+    padding: 5px 8px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-image: url(/static/Desktop/Img/index/pl.png);
+    background-position: center;
+    margin-right: 5px;
+}
+
+.travels-item-author {
+    padding: 10px 10px;
+    overflow: hidden;
+    border-top: 1px solid #ccc;
+}
+
+.travels-item-avatar {
+    float: left;
+    width: 30px;
+    height: 30px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    border-radius: 30px;
+    background-image: url(/static/Desktop/Img/way/index_top.jpg);
+    background-size: cover;
+    -ms-behavior: url(/static/Desktop/Public/backgroundsize.min.htc);
+    behavior: url(/static/Desktop/Public/backgroundsize.min.htc);
+}
+
+.travels-item-author-name {
+    float: left;
+    height: 30px;
+    line-height: 30px;
+    margin-left: 10px;
+}
+
+.travels-item-day {
+    float: right;
+    height: 30px;
+    line-height: 30px;
+}
+
+/*/文章*/
+
+.page {
+    width: 1000px;
+    margin: 0 auto;
+    position: relative;
+}

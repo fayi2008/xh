@@ -1,0 +1,106 @@
+body{
+    min-width: 1280px;
+}
+.main{
+    background: url(/static/Tablet/Img/culture.jpg) no-repeat center;
+    position: relative;
+    width: 1280px;
+    height: 1024px;
+    margin:  0 auto;
+}
+.logo{
+    width: 221px;
+    height: 57px;
+    position: absolute;
+    background: url(/static/Tablet/Img/logo.png) no-repeat center;
+    top:50px;
+    left: 20px;
+}
+.tag-box{
+    overflow: hidden;
+    width: 1050px;
+    margin: 70px auto;
+    overflow-x: auto;
+}
+.tag{
+
+    height: 49px;
+
+}
+.tag>div{
+    width: 150px;
+    height: 49px;
+    line-height: 49px;
+    text-align: center;
+    float: left;
+    background: url(/static/Desktop/Img/wh/tag.png) center center no-repeat;
+    cursor: pointer;
+}
+.tag>div.check{
+    background: url(/static/Desktop/Img/wh/tags.png) center center no-repeat;
+}
+
+.culture-c{
+    width: 874px;
+    height: 518px;
+    margin: 20px auto;
+    background: url(/static/Tablet/Img/culture_c.png) center center no-repeat;
+}
+
+.culture-list{
+    height: 305px;
+    position: relative;
+    margin-top: -110px;
+}
+.last{
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    left: 80px;
+    top:50%;
+    margin-top: -20px;
+    background: url(/static/Tablet/Img/left.png) center center no-repeat;
+}
+.next{
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    right: 80px;
+    top:50%;
+    margin-top: -20px;
+    background: url(/static/Tablet/Img/right.png) center center no-repeat;
+}
+.culture-box{
+    width: 900px;
+    height: 305px;
+    margin:  0 auto;
+    padding-top: 20px;
+    box-sizing: border-box;
+    background: url(/static/Tablet/Img/bar.png) center 220px no-repeat;
+}
+.culture-item{
+    float: left;
+    height: 220px;
+    width: 160px;
+    margin-left: 107px;
+    position: relative;
+    display: block;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.culture-item>.culture-zz{
+    background: url(/static/Desktop/Img/wh/shu.png) repeat-y left top;
+    height: 220px;
+    width: 160px;
+}
+.culture-name{
+    position: absolute;
+    padding: 10px;
+    bottom: 30px;
+    left: 0;
+    width: 100%;
+    color: #fff;
+    box-sizing: border-box;
+    background-color: rgba(0, 0, 0, 0.5);
+}

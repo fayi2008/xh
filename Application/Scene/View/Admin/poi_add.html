@@ -1,0 +1,453 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title> 资源文件结构</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link href="/assets/css/bs3/dpl-min.css" rel="stylesheet" type="text/css"/>
+    <link href="/assets/css/bs3/bui-min.css" rel="stylesheet" type="text/css"/>
+    <link href="/assets/css/page-min.css" rel="stylesheet" type="text/css"/>   <!-- 下面的样式，仅是为了显示代码，而不应该在项目中使用-->
+    <link href="/assets/css/prettify.css" rel="stylesheet" type="text/css"/>
+    <link href="/assets/css/hqtec.css" rel="stylesheet">
+    <style type="text/css">
+        code {
+            padding: 0px 4px;
+            color: #d14;
+            background-color: #f7f7f9;
+            border: 1px solid #e1e1e8;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <form id="J_Form" class="form-horizontal span24" action='/Scene/admin/poi' method='post'>
+            <div class="row">
+                <div class="control-group span8">
+                    <label class="control-label"><s>*</s>名称：</label>
+
+                    <div class="controls">
+                        <input name="NAME" type="text" data-rules="{required:true}" class="input-normal control-text">
+                    </div>
+                </div>
+                <!--    <div class="control-group span8">
+                     <label class="control-label"><s>*</s>类型：</label>
+                     <div class="controls">
+                       <select  data-rules="{required:true}"  name="TYPE"  id="TYPE" class="input-normal">
+                         <option value="">请选择</option>
+                         <option value="1">商户</option>
+                         <option value="2">景点</option>
+                         <option value="3">公众设施</option>
+                       </select>
+                     </div>
+                   </div> -->
+            </div>
+            <div class="row" id="tag">
+                <div class="control-group span24">
+                    <label class="control-label">标签：</label>
+
+                    <div class="bui-form-group controls " style='height: auto;margin-bottom: 15px;' data-rules="{}"
+                         data-messages="{}">
+                        <foreach name="tag" item="vo" key="key">
+                            <if condition="( ($key%5) eq 0) AND ($key neq 0)"><br/></if>
+                            <label class="checkbox"><input name="TAG_IDS[]" type="checkbox" value="{$vo.id}"/>{$vo.name}</label>
+                        </foreach>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="control-group span8">
+                    <label class="control-label"><s>*</s>纬度：</label>
+                    <div class="controls">
+                        <input name="LAT" type="text" data-rules="{required:true}" class="input-normal control-text">
+                    </div>
+                </div>
+                <div class="control-group span8">
+                    <label class="control-label"><s>*</s>经度：</label>
+
+                    <div class="controls">
+                        <input name="LON" type="text" data-rules="{required:true}" class="input-normal control-text">
+                    </div>
+                </div>
+                <span><a href="http://lbs.qq.com/tool/getpoint/index.html" class="button"
+                         target="_blank">坐标拾取器</a></span>
+            </div>
+            <div class="row">
+                <label class="control-label control-image">图片：</label>
+
+                <div class="span8">
+                    <div id="J_Uploader">
+                        <input type="hidden" name='IMAGE' value='' id='IMAGE'>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="control-group span24">
+                    <label class="control-label"><s>*</s>地区：</label>
+
+                    <div class="bui-form-group-select controls" data-url="../admin/city.json">
+                        <select name="province" value="1">
+                            <option>请选择省</option>
+                        </select>
+                        <select name="city" value="12">
+                            <option>请选择市</option>
+                        </select>
+                        <select data-rules="{required:true}" name="AREA" value="121">
+                            <option>请选择县/区</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="control-group span12">
+                    <label class="control-label">具体地址：</label>
+
+                    <div class="controls">
+                        <input name="ADDRESS" style="width:200px" type="text" class="input-normal control-text">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="control-group span8">
+                    <label class="control-label">权重：</label>
+                    <div class="controls">
+                        <input name="POWER" type="text" class="input-normal control-text">
+                    </div>
+                </div>
+                <div class="control-group span8">
+                    <label class="control-label">简称：</label>
+
+                    <div class="controls">
+                        <input name="SHORT_NAME" type="text" class="input-normal control-text">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="control-group span24">
+                    <label class="control-label">描述：</label>
+
+                    <div class="controls control-row4">
+                        <textarea name="DESCRIPTION" id="DESC" class="span8 span-width"
+                                  style="resize: none;height:60px;"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="control-group span8">
+                    <label class="control-label">推荐游玩时间：</label>
+
+                    <div class="controls">
+                        <input name="WASTER_TIME" type="text"
+                               class="input-normal control-text" data-tip="{text:'单位是分钟'}">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="control-group span8">
+                    <label class="control-label">最小游玩时间：</label>
+
+                    <div class="controls">
+                        <input name="MIN_TIME" type="text"
+                               class="input-normal control-text" data-tip="{text:'单位是分钟'}">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="control-group span8">
+                    <label class="control-label">最长游玩时间：</label>
+
+                    <div class="controls">
+                        <input name="MAX_TIME" type="text"
+                               class="input-normal control-text" data-tip="{text:'单位是分钟'}">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="control-group span8">
+                    <label class="control-label">景点花费：</label>
+
+                    <div class="controls">
+                        <input name="PRICE" type="text"
+                               class="input-normal control-text" data-tip="{text:'单位是元'}">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="control-group span8">
+                    <label class="control-label">状态：</label>
+
+                    <div class="controls">
+                        <select name="STATUS" class="input-normal">
+                            <option value="0">取消</option>
+                            <option value="1">发布</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="control-group span24">
+                    <label class="control-label">攻略内容：</label>
+
+                    <div class="controls" style='height: auto;margin-bottom: 15px;'>
+                        <script id="editor" name="CONTENT" type="text/plain" style="width:700px;height:250px;"></script>
+                    </div>
+                </div>
+            </div>
+            <div class="row"></div>
+            <div class="row">
+                <div class="form-actions offset3">
+                    <button type="submit" class="button button-save">保存</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<script type="text/javascript" src="/assets/js/jquery-1.8.1.min.js?{$js_version}"></script>
+<script type="text/javascript" src="/assets/js/bui-min.js?{$js_version}"></script>
+
+<script type="text/javascript" src="/assets/js/config-min.js?{$js_version}"></script>
+<script type="text/javascript">
+    BUI.use('common/page');
+</script>
+<!-- 仅仅为了显示代码使用，不要在项目中引入使用-->
+<script type="text/javascript" src="/assets/js/prettify.js?{$js_version}"></script>
+<script type="text/javascript">
+    $(function () {
+        prettyPrint();
+    });
+    $('#PROVINCE').on('change', function () {
+        var PROVINCE = $("#PROVINCE").val();
+        $.ajax({
+            type: "GET",
+            url: "{:U('poi_city')}" + '?probince_id=' + PROVINCE,
+            success: function (data) {
+                $("#PROVINCE").empty();
+                $("#PROVINCE").append("<option value='0'>请选择市</option>");
+                var json = JSON.parse(data);
+                for (var i = 0; i < json.length; i++) {
+                    $("#package_id").append("<option value='" + json[i].id + "'>" + json[i].name + "</option>");
+                }
+
+            }
+        });
+    })
+
+
+</script>
+<script type="text/javascript">
+    BUI.use('bui/form', function (Form) {
+        new Form.HForm({
+            srcNode: '#J_Form',
+            submitType: 'ajax',
+            callback: function (data) {
+                if (data.status == 1) {
+                    BUI.Message.Alert('添加成功', function () {
+                        window.location.href = data.data;
+                    }, 'success');
+
+
+                } else {
+                    BUI.Message.Alert('添加失败', function () {
+                        window.location.href = data.data;
+                    }, 'error');
+                }
+            }
+        }).render();
+
+
+    });
+</script>
+
+<script type="text/javascript">
+    BUI.use('bui/uploader', function (Uploader) {
+
+        /**
+         * 返回数据的格式
+         *
+         *  默认是 {url : 'url'},否则认为上传失败
+         *  可以通过isSuccess 更改判定成功失败的结构
+         */
+
+            //添加自定义主题
+        Uploader.Theme.addTheme('imageView', {
+            elCls: 'imageViewTheme',
+            //可以设定该主题统一的上传路径
+            // url: '../../../test/upload/upload.php',
+
+            queue: {
+                //结果的模板，可以根据不同状态进进行设置
+                resultTpl: {
+                    'default': '<div class="default">{name}</div>',
+                    'success': '<div class="success"><img src="/upload/{file}" /></div>',
+                    'error': '<div class="error"><span class="uploader-error">{msg}</span></div>',
+                    'progress': '<div class="progress"><div class="bar" style="width:{loadedPercent}%"></div></div>'
+                }, listeners: {
+                    itemremoved: function (ev) {
+
+                        $("#IMAGE").val('');
+                    }
+                }
+            }
+        });
+        var uploader = new Uploader.Uploader({
+            theme: 'imageView',
+            render: '#J_Uploader',
+            url: 'http://{$httphost}/index.php/Gis/admin/upload/',
+            //可以直接在这里直接设置成功的回调
+            success: function (result) {
+            },
+            isSuccess: function (result) {
+
+                if (result.status) {
+                    return true;
+                }
+                return false;
+            },
+            //失败的回调
+            error: function (result) {
+            },
+            rules: {
+                //文的类型
+                ext: ['.png,.jpg', '文件类型只能为{0}'],
+                //上传的最大个数
+                max: [1, '文件的最大个数不能超过{0}个'],
+                //文件大小的最小值,这个单位是kb
+                minSize: [10, '文件的大小不能小于{0}KB'],
+                //文件大小的最大值,单位也是kb
+                maxSize: [1024, '文件大小不能大于1M']
+            }
+        }).render();
+
+        //上传成功时会触发
+        uploader.on('success', function (ev) {
+            var result = ev.result;
+            $("#IMAGE").val(result.file);
+
+
+        })
+        //上传文件改变时
+        uploader.on('change', function (ev) {
+            var items = ev.items;
+            var queue = uploader.get('queue');
+            for (var i in items) {
+                if (items[i].error == true) {
+                    queue.clearItems();
+                    BUI.Message.Alert(items[i].name + items[i].msg, 'error');
+                } else {
+                    queue.setItems([items[i]]);
+                }
+            }
+        })
+        //上传成功时会触发
+        uploader.on('error', function (ev) {
+            var result = ev.result;
+            BUI.Message.Alert('上传失败', 'error');
+        });
+    });
+</script>
+<script type="text/javascript" charset="utf-8" src="/ueditor/ueditor.config.js?{$js_version}"></script>
+<script type="text/javascript" charset="utf-8" src="/ueditor/ueditor.all.min.js?{$js_version}"></script>
+<script type="text/javascript">
+
+    //实例化编辑器
+    //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
+    var ue = UE.getEditor('editor', {
+        //这里可以选择自己需要的工具按钮名称,此处仅选择如下五个
+        toolbars: [
+            [
+                'anchor', //锚点
+                'undo', //撤销
+                'redo', //重做
+                'bold', //加粗
+                'indent', //首行缩进
+                // 'snapscreen', //截图
+                'italic', //斜体
+                //  'underline', //下划线
+                //'strikethrough', //删除线
+                'subscript', //下标
+                'fontborder', //字符边框
+                //  'superscript', //上标
+                'formatmatch', //格式刷
+                'source', //源代码
+                'blockquote', //引用
+                'pasteplain', //纯文本粘贴模式
+                'selectall', //全选
+                //  'print', //打印
+                //  'preview', //预览
+                'horizontal', //分隔线
+                // 'removeformat', //清除格式
+                'time', //时间
+                'date', //日期
+                'unlink', //取消链接
+                // 'insertrow', //前插入行
+                // 'insertcol', //前插入列
+                //   'mergeright', //右合并单元格
+                //  'mergedown', //下合并单元格
+                //'deleterow', //删除行
+                // 'deletecol', //删除列
+                // 'splittorows', //拆分成行
+                //  'splittocols', //拆分成列
+                //  'splittocells', //完全拆分单元格
+                //   'deletecaption', //删除表格标题
+                'inserttitle', //插入标题
+                //  'mergecells', //合并多个单元格
+                // 'deletetable', //删除表格
+                'cleardoc', //清空文档
+                // 'insertparagraphbeforetable', //"表格前插入行"
+                // 'insertcode', //代码语言
+                'fontfamily', //字体
+                'fontsize', //字号
+                'paragraph', //段落格式
+                'simpleupload', //单图上传
+                'insertimage', //多图上传
+                //  'edittable', //表格属性
+                //  'edittd', //单元格属性
+                'link', //超链接
+                // 'emotion', //表情
+                //'spechars', //特殊字符
+                // 'searchreplace', //查询替换
+                //  'map', //Baidu地图
+                // 'gmap', //Google地图
+                //  'insertvideo', //视频
+                //  'help', //帮助
+                'justifyleft', //居左对齐
+                'justifyright', //居右对齐
+                'justifycenter', //居中对齐
+                'justifyjustify', //两端对齐
+                'forecolor', //字体颜色
+                'backcolor', //背景色
+                'insertorderedlist', //有序列表
+                'insertunorderedlist', //无序列表
+                // 'fullscreen', //全屏
+                'directionalityltr', //从左向右输入
+                'directionalityrtl', //从右向左输入
+                'rowspacingtop', //段前距
+                'rowspacingbottom', //段后距
+                'pagebreak', //分页
+                //  'insertframe', //插入Iframe
+                //  'imagenone', //默认
+                'imageleft', //左浮动
+                'imageright', //右浮动
+                'attachment', //附件
+                'imagecenter', //居中
+                // 'wordimage', //图片转存
+                'lineheight', //行间距
+                // 'edittip ', //编辑提示
+                'customstyle', //自定义标题
+                'autotypeset', //自动排版
+                // 'webapp', //百度应用
+                //  'touppercase', //字母大写
+                //  'tolowercase', //字母小写
+                // 'background', //背景
+                //  'template', //模板
+                // 'scrawl', //涂鸦
+                //  'music', //音乐
+                //  'inserttable', //插入表格
+                /*    'drafts', // 从草稿箱加载
+                 'charts', // 图 */
+            ]
+        ]
+
+    });
+</script>
+</body>
+</html> 

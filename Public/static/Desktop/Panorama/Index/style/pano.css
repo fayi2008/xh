@@ -1,0 +1,482 @@
+.label-1 {
+  background: url(../img/icon-label.png) -26px 0;
+}
+.label-2 {
+  background: url(../img/icon-label.png) 0 0;
+}
+.label-3 {
+  background: url(../img/icon-label.png) -52px 0;
+}
+.label-4 {
+  background: url(../img/icon-label.png) -78px 0;
+}
+.label-5 {
+  background: url(../img/icon-label.png) -104px 0;
+}
+.maps-label.hover {
+  z-index: 9999;
+}
+.maps-label.hover i {
+  background: url(../img/icon-label.png) 0 -32px;
+}
+/* loading */
+.mode-loading:before {
+  content: " ";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: #ffffff;
+  z-index: 1001;
+}
+.mode-loading:after {
+  content: " ";
+  height: 32px;
+  width: 32px;
+  border-radius: 32px;
+  position: absolute;
+  left: 50%;
+  margin-left: -16px;
+  top: 50%;
+  margin-top: -16px;
+  border: 1px solid #5492EF;
+  border-bottom: none;
+  -webkit-animation: spin .8s linear infinite;
+  animation: spin .8s linear infinite;
+  z-index: 1002;
+}
+@-webkit-keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+.cat {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 105px;
+  background-color: #fff;
+  box-shadow: 0 0 5px #cdcdcd;
+  border-radius: 15px;
+  opacity: 0;
+}
+.cat h3 {
+  height: 35px;
+  line-height: 35px;
+  font-weight: 400;
+  font-size: 15px;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: 0 1px 5px #cdcdcd;
+  border-radius: 15px;
+}
+.cat h3:after {
+  content: " ";
+  background: url(../img/icon.png) no-repeat;
+  background-position: 0 0;
+  float: right;
+  width: 11px;
+  height: 5px;
+  display: block;
+  position: relative;
+  top: 15px;
+  right: 15px;
+  transition: -webkit-transform 0.3s;
+  transition: transform 0.3s;
+  -webkit-transform: rotate(0deg);
+      -ms-transform: rotate(0deg);
+          transform: rotate(0deg);
+}
+.cat.active h3:after {
+  -webkit-transform: rotate(-180deg);
+      -ms-transform: rotate(-180deg);
+          transform: rotate(-180deg);
+}
+.cat ul {
+  text-align: center;
+  overflow: hidden;
+}
+.cat li {
+  padding: 10px 12px;
+  font-size: 13px;
+  transition: all 0.3s;
+  border-top: 1px dashed #e5e5e5;
+  cursor: pointer;
+}
+.cat li:first-child {
+  border-top: none;
+}
+.cat li.select,
+.cat li:hover {
+  color: #3f89ec;
+}
+.mode-map-full .cat {
+  opacity: 1;
+}
+/* icon 样式 */
+.maps-label {
+  position: absolute;
+  cursor: pointer;
+  -webkit-animation: ani-show 0.7s ease 0s;
+          animation: ani-show 0.7s ease 0s;
+}
+.maps-label i {
+  width: 26px;
+  height: 32px;
+  display: block;
+}
+.maps-label span{
+  display: none;
+}
+.maps-label.select i {
+  background-position: 0 -32px;
+}
+/*fix 20160127 定位的点隐藏 */
+.maps-loc {
+  display: none;
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+.p-ctrl-album {
+  background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 134px;
+  transition: all 0.3s;
+  z-index: 3001;
+}
+.p-ctrl-album.hide {
+  bottom: -134px;
+}
+.p-ctrl-album * {
+  margin: 0;
+  padding: 0;
+}
+.p-ctrl-album a {
+  cursor: pointer;
+}
+.p-ctrl-album a.select {
+  background-color: #2a92dd;
+}
+.p-ctrl-album .album-cnt ul {
+  height: 100px;
+  margin: 5px 0;
+}
+.p-ctrl-album .album-cnt ul li {
+  height: 100px;
+  width: 200px;
+  position: relative;
+  display: inline-block;
+  margin-right: 5px;
+  -moz-box-sizing: border-box;
+       box-sizing: border-box;
+  overflow: hidden;
+  -webkit-user-select: none;
+}
+.album-cnt li.select {
+  border: 1px solid #2a92dd;
+}
+.album-cnt li img {
+  display: block;
+  width: 200px;
+  height: 100px;
+  -webkit-user-select: none;
+}
+.album-cnt li span {
+  display: block;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  height: 32px;
+  color: #fff;
+  line-height: 32px;
+  background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.6));
+  text-indent: 6px;
+  text-shadow: rgba(0, 0, 0, 0.7) 0px 1px 8px;
+}
+.p-ctrl-album .p-expand {
+  background: rgba(0, 0, 0, 0.5) url('/lib/ic-pano@1x.png') no-repeat -89px -5px;
+}
+.p-ctrl-album.hide .p-expand {
+  -webkit-transform: rotate(180deg);
+      -ms-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+.p-ctrl-info-btn {
+  background: url('/lib/ic-pano@1x.png') no-repeat -42px 0;
+}
+.p-ctrl-info-close {
+  background: url('/lib/ic-pano@1x.png') no-repeat -126px 0;
+}
+.p-nav {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+.p-nav-tm,
+.p-nav-title {
+  background-color: rgba(0, 0, 0, 0.6);
+  height: 42px;
+  line-height: 42px;
+  padding: 0 1em;
+  display: inline-block;
+  color: #fff;
+  float: left;
+  margin-left: 6px;
+}
+.p-nav-tm {
+  padding: 0;
+  height: auto;
+  background: rgba(0, 0, 0, 0.6);
+}
+.p-nav-tm:hover ul {
+  display: block !important;
+}
+.p-nav-tm span {
+  display: block;
+  padding-left: 40px;
+  padding-right: 10px;
+  background: url('/lib/ic-pano@1x.png') -294px 0 no-repeat;
+}
+.p-nav-tm ul {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  display: block;
+  list-style: none;
+  cursor: pointer;
+}
+.p-nav-tm ul li:hover {
+  background-color: #2a92dd;
+  background-color: rgba(42, 146, 221, 0.3);
+}
+.p-nav-tm ul li.select {
+  background-color: #2a92dd;
+  background-color: rgba(42, 146, 221, 0.7);
+}
+.p-nav-back,
+.p-nav-culture,
+.p-nav-culture-list {
+  width: 42px;
+  height: 42px;
+  float: left;
+  background: rgba(0, 0, 0, 0.6) url('/lib/ic-pano@1x.png') -252px 0 no-repeat;
+}
+.p-nav-culture {
+  background-position: -42px -42px;
+  margin-left: 5px;
+}
+.p-nav-culture-list {
+  background-position: -168px -42px;
+}
+.p-nav-map {
+  position: absolute;
+  left: 6px;
+  width: 236px;
+  height: 120px;
+  bottom: 7px;
+  -moz-box-sizing: border-box;
+       box-sizing: border-box;
+}
+.p-map-toggle {
+  width: 32px;
+  height: 32px;
+  background: rgba(0, 0, 0, 0.5) url('/lib/ic-pano@1x.png') -192px -32px / auto 64px no-repeat;
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.mode-map-full .p-nav-map {
+  width: 500px;
+  height: 500px;
+}
+.mode-map-full .p-map-toggle {
+  background-position: -224px -32px;
+}
+.p-tips {
+  padding: 12px;
+  color: #fff;
+  width: 500px;
+  position: absolute;
+  top: 15px;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding-left: 32px;
+  -moz-box-sizing: border-box;
+       box-sizing: border-box;
+  transition: all .3s;
+}
+.p-tips .p-tips-main {
+  line-height: 2em;
+  border-left: 1px solid rgba(255, 255, 255, 0.3);
+  padding-left: 12px;
+  text-align: justify;
+}
+.p-tips .p-tips-toggle {
+  cursor: pointer;
+  display: block;
+  position: absolute;
+  width: 32px;
+  left: 0;
+  top: 0;
+  height: 100%;
+}
+.p-tips .p-tips-toggle i {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -10px;
+  margin-left: -10px;
+  background: url('/lib/ic-pano@1x.png') -100px -20px / auto 40px no-repeat;
+  -webkit-transform-origin: 50% 50%;
+      -ms-transform-origin: 50% 50%;
+          transform-origin: 50% 50%;
+}
+.p-tips.hide {
+  right: -468px;
+}
+.p-tips.hide .p-tips-toggle i {
+  -webkit-transform: rotate(180deg);
+      -ms-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: none;
+  transition: all 0.3s;
+  /*max-height:300px;*/
+  height: 400px;
+  width: 600px;
+  margin-left: -300px;
+  margin-top: -200px;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  -moz-box-sizing: border-box;
+       box-sizing: border-box;
+  padding: 15px 5px;
+  text-align: center;
+  z-index: 2001;
+}
+.modal div {
+  height: 300px;
+  overflow-y: auto;
+  text-align: left;
+  padding: 10px;
+  line-height: 1.85em;
+  font-size: 13px;
+}
+.modal.box-culture div {
+  height: 280px;
+}
+.modal li {
+  list-style: none;
+  margin: 10px 0;
+  text-align: left;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 13px;
+}
+.modal li span {
+  width: 100px;
+  margin-left: 10px;
+  float: left;
+  text-align: right;
+  padding-right: 15px;
+}
+.modal h3 {
+  font-weight: 400;
+}
+.modal .modal-wrap {
+  height: 310px;
+  overflow-y: auto;
+}
+.modal button {
+  width: 42px;
+  height: 42px;
+  font-size: 16px;
+  border: none;
+  outline: none;
+  text-align: center;
+  line-height: 42px;
+  position: absolute;
+  right: -42px;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #fff;
+}
+.modal a {
+  background-color: #689f38;
+  border: none;
+  outline: none;
+  padding: 8px 12px;
+  color: #fff;
+  display: inline-block;
+  margin-top: 5px;
+  text-decoration: none;
+}
+.modal.box-culture-list {
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 10px 0;
+}
+.modal.box-culture-list h3 {
+  color: #64b77e;
+  border-bottom: 1px solid #5ec892;
+  font-weight: 400;
+  padding: 5px 0 15px 0;
+}
+.modal.box-culture-list li {
+  padding: 14px 2em;
+  margin: 0;
+}
+.modal.box-culture-list li:hover {
+  background-color: rgba(94, 200, 146, 0.5);
+}
+.modal.box-culture-list div {
+  height: 340px;
+  padding: 0;
+}
+.modal.box-culture-list a {
+  background-color: transparent;
+  padding: 0;
+  display: block;
+}
+/*
+body.mask-culture .p-combo-m,
+body.mask-content .p-combo-m,
+body.mask-culture_list .p-combo-m
+{
+    opacity: 0;pointer-events: none;
+}
+*/
+.mask-culture .box-culture {
+  display: block;
+}
+.mask-content .box-content {
+  display: block;
+}
+.mask-culture-list .box-culture-list {
+  display: block;
+}
+.mask-culture .p-combo,
+.mask-content .p-combo,
+.mask-culture-list .p-combo {
+  pointer-events: none;
+  opacity: 0.5;
+}

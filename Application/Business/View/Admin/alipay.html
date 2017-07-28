@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+   
+    <link href="/assets/css/bs3/dpl-min.css" rel="stylesheet">
+    <link href="/assets/css/bs3/bui-min.css" rel="stylesheet">
+    <link href="/assets/css/page-min.css" rel="stylesheet">
+       <link href="/assets/css/hqtec.css" rel="stylesheet"> 
+</head>
+<body>
+<if condition="$alipay_config">
+<div class="container">
+    <form id="J_Form" class="form-horizontal" action="/business/admin/alipay_put" method="put">
+       
+        <div class="row">
+            <div class="control-group span8">
+                <label class="control-label">account：</label>
+
+                <div class="controls">
+                    <input name="ACCOUNT" type="text" data-rules="{required:true}" data-messages="{required:'account 必填'}"
+                           class="input-normal control-text" data-tip="{text:'请输入account'}" value="{$alipay_config.account}">
+                </div>
+            </div>
+
+        </div>
+        
+              <div class="row">
+            <div class="control-group span8">
+                <label class="control-label">partner_id：</label>
+
+                <div class="controls">
+                    <input name="PARTNER_ID" type="text" data-rules="{required:true}" data-messages="{required:'partner_id 必填'}"
+                           class="input-normal control-text" data-tip="{text:'请输入partner_id'}" value="{$alipay_config.partner_id}">
+                </div>
+            </div>
+
+        </div>
+        
+                      <div class="row">
+            <div class="control-group span8">
+                <label class="control-label">ALI_KEY：</label>
+
+                <div class="controls">
+                    <input name="ALI_KEY" type="text" data-rules="{required:true}" data-messages="{required:'ali_key 必填'}"
+                           class="input-normal control-text" data-tip="{text:'请输入ali_key'}" value="{$alipay_config.ali_key}">
+                </div>
+            </div>
+
+        </div>
+
+			<div class="row">
+				<div class="control-group span8">
+					<label class="control-label">app_id：</label>
+
+					<div class="controls">
+						<input name="APP_ID" type="text" data-rules="{required:true}"
+							data-messages="{required:'app_id 必填'}"
+							class="input-normal control-text" data-tip="{text:'请输入app_id'}" value="{$alipay_config.app_id}">
+					</div>
+				</div>
+
+			</div>
+			<input type="hidden" name="ID" value="{$alipay_config.id}"/>
+
+
+
+
+
+
+			<div class="row form-actions newactions-bar">
+            <div class="span13 offset3 ">
+                <button type="submit" class="button button-save">保存</button>
+               
+            </div>
+        </div>
+    </form>
+</div>
+<else/>
+
+<div class="container">
+    <form id="J_Form" class="form-horizontal" action="/business/admin/alipay_post" method="post">
+       
+        <div class="row">
+            <div class="control-group span8">
+                <label class="control-label">account：</label>
+
+                <div class="controls">
+                    <input name="ACCOUNT" type="text" data-rules="{required:true}" data-messages="{required:'account 必填'}"
+                           class="input-normal control-text" data-tip="{text:'请输入account'}">
+                </div>
+            </div>
+
+        </div>
+        
+              <div class="row">
+            <div class="control-group span8">
+                <label class="control-label">partner_id：</label>
+
+                <div class="controls">
+                    <input name="PARTNER_ID" type="text" data-rules="{required:true}" data-messages="{required:'partner_id 必填'}"
+                           class="input-normal control-text" data-tip="{text:'请输入partner_id'}">
+                </div>
+            </div>
+
+        </div>
+        
+                      <div class="row">
+            <div class="control-group span8">
+                <label class="control-label">ALI_KEY：</label>
+
+                <div class="controls">
+                    <input name="ALI_KEY" type="text" data-rules="{required:true}" data-messages="{required:'ali_key 必填'}"
+                           class="input-normal control-text" data-tip="{text:'请输入ali_key'}">
+                </div>
+            </div>
+
+        </div>
+
+			<div class="row">
+				<div class="control-group span8">
+					<label class="control-label">app_id：</label>
+
+					<div class="controls">
+						<input name="APP_ID" type="text" data-rules="{required:true}"
+							data-messages="{required:'app_id 必填'}"
+							class="input-normal control-text" data-tip="{text:'请输入app_id'}">
+					</div>
+				</div>
+
+			</div>
+
+
+
+
+
+
+			<div class="row form-actions actions-bar">
+            <div class="span13 offset3 ">
+                <button type="submit" class="button button-primary">保存</button>
+               
+            </div>
+        </div>
+    </form>
+</div>
+</if>
+
+<script src="/assets/js/jquery-1.8.1.min.js?{$js_version}"></script>
+<script src="/assets/js/bui.js?{$js_version}"></script>
+<script type="text/javascript" src="/assets/js/config-min.js?{$js_version}"></script>
+   <script type="text/javascript">
+      BUI.use('bui/form',function(Form){
+          new Form.HForm({
+        srcNode : '#J_Form',
+        submitType : 'ajax',
+        callback : function(data){
+          if(data.success){
+        	  
+        	  BUI.Message.Alert(data.msg,'success');
+        	  window.location.href=data.data;
+        	  
+          }else{
+        	 
+        	  BUI.Message.Alert(data.message,'error');
+          }
+        }
+      }).render();
+ 
+     
+ 
+      });
+    </script>
+<!-- script end -->
+</div>
+</body>
+</html>

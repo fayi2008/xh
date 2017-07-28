@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>添加菜单</title>
+    <link href="/assets/css/bs3/dpl-min.css" rel="stylesheet">
+    <link href="/assets/css/bs3/bui-min.css" rel="stylesheet">
+    <link href="/assets/css/page-min.css" rel="stylesheet">
+    <link href="/assets/css/hqtec.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <form id="J_Form" class="form-horizontal" action="/system/menu.json" method="post">
+        <div class="row">
+            <div class="control-group span15">
+                <label class="control-label">父菜单：</label>
+
+                <div class="controls">
+                    <select name="PARENTID"  >
+                        <option value="0">作为顶级菜单</option>
+                        {$select_categorys}
+                    </select>
+                </div>
+            </div>
+        </div>
+        
+         <div class="row">
+            <div class="control-group span15">
+                <label class="control-label">类型：</label>
+
+                <div class="controls">
+                    <select name="TYPE"  >
+                        <option value="0">菜单</option>
+                        <option value="1">权限</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="control-group span15">
+                <label class="control-label">菜单名称：</label>
+
+                <div class="controls">
+                    <input name="NAME" type="text" data-rules="{required:true}" data-messages="{required:'菜单名称不能为空'}"
+                           class="input-change " data-tip="{text:'请输入菜单名称'}" value="{$data.name}">
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="control-group span15">
+                <label class="control-label">菜单标识：</label>
+
+                <div class="controls">
+                    <input name="CODE" type="text" class="input-change "
+                           data-tip="{text:'请输入菜单标识,例如system'}" value="{$data.code}" >
+                </div>
+            </div>
+        </div>
+       
+        <div class="row">
+            <div class="control-group span15">
+                <label class="control-label">图标：</label>
+
+                <div class="controls">
+                    <input name="ICON" type="text" class="input-change " data-tip="{text:'请输入图标代码 home'}"
+                           value="{$data.icon}">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="control-group span15">
+                <label class="control-label">排序：</label>
+
+                <div class="controls">
+                    <input name="LISTORDER" type="text" class="input-change " data-tip="{text:'请输入排序数字'}"
+                           value="0">
+                </div>
+            </div>
+        </div>
+        
+         <div class="row">
+            <div class="control-group span15">
+                <label class="control-label">URI：</label>
+
+                <div class="controls">
+                    <input name="URI" type="text" class="input-large control-text" data-tip="{text:'请输入菜单URI'}"
+                           value="{$data.uri}">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="control-group span15">
+                <label class="control-label">参数：</label>
+
+                <div class="controls">
+                    <input name="PARAMETERS" type="text" class="input-large control-text"
+                           data-tip="{text:'请输入参数,例如：cate=1&type=2'}"/>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="control-group span15">
+                <label class="control-label">依赖：</label>
+
+                <div class="controls control-row4">
+                    <textarea name="DENPENDENCE" class="input-large" type="text">{$data.dependence}</textarea>
+                </div>
+            </div>
+        </div>
+        <div class="row form-actions newactions-bar">
+            <div class="span13 offset3 ">
+                <button type="submit" class="button button button-save" >保存</button>
+                <button type="reset" class="button button-reset" >重置</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script src="/assets/js/jquery-1.8.1.min.js?{$js_version}"></script>
+<script src="/assets/js/bui.js?{$js_version}"></script>
+<script type="text/javascript" src="/assets/js/config-min.js?{$js_version}"></script>
+<script type="text/javascript">
+    var Form = BUI.Form
+    new Form.HForm({
+        srcNode: '#J_Form',
+        submitType: 'ajax',
+        callback: function (data) {
+            if (data.success == true) {
+                BUI.Message.Confirm('操作成功！是否离开本页？', function () {
+                    if (top.topManager) {
+                        //打开左侧菜单中配置过的页面
+                        top.topManager.openPage({
+                            id: 'menu',
+                            reload: 'true'
+                        });
+                        top.topManager.closePage('menu/add');
+                    }
+                }, 'success');
+            } else {
+                BUI.Message.Alert('操作失败！' + data.msg, 'error');
+            }
+        }
+    }).render();
+
+</script>
+<!-- script end -->
+</div>
+</body>
+</html>

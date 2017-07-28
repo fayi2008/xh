@@ -1,0 +1,165 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>资源文件结构</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="/assets/css/bs3/dpl-min.css" rel="stylesheet" type="text/css" />
+<link href="/assets/css/bs3/bui-min.css" rel="stylesheet" type="text/css" />
+<link href="/assets/css/page-min.css" rel="stylesheet" type="text/css" />
+<!-- 下面的样式，仅是为了显示代码，而不应该在项目中使用-->
+<link href="/assets/css/prettify.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+code {
+	padding: 0px 4px;
+	color: #d14;
+	background-color: #f7f7f9;
+	border: 1px solid #e1e1e8;
+}
+</style>
+</head>
+<body>
+
+	<div class="container">
+		<div class="row">
+			<form id="J_Form" class="form-horizontal span24"
+				action='/Panorama/admin/hot' method='put'>
+				<div class="row">
+					<div class="control-group span8">
+						<label class="control-label"><s>*</s>热点名称：</label>
+						<div class="controls">
+							<input name="TITLE" type="text" data-rules="{required:true}"
+								class="input-normal control-text" value="{$detail.title}">
+						</div>
+					</div>
+					<div class="control-group span8">
+						<label class="control-label"><s>*</s>全景名称：</label>
+						<div class="controls">
+							<select data-rules="{required:true}" name="PANO_ID" id="pano_select"><option value="">请选择</option>
+                <foreach name="pano" item="v" key="k" >
+                       
+                         <option value="{$v.id}"  <php>if( $v['id'] == $detail['pano_id']) echo  "selected='selected'" ;</php> data-id="{$v.pano_key}">{$v.title}</option>
+                       
+                         </foreach>
+                </select>
+						</div>
+					</div>
+				</div>
+				
+				    <div class="row">
+         <div class="control-group span8">
+            <label class="control-label"><s>*</s>纬度：</label>
+            <div class="controls">
+              <input name="LAT" id="p_lat" type="text" data-rules="{required:true}" class="input-normal control-text" value="{$detail.lat}" >
+            </div>
+          </div>
+
+          <div class="control-group span8">
+            <label class="control-label"><s>*</s>经度：</label>
+            <div class="controls">
+              <input name="LON" id="p_lng" type="text" data-rules="{required:true}" class="input-normal control-text" value="{$detail.lon}">
+            </div>
+          </div>
+        </div>
+				
+        <div class="row">
+          <div class="control-group span15">
+            <label class="control-label">热点描述：</label>
+            <div class="controls control-row4">
+              <textarea name="CONTENT" class="input-large" data-tip="{text:'请填写描述信息！'}" type="text">{$detail.content}</textarea>
+            </div>
+          </div>
+        </div>
+        
+        			  <div class="row">
+          <div class="control-group span15">
+            <label class="control-label">热点高度：</label>
+            <div class="controls control-row4">
+              <input name="HEIGHT" type="text"  class="input-normal control-text"  value="{$detail.height}" >
+            </div>
+          </div>
+        </div>
+        
+        			  <!--<div class="row">
+          <div class="control-group span8">
+            <label class="control-label"><s>*</s>状态：</label>
+            <div class="controls">
+              <select  data-rules="{required:true}"  name="STATUS" class="input-normal"> 
+                <option value="">请选择</option>
+                <option value="0" <if condition="$detail.status ==0 ">selected='selected' </if> >删除</option>
+                <option value="1" <if condition="$detail.status ==1 ">selected='selected' </if>>发布</option>
+                <option value="2" <if condition="$detail.status ==2 ">selected='selected' </if>>待发布</option>
+              </select>
+            </div>
+          </div>
+        </div>-->
+        
+        		  <div class="row">
+          <div class="control-group span8">
+            <label class="control-label"><s>*</s>类型：</label>
+            <div class="controls">
+              <select  data-rules="{required:true}"  name="TYPE" class="input-normal"> 
+                <option value="">请选择</option>
+                <option value="1" <if condition="$detail.type ==1 ">selected='selected' </if>>跳转</option>
+                <option value="2" <if condition="$detail.type ==2 ">selected='selected' </if>>播放音乐</option>
+                <option value="3" <if condition="$detail.type ==3 ">selected='selected' </if>>全景</option>
+                <option value="4" <if condition="$detail.type ==4 ">selected='selected' </if>>弹出介绍框</option>
+              </select>
+            </div>
+          </div>
+          
+            <div class="control-group span15">
+            <label class="control-label">类型的值：</label>
+            <div class="controls control-row4">
+              <input name="TYPE_VALUE" type="text"  class="input-normal control-text" value="{$detail.type_value}">
+            </div>
+          </div>
+        </div>
+				<div class="row">
+					<div class="form-actions offset3">
+						<button type="submit" class="button button-primary">保存</button>
+						
+					</div>
+				</div>
+				 <input type="hidden" id="p_id" name="ID" value="{$detail.id}">
+				 <input type="hidden" id="p_pano_key" name="PANO_KEY" value="{$detail.pano_key}">
+			</form>
+		</div>
+
+
+	</div>
+	<script type="text/javascript" src="/assets/js/jquery-1.8.1.min.js?{$js_version}"></script>
+
+	<script type="text/javascript" src="/assets/js/bui-min.js?{$js_version}"></script>
+
+	<script type="text/javascript" src="/assets/js/config-min.js?{$js_version}"></script>
+	<script type="text/javascript" src="http://pano.yueling.xyz/lib/P_min.js?{$js_version}"></script>
+	<script type="text/javascript">
+		BUI.use(['common/page','app/poi_editer']);
+	</script>
+	<!-- 仅仅为了显示代码使用，不要在项目中引入使用-->
+	<script type="text/javascript" src="/assets/js/prettify.js?{$js_version}"></script>
+	<script type="text/javascript">
+		$(function() {
+			prettyPrint();
+		});
+	</script>
+	<script type="text/javascript">
+		BUI.use('bui/form', function(Form) {
+			new Form.HForm({
+				srcNode : '#J_Form',
+				submitType : 'ajax',
+				callback : function(data) {
+					if (data.status == 1) {
+						BUI.Message.Alert('编辑成功', 'success');
+
+					} else {
+						BUI.Message.Alert('编辑失败', 'error');
+					}
+					window.location.href = data.data + "?id={$detail['pano_id']}";
+				}
+			}).render();
+
+		});
+	</script>
+</body>
+</html>

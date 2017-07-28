@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>西湖全景</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, minimal-ui" />
+    <!--<meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">-->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <style>
+        @-ms-viewport { width: device-width; }
+        @media only screen and (min-device-width: 800px) { html { overflow:hidden; } }
+        html { height:100%; }
+        body { height:100%; overflow:hidden; margin:0; padding:0; font-family:Arial, Helvetica, sans-serif; font-size:14px;}
+        *{ font-family: 'microsoft yahei'; font-size：14px;font-style: normal;}
+        #pano{width:100%;height:100%;}
+    </style>
+    <link href="/static/Mobile/css/m-pano.css" rel="stylesheet" type="text/css">
+
+</head>
+<body class="mode-loading">
+<div id="pano"></div>
+<div class="context_menu">
+    <div class="mask"></div>
+    <div class="cnt">
+        <section>
+            <div class="button" id="j_coming_call">电话预处理</div>
+        </section>
+        <section>
+            <div class="title">电话预约</div>
+            <ul id="j_subscribe_call">
+                <li class="x-2" data-id="0301">咨询</li>
+                <!--<li class="x-3" data-id="0302">查询</li>-->
+                <li class="x-2" data-id="0303">投诉</li>
+                <!--<li class="x-3" data-id="0304">违法违纪举报</li>
+                <li class="x-3" data-id="0305">涉税举报</li>-->
+                <li class="x-2" data-id="0306">意见建议</li>
+                <li class="x-2" data-id="0307">求助</li>
+                <!--<li class="x-3" data-id="0308">订阅</li>
+                <li class="x-3" data-id="0309">服务转出</li>-->
+            </ul>
+        </section>
+        <!--<section>
+            <div class="button" id="j_processing_message">信息待调用</div>
+        </section>-->
+        <section>
+            <div class="button btn-cancel" id="j_cancel">取消</div>
+        </section>
+    </div>
+</div>
+<div class="box-culture box" data-type="culture">
+    <script type='text/template' id="tpl_culture">
+        <h3>文化要素</h3>
+        <% if(this.status){ %>
+        <div class="box-wrap">
+            <ul>
+                <each this.data.attrs>
+                    <iif value>
+                        <li><span>{{name}}</span>{{value}}</li>
+                    </iif>
+                </each>
+            </ul>
+        </div>
+
+        <a href="/culture/{{this.id}}.html">了解更多</a>
+        <% }else{ %>
+                <p style="margin-top:20%;">当前景点暂无文化要素</p>
+        <% } %>
+        <button class='j-close'>×</button>
+    </script>
+</div>
+<audio src="" id="j_voice" autoplay="autoplay"></audio>
+<div class="box-content box" data-type="content">
+    <h3></h3>
+    <div></div>
+    <button class='j-close'>×</button>
+</div>
+
+<div class="box-culture-list box" data-type="culture-list">
+    <script type="text/template" id="tpl_culture_list">
+    <h3>文化知识延伸阅读</h3>
+    <div>
+        <% if(this.status){ %>
+        <ul>
+            <each this.data>
+                <li><a href="/culture/{{id}}.html">{{title}}</a></li>
+            </each>
+        </ul>
+        <% }else{ %>
+            <p style="margin-top:20%;text-align: center;">当前景点暂无文化要素</p>
+        <% } %>
+    </div>
+    <button class='j-close'>×</button>
+    </script>
+</div>
+
+<script>
+    var PANO_CFG_PATH = "/Panorama/";
+    var PANO_IMG_PATH = "/pano/";
+    window.USER_DATA = {:$user?$user:'[]'};
+    window.contact_phone="{:C('CONTACT_PHONE')}";
+</script>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=8lO6Y9WE9ea11T0bAVwQfmmX"></script>
+<script src="/lib/jquery.js?{$js_version}"></script>
+<script src="/lib/P_min.js?{$js_version}"></script>
+<script src="/static/public/core.base.js?{$js_version}"></script>
+<script src="/static/public/core.map.js?{$js_version}"></script>
+<script src="/static/Mobile/js/m-pano-combo.js?{$js_version}"></script>
+<script src="/static/Mobile/js/m-pano.js?{$js_version}"></script>
+</body>
+</html>

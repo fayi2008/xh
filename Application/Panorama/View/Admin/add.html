@@ -1,0 +1,1124 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>添加全景</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link href="/assets/css/bs3/dpl-min.css" rel="stylesheet" type="text/css"/>
+    <link href="/assets/css/bs3/bui-min.css" rel="stylesheet" type="text/css"/>
+    <link href="/assets/css/page-min.css" rel="stylesheet" type="text/css"/>
+    <!-- 下面的样式，仅是为了显示代码，而不应该在项目中使用-->
+    <link href="/assets/css/prettify.css" rel="stylesheet" type="text/css"/>
+    <style type="text/css">
+        code {
+            padding: 0px 4px;
+            color: #d14;
+            background-color: #f7f7f9;
+            border: 1px solid #e1e1e8;
+        }
+        #choice_list{
+            height: 300px;
+            overflow: auto;
+            max-height: none;
+        }
+
+        .header {
+            margin: 10px;
+            padding: 2px;
+
+        }
+
+        .bt10 {
+            margin-top: 10px;
+        }
+
+        .img_box {
+            margin: 10px;
+            width: 160px;
+            height: 80px;
+            float: left;
+            position: relative;
+        }
+        .img_box > .x-icon{
+            display: none;
+        }
+        .img_box:hover > .x-icon{
+            display: block;
+        }
+        .img_box .x-icon{
+            float: right;
+            top: 0px;
+            right: 0px;
+            position: absolute;
+            z-index: 2;
+            cursor: pointer;
+        }
+        .img_box img{
+            top: 0px;
+            position: absolute;
+            z-index: 1;
+        }
+
+        .group_pano_item {
+            margin: 10px;
+            width: 60px;
+            height: 30px;
+            float: left;
+            position: relative;
+        }
+        .group_pano_item  .x-icon{
+            display: none;
+        }
+        .group_pano_item:hover .x-icon{
+            display: block;
+        }
+        .group_pano_item .x-icon{
+            float: right;
+            top: 0px;
+            right: 0px;
+            position: absolute;
+            z-index: 2;
+            cursor: pointer;
+        }
+        .group_pano_item img{
+            top: 0px;
+            position: absolute;
+            z-index: 1;
+        }
+
+        .add_btn {
+            cursor: pointer;
+        }
+
+        .bui-queue .bui-queue-item-success {
+            display: none;
+        }
+
+        .bui-queue .bui-queue-item-error {
+            display: none;
+        }
+
+        .bui-queue-item {
+            margin: 10px;
+            width: 100px;
+            height: 50px;
+            float: left;
+        }
+        .bui-queue.bui-simple-list{
+            max-height:100px;
+            overflow: auto;
+        }
+        .upload_box{
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        .bui-queue-item img {
+            border: #cccccc solid 1px;
+            width: 100px;
+            height: 50px;
+        }
+        .bui-queue-item-wait{
+            margin: 3px;
+            width: 200px;
+            height: 20px;
+        }
+        .bui-queue-item-progress{
+            margin: 3px;
+            width: 200px;
+            height: 20px;
+        }
+
+        #choice_list li {
+            margin: 10px;
+            width: 100px;
+            height: 50px;
+            float: left;
+            padding: 0;
+            border: #ffffff 1px solid;
+        }
+        #choice_list .bui-list-item-selected{
+            border: #414da7 1px solid;
+        }
+        .step_box .content_box{
+            height: 400px;
+            border:#cccccc solid 1px;
+            overflow:auto;
+        }
+        .pano_box{
+            padding-left: 20px;
+        }
+        .bui-grid-hd-empty{
+            width: 0;
+        }
+        .bui-grid-cell-empty{
+            width: 0;
+        }
+        .width100{
+            max-width: 160px;
+            overflow: hidden;
+            white-space:nowrap;
+        }
+
+    </style>
+</head>
+<body>
+<div class="header">
+    <div class="row span24">
+    <div class="flow-steps">
+        <ol class="num4">
+            <li class="first current">1.选择位置点</li>
+            <li class="">2.上传全景图</li>
+            <li class="">3.编辑分组</li>
+            <li class="last">4.编辑制作场景</li>
+        </ol>
+    </div>
+    </div>
+</div>
+<div class="container step_box" id="step1">
+    <div class="row form-horizontal">
+        <div class="control-group span24">
+            <label class="control-label">位置点：</label>
+            <div class="controls" id="poi_id_box">
+            </div>
+            <input type="hidden" name="POI_ID" id="poi_id"/>
+        </div>
+        <div id="map" class="span24 control-group content_box" style="height: 400px;">
+        </div>
+        <div class="control-group span24 bt10">
+            <button type="submit" class="button button-primary pull-right" onclick="toNext(2)">下一步</button>
+        </div>
+    </div>
+</div>
+<div class="container step_box" id="step2" style="display: none">
+    <form id="form_step2" class="form-horizontal" action='/Panorama/admin/step2' method='post'>
+        <div class="row">
+        <div id="pano_upload_box" class="span24 control-group content_box">
+                <div class="img_box add_btn">
+                    <img src="/assets/img/add_img.png" width="160" onclick="addImages()"/>
+                </div>
+        </div>
+        </div>
+        <div class="row">
+        <div class="span24 bt10">
+            <div class="form-actions pull-left">
+                <button type="button" class="button button-primary" onclick="showStep(1)">上一步</button>
+            </div>
+            <div class="form-actions pull-right">
+                <button type="button" class="button button-primary" onclick="toNext(3)">下一步</button>
+            </div>
+        </div>
+        </div>
+    </form>
+</div>
+<div class="container step_box" id="step3" style="display: none">
+    <form id="form_step3" class="form-horizontal" action='javascript:;' method='post'>
+        <div class="row">
+            <div class="control-group span24">
+                <div class="controls">
+                    <a class="button button-success" onclick="newGroup()"><strong>添加分组</strong></a>
+                </div>
+            </div>
+            <div class="span24 group_box content_box" style="padding: 5px;">
+                <!--<div class="row group_item ">
+                    <div class="row">
+                        <div class="span12 control-group"><label class="control-label">分组名称</label>
+                            <div class="span8 controls"><input type="text" name="GROUP_NAME[]" class="input-large"/>
+                            </div>
+                        </div>
+                        <div class="span11 controls">
+                            <button>导入全景</button>
+                            <button>上移</button>
+                            <button>下移</button>
+                            <button>删除</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="span23 controls" class="pano_box"></div>
+                    </div>
+                </div>-->
+            </div>
+        </div>
+        <div class="row">
+        <div class="span24 bt10">
+            <div class="form-actions pull-left">
+                <button type="button" class="button button-primary" onclick="showStep(2)">上一步</button>
+            </div>
+            <div class="form-actions pull-right">
+                <button type="button" class="button button-primary" onclick="toNext(4)">下一步</button>
+            </div>
+        </div>
+        </div>
+    </form>
+</div>
+<div class="container step_box" id="step4" style="display: none">
+    <form id="form_step4" class="form-horizontal" action='/Panorama/admin/step4' method='post'>
+        <div class="row">
+        <div class="control-group span24">
+            <div class="controls">
+                <div id="group_select">
+                    <input type="hidden" id="group_id_hide" value="" name="group_id_hide">
+                </div>
+            </div>
+        </div>
+        </div>
+        <div class="row">
+            <div class="span24 control-group content_box" id="panos_grid"></div>
+        </div>
+        <div class="row" >
+        <div class="span24 bt10">
+            <div class="form-actions pull-left">
+                <button type="button" class="button button-primary" onclick="showStep(3)">上一步</button>
+            </div>
+            <div class="form-actions pull-right">
+                <button type="button" class="button button-success" onclick="complete()">完成</button>
+            </div>
+        </div>
+        </div>
+    </form>
+</div>
+<script type="text/javascript" src="/assets/js/jquery-1.8.1.min.js?{$js_version}"></script>
+<script type="text/javascript" src="/assets/js/bui-min.js?{$js_version}"></script>
+
+<script type="text/javascript" src="/assets/js/config-min.js?{$js_version}"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak={:C('BD_MAP_API_KEY')}"></script>
+<script type="text/javascript">
+    BUI.use('common/page');
+    function getSmallImgName(src)
+    {
+        return src.replace( /\.jpg$/i, "_s.jpg");
+    }
+</script>
+
+<script type="text/javascript">
+    var items = {$items};
+    var count = 0;
+    var suggest_data = {$suggest_data};
+    var map = new BMap.Map("map");          // 创建地图实例
+    var point = new BMap.Point(120.169886, 30.255168);  // 创建点坐标
+    map.centerAndZoom(point, 11);           // 初始化地图，设置中心点坐标和地图级别
+    var marker, name, poi_id,poi;
+    var images = {};
+    var panos = {};
+    var groups = {};
+    var fullMask = new BUI.Mask.LoadMask({
+        el : 'body',
+        msg : 'loading ....'
+    });
+    //显示地图标点
+    function showMarker() {
+        map.centerAndZoom(point, 15);
+        // 创建标注
+        if (marker) {
+            map.removeOverlay(marker);
+        }
+        marker = new BMap.Marker(point);
+        map.addOverlay(marker);              // 将标注添加到地图中
+        var label = new BMap.Label(name, {offset: new BMap.Size(0, -15)});
+        marker.setLabel(label);
+    }
+
+
+    var gcj2bd = (function(){
+        var pi = 3.14159265358979324;
+        var a = 6378245.0;
+        var ee = 0.00669342162296594323;
+        var x_pi = 3.14159265358979324 * 3000.0 / 180.0;
+        return function(y , x){
+            var z = Math.sqrt(x*x + y*y) + 0.00002 * Math.sin(y * x_pi);
+
+            var theta = Math.atan2(y, x) + 0.000003 * Math.cos(x * x_pi);
+            var bd_lon = z * Math.cos(theta) + 0.0065;
+            var bd_lat = z * Math.sin(theta) + 0.006;
+            return [bd_lat , bd_lon];
+        };
+    }());
+
+
+    //显示step
+    function showStep(i) {
+        $('.flow-steps li').removeClass('current');
+        $('.flow-steps li').removeClass('current-prev');
+        $('.step_box').hide();
+
+        for (var a = 0; a < i; a++) {
+            if (a < i - 2) {
+                $('.flow-steps li').eq(a).addClass('done');
+            } else if (a == i - 2) {
+                $('.flow-steps li').eq(a).addClass('current-prev');
+            } else if (a == i - 1) {
+                $('.flow-steps li').eq(a).addClass('current');
+                $('.step_box').eq(a).show();
+            }
+        }
+
+    }
+    //步骤
+    function toNext(i) {
+        switch (i) {
+            case 2:
+                var text=$('input[name="suggest"]').val();
+                var res=setPoi(text,true);
+                if (res&&poi_id) {
+                    fullMask.show();
+                    $.getJSON('/panorama/admin/poi_pano.json?poi_id='+poi_id,function(res){
+                        if(res.status==1)
+                        {
+                            $('#pano_upload_box .img_box:not(.add_btn)').remove();
+                            if(res.data)
+                            {
+                                for(var i in res.data)
+                                {
+                                    panos[res.data[i]['id']]=res.data[i];
+                                    addImagesToPano(res.data[i]['id'],res.data[i]['origin_img'],res.data[i]['title']);
+                                }
+                            }
+                            showStep(2);
+                        }else{
+                            BUI.Message.Alert(res.info, 'error');
+                        }
+                        fullMask.hide();
+                    });
+                }
+                break;
+            case 3:
+                if (poi_id) {
+                    fullMask.show();
+                    $.getJSON('/panorama/admin/cate.json?poi_id='+poi_id,function(res){
+                        if(res.status==1)
+                        {
+                            //console.log(res.data)
+                            if(res.data.length>0)
+                            {
+                                groupsInit(res.data)
+                            }else{
+                                newGroup(name)
+                            }
+                            showStep(3);
+                        }else{
+                            BUI.Message.Alert(res.info, 'error');
+                        }
+                    });
+                    fullMask.hide();
+                    showStep(3);
+                } else {
+                    BUI.Message.Alert('位置点不存在，请重新选择！', 'error');
+                }
+
+                break;
+            case 4:
+                groups = {};
+                    $('.group_item').each(function(i,n){
+                        var id=$(n).attr('data-id');
+                        var name=$(n).find('input').val();
+                        groups[id]={ID:id,NAME:name,LISTORDER:i};
+                    });
+                //console.log(groups);
+                fullMask.show();
+                $.ajax({
+                    url:'/panorama/admin/step3.json',
+                    data:{POI_ID:poi_id,groups:groups,panos:panos},
+                    type:'post',
+                    success:function(res){
+                        if(res.status==1)
+                        {
+                            showStep(4);
+                            step4Init(groups);
+                        }
+                        fullMask.hide();
+                    },
+                    error:function(){
+                        fullMask.hide();
+                        BUI.Message.Alert('服务器忙，请稍后再试！', 'error');
+                    },
+                    dataType:'json'});
+                break;
+            default:
+                showStep(i);
+        }
+
+    }
+    /**
+     *第四步初始化
+     **/
+    var group_select,panos_grid;
+    function step4Init(groups)
+    {
+        if(group_select)
+        {
+            group_select.destroy();
+        }
+        if(panos_grid)
+        {
+            panos_grid.destroy();
+        }
+        var items=[];
+        var group_item_id=$('#group_id_hide').val();
+        for(var i in groups)
+        {
+            if(group_item_id=='')
+            {
+                group_item_id=groups[i].ID;
+                $('#group_id_hide').val(group_item_id);
+            }
+            items.push({text:groups[i].NAME,value:groups[i].ID});
+        }
+
+        group_select = new BUI.Select.Select({
+                    render:'#group_select',
+                    valueField:'#group_id_hide',
+                    items:items
+                });
+        group_select.render();
+        var columns = [{
+            title : '序号',
+            elCls : 'center',
+            dataIndex :'listorder',
+            width:'60px',
+            renderer : function (value,obj) {
+                if(!value)
+                {
+                    value=0;
+                }
+                var str='<input type="hidden" name="ID" value="'+obj.id+'" />'+
+                        '<input type="text" class="span1" name="LISTORDER" value="'+value+'" />';
+                    return str;
+            }
+        },{
+            title : '缩略图',
+            dataIndex :'origin_img',
+            elCls : 'center',
+            width:'110',
+            renderer: function (value){
+                return '<img src="/pano/'+getSmallImgName(value)+'" width="100" height="50" />';
+            }
+        },{
+            title : '全景名称',
+            dataIndex : 'title',
+            elCls : 'center',
+            width:'180',
+            renderer : function(value){
+                if(value==undefined)
+                {
+                    value='';
+                }
+                return '<input type="text" class="span4" name="TITLE" value="'+value+'" />';
+            }
+        },{
+            title : '场景描述',
+            dataIndex : 'introduction',
+            elCls : 'center',
+            width:180,
+            renderer : function(value){
+                if(value==undefined)
+                {
+                    value='';
+                }
+                return '<textarea class="" name="INTRODUCTION" >'+value+'</textarea>';
+            }
+        },{
+            title : '经纬度',
+            dataIndex : 'lat',
+            elCls : 'center',
+            width:'140',
+            renderer : function(value,obj){
+                var lon,lat;
+                if(obj.lon)
+                {
+                    lon=obj.lon;
+                }else{
+                    lon=poi.lon
+                }
+                if(obj.lat)
+                {
+                    lat=obj.lat;
+                }else{
+                    lat=poi.lat
+                }
+                var str='<div class="row">经度：<input type="text" class="span2" name="LON" value="'+lon+'" /></div>';
+                str+='<div class="row">纬度：<input type="text" class="span2" name="LAT" value="'+lat+'" /></div>';
+                return str;
+            }
+        },{
+            title : '时光机',
+            dataIndex : 'season',
+            elCls : 'center',
+            width:'140',
+            renderer : function(value){
+                var season_status=[];
+                for(var i=0;i<5;i++)
+                {
+                    season_status[i]='';
+                    if(value==i)
+                    {
+                        season_status[i]='selected';
+                    }
+                }
+                var str='<select name="SEASON" class="span4">' +
+                        '<option value="0" '+season_status[0]+'>一年四季</option>'+
+                        '<option value="1" '+season_status[1]+'>春</option>'+
+                        '<option value="2" '+season_status[2]+'>夏</option>'+
+                        '<option value="3" '+season_status[3]+'>秋</option>'+
+                        '<option value="4" '+season_status[4]+'>冬</option>'+
+                        '</select>'
+                return str;
+            }
+        },{
+            title : '操作',
+            width:'80',
+            dataIndex : 'id',
+            elCls : 'center',
+            renderer:function(val,obj){
+                    return '<a class="button button-primary save-btn">保存</a>';
+            }
+        }];
+
+        var data =[];
+        for(var i in panos)
+        {
+            if(panos[i].group_id==group_item_id)
+            {
+                data.push(panos[i]);
+            }
+        }
+        panos_grid = new BUI.Grid.Grid({
+            render:'#panos_grid',
+            columns : columns,
+            items : data,
+            //forceFit: true,
+            idField : 'id'
+        });
+        panos_grid.render();
+        panos_grid.on('cellclick',function(ev) {
+            var record = ev.record, //点击行的记录
+            target = $(ev.domTarget); //点击的元素
+            if(target.hasClass('save-btn')){
+                panos[record.id].listorder=target.parents('.bui-grid-row').find("input[name='LISTORDER']").val();
+                panos[record.id].title=target.parents('.bui-grid-row').find("input[name='TITLE']").val();
+                panos[record.id].introduction=target.parents('.bui-grid-row').find("textarea[name='INTRODUCTION']").val();
+                panos[record.id].lat=target.parents('.bui-grid-row').find("input[name='LAT']").val();
+                panos[record.id].lon=target.parents('.bui-grid-row').find("input[name='LON']").val();
+                panos[record.id].season=target.parents('.bui-grid-row').find("select[name='SEASON']").val();
+                fullMask.show();
+                $.ajax({
+                    url:'/panorama/admin/pano.json',
+                    data:{data:panos[record.id]},
+                    type:'put',
+                    success:function(res){
+                        if(res.status==1)
+                        {
+                            fullMask.hide();
+                            BUI.Message.Alert('保存成功！', 'success');
+                        }else{
+                            fullMask.hide();
+                            BUI.Message.Alert('保存失败：'+res.info, 'error');
+                        }
+
+                    },
+                    error:function(){
+                        fullMask.hide();
+                        BUI.Message.Alert('服务器忙，请稍后再试！', 'error');
+                    },
+                    dataType:'json'});
+            }
+        });
+        group_select.on('change', function(ev){
+               saveCurrent();
+                    var group_id=ev.item.value;
+                    var data =[];
+                for(var i in panos)
+                {
+                    if(panos[i].group_id==group_id)
+                    {
+                        data.push(panos[i]);
+                    }
+                }
+            panos_grid.setItems(data);
+        });
+    }
+    /**
+     * 保存当前数据到panos变量
+     */
+    function saveCurrent()
+    {
+        $('.bui-grid-row').each(function(i,n){
+            var id=$(n).find("input[name='ID']").val();
+            panos[id].listorder=$(n).find("input[name='LISTORDER']").val();
+            panos[id].title=$(n).find("input[name='TITLE']").val();
+            panos[id].introduction=$(n).find("textarea[name='INTRODUCTION']").val();
+            panos[id].lat=$(n).find("input[name='LAT']").val();
+            panos[id].lon=$(n).find("input[name='LON']").val();
+            panos[id].season=$(n).find("select[name='SEASON']").val();
+        })
+    }
+
+    /**
+     * 完成添加全景
+     */
+    function complete()
+    {
+        saveCurrent();
+        fullMask.show();
+        //console.log(panos);
+        $.ajax({
+            url:'/panorama/admin/panos.json',
+            data:{panos:panos},
+            type:'put',
+            success:function(res){
+                if(res.status==1)
+                {
+                    fullMask.hide();
+                    BUI.Message.Alert('添加全景完成！',function() {
+                    	
+                        top.topManager.openPage({
+                           
+                            moduleId:'pano',
+                			id : 'list',
+                            href : '/panorama/admin/index.html',
+                            title : '全景管理',
+                            isClose:true
+                        });
+                        //top.topManager.closePage('add');
+                    }, 'success');
+                }else{
+                    fullMask.hide();
+                    BUI.Message.Alert('保存失败：'+res.info, 'error');
+                }
+
+            },
+            error:function(){
+                fullMask.hide();
+                BUI.Message.Alert('服务器忙，请稍后再试！', 'error');
+            },
+            dataType:'json'});
+
+    }
+
+    /**
+     * 第三步初始化分组数据
+     */
+    function groupsInit(data)
+    {
+        $('.group_box .group_item').remove();
+        for(var i in data)
+        {
+            addGroup(data[i].id,data[i].name);
+        }
+        for(var i in panos)
+        {
+            addPanoToGroup(panos[i].id,panos[i],panos[i].group_id);
+        }
+    }
+    /**
+     * 添加一个分组到界面
+     */
+    function addGroup(id,name) {
+        var gitem = '<div class="row group_item " data-id="'+id+'">' +
+                '<div class="row"><div class="span12 control-group"><label class="control-label">分组名称</label>' +
+                '<div class="span8 controls"><input type="text" name="GROUP_NAME[]" class="input-large" value="'+name+'" /></div></div>' +
+                '<div class="span11 controls"><a class="button button-success" onclick="choicePano('+id+')">导入全景</a> <a class="button button-warning" onclick="movePrev(this)">上移</a> <a class="button button-warning" onclick="moveNext(this)" >下移</a> <a class="button button-danger" onclick="deleteGroup(this)" >删除</a></div></div><div class="row"><div class="span23 pano_box"></div></div></div>';
+        $('.group_box').append(gitem);
+    }
+    /**
+     * 添加一个全景到分组
+     */
+    function addPanoToGroup(pano_id,pano,group_id)
+    {
+        var pano_img=pano.origin_img;
+        var pano_img_html='<div class="group_pano_item" data-id="'+pano_id+'" >' +
+                '<span class="x-icon x-icon-mini">×</span>' +
+                '<img src="/pano/'+getSmallImgName(pano_img)+'" width="60" height="30" title="'+pano.title+'" /></div>';
+        $('.group_item[data-id='+group_id+']').find('.pano_box').append(pano_img_html);
+    }
+
+    /**
+     * 删除分组
+     **/
+    function deleteGroup(obj)
+    {
+        var group_id=$(obj).parents('.group_item').attr('data-id');
+        BUI.Message.Confirm('确认要删除么？',function(){
+            fullMask.show();
+            $.ajax({
+                url:'/panorama/admin/cate.json',
+                data:{ids:[group_id]},
+                type:'delete',
+                success:function(res){
+                    if(res.status==1)
+                    {
+                        $(obj).parents('.group_item').remove();
+                        for(var i in panos)
+                        {
+                            if(panos[i].group_id==group_id)
+                            {
+                                panos[i].group_id=0;
+                            }
+                        }
+                        fullMask.hide();
+                    }else{
+                        BUI.Message.Alert(res.info, 'error');
+                    }
+
+                },
+                error:function(){
+                    fullMask.hide();
+                    BUI.Message.Alert('服务器忙，请稍后再试！', 'error');
+                },
+                dataType:'json'});
+        },'question');
+    }
+    /**
+     * 分组上移
+     * */
+    function movePrev(obj)
+    {
+        var item=$(obj).parents('.group_item');
+        item.insertBefore(item.prev());
+    }
+    /**
+     * 分组下移
+     * */
+    function moveNext(obj)
+    {
+        var item=$(obj).parents('.group_item');
+        item.insertAfter(item.next());
+    }
+
+    /**
+     * 新生成一个分组
+     */
+    function newGroup(pname)
+    {
+        if(!pname)
+        {
+            pname='';
+        }
+        if (!poi_id)
+        {
+            BUI.Message.Alert('位置点不存在，请重新选择！', 'error');
+        }
+        fullMask.show();
+        $.ajax({
+            url:'/panorama/admin/cate.json',
+            data:{POI_ID:poi_id,NAME:pname},
+            type:'post',
+            success:function(res){
+                if(res.status==1)
+                {
+                    addGroup(res.id,pname);
+                    fullMask.hide();
+                }else{
+                    fullMask.hide();
+                    BUI.Message.Alert(res.info, 'error');
+                }
+            },
+            error:function(){
+                fullMask.hide();
+                BUI.Message.Alert('服务器忙，请稍后再试！', 'error');
+            },
+            dataType:'json'});
+    }
+    /**
+     * 分组选择全景
+     */
+    var choice_dialog;
+    function choicePano(group_id)
+    {
+        var choice_html='';
+        var list;
+        for(var i in panos)
+        {
+            if(panos[i]['group_id']==0)
+            {
+                choice_html+='<li data-value="'+panos[i]['id']+'"><img src="/pano/'+getSmallImgName(panos[i]['origin_img'])+'" width=100 height=50 title="'+panos[i]['title']+'" /></li>';
+            }
+        }
+        if(choice_dialog)
+        {
+            choice_dialog.destroy();
+        }
+        choice_dialog = new BUI.Overlay.Dialog({
+            title: '导入全景图片',
+            width: 650,
+            height: 400,
+            mask: false,
+            buttons:[{
+                text:'确定',
+                elCls : 'button button-primary',
+                handler : function(){
+                    var values=list.getSelectionValues();
+                    //console.log(values);
+                    for(var i in values)
+                    {
+                        panos[values[i]].group_id=group_id;
+                        addPanoToGroup(values[i],panos[values[i]],group_id);
+                    }
+                    //console.log(panos);
+                    choice_dialog.destroy();
+                }
+            },{
+                text:'取消',
+                elCls : 'button',
+                handler : function(){
+                    choice_dialog.destroy();
+                }
+            }],
+            bodyContent: '<div class="row"><div class="choice_box span-width span16" style="height:400px;">' +
+            '<ul id="choice_list" class="bui-select-list">'+choice_html+ '</ul></div></div>'
+        });
+        choice_dialog.show();
+        list = new BUI.List.Listbox({
+                    //width:200,
+                    srcNode : '#choice_list'
+                });
+        list.render();
+    }
+
+    //声明上传对象
+    var uploader;
+    var mydata = {images: [], ids: [],titles:[]};
+    //声明一个对话框
+    var Overlay = BUI.Overlay;
+    var dialog = new Overlay.Dialog({
+        title: '上传全景图片',
+        width: 650,
+        height: 500,
+        mask: false,
+        //buttons:[],
+        bodyContent: '<div class="row upload_container">' +
+            '<ul class="nav-tabs">' +
+            '<li rel = "0" class="active" ><a href="#" >上传本地文件</a></li>'+
+    '<li rel = "1"><a href="#" >服务器文件</a></li>'+
+    '</ul>'+
+    '<div class="upload_box span-width span16" style="height:400px;" id="local_box">'+
+    '<div class="span16 container">'+
+    '<div id="uploader" class="span6"></div><span class="span6">上传文件格式必须为.JPG格式</span>'+
+    '</div>'+
+    '<div class="span16" ><ul id="imageList"></ul></div>'+
+    '</div>'+
+    '<div class="upload_box span-width span16" style="height:400px;display: none;" id="ftp_box">'+
+    '<div class="span16" ><ul id="ServerImageList"></ul></div>'+
+    '</div>'+
+    '</div>',
+        success: function () {
+            for (var i in mydata.images) {
+                if(panos[mydata.ids[i]])
+                {
+                    panos[mydata.ids[i]].origin_img = mydata.images[i];
+                }else{
+                    panos[mydata.ids[i]]={origin_img:mydata.images[i],id:mydata.ids[i],'group_id':0,'title':mydata.titles[i]};
+                }
+                addImagesToPano(mydata.ids[i],mydata.images[i],mydata.titles[i]);
+            }
+            $('#imageList').html('');
+            mydata.images = [];
+            mydata.ids = [];
+            mydata.titles = [];
+            this.close();
+        }
+    });
+    /**
+     * 将上传的图片添加到列表
+     * */
+    function addImagesToPano(id,image_src,title)
+    {
+        var html_box = '<div class="img_box" data-id="'+id+'">' +
+                '<span class="x-icon x-icon-normal">×</span>' +
+                '<img src="/pano/' + getSmallImgName(image_src) + '" width="160" height="80" title="'+title+'" /></div>';
+        $('#pano_upload_box .add_btn').before(html_box);
+    }
+
+    //添加全景图片，显示对话框
+    function addImages() {
+        dialog.show();
+        if (!uploader) {
+            uploader = initUploader();
+        } else {
+            uploader.destroy();
+            uploader = initUploader();
+
+        }
+    }
+    /**
+     *实例化上传全景类
+     **/
+    function initUploader() {
+        var uploader_ob = new BUI.Uploader.Uploader(
+                {
+                    render: '#uploader',
+                    url: 'http://{$httphost}/panorama/admin/upload_img',
+                    data: {POI_ID: poi_id},
+                    isSuccess: function (result) {
+                        if (result.status && result.file) {
+                            return true;
+                        }
+                        return false;
+                    },
+                    text: '上传全景图片',
+                    //可以直接在这里直接设置成功的回调
+                    queue: {
+                        resultTpl: {
+                            'default': '<div class="default width100 " title="{name}">{name}</div>',
+                            'success': '',
+                            'error': '{msg}'
+                        }
+                    },
+
+                    //'childContainer':'#imageList',
+                    rules: {
+                        //文的类型
+                        ext: ['.jpg', '文件类型只能为jpg'],
+                        //上传的最大个数
+                        max: [9999, '文件的最大个数不能超过{0}个'],
+                        //文件大小的最小值,这个单位是kb
+                        minSize: [10, '文件的大小不能小于{0}KB'],
+                        //文件大小的最大值,单位也是kb
+                        maxSize: [51200, '文件大小不能大于50M']
+                    }
+
+                });
+
+        uploader_ob.render();
+        uploader_ob.on('success', function (ev) {
+            var result = ev.result;
+            addImgItem(result.file, result.id);
+            mydata.images.push(result.file);
+            mydata.ids.push(result.id);
+            mydata.titles.push(result.title);
+        })
+        uploader_ob.on('change', function (ev) {
+            var items = ev.items;
+            for (var i in items) {
+                if (items[i].error == true) {
+                    BUI.Message.Alert(items[i].name + items[i].msg,'error');
+                }
+            }
+        })
+        //上传失败时会触发
+        uploader_ob.on('error', function (ev) {
+            //var result = ev.result;
+            BUI.Message.Alert(ev.result.msg,'error');
+        });
+        return uploader_ob;
+    }
+
+    /**
+     * 上传成功后插入一张图片
+     */
+    function addImgItem(url, id) {
+        var item = '<li class="bui-queue-item bui-queue-item-success bui-queue-item-selected">' +
+                '<div class="success"><img src="/pano/' + getSmallImgName(url) + '" /><input type="hidden" name="ids[]" value="' + id + '" /></div></li>';
+        $('#imageList').append(item);
+    }
+    /**
+     *根据选择设置poi点信息
+     */
+    function setPoi(text,alert)
+    {
+        if (items[text]) {
+            poi_id = items[text].id;
+            poi=items[text];
+            $('#poi_id').val(items[text].id);
+            var p = gcj2bd(items[text].lat , items[text].lon);
+
+            point = new BMap.Point(p[1], p[0]);
+            name = items[text].name;
+            showMarker();
+            return true;
+        } else {
+            if(alert)
+            {
+                BUI.Message.Alert('位置点不存在，请重新选择，或者添加新的位置点！', 'error');
+            }
+            return false;
+        }
+    }
+
+    $('body').on('click', '.nav-tabs li', function () {
+        var rel = $(this).attr('rel');
+        $(this).addClass('active').siblings('li').removeClass('active');
+        $('.upload_box').hide();
+        $(this).parents('.upload_container').find('.upload_box').eq(rel).show();
+    });
+
+    $('body').on('click', '.img_box span', function () {
+        var obj=$(this).parents('.img_box');
+        BUI.Message.Confirm('确认要删除么？',function(){
+            var id = obj.attr('data-id');
+            fullMask.show();
+            $.ajax({
+                url:'/panorama/admin/pano.json',
+                data:{id:id},
+                type:'delete',
+                success:function(res){
+                    if(res.status==1)
+                    {
+                        fullMask.hide();
+                        obj.remove();
+                        delete panos[id];
+                    }else{
+                        fullMask.hide();
+                        BUI.Message.Alert(res.info, 'error');
+                    }
+                },
+                error:function(){
+                    fullMask.hide();
+                    BUI.Message.Alert('服务器忙，请稍后再试！', 'error');
+                },
+                dataType:'json'});
+            //console.log(panos);
+        },'question');
+
+    });
+
+    $('body').on('click', '.group_pano_item .x-icon', function () {
+        var obj=$(this).parents('.group_pano_item');
+        BUI.Message.Confirm('确认要删除么？',function() {
+            var id = obj.attr('data-id');
+            obj.remove();
+            panos[id].group_id = 0;
+        });
+    });
+
+
+
+    BUI.use(['bui/form', 'bui/select', 'bui/uploader'], function (Form, Select, Uploader) {
+        var suggest = new Select.Suggest({
+            render: '#poi_id_box',
+            name: 'suggest',
+            width: 300,
+            data: suggest_data
+        });
+        suggest.render();
+        /*suggest.on('change', function (ev) {
+            if (items[ev.item.text].id) {
+                poi_id = items[ev.item.text].id;
+                poi=items[ev.item.text];
+                $('#poi_id').val(items[ev.item.text].id);
+                point = new BMap.Point(items[ev.item.text].lon, items[ev.item.text].lat);
+                name = items[ev.item.text].name;
+                showMarker();
+            } else {
+                BUI.Message.Alert('位置点不存在，请重新选择，或者添加新的位置点！', 'error');
+            }
+
+        });*/
+        $('input[name="suggest"]').change(function(){
+            var text=$(this).val();
+            setPoi(text);
+        });
+        var poi_init={$poi};
+        if(poi_init.id)
+        {
+            poi_id = poi_init.id;
+            poi=poi_init;
+            $('#poi_id').val(poi_init.id);
+            point = new BMap.Point(poi_init.lon, poi_init.lat);
+            name = poi_init.name;
+            showMarker();
+            $('input[name="suggest"]').val(name);
+        }
+
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>test</title>
+	<link href="/assets/css/bs3/dpl-min.css" rel="stylesheet" type="text/css" />
+	<link href="/assets/css/bs3/bui-min.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div  id="J_Uploader">
+	<input type="hidden"  name='IMAGE' value='' id='IMAGE'>
+</div>
+<script src="/assets/js/jquery-1.8.1.min.js"></script>
+<!--[if !IE]><!-->
+<script src="/assets/js/bui.js?{$js_version}"></script>
+<!--<![endif]-->
+<!--[if IE]>
+<script src="http://g.alicdn.com/bui/bui/1.1.21/bui-min.js"></script>
+<![endif]-->
+<!-- script start -->
+<script type="text/javascript">
+	$(function(){
+		BUI.debug=true;
+		BUI.use('bui/uploader',function (Uploader) {
+
+			/**
+			 * 返回数据的格式
+			 *
+			 *  默认是 {url : 'url'},否则认为上传失败
+			 *  可以通过isSuccess 更改判定成功失败的结构
+			 */
+			var uploader = new Uploader.Uploader({
+				render: '#J_Uploader',
+				url: '../../../test/upload/upload.php'
+			}).render();
+		});
+	})
+</script>
+</body>
+</html>

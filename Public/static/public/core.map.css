@@ -1,0 +1,18 @@
+
+.maps-here {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+/*  margin-top: -12px;
+  margin-left: -12px;*/
+  border-radius: 20px;
+  background-color: rgba(15, 137, 245, 1);
+  transition: all 0.3s;
+  -webkit-transition: all 0.3s;
+  border: 2px solid #fff;
+  -moz-box-sizing: border-box;
+       box-sizing: border-box;
+  pointer-events: none;
+  box-shadow: 0 0 6px rgba(0,0,0,.2)
+}
+

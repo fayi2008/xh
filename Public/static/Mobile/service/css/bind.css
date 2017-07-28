@@ -1,0 +1,141 @@
+/*write by fay time:2014-09-09 10:03*/
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    list-style: none;
+    -webkit-transition-timing-function: ease-in-out;
+    -moz-transition-timing-function: ease-in-out;
+    -ms-transition-timing-function: ease-in-out;
+    -o-transition-timing-function: ease-in-out;
+    transition-timing-function: ease-in-out;
+    font-size: 14px;
+}
+
+*:focus {
+    outline: none;
+}
+
+*, *:before, *:after {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+ol, ul, li {
+
+    padding: 0;
+    margin: 0;
+    display: block;
+
+}
+
+u, i {
+
+    font-weight: normal;
+    font-style: normal;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0px;
+
+}
+
+fieldset, img {
+    border: 0;
+
+}
+
+html {
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    width: 100%;
+    position: relative;
+    font-size: 14px;
+}
+
+input, select, textarea {
+    -webkit-appearance: none;
+    border: none;
+    border-radius: 0;
+}
+
+a {
+
+    text-decoration: none;
+}
+
+a:link {
+
+    text-decoration: none;
+}
+
+a:visited {
+
+    text-decoration: none;
+}
+
+body {
+    background-color: #e6e6e6;
+}
+
+.order-list {
+    padding: 10px;
+}
+
+.order-list > li {
+    margin-bottom: 10px;
+    background-color: #fff;
+    border-radius: 5px;
+    position: relative;
+    overflow: hidden;
+    padding: 10px;
+    box-sizing: border-box;
+    box-shadow: 0 0 1px #999;
+}
+
+.btn {
+    box-shadow: 0 0 1px #999;
+    padding: 10px 0;
+    text-align: center;
+    width: 47%;
+    border-radius: 3px;
+    display: inline-block;
+}
+
+.btn-blud {
+    background-color: #14c327;
+    color: #fff;
+}
+
+.btn-yel {
+    background-color: #ff8e1b;
+    color: #fff;
+}
+
+.btn-red {
+    background-color: #ff0a09;
+    color: #fff;
+}
+
+
+.main{
+    padding: 10px;
+    max-width:640px;
+}
+#key,#tel{
+    display: block;
+    height: 42px;
+    padding: 0 10px;
+    box-shadow: 0 0 1px #000;
+    border-radius: 5px;
+    margin: 10px 0;
+    width: 100%;
+    box-sizing: border-box;
+
+}
+.submit{
+    width: 100%;
+}

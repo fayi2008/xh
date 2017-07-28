@@ -1,0 +1,35 @@
+    <div class="wrap">
+        <div class="cnt">
+
+        </div>
+
+        <footer>
+            <a href="#!/create" class="comment_add_btn">添加评论</a>
+        </footer>
+    </div>
+
+        <script type="text/template" id="tpl">
+            <%
+                if(this.data.data.length == 0){
+            %>
+                    <span class="no-comment">没有评论</span>
+            <% } %>
+            <each this.data.data>
+            <section>
+                <div style="background-image: url({{head_img | img}})" class="avatar" ></div>
+                <div class="cnt">
+                    <h3>{{nickname}}</h3>
+                    <span>{{create_time + '000' | number | date('yyyy-MM-dd hh:mm:ss')}}</span>
+                    <p>{{content}}</p>
+                </div>
+                <a class="tel {{mobile?'show':'hide'}}" href="tel:{{mobile}}" >联系我</a>
+                <!--<a data-id="{{id}}" class="fav">{{support_num}}</a>-->
+            </section>
+            </each>
+        </script>
+    <script>window.USER_DATA = {:$user?$user:'[]'}; window.XH_SIGN="{$xh_sign}";</script>
+    <script src="/static/public/jquery.js?{$js_version}"></script>
+    <script src="/static/public/core.base.js?{$js_version}"></script>
+    <script src="/static/public/core.mobile.js?{$js_version}"></script>
+    <script src="/static/Mobile/js/m-comment-create.js?{$js_version}"></script>
+    <script src="/static/Mobile/js/m-comment.js?{$js_version}"></script>

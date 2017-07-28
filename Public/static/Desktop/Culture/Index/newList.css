@@ -1,0 +1,160 @@
+body,html{
+    background-color: #f1f1f1;
+}
+.news-top{
+
+}
+.re-box{
+
+}
+.re-list{
+
+}
+.re-item{
+    float: left;
+}
+.content{
+    width: 1000px;
+    margin: 0 auto;
+    padding-top: 50px;
+}
+.tips-bar{
+    height: 70px;
+    background-color: #fff;
+    box-shadow: 0 0 1px #ccc;
+}
+.cate-item{
+    float: left;
+    width: 125px;
+    text-align: center;
+    height: 70px;
+    float: left;
+    line-height: 70px;
+    cursor: pointer;
+    position: relative;
+}
+
+
+.cate-item.check{
+    color: #3f89ec;
+}
+.cate-item.check:after{
+    position: absolute;
+    height: 2px;
+    background-color: #3f89ec;
+    bottom:0px;
+    width: 100px;
+    left: 50%;
+    margin-left: -50px;
+    content: '';
+}
+.tips-bar>.list{
+    float: left;
+    width: 875px;
+}
+.tips-bar>.list>div{
+    width: 125px;
+    text-align: center;
+    height: 70px;
+    float: left;
+    line-height: 70px;
+}
+.tips-bar>.more-but{
+    height: 70px;
+    width: 125px;
+    float: left;
+    cursor: pointer;
+    position: relative;
+    z-index: 999;
+}
+.tips-bar>.more-but>.more-list{
+
+    width: 125px;
+    display: none;
+    position: absolute;
+    left: 0px;
+    top:70px;
+    text-align: center;
+
+    box-shadow: 0 0 1px #ccc;
+}
+.tips-bar>.more-but>span{
+    display: block;
+    text-align: center;
+    height: 70px;
+    line-height: 70px;
+    width: 125px;
+}
+.tips-bar>.more-but>.more-list>div{
+    height: 50px;
+    line-height: 50px;
+    width: 125px;
+    text-align: center;
+    background-color: #fff;
+}
+.tips-bar>.more-but:hover{
+    background-color: #fff;
+}
+.tips-bar>.more-but:hover>.more-list{
+    display: block;
+}
+.list-box{
+    margin-top: 30px;
+}
+
+
+/*订单列表*/
+.item{
+    width: 1000px;
+    height: 210px;
+    padding-left: 220px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 5px;
+    position: relative;
+    margin-top: 20px;
+    background-color: #fff;
+    box-sizing: border-box;
+    display: block;
+    box-shadow: 1px 1px 1px #464646;
+}
+.item-img{
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    left: 5px;
+    top:5px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-size: cover;
+    -ms-behavior: url(/static/Desktop/Public/backgroundsize.min.htc);
+    behavior: url(/static/Desktop/Public/backgroundsize.min.htc);
+
+}
+.item-title{
+    font-size: 22px;
+    color: #515151;
+    height: 60px;
+    line-height: 60px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.item-time{
+    color: #9c9c9c;
+    height: 30px;
+    line-height: 30px;
+}
+.item-desc{
+    color: #606060;
+    height: 100px;
+    padding: 10px 0;
+    box-sizing: border-box;
+
+}
+/*/订单列表*/
+
+.page{
+    position: relative;
+}

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>权限管理</title>
+    <link href="/assets/css/bs3/dpl-min.css" rel="stylesheet">
+    <link href="/assets/css/bs3/bui-min.css" rel="stylesheet">
+    <link href="/assets/css/page-min.css" rel="stylesheet">
+    <style>
+        .input_20{
+            width: 15px !important;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="span24 doc-content">
+            <ul class="breadcrumb">
+                <li>
+                    <a href="#">系统管理</a> <span class="divider">/</span>
+                </li>
+                <li>
+                    <a href="#">角色管理</a> <span class="divider">/</span>
+                </li>
+                <li class="active">权限管理</li>
+            </ul>
+            <ul class="toolbar">
+                <li><button class="button button-small button-primary" onclick="">权限管理</button></li>
+            </ul>
+            <div id="menu_body">
+
+            </div>
+            <form action="/system/access/index.json" method="post">
+                <div class="row form-actions actions-bar">
+                    <div class="span13 offset3 ">
+                        <input type="hidden" id="menu_ids" name="menu_ids" value="{$menu_ids}">
+                        <input type="hidden" name="role_id" value="{$role_id}">
+                        <button type="submit" class="button button-primary">保存</button>
+                        <button type="reset" class="button">重置</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- script end -->
+</div>
+
+    <script src="/assets/js/jquery-1.8.1.min.js?{$js_version}"></script>
+    <script src="/assets/js/bui.js?{$js_version}"></script>
+
+    <!-- script start -->
+    <script type="text/javascript">
+        BUI.use(['bui/tree'],function (Tree) {
+
+            var data = {$accesses};
+            //由于这个树，不显示根节点，所以可以不指定根节点
+            var tree = new Tree.TreeList({
+                render : '#menu_body',
+                nodes : data,
+                dirCls : 'icon-th',
+                leafCls : 'icon-th-list',
+                checkType : 'all', //checkType:勾选模式，提供了4中，all,onlyLeaf,none,custom
+                showLine : true //显示连接线
+            });
+            tree.render();
+
+            tree.on('checkedchange',function(ev){
+                var checkedNodes = tree.getCheckedNodes();
+                var str = [];
+                BUI.each(checkedNodes,function(node){
+                    str.push(node.id);
+                });
+                $('#menu_ids').val(str.join(','));
+            });
+
+
+        });
+
+
+    </script>
+    <!-- script end -->
+</div>
+</body>
+</html>

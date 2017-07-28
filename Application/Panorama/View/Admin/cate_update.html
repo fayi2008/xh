@@ -1,0 +1,103 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>资源文件结构</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="/assets/css/bs3/dpl-min.css" rel="stylesheet" type="text/css" />
+<link href="/assets/css/bs3/bui-min.css" rel="stylesheet" type="text/css" />
+<link href="/assets/css/page-min.css" rel="stylesheet" type="text/css" />
+<!-- 下面的样式，仅是为了显示代码，而不应该在项目中使用-->
+<link href="/assets/css/prettify.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+code {
+	padding: 0px 4px;
+	color: #d14;
+	background-color: #f7f7f9;
+	border: 1px solid #e1e1e8;
+}
+</style>
+</head>
+<body>
+
+	<div class="container">
+		<div class="row">
+			<form id="J_Form" class="form-horizontal span24"
+				action='/Panorama/admin/cate' method='put'>
+				<div class="row">
+					<div class="control-group span8">
+						<label class="control-label"><s>*</s>分组名称：</label>
+						<div class="controls">
+							<input name="NAME" type="text" data-rules="{required:true}"
+								class="input-normal control-text" value="{$group.name}">
+						</div>
+					</div>
+					<div class="control-group span8">
+						<label class="control-label">poi：</label>
+						<div class="controls">
+							<select name="POI_ID">
+                <foreach name="poi" item="v" key="k" >
+                         <option value="{$v.id}" <php>if( $v['id'] == $group['poi_id']) echo  'selected' ;</php> >{$v.name}</option>
+                         </foreach>
+                </select>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="control-group span8">
+						<label class="control-label">排序</label>
+						<div class="controls">
+							<input name="LISTORDER" type="text"
+								class="input-normal control-text" value="{$group.listorder}">
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="form-actions offset3">
+						<button type="submit" class="button button-primary">保存</button>
+						
+					</div>
+				</div>
+				 <input type="hidden" name="ID" value="{$group.id}">
+			</form>
+		</div>
+
+
+	</div>
+	<script type="text/javascript" src="/assets/js/jquery-1.8.1.min.js?{$js_version}"></script>
+	<script type="text/javascript" src="/assets/js/bui-min.js?{$js_version}"></script>
+
+	<script type="text/javascript" src="/assets/js/config-min.js?{$js_version}"></script>
+	<script type="text/javascript">
+		BUI.use('common/page');
+	</script>
+	<!-- 仅仅为了显示代码使用，不要在项目中引入使用-->
+	<script type="text/javascript" src="/assets/js/prettify.js?{$js_version}"></script>
+	<script type="text/javascript">
+		$(function() {
+			prettyPrint();
+		});
+	</script>
+	<script type="text/javascript">
+		BUI.use('bui/form', function(Form) {
+			new Form.HForm({
+				srcNode : '#J_Form',
+				submitType : 'ajax',
+				callback : function(data) {
+					if (data.status == 1) {
+						BUI.Message.Alert('编辑成功',function(){
+							window.location.href = data.data + "?id={$group['poi_id']}";
+						}, 'success');
+
+					} else {
+						BUI.Message.Alert('编辑失败',function(){
+							window.location.href = data.data + "?id={$group['poi_id']}"
+						}, 'error');
+					}
+					
+				}
+			}).render();
+
+		});
+	</script>
+</body>
+</html>

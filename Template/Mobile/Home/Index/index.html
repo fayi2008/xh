@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>西湖</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="keywords" content="西湖,杭州西湖">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link href="/static/Mobile/css/m-home.css" rel="stylesheet" type="text/css">
+    <link href="/static/Mobile/css/m-signin.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <div class="wrap">
+        <div class="bg">
+            <div class="bg-m"></div>
+            <div class="bg-b"></div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/gis/map" class="nav-n0">景区导览</a></li>
+                <li><a href="/culture" class="nav-n1">文化知识</a></li>
+                <li><a href="/business" class="nav-n2">周边商户</a></li>
+                <li><a href="/social" class="nav-n3">社交互动</a></li>
+                <li><a href="/way" class="nav-n4">线路规划</a></li>
+            </ul>
+        </nav>
+        <footer>
+            <button></button>
+            <i>个人中心</i>
+        </footer>
+    </div>
+    <script type="text/javascript">
+        var USER_DATA = {:$user?$user:'[]'};
+        window.XH_SIGN="{$xh_sign}";
+    </script>
+    <script src="/static/public/jquery.js?{$js_version}"></script>
+    <script src="/static/public/core.base.js?{$js_version}"></script>
+    <script src="/static/public/core.mobile.js?{$js_version}"></script>
+    <script src="/static/Mobile/js/m-home.js?{$js_version}"></script>
+
+</body>
+</html>

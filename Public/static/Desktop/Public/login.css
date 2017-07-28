@@ -1,0 +1,167 @@
+body{
+    height: 100vh;
+}
+.login-mask{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top:0;
+    z-index: 999999;
+    background:url(/static/Desktop/Img/mask_bg.png) repeat 0 0;
+}
+.login-box,.signup-box{
+    z-index: 999999;
+    background-color: #ffffff;
+    width: 400px;
+    border-radius: 6px;
+    overflow: hidden;
+    position: fixed;
+    top:100px;
+    left: 50%;
+    margin-left: -250px;
+    box-shadow: 0 0 5px #000;
+    border: 1px solid #666\0;
+
+}
+.signup-box{
+    width: 500px;
+}
+.login-close,.signup-close{
+    height: 20px;
+    text-align: right;
+    padding-right: 10px;
+    padding-top: 10px;
+}
+.login-close>span,.signup-close>span{
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+    cursor: pointer;
+    background:url(/static/Desktop/Img/login_close.png) no-repeat center;
+    background-size: contain;
+}
+.login-title{
+    text-align: center;
+    font-size: 24px;
+    overflow: hidden;
+    padding: 0px 30px;
+
+}
+.signup-title{
+    text-align: center;
+    font-size: 24px;
+    overflow: hidden;
+    margin: 0 30px;
+    height: 50px;
+    line-height: 50px;
+    border-bottom: 1px solid #ccc;
+}
+.login-title>div{
+    float: left;
+    font-size: 16px;
+    height: 50px;
+    line-height: 50px;
+    width: 50%;
+    cursor: pointer;
+    border-bottom: 2px solid #ccc;
+}
+.login-title>div.checked{
+    border-bottom: 2px solid #3f89ec;
+    color: #3f89ec;
+}
+.login-content,.signup-content{
+    padding: 10px 30px;
+}
+.login-button-box,.signup-button-box{
+    text-align: center;
+    margin-top: 20px;
+}
+.login-button,.signup-button{
+    display: inline-block;
+    height: 42px;
+    border-radius: 6px;
+    width: 100%;
+    line-height: 42px;
+    text-align: center;
+    font-size: 16px;
+    background-color: #3f89ec;
+    color: #fff;
+    cursor: pointer;
+    font-size: 18px;
+}
+.login-right,.signup-right{
+    text-align: right;
+    color: #3f89ec;
+    padding: 10px 0;
+    cursor: pointer;
+}
+.login-tips,.signup-tips{
+    color: #ff0000;
+}
+.signup-tips{
+    padding-left: 100px;
+}
+.type2{
+    display: none;
+}
+.login-box input,.signup-box input{
+    height: 40px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding:0 10px;
+    box-sizing: border-box;
+    display: inline-block;
+}
+#mobile,#password,#username,#name,#confirm_password{
+    width: 100%;
+}
+.login-input,.signup-input{
+    margin-top: 20px;
+    overflow: hidden;
+
+    padding-bottom: 5px;
+}
+.signup-input{
+    padding-left: 100px;
+    position: relative;
+    height: 40px;
+}
+.signup-name{
+    width: 100px;
+    height: 40px;
+    line-height: 40px;
+    top:0px;
+    left: 0;
+    position: absolute;
+    padding-right: 10px;
+    box-sizing: border-box;
+    text-align: right;
+    font-size: 16px;
+}
+.send-mark{
+    border-radius: 5px;
+    float: left;
+    width: 45%;
+    height: 40px;
+    line-height: 40px;
+    box-sizing: border-box;
+    border: 1px solid #3f89ec;
+    background-color: #ebf3fd;
+    color: #3f89ec;
+    margin-left: 5%;
+    text-align: center;
+    cursor: pointer;
+}
+
+#mark{
+    float: left;
+    width: 50%;
+
+}
+
+#public_mobile{
+    width: 20px;
+    height: 20px;
+    margin:10px;
+}

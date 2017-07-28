@@ -1,0 +1,33 @@
+.hqTheme{}
+.hqTheme .bui-uploader-button-wrap
+{
+    padding: 0 10px;
+    height: 24px;
+    overflow: hidden;
+    line-height: 24px;
+    position: relative;
+    margin-right: 10px;
+    text-decoration: none;
+    font-size: 12px;
+    text-align: center;
+    border: 1px solid #C4DAED;background-color: #fff;
+}
+.hqTheme .bui-queue{
+    position: absolute;
+    width:100%;height:100%;top:0;left:0;;
+}
+.hqTheme .bui-queue-item-error{display: none;}
+.hqTheme .bui-queue-item-progress{
+    z-index:1000;position: absolute;
+    height:32px;width:100%;background-color: #fff;
+}
+.hqTheme .bui-queue-item-progress .progress{
+    margin-right: 32px;
+    height: 24px;
+    margin-bottom: 0;
+    margin-top: 4px;
+}
+.hqTheme .bui-queue-item-progress .action{
+    position: absolute;top:0;right:0;width:32px;
+    height:32px;line-height: 32px;text-align: right;
+}

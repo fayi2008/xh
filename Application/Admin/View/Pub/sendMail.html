@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>找回密码</title>
+<link href="__STATIC__/admin/css/mail.css" rel="stylesheet" />
+
+ </head>
+
+<body>
+<div class="content">
+<div class="logo"></div>
+<div class="container">
+
+    <form action="" method="post">
+        <div class="midPart">
+            <ul>
+                <li>
+                    <div class="labels">用户名:</div>
+                    <input class="userPic" placeholder="请输入您的账户名或者邮箱" name="username" />
+                </li>
+                <li>
+                    <div class="labels">验证码:</div>
+                    <input class="codePic" placeholder="请输入验证码" name="verify" />
+                    <div class="verifyCode">
+                        {:show_verify_img('length=4&height=36&width=100&size=14')}
+                    </div>
+                    <a onclick="$('.verifyCode').show().find('img').click()"><div class="refreshCode">换一张</div></a>
+                </li>
+                <li>
+                    <div class="cautions">如果你未绑定邮箱，请及时联系你的<span>管理员</span>找回密码</div>
+
+                </li>
+                <li>
+                    <input type="submit" class="btn"  value="" />
+                    <a href="{:U('login')}">回到首页</a>
+                </li>
+            </ul>
+
+        </div>
+    </form>
+</div>
+</div>
+<!-- Link to Google CDN's jQuery + jQueryUI; fall back to local -->
+<script src="__STATIC__/admin/js/libs/jquery-2.1.1.min.js?{$js_version}"></script>
+<script src="__STATIC__/admin/js/plugin/ie-placeholder_/jquery.placeholder.min.js?{$js_version}"></script>
+<script type="text/javascript">
+    $('input,textarea').placeholder();
+</script>
+</body>
+</html>

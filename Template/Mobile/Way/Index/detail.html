@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>西湖线路</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="keywords" content="西湖,杭州西湖">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link href="/static/Mobile/css/m-way.css" rel="stylesheet" type="text/css">
+</head>
+<body class="detail" data-page="detail">
+    <div class="wrap">
+        <div class="box">
+            <script type="text/template" id="tpl">
+                <% var data = this.way;%>
+                <% for(var i in data){ %>
+                    <div class="header">
+                        <h3><i>{{data[i].day}}</i>第{{data[i].day | day}}天</h3>
+                        <a href="./map/{{window.data.data.way.id}}.html#day={{data[i].day}}">查看地图</a>
+                        <p><em>{{data[i].track.join("</em><em>")}}</em></p>
+                    </div>
+                    <% for(var j  in data[i].routes){ %>
+                        <section>
+                            <div class="title">{{data[i].routes[j].name}}<span>建议游玩时间：{{data[i].routes[j].waster_time | time}}</span></div>
+                            <div class="cnt">{{data[i].routes[j].description}}</div>
+
+                            <div class="thumb">
+                                <% if(data[i].routes[j].image){ %>
+                                <img src="{{data[i].routes[j].image | path}}" alt="{{data[i].routes[j].name}}">
+                                <% } %>
+                            </div>
+                        </section>
+                    <% } %>
+                <%}%>
+            </script>
+        </div>
+        <footer>
+            <button>收藏行程</button>
+        </footer>
+    </div>
+
+    <script type="text/javascript">
+        var data = {:$data?$data:array()};
+        window.USER_DATA = {:$user?$user:'[]'};
+        window.XH_SIGN="{$xh_sign}";
+    </script>
+    <script src="/static/public/jquery.js?{$js_version}"></script>
+    <script src="/static/public/core.base.js?{$js_version}"></script>
+    <script src="/static/public/core.mobile.js?{$js_version}"></script>
+    <script src="/static/Mobile/js/m-way.js?{$js_version}"></script>
+
+</body>
+</html>

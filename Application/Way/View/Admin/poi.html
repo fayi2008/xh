@@ -1,0 +1,467 @@
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <title> 攻略管理</title>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/assets/css/bs3/dpl-min.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/css/bs3/bui-min.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/css/page-min.css" rel="stylesheet" type="text/css" />
+ </head>
+ <body>
+  
+  
+  
+  <div class="container">
+      <style>
+          .panel .form-horizontal{
+              padding-top:15px;
+          }
+          .panel .actions-bar{
+              margin-bottom: 0;
+          }
+          #s1{
+              margin-bottom: 20px;
+          }
+          #s1>div{
+              margin-left: 10px;
+
+              float: left;
+              display: inline-block;
+              /*height: 40px;*/
+          }
+          #s1>div input{
+              display: inline-block;
+              height: 18px;
+              padding: 1px 4px;
+              border: 1px solid #c3c3d6;
+          }
+          #s1 .x-icon-mini{
+              font-size: 14px;
+              height: 12px;
+              width: 12px;
+              line-height: 12px;
+              -webkit-border-radius: 2px;
+              -moz-border-radius: 2px;
+              border-radius: 2px;
+          }
+           .bui-simple-list{
+            height: 100px;
+            overflow: scroll;
+        }
+      </style>
+      <div class="row">
+          <div class="span14 panel panel-head-borded panel-small">
+
+              <div class="panel-header">
+                  <h2>攻略管理</h2>
+              </div>
+              <div id="grid">
+              </div>
+          </div>
+          <div class="span16 panel panel-small">
+              <div class="panel-header">
+                  <h2>表单</h2>
+              </div>
+              <form id="J_Form" class="form-horizontal" action="/way/admin/relation_post" method="post">
+              
+               <div class="control-group" style="display:none">
+                      <label class="control-label">id：</label>
+                      <div class="controls">
+                          <input name="id" id="id"   type="hidden">
+                          <input name="poi_id" id="poi_id"   type="hidden">
+                          <input name="way_id" id="way_id" value="{$way_id}"  type="hidden">
+                          <input name="do" id="do" value="删除"  type="hidden">
+
+                      </div>
+                  </div>
+                  <!-- <div id="s1" style="display: inline-block;">
+                   <label class="control-label">poi名称：</label>
+                   </div>-->
+                  <div id="s1" class="control-group">
+
+                      <label class="control-label"><s>*</s>选择景点：</label>
+                      <input name="name" id="name" type="hidden" />
+                      <!--<div class="controls"></div>-->
+                  </div>
+
+                  <!--<div class="control-group" style="display:none;">
+
+                      <label class="control-label"><s>*</s>选择景点：</label>
+
+                      <div class="controls">
+
+                          <input name="name" id="name" type="text" data-rules="{required:true}" data-messages="{required:'景点名称不能为空'}"  class="input-normal control-text" readonly >
+                      </div>
+                  </div>-->
+                  <div class="control-group">
+                      <label class="control-label"><s>*</s>花销：</label>
+                      <div class="controls">
+                          <input id="j_price" name="price"   style="width:50px" data-rules="{required:true}" data-messages="{required:'价格不能为空'}"  type="text"> <label>元</label>
+                      </div>
+                  </div>
+                  <div class="control-group">
+                      <label class="control-label"><s>*</s>游玩行程：</label>
+                      <div class="controls">
+                      <label>第</label> 
+                          <input style="width:30px" name="day"  data-rules="{required:true}" data-messages="{required:'行程不能为空'}"  type="text">
+                          <label>天</label> 
+                      </div>
+                  </div>
+                 
+                  
+                      <div class="control-group">
+                          <label class="control-label"><s>*</s>建议游玩时间：</label>
+                          <div class="controls">
+                              <input id="j_time_suggest" name="waster_time"  style="width:50px"data-rules="{required:true,number:true}" data-messages="{required:'不能为空'}" type="text">
+                              <label>分钟</label> 
+                          </div>
+                      </div>
+                 
+                  
+                     
+                  
+                      <div class="control-group">
+                          <label class="control-label"><s>*</s>最长游玩时间：</label>
+                          <div class="controls">
+                              <input id="j_time_max" name="max_time"   style="width:50px" data-rules="{required:true,number:true}" data-messages="{required:'不能为空'}" type="text">
+                              <label>分钟</label> 
+                          </div>
+                      </div>
+                
+                          
+                  
+                      <div class="control-group">
+                          <label class="control-label"><s>*</s>最短游玩时间：</label>
+                          <div class="controls">
+                              <input id="j_time_min" name="min_time"   style="width:50px" data-rules="{required:true,number:true}"  data-messages="{required:'不能为空'}" type="text"> <label>分钟</label>
+							</div>
+                      </div>
+                 
+                  
+                  
+                  <div class="control-group">
+                      <label class="control-label">排序：</label>
+                      <div class="controls">
+                          <input name="listorder"  style="width:30px" data-tip="{text : '0'}"  value="0"    type="text" data-rules="{number:true}">
+                      </div>
+                  </div>
+
+				       <div class="row"   >
+       <div class="control-group span24">
+          <label class="control-label">攻略内容：</label>
+         <div class="controls" style='height: auto;margin-bottom: 15px;'>
+       		 <script id="editor" name="CONTENT" type="text/plain" style="width:500px;height:200px;"></script>
+		</div>
+        </div>
+    </div>  
+
+
+					<div class="form-actions actions-bar centered">
+                      <button id="J_Add" type="button" class="button button-primary">添加</button>
+                       <button  style="display:none" type="submit" class="button button-primary" id="submit">保存</button> 
+                    <!--   <button   type="submit" class="button button-primary" >保存</button> -->
+                     
+                  </div>
+                
+     <script type="text/javascript" charset="utf-8" src="/ueditor/ueditor.config.js?{$js_version}"></script>
+     <script type="text/javascript" charset="utf-8" src="/ueditor/ueditor.all.min.js?{$js_version}"> </script>
+              </form>
+          </div>
+      </div>
+  </div>
+  <script type="text/javascript" src="/assets/js/jquery-1.8.1.min.js?{$js_version}"></script>
+  <script type="text/javascript" src="/assets/js/bui-min.js?{$js_version}"></script>
+  <script type="text/javascript" src="/assets/js/config-min.js?{$js_version}"></script>
+<script type="text/javascript">
+    var way_id=$("#way_id").val();
+    BUI.use(['bui/form','bui/grid','bui/data','bui/select'],function(Form,Grid,Data,Select){
+    	var ue = UE.getEditor('editor', {
+			//这里可以选择自己需要的工具按钮名称,此处仅选择如下五个
+		toolbars: [
+    [
+        'anchor', //锚点
+        'undo', //撤销
+        'redo', //重做
+        'bold', //加粗
+        'indent', //首行缩进
+       // 'snapscreen', //截图
+        'italic', //斜体
+      //  'underline', //下划线
+        //'strikethrough', //删除线
+        'subscript', //下标
+        'fontborder', //字符边框
+      //  'superscript', //上标
+        'formatmatch', //格式刷
+        'source', //源代码
+        'blockquote', //引用
+        'pasteplain', //纯文本粘贴模式
+        'selectall', //全选
+      //  'print', //打印
+      //  'preview', //预览
+        'horizontal', //分隔线
+       // 'removeformat', //清除格式
+        'time', //时间
+        'date', //日期
+        'unlink', //取消链接
+       // 'insertrow', //前插入行
+       // 'insertcol', //前插入列
+     //   'mergeright', //右合并单元格
+      //  'mergedown', //下合并单元格
+        //'deleterow', //删除行
+       // 'deletecol', //删除列
+       // 'splittorows', //拆分成行
+      //  'splittocols', //拆分成列
+      //  'splittocells', //完全拆分单元格
+     //   'deletecaption', //删除表格标题
+        'inserttitle', //插入标题
+      //  'mergecells', //合并多个单元格
+       // 'deletetable', //删除表格
+        'cleardoc', //清空文档
+       // 'insertparagraphbeforetable', //"表格前插入行"
+       // 'insertcode', //代码语言
+        'fontfamily', //字体
+        'fontsize', //字号
+        'paragraph', //段落格式
+        'simpleupload', //单图上传
+        'insertimage', //多图上传
+      //  'edittable', //表格属性
+      //  'edittd', //单元格属性
+        'link', //超链接
+       // 'emotion', //表情
+        //'spechars', //特殊字符
+       // 'searchreplace', //查询替换
+      //  'map', //Baidu地图
+       // 'gmap', //Google地图
+      //  'insertvideo', //视频
+      //  'help', //帮助
+        'justifyleft', //居左对齐
+        'justifyright', //居右对齐
+        'justifycenter', //居中对齐
+        'justifyjustify', //两端对齐
+        'forecolor', //字体颜色
+        'backcolor', //背景色
+        'insertorderedlist', //有序列表
+        'insertunorderedlist', //无序列表
+       // 'fullscreen', //全屏
+        'directionalityltr', //从左向右输入
+        'directionalityrtl', //从右向左输入
+        'rowspacingtop', //段前距
+        'rowspacingbottom', //段后距
+        'pagebreak', //分页
+      //  'insertframe', //插入Iframe
+      //  'imagenone', //默认
+        'imageleft', //左浮动
+        'imageright', //右浮动
+        'attachment', //附件
+        'imagecenter', //居中
+       // 'wordimage', //图片转存
+        'lineheight', //行间距
+       // 'edittip ', //编辑提示
+        'customstyle', //自定义标题
+        'autotypeset', //自动排版
+       // 'webapp', //百度应用
+      //  'touppercase', //字母大写
+      //  'tolowercase', //字母小写
+       // 'background', //背景
+      //  'template', //模板
+       // 'scrawl', //涂鸦
+      //  'music', //音乐
+      //  'inserttable', //插入表格
+     /*    'drafts', // 从草稿箱加载
+        'charts', // 图 */
+    ]
+]
+
+		});
+
+        function onChange(name , id){
+            $.getJSON('/Scene/admin/searchScene',{name:name,id:id},function(resp){
+                //console.log(resp)
+                if(resp.status){
+                    $('#j_price').val( resp.data.price );
+                    $('#j_time_suggest').val( resp.data.waster_time );
+                    $('#j_time_min').val( resp.data.min_time );
+                    $('#j_time_max').val( resp.data.max_time );
+                    ue.setContent( resp.data.content );
+                }else{
+                    $('#j_price,#j_time_suggest,#j_time_min,#j_time_max').val( '' );
+                    ue.setContent( '' );
+                }
+            })
+        }
+		//var data = [{"text":"\u82b1\u6e2f\u89c2\u9c7c","value":"27"},{"text":"\u66f2\u9662\u82b1\u56ed","value":"50"},{"text":"\u82b1\u6e2f\u89c2\u9c7c","value":"104"}];
+        new Select.Suggest({
+            render:'#s1',
+            name:'suggest',autoRender:true,
+            content:'<input type="text" class="bui-combox-input bui-form-field bui-form-field-hover" name="suggest" aria-disabled="false" aria-pressed="false" data-rules="{required:true}" data-messages="{required:\'景点名称不能为空\'}"  class="input-normal control-text">',
+            url:'/way/admin/select_json',
+            data:[],
+            width : 200,
+          //  height : 200,
+            handler:function(ev){
+                //console.log(ev)
+            }
+           
+        }).on('change',function(e){
+            $("#name")
+                    .attr('data-id',e.value)
+                    .val(e.value);
+            //console.log('a')
+            $('.bui-combox-input').attr('data-id',e.value);
+
+            var id = e.value, key = e.text;
+            //onsole.log(key , id)
+            onChange(key , id);
+        });
+
+        $('input[name="suggest"]').on('change' , function(){
+            //console.log($(this))
+        }).on('input',function(){
+            $("#name").val( '' );
+        });
+
+            //$('#s1').append($('<button type="button" id="btnSearch" class="button button-primary">搜索</button>'));
+
+        var suggest = new Select.Suggest({
+            render:'#poi',
+            name:'suggest',
+            data:{$pois_select},
+            handler:function(ev){
+                //console.log(ev);
+            }
+        });
+        suggest.render();
+
+        var  Store = Data.Store,
+                columns = [{title : 'id',dataIndex : 'id'},
+                    {title : '景点',dataIndex : 'name'},
+                    {title : '花销',dataIndex : 'price',renderer : function(value,obj) {
+                    	return obj.price+"元";
+                    	
+                    }},
+                    {title : '游玩行程',dataIndex : 'day',renderer : function(value,obj) {
+                    	return "第"+obj.day+"天";
+                    	
+                      }},
+                   
+                    {title:'操作',renderer : function(value,obj){
+                       
+ 
+                           var delStr = '<span class="grid-command btn-del" title="删除攻略信息">删除</span>';//页面操作不需要使用Search.createLink
+                         
+                         return  delStr ;
+                       }}
+                ],
+                store = new Store({
+                    //data : data,
+                    url : '/Way/admin/data_json/way_id/'+way_id,
+                    autoLoad : true,
+                    matchFunction : function(obj1,obj2){ //用于比较2个对象是否相等
+                        return obj1.id == obj2.id;
+                    }
+                }),
+                grid = new Grid.Grid({ //创建Grid
+                    render : '#grid',
+                    columns : columns,
+                    height:540,
+                    weight:800,
+                    store : store
+                });
+        grid.render();
+
+        var form = new Form.HForm({ //创建表单
+            srcNode : '#J_Form',
+            submitType : 'ajax',
+            callback : function(data){
+                if(data.success){
+                    if(data.isNew){ //如果是增加数据
+                        var idField = form.getField('id'); //新增记录时，服务器端返回id
+                        idField.enable();
+                        idField.set('value',data.id);
+                        var record = this.serializeToObject();
+                        record.name=record.suggest;
+                        store.add(record,true); //第二个参数标示不允许添加重复的记录，以匹配函数为标准
+
+                    }else{ //编辑数据
+                        var record = this.serializeToObject();
+                        store.update(record,true); //第二个参数标示使用匹配函数
+                    }
+                }else{
+                	
+                	BUI.Message.Alert(data.message,'error');
+                }
+
+            }
+        }).render();
+
+        $('#J_Reset').on('click',function(){
+            form.reset();
+        });
+
+        $('#J_Add').on('click',function(){
+            var idField = form.getField('id');
+       /*      idField.set('value','');
+            idField.disable(); //添加的记录不需要添加编号，禁用，不参与校验 */
+            form.submit({data : {isNew : true}});
+        });
+
+        grid.on('rowselected',function(ev){
+            var record = ev.record;
+            form.getField('id').enable();
+            form.set('initRecord',record); //也可以使用form.setRecord()，但是form.reset()方法会无效
+            //console.log(record.name)
+            $('#s1 input').val(record.name);
+//            console.log(record)
+           $("#submit").css('display','');
+           ue.setContent(record.content);
+        });
+        
+        
+        
+        
+        //删除操作
+        function delFunction(){
+          var selections = grid.getSelection();
+          delItems(selections);
+        }
+        function delItems(items){
+          var ids = [];
+          var way_ids=[];
+          BUI.each(items,function(item){
+            ids.push(item.id);
+            way_ids.push(item.way_id);
+          });
+     
+          if(ids.length){
+            BUI.Message.Confirm('确认要删除选中的记录么？',function(){
+              $.ajax({
+                url : '/Way/admin/relation_delete',
+                dataType : 'json',
+                data : {ids : ids,way_id:way_ids},
+                success : function(data){
+                  if(data.status){ //删除成功
+                	  BUI.Message.Alert('删除成功！');
+                	  window.location.href = data.url;
+                  }else{ //删除失败
+                    BUI.Message.Alert('删除失败！');
+                  }
+                }
+            });
+            },'question');
+          }
+        }
+     
+        //监听事件，删除一条记录
+        grid.on('cellclick',function(ev){
+          var sender = $(ev.domTarget); //点击的Dom
+          if(sender.hasClass('btn-del')){
+            var record = ev.record;
+            delItems([record]);
+          }
+        });
+    });
+</script>
+
+</body>
+</html>  
+

@@ -1,0 +1,347 @@
+/*
+===================
+@explain: 系统后台登录页面
+@copyright: Copyright 2012,phpwind.com
+@author: longwenid@gmail.com
+$Id: admin_login.css 22060 2012-12-19 03:01:55Z yanchixia $
+===================
+*/
+html{
+	padding:0;
+	margin:0px;
+    border:0;
+	/*background:#1262B7;*/
+    background: url(../images/login/bj.jpg) no-repeat  bottom center;
+    background-size: cover;
+    /*min-width: 1000px;*/
+	height:100%;
+}
+
+body {
+	padding:0;
+	margin:0;
+	font-family: "Microsoft Yahei",Arial ;
+	position: absolute;
+	width:100%;
+	height:100%;
+
+}
+
+.logo{
+    width: 350px;
+    height: 100px;
+    background: url("../images/login/logo1.png") no-repeat;
+    z-index: 1000;
+	left:20px;
+	top:20px;
+
+	position: absolute;
+}
+
+.wrap {
+	/*width: 500px;*/
+    height: 500px;
+	overflow:hidden;
+	/*margin: 60px auto 0;*/
+    /*margin-left: 35%;*/
+	position: absolute;
+	left:50%;
+	top:50%;
+	margin-top:-220px;
+	margin-left:-200px;
+    background: url(../images/login/gov_middlePic1.png) no-repeat;
+	-webkit-animation: bounceIn 600ms linear;
+	-moz-animation: bounceIn 600ms linear;
+	-o-animation: bounceIn 600ms linear;
+	animation: bounceIn 600ms linear;
+
+}
+
+/*h1 a {*/
+	/*display: block;*/
+	/*height: 50px;*/
+	/*width: 250px;*/
+	/*margin:auto;*/
+	/*overflow: hidden;*/
+    /*text-decoration: none;*/
+    /*font-size: 25px;*/
+/*}*/
+
+a{
+    text-decoration: none;
+}
+
+.login ul,
+.login li{
+	padding:0;
+	margin:0;
+	list-style:none;
+}
+.login ul{
+	/*background:#fff;*/
+	/*border:1px solid #2d2e30;*/
+	/*box-shadow:3px 3px 3px #ccc inset;*/
+	/*border-radius:5px;*/
+
+	margin-top:70px;
+    margin-bottom:0px;
+    margin-left: 48px;
+    /*margin-right:auto;*/
+	/*width:280px;*/
+    width: 520px;
+
+    position: relative;
+	/*overflow:hidden;*/
+}
+.login li{
+	/*border-top:1px solid #d3d4d4;*/
+	padding:5px;
+	overflow: hidden;
+    position: relative;
+}
+.login li img{
+	/*vertical-align:top;*/
+}
+.login .input {
+	width: 250px;
+	border:0 none;
+	font-size:16px;
+    padding:12px 15px 15px 40px;
+    background:  url(../images/login/inputbackground.png) no-repeat;
+	font-family:"Microsoft Yahei",Arial;
+    color:#000;
+    letter-spacing: 2px;
+
+}
+.login  .userName{
+    background:  url(../images/login/userPic1.png) no-repeat;
+}
+
+.login  .pwd{
+    background:  url(../images/login/pwdPic1.png) no-repeat;
+}
+
+.login .verify_code{
+    width: 135px;
+    padding-left: 5px;
+    float:left;
+    background: url(../images/login/codePic.png) no-repeat;
+}
+
+.login #J_verify_code{
+    width: 100px;
+    margin-left: 15px;
+    float:left;
+}
+
+.login .input:focus {
+	outline:none ;
+}
+
+.login #refreshCode{
+    border: 0 ;
+    outline: 0 none;
+    background: url(../images/login/update.png) no-repeat top left;
+    width: 30px;
+    height: 35px;
+    float:left;
+    margin-left: 10px;
+    margin-top: 3px;
+    cursor:pointer;
+
+}
+
+.login #wrongName{
+    height: 30px;
+    padding: 0 10px;
+    line-height: 30px;
+    background: rgba(255,0,0,0.5);
+
+    position: absolute;
+    left:305px;
+    top:50%;
+    margin-top: -15px;
+    z-index: 1000;
+    display: none;
+    font-family: "Microsoft Yahei",Arial;
+    font-size: 14px;
+    color:#fff;
+
+}
+
+.login #wrongPwd{
+    height: 30px;
+    padding: 0 10px;
+    line-height: 30px;
+    background: rgba(255,0,0,0.5);
+
+    position: absolute;
+    left:305px;
+    top:50%;
+    margin-top: -15px;
+    z-index: 1000;
+    display: none;
+    font-family: "Microsoft Yahei",Arial;
+    font-size: 14px;
+    color:#fff;
+}
+
+.login #wrongCode{
+    height: 30px;
+    padding: 0 10px;
+    line-height: 30px;
+    background: rgba(255,0,0,0.5);
+
+    position: absolute;
+    left:305px;
+    top:50%;
+    margin-top: -15px;
+    z-index: 1000;
+    display: none;
+    font-family: "Microsoft Yahei",Arial;
+    font-size: 14px;
+    color:#fff;
+
+}
+
+/*.login #wrongPart{*/
+    /*height: 10px;*/
+/*}*/
+
+.btn {
+	width: 248px;
+	height: 38px;
+	/*padding: 0;*/
+	margin: 0 auto ;
+    margin-left: 65px;
+	vertical-align: middle;
+	background-color: #e4510f;
+	/*background:#549fcc url(../images/login/btn.png) no-repeat;*/
+	overflow:visible;
+	color:#fff;
+	font-size:20px;
+	cursor:pointer;
+	font-family: "Microsoft Yahei",Arial;
+	border:none;
+	border-radius:5px;
+	margin-top: 10px;
+}
+.btn:hover{
+	background-position:0 -40px;
+}
+.btn:active {
+	background-position:0 -80px;
+}
+
+.rememberPwd{
+    font-family: "Microsoft Yahei" ,Arial;
+    font-size: 16px;
+    color: #fff;
+    margin-top: 10px;
+    margin-left: 240px;
+}
+
+.placeholder{
+	color:#fff;
+}
+
+::-webkit-input-placeholder { /* WebKit browsers */
+    color:    #fff;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color:    #fff;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color:    #fff;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color:    #fff;
+}
+/*登录框动画*/
+@-webkit-keyframes bounceIn {
+	0% {
+		opacity: 0;
+		-webkit-transform: scale(.3);
+	}
+
+	50% {
+		opacity: 1;
+		-webkit-transform: scale(1.05);
+	}
+
+	70% {
+		-webkit-transform: scale(.9);
+	}
+
+	100% {
+		-webkit-transform: scale(1);
+	}
+}
+@-moz-keyframes bounceIn {
+	0% {
+		opacity: 0;
+		-moz-transform: scale(.3);
+	}
+
+	50% {
+		opacity: 1;
+		-moz-transform: scale(1.05);
+	}
+
+	70% {
+		-moz-transform: scale(.9);
+	}
+
+	100% {
+		-moz-transform: scale(1);
+	}
+}
+@-o-keyframes bounceIn {
+	0% {
+		opacity: 0;
+		-o-transform: scale(.3);
+	}
+
+	50% {
+		opacity: 1;
+		-o-transform: scale(1.05);
+	}
+
+	70% {
+		-o-transform: scale(.9);
+	}
+
+	100% {
+		-o-transform: scale(1);
+	}
+}
+@keyframes bounceIn {
+	0% {
+		opacity: 0;
+		transform: scale(.3);
+	}
+
+	50% {
+		opacity: 1;
+		transform: scale(1.05);
+	}
+
+	70% {
+		transform: scale(.9);
+	}
+
+	100% {
+		transform: scale(1);
+	}
+}
+
+.copy-box{
+	color: #fff;
+	margin-top: 80px;
+	width: 399px;
+	text-align: center;
+	font-size: 12px;
+}
+.copy-box>div>a{
+    color: #fff;
+}

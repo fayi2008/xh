@@ -1,0 +1,86 @@
+<!--商户页面-->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>西湖美食</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="keywords" content="西湖,杭州西湖">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link href="/static/Mobile/css/m-business.css" rel="stylesheet" type="text/css">
+</head>
+
+<body class="detail">
+    <div class="wrap">
+
+    </div>
+    <script id="tpl" type="text/template">
+        <% var data = this.data; %>
+        <div class="info">
+            <div class="thumb" style="background-image: url({{data.image | img}})"></div>
+            <div class="cnt">
+                <h3>{{data.name}} </h3>
+                <p>地址：{{data.address}}</p>
+                <p>电话：{{data.phone}}</p>
+            </div>
+        </div>
+        <div class="content">
+            <ul class="tab">
+                <li rel='#j_desc' >详细信息</li>
+                <li rel="#j_goods" class="select">商品详情</li>
+                <li rel="#j_sales">促销活动</li>
+            </ul>
+            <section  id="j_desc">
+                {{data.description}}
+            </section>
+
+            <section id="j_goods" class="select">
+                <ul>
+                    <each this.goods>
+                    <li>
+                        <iif link>
+                                <a href="{{link}}">
+                            <else>
+                                <a href="/business/goods/{{id}}.html">
+                        </iif>
+                            <i style="background-image: url({{small_img | img}})"></i>
+                            <h3>{{name}}</h3>
+                            <iif is_promotion >
+                                <span style="color:#666;display:block;text-decoration: line-through;float: left;width: 50%;">原价：{{price}}</span>
+                                <span style="display:block;float:right;width: 50%;">促销：{{promotion_price}}</span>
+                                <else>
+                                <span style="display:block;float:left;width: 100%;">价格：{{price}}</span>
+                            </iif>
+                        </a>
+                    </li>
+                    </each>
+                </ul>
+            </section>
+            <section id="j_sales">
+                <ul>
+                    <each this.goods>
+                        <iif is_promotion>
+                    <li>
+                        <a href="/business/goods/{{id}}.html">
+                            <i style="background-image: url({{small_img | img}})"></i>
+                            <h3>{{name}}</h3>
+                            <span style="color:#666;display:block;text-decoration: line-through;float: left;width: 50%;">原价：{{price}}</span>
+                            <span style="display:block;float:right;width: 50%;" >促销：{{promotion_price}}</span>
+                        </a>
+                    </li>
+                            </iif>
+                    </each>
+                </ul>
+            </section>
+        </div>
+    </script>
+    <script>
+        var data = {$data};
+        var goods = {$goods};
+        var sales = {$promotion};//{$scales};
+    </script>
+    <script src="/static/public/jquery.js?{$js_version}"></script>
+    <script src="/static/public/core.base.js?{$js_version}"></script>
+    <script src="/static/Mobile/js/m-business-detail.js?{$js_version}"></script>
+</body>
+</html>

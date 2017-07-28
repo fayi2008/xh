@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <title>缓存管理</title>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/assets/css/bs3/dpl-min.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/css/bs3/bui-min.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/css/page-min.css" rel="stylesheet" type="text/css" />
+ </head>
+ <body>
+  
+  <div class="container">
+        <div class="row">
+            <div class="span24">
+                <!-- 包含grid的详情页 ================================================== -->
+                <h2>缓存管理</h2>
+                <hr>
+                <form action="/system/cache/clean" method="post" id="detailForm" class="form-horizontal">
+                    <h3>缓存分类</h3>
+                    <div class="row detail-row">
+                        <div class="span24">
+                            <div class="detail-row">
+                                <label class="control-label checkbox"><input type="checkbox" name="type[]" value="1" >模板缓存：</label><span class="control-text detail-text">主要是模板视图文件的缓存，未修改视图代码文件不用清除</span></div>
+                        <div class="detail-row">
+                            <label class="control-label checkbox"><input type="checkbox" name="type[]" value="2" >数据缓存：</label><span class="control-text detail-text">主要是程序中长期使用的数据缓存</span>
+                        </div>
+                        <div class="detail-row">
+                            <label  class="control-label checkbox"><input type="checkbox" name="type[]" value="3" >文件缓存：</label><span class="control-text detail-text">主要是程序中使用的有时效的数据缓存</span>
+                        </div>
+                        <div class="detail-row">
+                            <label  class="control-label checkbox"><input type="checkbox" name="type[]" value="4" >字段缓存：</label><span class="control-text detail-text">主要是程序中使用的数据库表的结构缓存</span>
+                        </div>
+                        <div class="detail-row">
+                            <label  class="control-label checkbox"><input type="checkbox" name="type[]" value="5" >系统缓存：</label><span class="control-text detail-text">主要是部署系统时的缓存，未修改代码可以不用清除</span></div>
+                        </div>
+                    </div>
+                    <!--- button区域 -->
+                    <div class="detail-row">
+                        <div class="detail-actions">
+                            <a class="button button-success" id="all-selected">全选</a> <input class="button button-warning" type="submit" value="清除缓存" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+  </div>
+  <script type="text/javascript" src="/assets/js/jquery-1.8.1.min.js?{$js_version}"></script>
+  <script type="text/javascript" src="/assets/js/bui-min.js?{$js_version}"></script>
+  <script type="text/javascript" src="/assets/js/config-min.js?{$js_version}"></script>
+<script type="text/javascript">
+$('#all-selected').click(function(){
+    $("input[type='checkbox']").attr("checked",'true');
+    return false;
+});
+
+</script>
+ 
+</body>
+</html>  
+

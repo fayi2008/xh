@@ -1,0 +1,70 @@
+<div class="wrap">
+		<h2 class="h_a">管理员信息</h2>
+		<div class="home_info">
+			<ul>
+				<li> <em>ID:</em> <span>{$user.id}</span> &nbsp;</li><br/>
+				<li> <em>名称:</em> <span>{$user.account}</span>&nbsp; </li><br/>
+			
+				<li> <em>邮箱:</em> <span>{$user.email}</span>&nbsp; </li><br/>
+				<li> <em>最后登录IP:</em> <span>{$user.last_login_ip}</span> &nbsp;</li><br/>
+				<li> <em>最后登录时间:</em> <span>{$user.last_login_time}</span> &nbsp;</li><br/>
+				<li> <em>账户创建时间:</em> <span>{$user.create_time}</span>&nbsp; </li><br/>
+				<li> <em>电话</em> <span>{$user.mobile}</span>&nbsp; </li><br/>
+			</ul>
+			 <a href="/business/admin/admin_edit">编辑</a>
+		</div>
+       
+
+		<!-- <h2 class="h_a">系统信息</h2>
+		<div class="home_info">
+			<ul>
+				<li> <em>系统发布</em> <span>{$server_info['系统发布']}</span></li>
+				<li><em>上传附件限制</em> <span>{$server_info['上传附件限制']}</span> </li>
+				<li><em>执行时间限制</em> <span>{$server_info['执行时间限制']}</span> </li>
+			</ul>
+		</div> -->
+	
+</div>
+<style type="text/css">
+	.h_a {
+		padding: 5px 9px;
+		border-top: 1px solid #ddd;
+		border-bottom: 1px solid #ffffff;
+		color: #666666;
+		font-weight: 700;
+		background: #e6e6e6;
+		font-size: 12px;
+	}
+	h2 {
+		display: block;
+		font-size: 1.5em;
+		font-weight: bold;
+	}
+	.home_info {
+		padding: 5px 10px 10px;
+		color: #666;
+	}
+	.home_info li {
+		line-height: 25px;
+		zoom: 1;
+	}
+
+	.home_info li span {
+		display: block;
+		overflow: hidden;
+	}
+	.home_info li em {
+		float: left;
+		width: 150px;
+		font-style: normal;
+	}
+	li{
+
+		list-style: none;
+	}
+	ol, ul {
+		margin-top: 0;
+		margin-bottom: 9px;
+		margin-left: -31px;
+	}
+</style>

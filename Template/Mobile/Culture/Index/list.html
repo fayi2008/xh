@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>西湖文化</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="keywords" content="西湖,杭州西湖">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link href="/static/Mobile/css/m-culture.css" rel="stylesheet" type="text/css">
+</head>
+
+<body class="list" page="list">
+<div class="wrap">
+    <header>
+        <span>西湖<br/>文化</span>
+        <div class="search">
+            <input type="text" placeholder="搜索你感兴趣的文化"/>
+        </div>
+    </header>
+    <section>
+        <ul>
+            <script id="tpl" type="text/template">
+                <each this.data.data>
+                    <li><a style="background-image:url({{thumb | img}})" href="/culture/{{id}}.html"><span>{{title}}</span></a></li>
+                </each>
+            </script>
+        </ul>
+    </section>
+    <footer>正在加载...</footer>
+</div>
+
+<script src="/static/public/jquery.js?{$js_version}"></script>
+<script src="/static/public/core.base.js?{$js_version}"></script>
+<script src="/static/Mobile/js/m-culture.js?{$js_version}"></script>
+
+</body>
+</html>

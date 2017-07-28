@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>个人中心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="keywords" content="西湖,杭州西湖">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link href="/static/Mobile/css/m-user.css" rel="stylesheet" type="text/css">
+    <link href="/static/Mobile/css/m-signin.css" rel="stylesheet" type="text/css">
+</head>
+<body class="home" page="home">
+    <div class="wrap" style="display:none;">
+        <header>
+            <div class="avatar">
+                <i class="i-avatar"></i>
+                <span class="nickname"></span>
+            </div>
+        </header>
+        <section>
+            <ul>
+                <li><a href="#/user/profile" class="i-1">个人信息</a></li>
+                <li><a href="/user/way.html" class="i-2">收藏路线</a></li>
+                <li><a href="/user/comment.html" class="i-3">我的评论</a></li>
+                <li><a href="/user/photo.html" class="i-4">我的分享</a></li>
+                <li><a href="/user/order.html" class="i-5">商城订单</a></li>
+            </ul>
+        </section>
+        <footer>
+            <button>退出登录</button>
+        </footer>
+
+        <section class="profile">
+            <div class="item">
+                <em>头像</em>
+                <span class="avatar i-avatar"><input type="file" name="image" id="j_file_field"></span>
+            </div>
+            <div class="item" id="j_modify_nickname">
+                <em>昵称</em>
+                <span class="nickname"></span>
+            </div>
+            <div class="item" >
+                <em>公开手机号</em>
+                <span> &nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="public_mobile" id="public_mobile" value="1" id="public_mobile" /></span>
+            </div>
+            <div class="item">
+                <button id="j_modify_pwd">修改密码</button>
+            </div>
+        </section>
+    </div>
+    <script type="text/javascript">
+        window.USER_DATA = {:$user?$user:'[]'};window.XH_SIGN="{$xh_sign}";
+    </script>
+    <script src="/static/public/jquery.js?{$js_version}"></script>
+    <script src="/static/public/core.base.js?{$js_version}"></script>
+    <script src="/static/public/core.mobile.js?{$js_version}"></script>
+    <script src="/static/Mobile/js/m-user.js?{$js_version}"></script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+.comment-box {
+  position: fixed;
+  background: #eee;
+  height: 100%;
+  width: 100%;
+  padding: 15px;
+  top: 0;
+  left: 0;
+  -webkit-transform: translateX(100%);
+      -ms-transform: translateX(100%);
+          transform: translateX(100%);
+  -webkit-transition: all 0.3s;
+          transition: all 0.3s;
+  opacity: 0;
+  pointer-events: none;
+}
+.comment-box.show {
+  -webkit-transform: translateX(0%);
+      -ms-transform: translateX(0%);
+          transform: translateX(0%);
+  pointer-events: auto;
+  -webkit-animation: ani-left 0.3s ease 0s;
+          animation: ani-left 0.3s ease 0s;
+  opacity: 1;
+}
+.comment-box .box {
+  background-color: #fff;
+  -webkit-box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.15);
+          box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.15);
+}
+.comment-box textarea,
+.comment-box .area {
+  border: none;
+  padding: 10px;
+  color: #999;
+  text-indent: 50px;
+  position: relative;
+  font-size: 13px;
+  width: 100%;
+  height: 150px;
+  padding-top: 34px;
+  background: url(../img/ic-comment-create@2x.png) 20px 20px / auto 32px no-repeat;
+}
+.comment-box textarea:focus,
+.comment-box .area:focus,
+.comment-box textarea.edit,
+.comment-box .area.edit {
+  padding-top: 10px;
+  text-indent: 0px;
+  background: none;
+}
+.comment-box button {
+  width: 100%;
+  padding: 0.6em 0;
+  font-size: 15px;
+  background-color: #85c46f;
+  border-bottom: 1px solid #4a6d3e;
+  color: #fff;
+  margin: 15px 0;
+}
+.comment-box button.disabled {
+  opacity: 0.7;
+}

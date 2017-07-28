@@ -1,0 +1,99 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>全景管理</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link href="/assets/css/bs3/dpl-min.css" rel="stylesheet" type="text/css"/>
+    <link href="/assets/css/bs3/bui-min.css" rel="stylesheet" type="text/css"/>
+    <link href="/assets/css/page-min.css" rel="stylesheet" type="text/css"/>
+    <link href="/assets/css/hq_admin.css" rel="stylesheet" type="text/css"/>
+    <link href="/assets/css/hqtec.css" rel="stylesheet"> 
+    <style>
+        .orange{
+            color: orangered;
+        }
+        .pointer{
+            cursor: pointer;
+        }
+        .bui-grid-hd-empty{
+            width: 0;
+        }
+        .bui-grid-cell-empty{
+            width: 0;
+        }
+        .pano_img{
+            width: 100px;
+            height: 50px;
+        }
+
+    </style>
+</head>
+<body>
+<div class="container">
+        <div class="doc-content">
+            <form class="form-panel" action="post" id="searchForm" >
+                <ul class="panel-content">
+<li><span id="s1">
+                <label>poi名称：</label>
+              </span>
+              <span>
+                <label> &nbsp;&nbsp;编号：</label><input name="pano" type="text" id="pano">
+              </span>
+              <span >
+                <label> &nbsp;&nbsp;状态：</label>
+                  <select name="status">
+                      <option value="0">全部</option>
+                      <option value="1">未生成全景</option>
+                      <option value="2">排队中</option>
+                      <option value="3">全景生成失败</option>
+                      <option value="4">待发布</option>
+                      <option value="5">已发布</option>
+                  </select>
+              </span>
+                    <span >
+                        <input type="hidden" name="business_id" id="business_id" value="{:session('business.poi_id')}" />
+                    &nbsp;&nbsp;<button type="submit" id="btnSearch" class="button button-primary">查询</button>
+                    </span></li>
+                </ul>
+            </form>
+        </div>
+    <div class="search-grid-container">
+        <div id="grid"></div>
+    </div>
+</div>
+<script type="text/javascript" src="/assets/js/jquery-1.8.1.min.js?{$js_version}"></script>
+<script type="text/javascript" src="/assets/js/bui-min.js?{$js_version}"></script>
+<script type="text/javascript" src="/assets/js/config-min.js?{$js_version}"></script>
+<script type="text/javascript">
+
+    BUI.use('app/views/pano_index', function (app) {
+        app(
+            '/Panorama/admin/index.json' +
+            ('{$hasPoi}' === '1' ? '?id={$poi}' : '')
+        );
+    });
+</script>
+
+<script type="text/javascript">
+  BUI.use('bui/select',function(Select){ 
+	  var suggest = new Select.Suggest({
+	    render:'#s1',
+	    name:'suggest',
+	    data:[],
+	    width : 200,
+	    callback : function(data){
+	        var name= $(".bui-combox-input").val();
+	        $("#name").val(name);
+	            },
+	    url:'/Panorama/admin/select_json'
+	  });
+
+	  suggest.render();
+      $('input[name="suggest"]').val("{$poi_info['name']}");
+        //$('#s1').append($('<button type="button" id="btnSearch" class="button button-primary">搜索</button>'));
+    });
+
+  </script>
+</body>
+</html>  
+

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta name="keywords" content="西湖,杭州西湖">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <title>杭州西湖 {$app_info.name}</title>
+    <link href="/static/Tablet/Public/main.css" rel="stylesheet" type="text/css">
+    <link href="/static/public/swipe.css" rel="stylesheet" type="text/css">
+    <link href="/static/Tablet/Home/Index/index.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    <div class="main">
+        <div class="logo"></div>
+        <div class="wz">西湖景区服务平台</div>
+        <a class="to-map" href="/gis/map"></a>
+        <a class="to-culture" href="/culture/list.html"></a>
+        <div class="version">
+            {$app_info.version}
+        </div>
+    </div>
+    <div class="content-box">
+        <div class="tel-box">
+            <span class="tel-tips"></span>
+            <span class="tel-font">{:C('CONTACT_PHONE')}</span>
+        </div>
+        <div class="qq-box">
+            <a target="_blank" class="qq1" href="http://wpa.qq.com/msgrd?v=3&uin=511760872&site=qq&menu=yes">
+                <span class="qq-tips"></span>QQ客服
+            </a>
+        </div>
+        <div class="wx-box">
+            <div>
+                <span class="wx-tips"></span>扫一扫关注我们
+            </div>
+            <div class="wx-img">
+                <img src="/static/Desktop/Img/index1/mark.jpg">
+            </div>
+        </div>
+        <div class="c-small">-</div>
+    </div>
+</body>
+<script>
+    var app_info={:json_encode($app_info,JSON_UNESCAPED_UNICODE)};
+</script>
+<script src="/static/public/jquery.js?{$js_version}"></script>
+<script src="/static/Tablet/Public/main.js?{$js_version}"></script>
+<script src="/static/Tablet/Home/Index/index.js?{$js_version}"></script>
+
+</html>

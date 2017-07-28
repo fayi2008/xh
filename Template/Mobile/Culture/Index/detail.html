@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>西湖文化</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="keywords" content="西湖,杭州西湖">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link href="/static/Mobile/css/m-culture.css" rel="stylesheet" type="text/css">
+</head>
+
+<body class="detail" page="detail">
+    <div class="wrap">
+        <script type="text/template" id="tpl">
+            <h1 class="title">{{this.title}}</h1>
+            <aside>
+                <div class="cnt">
+                    <h3>目 录</h3>
+                    <ul>
+                        <each this.head>
+                            <li><a href="#{{id}}">{{title}}</a></li>
+                        </each>
+                    </ul>
+                </div>
+                <!--<button class="close"></button>-->
+            </aside>
+            <section>
+                <img src="{{this.thumb | img}}" alt="{{this.name}}"/>
+                <div>{{this.content}}</div>
+            </section>
+            <footer>
+                <button class="top"></button>
+                <button class="contents"></button>
+            </footer>
+        </script>
+    </div>
+
+    <script>
+        var data = {$data};
+    </script>
+    <script src="/static/public/jquery.js?{$js_version}"></script>
+    <script src="/static/public/core.base.js?{$js_version}"></script>
+    <script src="/static/Mobile/js/m-culture.js?{$js_version}"></script>
+</body>
+</html>

@@ -1,0 +1,257 @@
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <title>添加图层</title>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+       <link href="/assets/css/bs3/dpl-min.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/css/bs3/bui-min.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/css/page-min.css" rel="stylesheet" type="text/css" />   <!-- 下面的样式，仅是为了显示代码，而不应该在项目中使用-->
+   <link href="/assets/css/prettify.css" rel="stylesheet" type="text/css" />
+   <link href="/assets/css/hqtec.css" rel="stylesheet"> 
+   <style type="text/css">
+    code {
+      padding: 0px 4px;
+      color: #d14;
+      background-color: #f7f7f9;
+      border: 1px solid #e1e1e8;
+    }
+   </style>
+ </head>
+ <body>
+  
+  <div class="container">
+    <div class="row">
+      <form id="J_Form" class="form-horizontal span24" action='/Gis/admin/map' method='post'>
+        <div class="row">
+          <div class="control-group span8">
+            <label class="control-label"><s>*</s>名称：</label>
+            <div class="controls">
+              <input name="TITLE" type="text" data-rules="{required:true}" class="input-map">
+            </div>
+          </div>          
+        </div>
+        
+        <div class="row">
+         <div class="control-group span10">
+            <label class="control-label"><s>*</s>左下经度：</label>
+            <div class="controls">
+              <input id = "BOUND_LB_LON" name="BOUND_LB_LON" type="text" onkeyup="clearNoNum(this)" data-rules="{required:true}" class="input-map">
+            </div>
+            <label class="label-left"> (-180~180)</label>
+          </div>
+          <!-- </div>
+          <div class="row"> -->
+          <div class="control-group span10">
+            <label class="control-label"><s>*</s>左下纬度：</label>
+            <div class="controls">
+              <input id = "BOUND_LB_LAT" name="BOUND_LB_LAT" type="text" onkeyup="clearNoNum(this)" data-rules="{required:true}" class="input-map">
+            </div>
+            <label class="label-left"> (-90~90)</label>
+          </div>
+        </div>
+        
+        <div class="row">
+         <div class="control-group span10">
+            <label class="control-label"><s>*</s>右上经度：</label>
+            <div class="controls">
+              <input id = "BOUND_RT_LON" name="BOUND_RT_LON" type="text" onkeyup="clearNoNum(this)" data-rules="{required:true}" class="input-map">
+            </div>
+            <label class="label-left"> (-180~180)</label>
+          </div>
+         <!--  </div>
+          <div class="row"> -->
+          <div class="control-group span10">
+            <label class="control-label"><s>*</s>右上纬度：</label>
+            <div class="controls">
+              <input id = "BOUND_RT_LAT" name="BOUND_RT_LAT" type="text" onkeyup="clearNoNum(this)" data-rules="{required:true}" class="input-map">
+            </div>
+            <label class="label-left"> (-90~90)</label>
+          </div>
+        </div>
+
+        <div class="row">
+         <div class="control-group span10">
+            <label class="control-label"><s>*</s>最小级别：</label>
+            <div class="controls">
+              <input name="MINRES" type="number" max="18" min="1" data-rules="{required:true}" style="width:140px;">
+            </div>
+          </div>
+        <!--   </div>
+          <div class="row"> -->
+          <div class="control-group span10">
+            <label class="control-label"><s>*</s>最大级别：</label>
+            <div class="controls">
+              <input name="MAXRES" type="number" max="18" min="1" data-rules="{required:true}" style="width:140px;">
+            </div>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="control-group span8">
+            <label class="control-label"><s>*</s>透明度：</label>
+            <div class="controls">
+              <select class="input-map" name="OPACITY">
+                <option value="0.1">10%</option>
+                <option value="0.3">30%</option>
+                <option value="0.5">50%</option>
+                <option value="0.8">80%</option>
+                <option value="1" selected>100%</option>
+              </select>
+            </div>
+          </div>
+          </div>
+        
+      
+        <div class="row">
+          <div class="control-group span15">
+            <label class="control-label">状态：</label>
+            <div class="controls control-row1">
+              <select    name="POST_STATUS" class="input-map"> 
+                <option value="0">取消</option>
+                <option value="1">发布</option>
+              </select>
+            </div>
+          </div>
+        </div> 
+          <div class="row">
+          <div class="control-group span15">
+            <p><label class="control-label"><s>*</s>文件：</label>            
+              <div class="controls" id="J_Uploader">
+                <input type="hidden"  name='PATH'  id='PATH' />
+            </div>
+            </p>
+          </div>
+        </div>
+      <div class="row"></div>
+                 <div class="row">
+              <div class="form-actions offset3">
+                <button type="submit" class="button button-save">保存</button>
+                <button type="reset" class="button button-reset">重置</button>
+              </div>
+            </div>
+      </form>
+    </div>
+    
+
+  </div>
+  <script type="text/javascript" src="/assets/js/jquery-1.8.1.min.js?{$js_version}"></script>
+  <script type="text/javascript" src="/assets/js/bui-min.js?{$js_version}"></script>
+
+  <script type="text/javascript" src="/assets/js/config-min.js?{$js_version}"></script>
+  <script type="text/javascript">
+    BUI.use('common/page');
+  </script>
+  <!-- 仅仅为了显示代码使用，不要在项目中引入使用-->
+  <script type="text/javascript" src="/assets/js/prettify.js?{$js_version}"></script>
+  <script type="text/javascript">
+    $(function () {
+      prettyPrint();
+    });
+  </script> 
+  <script type="text/javascript">
+      BUI.use('bui/form',function(Form){
+        new Form.HForm({
+            srcNode : '#J_Form',
+            submitType : 'ajax',
+            callback : function(data){
+            if(data.status == 1){
+        	    
+        	     BUI.Message.Alert('添加成功','success');
+        	     window.location.href= data.data;
+            }else{
+            	 BUI.Message.Alert('添加失败','error');
+              window.location.href= data.data;
+            }
+          }
+        }).render();
+      });
+    </script>
+
+        <script type="text/javascript">
+        BUI.use('bui/uploader',function (Uploader) {
+          
+      /**
+       * 返回数据的格式
+       *
+       *  默认是 {url : 'url'},否则认为上传失败
+       *  可以通过isSuccess 更改判定成功失败的结构
+       */
+       
+       //添加自定义主题
+       // Uploader.Theme.addTheme('imageView', {
+       //   elCls: 'imageViewTheme',
+       //   //可以设定该主题统一的上传路径
+       //  // url: '../../../test/upload/upload.php',
+       //  url: 'http://static.logomap.com/upload/',
+       //   queue:{
+       //     //结果的模板，可以根据不同状态进进行设置
+       //     resultTpl: {
+       //       'default': '<div class="default">{name}</div>',
+       //       'success': '<div class="success"><img style="width:100%;" src="http://static.logomap.com/upload/{file}" /></div>',
+       //       'error': '<div class="error"><span class="uploader-error">{msg}</span></div>',
+       //       'progress': '<div class="progress"><div class="bar" style="width:{loadedPercent}%"></div></div>'
+       //     }
+       //   }
+       // });
+
+    	 var uploader = new Uploader.Uploader({
+                    render : '#J_Uploader',
+                    url : 'http://{$httphost}/index.php/Gis/admin/Mapupload/',
+                    //可以直接在这里直接设置成功的回调
+                    success : function(result) {
+                    },
+                    isSuccess : function(result) {
+
+                      if (result.status) {
+                        return true;
+                      }
+                      return false;
+                    },
+                    //失败的回调
+                    error : function(result) {
+                    },
+                    rules: {
+                            //文的类型
+                            ext: ['.zip.doc','文件类型只能为{0}'],
+                            //上传的最大个数
+                            max: [1, '文件的最大个数不能超过{0}个'],
+                            //文件大小的最小值,这个单位是kb
+                            minSize: [10, '文件的大小不能小于{0}KB'],
+                            //文件大小的最大值,单位也是kb
+                            maxSize: [51200, '文件大小不能大于50M']
+                          }
+                  }).render();
+
+              //上传成功时会触发
+              uploader.on('success', function(ev) {
+                var result = ev.result;
+                $("#PATH").val(result.file);
+
+              });
+
+              //上传成功时会触发
+              uploader.on('error', function(ev) {
+                var result = ev.result;
+              
+                BUI.Message.Alert('上传失败,原因：'.result,'error');
+              });
+            });
+    </script>
+    <script  type="text/javascript">
+    function clearNoNum(obj)
+    {
+        //先把非数字的都替换掉，除了数字和.
+        obj.value = obj.value.replace(/[^\d.-]/g,"");
+        //必须保证第一个为数字而不是.
+        obj.value = obj.value.replace(/^\./g,"");
+        //保证只有出现一个.而没有多个.
+        obj.value = obj.value.replace(/\.{2,}/g,".");
+        //保证.只出现一次，而不能出现两次以上
+        obj.value = obj.value.replace(".","$#$").replace(/\./g,"").replace("$#$",".");
+        if($('#BOUND_LB_LON').val() > 180 || $('#BOUND_LB_LAT').val() > 90 || $('#BOUND_RT_LON').val() > 180 || $('#BOUND_RT_LAT').val() > 90 || $('#BOUND_LB_LON').val() < -180 || $('#BOUND_LB_LAT').val() < -90 || $('#BOUND_RT_LON').val() < -180 || $('#BOUND_RT_LAT').val() < -90){
+          obj.value = "";
+        }
+    }
+    </script>
+</body>
+</html> 

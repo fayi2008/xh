@@ -1,0 +1,65 @@
+.main{
+    position: relative;
+
+    width: 1000px;
+    margin: 0 auto;
+}
+.page{
+    position: relative;
+    width: 1000px;
+    margin: 10px auto;
+}
+.comment-photo-box{
+    width: 830px;
+
+
+
+}
+
+.comment-photo-item{
+
+
+    padding: 20px;
+    padding-left: 0px;
+    display: block;
+    box-sizing: border-box;
+    padding-top: 0;
+}
+
+.comment-photo-item>div{
+    background-color: #fff;
+    padding: 20px 100px 20px 20px;
+    height: 150px;
+    box-sizing: border-box;
+    position: relative;
+    box-shadow: 0 0 2px #666;
+}
+.comment-photo-time{
+    height: 30px;
+    line-height: 30px;
+}
+.comment-photo-times{
+    color: #939393;
+}
+.comment-photo-content{
+    color: #939393;
+    line-height: 150%;
+    height: 60px;
+}
+.comment-photo-tool{
+    height: 20px;
+}
+.comment-photo-img{
+    display: block;
+    position: absolute;
+    width: 100px;
+    right: -10px;
+    top:20px;
+    background-color: #fff;
+    box-shadow: 0 0 5px #666;
+    height: 110px;
+    border: 5px solid #fff;
+    background-repeat: no-repeat;
+    background-size: cover;
+    box-sizing: border-box;
+}

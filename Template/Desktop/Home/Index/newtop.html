@@ -1,0 +1,198 @@
+<style>
+    .web-bar {
+        width: 100%;
+        height: 60px;
+        z-index: 99999;
+        background-color: #333;
+        position: fixed;
+    }
+
+    .web-bar-box {
+        width: 1000px;
+        position: relative;
+        margin: 0 auto;
+        height: 60px;
+    }
+
+    .web-bar-logo {
+        float: left;
+        height: 60px;
+        width: 139px;
+        background-image: url(/static/Desktop/Img/logo1.png);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 100% auto;
+        display: block;
+    }
+
+    .web-bar-navigation {
+        float: right;
+        height: 60px;
+        border-radius: 0 0 5px 5px;
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+
+    .web-bar-navigation > a, .web-bar-way {
+        float: left;
+        width: 90px;
+        display: block;
+        height: 60px;
+        line-height: 60px;
+        box-sizing: border-box;
+        cursor: pointer;
+        color: #fff;
+        font-size: 16px;
+        text-align: center;
+    }
+
+    a.user-center {
+        display: block;
+        float: left;
+        width: 90px;
+        height: 60px;
+        line-height: 58px;
+        cursor: pointer;
+
+    }
+
+    .web-bar-way.now {
+        background-color: #3f89ec;
+
+    }
+
+    .web-bar-way.now > .web-bar-way-name {
+        background-color: #3f89ec;
+    }
+
+    .web-bar-way:hover {
+
+        background-color: #3f89ec;
+    }
+
+    .web-bar-way {
+        position: relative;
+    }
+
+    .web-bar-way-list {
+        font-size: 14px;
+        display: none;
+    }
+
+    .web-bar-way:hover > .web-bar-way-name {
+        background-color: #3f89ec;
+    }
+
+    .web-bar-way:hover > .web-bar-way-list {
+        display: block;
+        position: absolute;
+        top: 58px;
+        left: 0px;
+        z-index: 999999999;
+    }
+
+    .web-bar-way-name {
+        width: 90px;
+        height: 60px;
+        line-height: 58px;
+        font-size: 16px;
+
+    }
+
+    .web-bar-way-list > a {
+        display: block;
+        height: 40px;
+        line-height: 40px;
+        text-align: center;
+        width: 90px;
+        background-color: #3f89ec;
+        color: #fff;
+
+    }
+
+    .web-bar-way-list > a:hover {
+        background-color: #73a9f0;
+
+    }
+
+    .user-center.now {
+        background-image: url(/static/Desktop/Img/center1.png);
+    }
+
+    .bottom {
+        background-color: #f1f1f1;
+        height: 80px;
+        text-align: center;
+        color: #686868;
+        padding-top: 20px;
+    }
+
+    .web-bar-weather {
+        float: left;
+        height: 60px;
+        text-align: center;
+        line-height: 60px;
+        width: 150px;
+        position: relative;
+    }
+
+    .weather-flag {
+        float: left;
+        width: 30px;
+        height: 30px;
+        background-position: center;
+        background-size: cover;
+        margin-top: 15px;
+        margin-left: 15px;
+    }
+    .weather-temperature{
+        margin-left: 5px;
+        color: #fff;
+
+    }
+</style>
+<div class="web-bar">
+    <div class="web-bar-box">
+        <a href="/" class="web-bar-logo"></a>
+
+        <div class="web-bar-navigation">
+            <a class="web-bar-way" data-type="index" href="/" class="now">首页</a>
+            <a class="web-bar-way" data-type="map" href="/gis/map">地图</a>
+
+            <div data-type="culture" class="web-bar-way">
+                <div class="web-bar-way-name">文化</div>
+                <div class="web-bar-way-list">
+                    <a href="/culture/list.html">文化知识</a>
+                    <a href="/culture/news/list.html">新闻资讯</a>
+                    <?php if(C('KNOWLEDGE_URL')){ ?><a href="{:C('KNOWLEDGE_URL')}" target="_blank">知识库</a><?php } ?>
+                </div>
+            </div>
+
+            <div data-type="way" class="web-bar-way">
+                <div class="web-bar-way-name">线路</div>
+                <div class="web-bar-way-list"><a href="/way">推荐线路</a><a href="/way/choice.html">定制线路</a></div>
+            </div>
+            <div data-type="travels" class="web-bar-way">
+                <div class="web-bar-way-name">社交</div>
+                <div class="web-bar-way-list"><a href="/photo">印象</a><a href="/travels">游记</a></div>
+            </div>
+            <a class="web-bar-way" data-type="business" href="/business">商务</a>
+            <a class="user-center web-bar-way" href="/user">个人中心</a>
+            <div class="web-bar-weather">
+                <script>
+                    var weather = {$weather};
+
+
+                    document.write('<div class="weather-flag" style="background-image: url(' + weather['results'][0]['weather_data'][0]['dayPictureUrl'] + ')"></div><div class="weather-temperature">'+weather['results'][0]['weather_data'][0]['temperature']+'</div>')
+
+                </script>
+
+                {:json_decode($weather,true)['result']['today']['weather']}
+            </div>
+        </div>
+
+    </div>
+</div>
+<script>
+    window.XH_SIGN="{$xh_sign}";
+</script>

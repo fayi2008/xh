@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta name="keywords" content="西湖,杭州西湖">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <title>{:json_decode($data,true)['data']['way']['title']}</title>
+    <link href="/static/Desktop/Public/main.css" rel="stylesheet" type="text/css">
+    <link href="/static/Desktop/Public/login.css" rel="stylesheet" type="text/css">
+    <link href="/static/Desktop/Way/Index/map.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<include file="../Template/Desktop/Home/Index/top.html"/>
+<div class="main" id="map">
+
+</div>
+<div class="right-box">
+    <div class="right-box-title">路线详情</div>
+    <div class="right-tour-box">
+    <ul class="right-tour-list">
+
+    </ul>
+    </div>
+    <div class="right-box-sc"><div class="collect" data-id="{:json_decode($data,true)['data']['way']['id']}">收藏线路</div></div>
+</div>
+<div class="choose-day">
+    <div class="now-day"></div>
+    <ul class="day-choose-val">
+
+    </ul>
+</div>
+</body>
+<script>
+    WAY_DETAIL_DATA={$data};
+</script>
+<script src="http://api.map.baidu.com/api?v=2.0&ak=8lO6Y9WE9ea11T0bAVwQfmmX"></script>
+<script src="/static/public/jquery.js?{$js_version}"></script>
+<script src="/static/public/iscroll.js?{$js_version}"></script>
+<script src="/static/Desktop/Public/main.js?{$js_version}"></script>
+<script src="/static/Desktop/Public/login.js?{$js_version}"></script>
+<script src="/static/public/core.map.js?{$js_version}"></script>
+<script src="/static/Desktop/Way/Index/map.js?{$js_version}"></script>
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?21a3095477990ab53b7d2a97f78155eb";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link href="/assets/css/bs3/dpl-min.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/css/bs3/bui-min.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/css/page-min.css" rel="stylesheet" type="text/css" />   <!-- 下面的样式，仅是为了显示代码，而不应该在项目中使用-->
+   <link href="/assets/css/prettify.css" rel="stylesheet" type="text/css" />
+   <link href="/assets/css/hqtec.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <form id="J_Form" class="form-horizontal" action="/culture/group/index_post_json" method="post">
+       <!--  <div class="row">
+            <div class="control-group span8">
+                <label class="control-label">父id：</label>
+
+                <div class="controls">
+                    <select name="PARENTID" class="input-normal">
+                        <option value="0">作为顶级分组</option>
+                        {$select_categorys}
+                    </select>
+                </div>
+            </div>
+        </div> -->
+        <div class="row">
+            <div class="control-group span8">
+                <label class="control-label">分组名称：</label>
+
+                <div class="controls">
+                    <input name="NAME" type="text" data-rules="{required:true}" data-messages="{required:'分组名称不能为空'}"
+                           class="input-normal control-text" data-tip="{text:'请输入分组名称'}">
+                </div>
+            </div>
+
+        </div>
+        
+      
+       
+       
+        <div class="row">
+            <div class="control-group span15">
+                <label class="control-label">排序：</label>
+                <div class="controls">
+                    <input name="LISTORDER" type="text"  class="input-normal control-text" data-tip="{text:'请输入排序数字'}" value="0">
+                </div>
+            </div>
+        </div>
+      
+        <div class="row">
+            <div class="form-actions offset3">
+                <button type="submit" class="button button button-save">保存</button>
+               
+            </div>
+        </div>
+    </form>
+</div>
+
+<script src="/assets/js/jquery-1.8.1.min.js?{$js_version}"></script>
+<script src="/assets/js/bui.js?{$js_version}"></script>
+<script type="text/javascript" src="/assets/js/config-min.js?{$js_version}"></script>
+<script type="text/javascript">
+    var Form = BUI.Form
+    new Form.HForm({
+        srcNode: '#J_Form',
+        submitType: 'ajax',
+        callback: function (data) {
+            if(data.success==true)
+            {
+                BUI.Message.Confirm('操作成功！是否离开本页？',function(){
+                    if(top.topManager){
+                        //打开左侧菜单中配置过的页面
+                        top.topManager.openPage({
+                            id : 'group',
+                            reload : 'true'
+                        });
+                        top.topManager.closePage('group/add');
+                    }
+                },'success');
+            }else{
+                BUI.Message.Alert('操作失败！'+data.msg,'error');
+            }
+        }
+    }).render();
+
+</script>
+<!-- script end -->
+</div>
+</body>
+</html>

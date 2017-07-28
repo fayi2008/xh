@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+
+    <link href="/static/Mobile/service/css/main_tour.css" rel="stylesheet" type="text/css">
+    <!--<link rel="stylesheet" href="/static/Mobile/service/css/signin.css"/>-->
+    <link href="/static/Mobile/css/m-signin.css" rel="stylesheet" type="text/css">
+    <style>
+
+        .mod-signin .sign-wrap .nav
+        {
+            position: static;
+        }
+        #infowindow .j_review{ display:none;}
+        #infowindow .detail li.select{ border:none;text-align: left; color:#999; padding-left:15px;}
+    </style>
+    <title>游助手</title>
+</head>
+<body>
+<div id="map_container"></div>
+
+<!--底部按钮-->
+<div class="article ctrl">
+
+    <div class="control">
+        <!--<a id="j_toilet" class="icon-toilet">WC</a>-->
+        <a id="j_loc" class="icon-loc"></a>
+    </div>
+
+    <div id="j_menu" class="nav show">
+        <div class="menu">
+            <a rel="1" class="food act" act-tips="1">找餐厅</a>
+            <a rel="0" class="hotel act" act-tips="1">找酒店</a>
+            <!--<a rel="2" class="guide act" act-tips="2">找导游</a>-->
+            <a href="/service/order.html" class="user" id="j_user">个人中心</a>
+        </div>
+        <div id="j_option" class="modal-options"></div>
+    </div>
+    <div class="mask"></div>
+</div>
+<div class="search">
+    <input id="search" placeholder="请输入您要搜索的餐厅或酒店">
+
+</div>
+<div class="search-list">
+
+</div>
+<div id="tips">
+    <a id="j_tips"></a>
+    <section>
+        <div id="j_tips_panel">请从下方选择您需要的服务</div>
+        <i></i>
+    </section>
+</div>
+<div id="cross"></div>
+
+<div id="infowindow" class="load-review">
+    <div class="article normal">
+        <div class="header">
+            <div class="mask" id="iw_mask"></div>
+            <div class="wrap">
+                <span id="iw_logo"></span>
+                <span id="iw_title"></span>
+                <p id="iw_address"></p>
+            </div>
+        </div>
+        <a class="close"></a>
+
+        <div class="section">
+            <div class="tab">
+                <ul>
+                    <li class="j_nav" id="j_nav"><i class="icon navi"></i></li>
+                    <li><a href="" id="iw_phone"><i class="icon phone"></i></a></li>
+                    <!--<li id="iw_callme"><i class="icon callme"></i></li>-->
+                </ul>
+            </div>
+            <div id="iw_desc"></div>
+            <!--<div class="detail">查看详情</div>-->
+        </div>
+        <div class="footer">
+            <span class="want food" data-type="1">我要吃</span>
+            <span class="want hotel" data-type="0">我要住</span>
+        </div>
+    </div>
+
+    <div class="article full">
+        <header>
+            <div id="flipsnap" data-photos=""><img src="" alt=""/></div>
+            <a id="j_close" class="close"></a>
+        </header>
+
+        <div class="section main">
+            <div class="icon-address j_nav">深圳市南山区华侨城.深南大道9003号</div>
+            <div class="icon-phone">电话预定 400 920 1234</div>
+        </div>
+
+        <div class="section detail">
+            <ul class="tab clr">
+                <!--<li class="select">优惠信息</li>-->
+                <li class="select">详情介绍</li>
+                <li class="j_review" data-type="0">用户评价</li>
+            </ul>
+            <ul class="content clr">
+                <li class="select j-detail" id="j_detail"></li>
+                <li class="j_review_cnt modal-review">
+                    loading
+                </li>
+            </ul>
+            <div class="footer">
+                <span class="want food" data-type="1">我要吃</span>
+                <span class="want hotel" data-type="0">我要住</span>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<div id="j_modal_nav" class="modal-nav">
+</div>
+<div id="j_modal_agree" class="mod-agree">
+    <div class="wrap">
+        <div class="header">
+            <h2>您已预约成功！</h2>
+            <p>您可以去个人中心对商户进行评价</p>
+        </div>
+        <div class="footer">
+            <button class="navi">导航过去</button>
+            <button class="contact"><a>联系电话</a></button>
+            <button class="user"><a href="/service/order.html">个人中心</a></button>
+        </div>
+        <a class="close">×</a>
+    </div>
+</div>
+
+<div id="iw" class="article info">
+    <div class="title">
+        <h3>您的需求已发送至<span class="t1">商家</span></h3>
+        <p>请等待<span class="t2">商家</span>电话与您联系</p>
+    </div>
+    <div class="close"></div>
+    <div class="panel"></div>
+</div>
+<div id="j_detail_tour" class="modal-detail"></div>
+
+<script type="text/template" id="tpl_option_0">
+    <div class="condition">
+        <h4>发起请求</h4>
+<!--        <h4>住宿类型</h4>
+        <ul filter-key="type" filter-type="radio">
+            <li data-id="0" class="select">　不限　</li>
+            <li data-id="1">民宿客栈</li>
+            <li data-id="2">商务宾馆</li>
+            <li data-id="3">星级酒店</li>
+        </ul>-->
+    </div>
+
+    <div class="footer">
+        <button class="close"><span>取 消</span></button>
+        <button class="submit"><span>确 定</span></button>
+    </div>
+</script>
+
+<script type="text/template" id="tpl_option_1">
+    <div class="condition">
+        <h4>发起请求</h4>
+        <!--<h4>就餐环境</h4>
+        <ul filter-key="type" filter-type="radio">
+            <li data-id="0" class="select">　不限　</li>
+            <li data-id="1">农家菜馆</li>
+            <li data-id="2">特色餐馆</li>
+            <li data-id="3">酒店餐馆</li>
+            <li data-id="4">本地小吃</li>
+        </ul>-->
+    </div>
+
+    <div class="footer">
+        <button class="close"><span>取 消</span></button>
+        <button class="submit"><span>确 定</span></button>
+    </div>
+</script>
+<script type="text/template" id="tpl_option_2">
+    <div class="guide">
+        <div class="guide-time">
+            <span id="j_guide_time">什么时候出发</span>
+
+            <input filter-key="time" filter-type="input" id="j_guide_picker" class="datepicker" type="datetime"/>
+        </div>
+    </div>
+    <div class="footer">
+        <button class="close"><span>取 消</span></button>
+        <button class="submit"><span>确 定</span></button>
+    </div>
+</script>
+<script type="text/template" id="tpl_detail">
+    <ul>
+
+        <% for(var i=0;i<this.length;i++){ %>
+            <li><span><% = this[i][0] %>：</span><% = this[i][1] %></li>
+        <% } %>
+    </ul>
+</script>
+<script type="text/template" id="tpl_info">
+<div class="header">
+    <% var star = this.score=="0"?"0":(this.score / this.sum).toFixed(1);  %>
+    <% if(this.type=="2"){ %>
+        <span><% = this.name %><i class="level"><% = this.level %></i> <em><% = this.work_unit %></em></span>
+    <% }else{ %>
+    <span><% = this.name %> <em>距离<% = this.dist %></em></span>
+    <% } %>
+    <div class="logo" style="background-image: url(<% = this.icon %>)">
+        <span class="star" data-star="<% = star %>"></span>
+    </div>
+    <span><% = this.addr[0] %> <em><% = this.addr[1] %></em></span>
+</div>
+<div class="footer">
+    <% var cls = this.want ? "cancel" : "switch"; %>
+    <button id="j_switch" data-type="<% = cls %>" class="switch"><% = this.want ? "取消" : (this.type=="2" ? "换个导游":"换一家看看") %></button>
+    <button id="j_agree" class="agree">达成意向</button>
+</div>
+</script>
+
+<script type="text/template" id="tpl_review">
+    <%
+        if(this.status == 0){ return "";}
+        for(var i in this.data){
+            var name = this.data[i].open == "0" ? "匿名用户":this.data[i].name;
+    %>
+    <div class="item">
+        <h4><% = name %><span class="star" data-star="<% =this.data[i].score %>"><i></i></span></h4>
+
+        <p><% =this.data[i].evaluation %></p>
+        <span class="time"><% =this.data[i].date %></span>
+    </div>
+    <% } %>
+</script>
+
+<script type="text/template" id="tpl_tips">
+    <p>
+        <%
+            var str = this.filter[0].ori_value == "0" ? this.type :this.filter[0].value;
+        %>
+        <% = console.log(this) %>
+        <% if(this.count == 0){ %>
+        附近没有合适商家，请您重新选择！
+        <% }else{ %>
+        附近有<span><strong><% = this.count %></strong></span>家<span><% =str %></span>。
+        <% } %>
+
+    </p>
+</script>
+<script type="text/template" id="tpl_detail_tour">
+    <% var data = this; var star = this.score=="0"?"0":(this.score / this.sum).toFixed(1); %>
+    <div class="article full">
+        <div class="header"><img src="<% = data.image %>" alt=""/><span><% =data.name %> <em><% =data.level %></em></span>
+            <span class="star" data-star="<% = star %>"><% = star %></span>
+            <a class="close"></a>
+        </div>
+        <ul class="tour">
+            <li><span>性别 :</span><% =this.sex %></li>
+            <li><span>单位 :</span><% =data.work_unit %></li>
+            <li><span>年龄 :</span><% =data.age %></li>
+            <li><span>导游证编号 :</span><% =data.guide_no %></li>
+        </ul>
+
+        <div class="section detail">
+            <ul class="tab clr">
+                <!--<li class="select">优惠信息</li>-->
+                <li class="select">详情介绍</li>
+                <li class="j_review" data-type="2" data-id="<% = data.id %>">用户评价</li>
+            </ul>
+            <ul class="content">
+                <li class="select j-detail"><p><% = data.desc %></p></li>
+                <li class="j_review_cnt modal-review">
+                    loading
+                </li>
+            </ul>
+        </div>
+    </div>
+</script>
+<script type="text/template" id="tpl_signin">
+    <div class="mod-signin">
+        <div class="wrap">
+            <a class="close"></a>
+            <h3>请输入手机号验证身份</h3>
+            <input type="text" class="mobile" placeholder="请输入手机号"/>
+            <input type="text" class="code" placeholder="请输入验证码"/><a class="getcode">获取验证码</a>
+            <button class="check">确定</button>
+        </div>
+    </div>
+</script>
+</body>
+<script type="text/javascript">
+    window.USER_DATA = {:$user?$user:'[]'};
+    window.XH_SIGN="{$xh_sign}";
+</script>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=8lO6Y9WE9ea11T0bAVwQfmmX"></script>
+<script type="text/javascript" src="/static/public/jquery.js?{$js_version}"></script>
+<script src="/static/public/core.base.js?{$js_version}"></script>
+<script src="/static/public/core.mobile.js?{$js_version}"></script>
+<script type="text/javascript" src="/static/Mobile/service/js/jquery.tap.js?{$js_version}"></script>
+<script type="text/javascript" src="/static/Mobile/service/js/lm/lm.config.js?{$js_version}"></script>
+<script type="text/javascript" src="/static/Mobile/service/js/lm/lm.core.js?20150802"></script>
+<script type="text/javascript" src="/static/Mobile/service/js/lm/lm.utils.js?20150802"></script>
+<script type="text/javascript" src="/static/Mobile/service/js/lm/lm.main.js?20150802"></script>
+<script type="text/javascript" src="/static/Mobile/service/js/lm/lm.poi.js?20150802"></script>
+<script type="text/javascript" src="/static/Mobile/service/js/lm/lm.loc.js?20150802"></script>
+<script type="text/javascript" src="/static/Mobile/service/js/lm/lm.ui.js?20150802"></script>
+<script type="text/javascript" src="/static/Mobile/service/js/lm/lm.tour.js?20150802"></script>
+<script type="text/javascript" src="/static/Mobile/service/js/lm/lm.search.js?{$js_version}"></script>
+
+
+
+<script>
+ /*   $(function(){
+        $.LOGIN(function(v){
+
+        });
+    });*/
+</script>
+</html>

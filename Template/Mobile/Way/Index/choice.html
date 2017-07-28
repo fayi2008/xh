@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>定制线路</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="keywords" content="西湖,杭州西湖">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link href="/static/Mobile/css/m-way.css" rel="stylesheet" type="text/css">
+</head>
+<body class="choice" data-page="choice">
+    <div class="wrap">
+        <header class="search">
+            <input type="text" id="j_sch_key" placeholder="输入你想去的景点"/>
+            <button id="j_sch_clear">×</button>
+        </header>
+        <div class="suggest">
+            <h3>推荐景点</h3>
+            <ul id="j_cnt" class="clr">
+                <script type="text/template" id="tpl">
+                    <each this.data>
+                    <li data-id="{{id}}">
+                        <i style="background-image:url({{image | img}})"></i>
+                        <span>{{name}}</span>
+                    </li>
+                    </each>
+                </script>
+            </ul>
+        </div>
+        <section>
+            <div id="j_tag" class="tag">
+                <h3>您选择的游玩偏好：</h3>
+                <p>
+                    <em class="select">自然景观</em>
+                    <em>宗教文化</em>
+                </p>
+            </div>
+        </section>
+        <section>
+            <h3>您添加的游玩景点：</h3>
+            <ul id="j_select" class="list clr"></ul>
+        </section>
+        <footer>
+            <button id="j_create">生成定制线路</button>
+        </footer>
+    </div>
+    <script type="text/javascript">
+        var data = {$data};
+    </script>
+    <script src="/static/public/jquery.js?{$js_version}"></script>
+    <script src="/static/public/core.base.js?{$js_version}"></script>
+    <script src="/static/Mobile/js/m-way.js?{$js_version}"></script>
+
+</body>
+</html>

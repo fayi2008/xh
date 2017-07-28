@@ -1,0 +1,275 @@
+
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <title> 类目要素添加</title>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+     <link href="/assets/css/bs3/dpl-min.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/css/bs3/bui-min.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/css/page-min.css" rel="stylesheet" type="text/css" /> 
+ <!--    <link href="http://g.alicdn.com/bui/bui/1.1.21/css/bs3/dpl.css" rel="stylesheet"> -->
+  	<link href="http://g.alicdn.com/bui/bui/1.1.21/css/bs3/bui.css" rel="stylesheet">
+  	<link href="/assets/css/hqtec.css" rel="stylesheet">
+   <style type="text/css">
+    code {
+      padding: 0px 4px;
+      color: #d14;
+      background-color: #f7f7f9;
+      border: 1px solid #e1e1e8;
+    }
+   </style>
+ </head>
+ <body>
+  
+  <div class="container">
+  <div class="row"></div>
+  <div class="search-grid-container">		                       
+      <input type="hidden" id="cateid" value="{$cid}">
+ 
+  <div>
+      <button id="btnShow" class="button button-primary" style="margin-bottom:5px;">设置要素</button>
+  </div>
+  <div id="addattr" style="display:none;" >	
+  		<form id="form" width="100%" >
+  		<div style="height:500px;overflow: scroll;">
+  		<table >
+  		<tr><td width="150px" height="30px"><input type="checkbox" id='all' class="all" name='group[]' value="all" style="margin-right:5px;width:15px;height:15px"></td><td width="200px">要素名称</td><td width="200px">要素类型</td></tr>
+	  		<foreach name='attrlist' item='va'>
+	  			<tr><td><input  class="group" type="checkbox" id='{$va["gid"]}_group' name='group_id[]' value='{$va["gid"]}' style="margin-right:5px;width:15px;height:15px"  >{$va['gname']}</td><td></td><td></td></tr> 		
+				<foreach name='va["attr"]' item="value">
+					<tr ><td align="center"><input class='attr {$va["gid"]}_attr' type="checkbox" id='{$value["id"]}_attr' {$value.checked} name='attr_id[]' style="margin-right:5px;width:15px;height:15px" value='{$value["id"]}'></td><td>{$value["name"]}</td><td><if condition="$value.type eq 1">属性<else />内容</if></td></tr>
+				</foreach>
+	  		</foreach>
+	  	</table>
+  		</div>
+  		</form>
+  </div>
+  <div id="grid"></div>
+  </div>
+  </div>
+  <script type="text/javascript" src="/assets/js/jquery-1.8.1.min.js?{$js_version}"></script>
+  <script type="text/javascript" src="/assets/js/bui-min.js?{$js_version}"></script>
+  <script type="text/javascript" src="/assets/js/config-min.js?{$js_version}"></script>
+  <script type="text/javascript">
+  	/*  var attrid = new array(); */
+  	  BUI.use('common/page');
+	  BUI.use(['bui/overlay','bui/form'],function(Overlay,Form){
+		    
+	      var form = new Form.HForm({
+	        srcNode : '#form'
+	      }).render();
+	      var dialog = new Overlay.Dialog({
+	            title:'导入要素',
+	            width:800,
+	            height:600,
+	            //配置DOM容器的编号
+	            contentId:'addattr',
+	            success:function () {
+	            	var attridform = $("#form").serialize(); 
+	            	var cid = $("#cateid").val();            	
+	             	$.ajax({
+	            	    dataType : 'json',
+	            	    url:"/culture/admin/to_attr_add/cid/"+ cid,
+	            	    data:attridform,// 要提交表单的ID
+	            	    success: function(data){
+	            	    
+	            	        if(data.status ==0){
+	            	        	BUI.Message.Alert("导入要素失败",function(){
+	            	        		window.location.href = data.url; 
+	            	        	},'error');
+	            	        	/* top.topManager.reloadPage(); */
+	            	        	
+	            	        	
+	            	        }else{
+	            	        	BUI.Message.Alert("导入要素成功",function(){
+	            	        		window.location.href = data.url; 
+	            	        	},'success');
+	            	        	/* top.topManager.reloadPage(); */
+	            	        	
+	            	        }
+	            	 
+	            	         
+	            	    }
+	            	}); 
+	            
+	            }
+	          });
+	       /*  dialog.show(); */
+	        $('#btnShow').on('click',function () {
+	          dialog.show();
+	        });
+	      });
+  </script>
+<script type="text/javascript">
+   BUI.use(['common/search','bui/overlay'],function (Search,Overlay) {
+    
+  //  var enumObj = {"1":"男","0":"女"},
+      columns = [
+          {title:'要素编号',dataIndex:'id',width:300},
+          {title:'要素名称',dataIndex:'name',width:100,name:'attrname'},
+          {title:'要素提示',dataIndex:'hint',width:100},
+          {title:'排序',dataIndex:'listorder',width:100}, 
+          {title:'类型',dataIndex:'type',width:150, renderer : function(value,obj) {
+              var type = obj.type;
+              if(type == 1){
+                return "<span id = 'f" + obj.id+ "'>属性</span>";
+              }else if(type == 2){
+                return "<span id = 'f" + obj.id+ "'>内容</span>";
+              }
+            }},
+          
+          {title:'是否必填',dataIndex:'type',width:100, renderer : function(value,obj) {
+              var need = obj.is_need;
+              if(need == 1){
+                return "<span id = 'f" + obj.id+ "'>是</span>";
+              }else if(need == 0){
+                return "<span id = 'f" + obj.id+ "'>否</span>";
+              }
+            }}, 
+           {title:'操作',dataIndex:'',width:300,renderer : function(value,obj){
+            var delStr = '<span class="grid-command btn-del" title="删除文化要素">删除</span>';
+			return delStr;
+          }} 
+        ],
+      //store = Search.createStore('../data/student.json'),
+      store = Search.createStore('/culture/admin/category_attr_add_json/cid/'+$("#cateid").val()),
+    
+        gridCfg = Search.createGridCfg(columns,{   
+        plugins : [BUI.Grid.Plugins.CheckSelection] // 插件形式引入多选表格
+      });
+  
+
+    var  search = new Search({
+        store : store,
+        gridCfg : gridCfg
+      }),
+      grid = search.get('grid');
+       
+    //删除操作
+    function delFunction(){
+      var selections = grid.getSelection();
+      delItems(selections);
+    }
+
+    function delItems(items){
+      var ids = [];
+      BUI.each(items,function(item){
+        ids.push(item.id);
+      });
+      
+      if(ids.length){
+        BUI.Message.Confirm('确认要删除选中的记录么？',function(){
+          $.ajax({
+            url : '/culture/admin/cate_attr_delete?cid='+$("#cateid").val(),
+            dataType : 'json',
+            data : {ids : ids , "action":"delete"},
+            success : function(data){
+              if(data.status){ //删除成功
+                search.load();
+              }else{ //删除失败
+            	 alter(data.status);
+                BUI.Message.Alert('删除失败！','error');
+              }
+            }
+        });
+        },'question');
+      }
+    }
+
+    //监听事件，删除一条记录
+    grid.on('cellclick',function(ev){
+      var sender = $(ev.domTarget); //点击的Dom
+      if(sender.hasClass('btn-del')){
+        var record = ev.record;
+        delItems([record]);
+      }
+    });
+ 
+  }); 
+</script>
+<script type="text/javascript">
+		BUI.use('bui/form', function(Form) {
+			new Form.HForm({
+				srcNode : '#J_Form',
+				submitType : 'ajax',
+				callback : function(data) {
+					if (data.status == 1) {
+						
+						BUI.Message.Alert('添加成功！',function(){
+							top.topManager.reloadPage();
+							window.location.href = data.url;
+						},'success');
+              							
+					} else {
+						if(null==data.msg){
+							BUI.Message.Alert('添加失败',function(){
+								window.location.href = data.url;
+							},'error');
+						}else{
+							BUI.Message.Alert(data.msg,function(){
+								window.location.href = data.url;
+							},'error');
+						}
+						
+					}
+					
+				}
+			}).render();
+
+		});
+		
+	    function addItem(id)
+	      {
+	      	BUI.Message.Confirm('是否添加该项？',function(){
+	      		$.ajax({
+	                  type: "add",
+	                  url: "/culture/admin/to_attr_add?id="+id+"&cid="+$("#cateid").val(),
+	                  dataType: "json",
+	                  success: function(data){
+	                  	if(data.status== 1)
+	                  		{
+	                  		BUI.Message.Alert('添加成功！',function(){
+	                  			top.topManager.reloadPage();
+	                  		},'success');
+                  			
+	                  		}else{
+	                  			BUI.Message.Alert('添加失败！','error');
+	                  			
+	                  		}
+	                  }
+	      		});
+	              
+	          },'question');
+	      }
+	   	
+	</script>
+<script type="text/javascript">
+	
+	$(function (){
+		 $(".all").bind("click", function () {
+			 if(document.getElementById("all").checked){
+             $(".group").attr("checked", true);
+             $(".attr").attr("checked",true);
+			 }else{
+				 $(".group").removeAttr("checked");
+	             $(".attr").removeAttr("checked");
+			 }
+         });
+	 	
+	});
+	
+	
+	$('.group').on('click',function(){
+		
+		var gid = $(this).val();
+		if($(".group").is(':checked')){
+			$("."+gid+"_attr").attr("checked",true);
+		}else{	
+			$("."+gid+"_attr").removeAttr("checked");
+		}
+	})
+
+	
+</script>
+</body>
+</html>  

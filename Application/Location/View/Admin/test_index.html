@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>选择器</title>
+<!-- 此文件为了显示Demo样式，项目中不需要引入 -->
+<link href="../../assets/code/demo.css" rel="stylesheet">
+ 
+  <link href="http://g.alicdn.com/bui/bui/1.1.21/css/bs3/dpl.css" rel="stylesheet">
+  <link href="http://g.alicdn.com/bui/bui/1.1.21/css/bs3/bui.css" rel="stylesheet">
+ 
+</head>
+<body>
+  <div class="demo-content">
+<div id="s1">
+  <input type="text" id="show" name="show">
+  <input type="hidden" id="hide" value="" name="hide">
+</div>
+ 
+ 
+  <script src="http://g.tbcdn.cn/fi/bui/jquery-1.8.1.min.js?{$js_version}"></script>
+  <script src="http://g.alicdn.com/bui/seajs/2.3.0/sea.js?{$js_version}"></script>
+  <script src="http://g.alicdn.com/bui/bui/1.1.21/config.js?{$js_version}"></script>
+ 
+<!-- script start --> 
+<script type="text/javascript">
+  BUI.use(['bui/picker','bui/list'],function(Picker,List){
+  
+    var items = [
+          {text:'选项1',value:'a'},
+          {text:'选项2',value:'b'},
+          {text:'选项3',value:'c'},
+          {text:'选项4',value:'d'},
+          {text:'选项5',value:'e'},
+          {text:'选项6',value:'f'}
+        ],
+      list = new List.Listbox({ //使用可勾选的列表
+        elCls:'bui-select-list',
+        items : items,
+        limit : 3
+      }),
+      picker = new Picker.ListPicker({
+        trigger : '#show',  
+        valueField : '#hide', //如果需要列表返回的value，放在隐藏域，那么指定隐藏域
+        width:100,  //指定宽度
+        hideEvent : '', //清除点击列表时隐藏，因为需要选中多个
+        children : [list] //配置picker内的列表
+      });
+    picker.render();
+  
+       
+    
+  });
+   
+  </script>
+<!-- script end -->
+  </div>
+</body>
+</html>

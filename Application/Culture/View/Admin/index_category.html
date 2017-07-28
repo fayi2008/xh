@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>类目管理</title>
+    <link href="/assets/css/bs3/dpl-min.css" rel="stylesheet">
+    <link href="/assets/css/bs3/bui-min.css" rel="stylesheet">
+    <link href="/assets/css/page-min.css" rel="stylesheet">
+    <link href="/assets/css/hqtec.css" rel="stylesheet">
+    <style>
+        .input_20{
+            width: 15px !important;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="span24 doc-content">
+            <ul class="toolbar">
+                <li><a href="/Culture/admin/category_add"><button type="button" class="button button-small button-success" ><i class="icon-plus icon-white"></i>添加分类</button></a></li>
+            </ul>
+             <form id='menu_form'>
+            <div id="menu_body">
+            
+            </div>
+            </form>
+            <ul class="toolbar">
+                <li><button class="button button-small button-upload" style="margin-top:10px;" onclick="addorder()">提交排序</button></li>
+            </ul>
+        </div>
+    </div>
+    <!-- script end -->
+</div>
+
+    <script src="/assets/js/jquery-1.8.1.min.js?{$js_version}"></script>
+    <script src="/assets/js/bui.js?{$js_version}"></script>
+
+    <!-- script start -->
+    <script type="text/javascript">
+        BUI.use(['bui/extensions/treegrid','bui/common/page'],function (TreeGrid) {
+
+            var data = {$category_list};
+            //由于这个树，不显示根节点，所以可以不指定根节点
+            var tree = new TreeGrid({
+                render : '#menu_body',
+                nodes : data,
+                dirCls : 'icon-th',
+                leafCls : 'icon-th-list',
+                showLine : false,
+                columns : [
+                    {title : '类目名',dataIndex :'listorder',width:250,renderer:function(val,obj){
+                        var str='<input class="input_20" type="text" name="listorder['+obj.id+']" value="'+val+'" /> &nbsp;'+obj.name;
+                        return str;
+                    }},
+                    {title : '备注',dataIndex : 'remark',width:150},
+                   
+                    {title : '操作',width:300, renderer:function(val,obj){
+                    	
+                        var str='<span><a href="/culture/admin/category_update/id/'+obj.id+'">编辑</a></span>&nbsp;&nbsp;&nbsp;' ;
+                        var delstr='<span><a href="javascript:deleteItem('+obj.id+')">删除</a></span>&nbsp;&nbsp;&nbsp;' ;
+                                
+                        var manstr='<span><a href="/Culture/admin/category_attr_add/cid/'+obj.id+'">管理要素</a></span>&nbsp;&nbsp;&nbsp;' ;
+                        var outstr='<span><a href="/Culture/admin/category_attr_output/cid/'+obj.id+'">导出要素结构</a></span>';
+                        return str + delstr + manstr +outstr;
+                    }}]
+            });
+            tree.render();
+        });
+
+        function deleteItem(id)
+        {
+        	BUI.Message.Confirm('是否删除该项？',function(){
+        		$.ajax({
+                    type: "delete",
+                    url: "/culture/admin/category_delete?cid="+id,
+                    dataType: "json",
+                    success: function(data){
+                    	if(data.status == 1)
+                    		{
+                            	/* BUI.Message.Alert('删除成功'); */
+                            	top.topManager.reloadPage();
+                    		}else{
+                    			BUI.Message.Alert('删除失败！'+data.msg,'error');
+                    		}
+                    }
+        		});
+                
+            },'question');
+        }
+
+        function add()
+        {
+            top.topManager.openPage({
+                id : 'menu/add',
+                title : '添加类目',
+                href : 'system/menu/add.html'
+            });
+        }
+        
+        function addorder() 
+        {
+        	var form_data=$('#menu_form').serialize();
+            $.ajax({
+                type: "put",
+                url: "/culture/admin/cate_listorder_put_json",
+                data:form_data,
+                dataType: "json",
+                success: function(data){
+                	if(data.success==true)
+                		{
+                            BUI.Message.Alert('更新成功 ',function(){
+                                if(top.topManager){
+                                    //打开左侧菜单中配置过的页面
+                                    top.topManager.openPage({
+                                        id : 'cate',
+                                        reload : 'true'
+                                    });
+                                }
+                            },'success');
+                		}else{
+                			BUI.Message.Alert('更新失败！'+data.msg,'error');
+                		}
+                }
+    		});
+        }
+    </script>
+    <!-- script end -->
+</div>
+</body>
+</html>

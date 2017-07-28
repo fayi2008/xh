@@ -1,0 +1,73 @@
+<!--菜品页面-->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>西湖美食</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="keywords" content="西湖,杭州西湖">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link href="/static/Mobile/css/m-business.css" rel="stylesheet" type="text/css">
+</head>
+
+<body class="goods">
+    <div class="wrap">
+
+    </div>
+    <script id="tpl" type="text/template">
+        <div class="thumb">
+            <img src="{{this.data.small_img | img}}" alt=""/>
+        </div>
+        <section>
+            <h3>{{this.data.name}}</h3>
+            <div class="num">
+                    <iif this.data.is_promotion >
+                    <span style="color:#666;text-decoration: line-through;">¥{{this.data.price}}/份</span>
+                    <span>¥{{this.data.promotion_price}}/份</span>
+                    <else>
+                        <span>¥{{this.data.price}}/份</span>
+                    </iif>
+                <div class="counter">
+                    <strong>数量</strong>
+                    <span>
+                        <button id="j_num_dec">-</button>                             <span id="j_num">1</span>
+                        <button id="j_num_inc">+</button>
+                    </span>
+                </div>
+            </div>
+        </section>
+        <section class="desc">
+            <h3>详细介绍 <iif this.data.pano_key><a href="/Panorama#panoid={{this.data.pano_key}}" class="pano_btn">查看全景</a></iif></h3>
+            <div>
+                {{this.data.description}}
+            </div>
+            <h3>相关小知识</h3>
+            <div>
+                <each this.data.relation>
+                    <a href="/culture/{{id}}.html">{{title}}</a>
+                </each>
+            </div>
+        </section>
+        <footer>
+            <button><a href="#pay">立即购买</a></button>
+        </footer>
+
+        <section class="pay">
+            <div class="header">￥<strong id="j_amount">{{this.data.price}}</strong>元</div>
+            <div class="info">
+                <div><em>商品信息</em><span>{{this.data.name}}</span></div>
+                <div><em>收款方</em><span>杭州中软安人网络通信股份有限公司</span></div>
+            </div>
+            <div class="footer">
+                <button id="j_pay">立即支付</button>
+            </div>
+        </section>
+    </script>
+    <script type="text/javascript">
+        var data = {$goods};window.XH_SIGN="{$xh_sign}";
+    </script>
+    <script src="/static/public/jquery.js?{$js_version}"></script>
+    <script src="/static/public/core.base.js?{$js_version}"></script>
+    <script src="/static/Mobile/js/m-business-goods.js?{$js_version}"></script>
+</body>
+</html>

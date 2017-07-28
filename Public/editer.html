@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>热点管理</title>
+    <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, minimal-ui" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <style>
+        @-ms-viewport { width: device-width; }
+        @media only screen and (min-device-width: 800px) { html { overflow:hidden; } }
+        html { height:100%; }
+        body { height:100%; overflow:hidden; margin:0; padding:0; font-family:Arial, Helvetica, sans-serif; font-size:14px;}
+        *{ font-family: 'microsoft yahei'; font-size：14px;font-style: normal;}
+        #pano{width:100%;height:100%;}
+
+
+        /* editer */
+        .p-ctrl-editer{
+            /*position: absolute;*/
+            /*top:0;left:0;width:300px;*/
+/*            z-index:9999;
+            position: relative;*/
+        }
+        .p-ctrl-editer-menu{
+            height:30px;
+        }
+        .p-ctrl-editer-menu button{
+            padding:8px;color:#fff;margin:5px;
+            background-color: rgba(0,0,0,.5);
+            border:none;
+        }
+        .p-ctrl-editer-menu button:hover{
+            box-shadow: 0 0 3px 2px rgba(255,255,255,.5);
+        }
+        .p-ctrl-editer-area{
+            position: absolute;z-index:5001;
+            /*padding:15px;*/
+            left:5px;top:5px;
+            transition: all 0.3s;
+            -ms-transition: all 0.3s;
+            -webkit-transition: all 0.3s;
+        }
+        .p-ctrl-editer-wrap{
+            /*width:500px;position: absolute;left:0;
+            transition: all 0.3s;*/
+        }
+
+        .p-ctrl-editer-detail{
+            position: absolute;left:300px;width:300px;
+            background-color: rgba(0,0,0,.6);
+            padding:15px;
+            opacity: 0;pointer-events: none;
+            transition: all 0.3s;
+        }
+
+        .p-ctrl-editer-list{
+            position: absolute;left:0px;
+            overflow-y: auto;width:250px;
+            top:0;
+            max-height: 250px;
+            background-color: rgba(0,0,0,.6);
+            transition: all 0.3s;
+        }
+        .p-ctrl-editer-list ul{ padding:10px;}
+        .p-ctrl-editer-list li{font-size:12px;height:24px;line-height: 24px;}
+        .p-ctrl-editer-list li span{
+            position: absolute;right:5px;
+        }
+        .p-ctrl-editer.hot_active .p-ctrl-editer-list{
+            left:-300px;
+        }
+        .p-ctrl-editer.hot_active .p-ctrl-editer-detail{
+            left:0;
+            opacity: 1;pointer-events: auto;
+        }
+        .p-ctrl-editer ul{ list-style: none; margin:0;padding:0;display: block;color:#fff;}
+        .p-ctrl-editer-detail ul li{
+            /*margin:15px 0;min-height:36px;*/
+            margin: 12px 0;min-height: 28px;font-size: 12px;
+            padding:5px 0;
+        }
+        .p-ctrl-editer-detail ul li span{display:block;float:left;color:#fff;margin-right: 8px;margin-top: 5px;width: 30px;}
+        .p-ctrl-editer-detail ul li input,.p-ctrl-editer-area ul li select{height:25px;width:250px;background: none;border:1px solid #eee;color:#fff;padding:0 5px;}
+        .p-ctrl-editer-detail ul li select option{color:#000;padding:5px 0;}
+        .p-ctrl-editer-detail ul li textarea{
+            height:100px;width:200px;padding:5px;
+            background: none;border:1px solid #eee;color:#fff;
+        }
+        .p-ctrl-editer-detail button{
+            border:1px solid #fff;
+            background-color: transparent;
+            color:#fff;padding:5px 15px;margin-right: 15px;
+        }
+        .p-ctrl-editer-detail button.dis{
+            opacity: 0.5;
+        }
+        .p-ctrl-editer-list li{padding:5px;}
+        .p-ctrl-editer-list li:nth-child(n+2){
+            border-top:1px solid rgba(255,255,255,.2);
+        }
+        .p-ctrl-editer .close{
+            position: absolute;
+            right: 0;
+            width: 42px;
+            height: 42px;
+            top: 0;
+            background-color: rgba(0,0,0,.6);
+            text-align: center;
+            line-height: 42px;
+            margin-right: -42px;
+            color:#fff;
+        }
+        .p-ctrl-editer-preview{
+            position: absolute;
+            top:0;right:0;width:48px;height:48px;
+            background-color: rgba(0,0,0,.8);
+        }
+        .p-ctrl-editer.preview .p-ctrl-editer-area{
+            opacity: 0;pointer-events: none;
+        }
+        .modal{
+            position: absolute; z-index:9999;
+            width:100%;height:100%;top:0;left:0;
+            background-color: rgba(0,0,0,.2);
+            display: none;
+        }
+        .modal-wrap{
+            position: absolute;width:500px;height:400px;
+            top:50%;left:50%;margin-left:-250px;margin-top:-200px;
+            background-color: #fff;
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+        }
+        .modal .section{display:none;}
+        .modal .header {
+            line-height: 52px;
+            height: 52px;
+            position: relative;
+            padding: 0 20px;
+            background-color: #f4f5f9;
+            border-bottom: 1px solid #e7e7eb;
+            color: #222;
+            font-size: 15px;
+        }
+        .modal .header h3{margin:0;font-size:15px;color:#666;font-weight: normal;}
+        .modal .header a
+        {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 52px;
+            height: 52px;
+            line-height: 52px;
+            text-align: center;
+            cursor: pointer;
+            font-size: 28px;
+            font-weight: 500;
+            color: #9E9FA1;
+        }
+        .modal .content{
+            max-height: 485px;
+            overflow-y: auto;
+            position: relative;
+            padding: 5px 25px;
+            font-size: 14px;
+        }
+        .modal .footer{
+            position: absolute;bottom:0;left:0;width:100%;
+            padding: 16px 0;
+            background-color: #f4f5f9;
+            text-align: center;
+        }
+        .modal button{
+            border:none;outline: none;
+            min-width: 104px;
+            margin: 0 0.3em;padding:8px;
+            background-color: #00c1af;
+            color: #fff;
+        }
+        .modal input{
+            height: 42px;
+            margin-top: 20px;
+            outline: 0;
+            width: 100%;
+            display: block;
+            border: 1px solid #ddd;
+            padding:0 1em;
+            box-sizing: border-box;
+        }
+        .modal textarea{
+            margin:10px 0;
+            width:100%;height:200px;border:1px solid #ccc;
+            outline:none;
+            box-sizing: border-box;
+            padding:10px;
+        }
+        .modal input:hover{
+            border-color: #00c1af;
+        }
+
+        #j_item ul{border: 1px solid #00c1af;padding:0;margin:0;height:180px;overflow-y: auto;}
+        #j_item li{
+            list-style: none; height:32px;line-height: 32px;
+            border-bottom: 1px solid #e1e1e1;padding:8px;
+            cursor: pointer;
+        }
+        #j_item li:hover{
+            color: #00c1af;
+        }
+        .p-ctrl-editer-detail label{ width:60px;display: inline-block;line-height: 32px;}
+        .p-ctrl-editer-detail input[type=checkbox]{
+            display: inline-block;
+            padding: 0;
+            margin: 0;
+            height: auto;
+            width: auto;
+        }
+        input[type=number]::-webkit-outer-spin-button,
+        input[type=number]::-webkit-inner-spin-button {
+            -webkit-appearance: none !important;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+<div id="pano"></div>
+<div class="modal">
+    <div class="modal-wrap">
+        <div class="section" id="j_type_3">
+            <div class="header">
+                <h3>设置跳转全景ID</h3>
+                <a class="dialog-c js-close">×</a>
+            </div>
+            <div class="content">
+                <input type="text" class="j-cnt" value="" placeholder="请输入全景key"/>
+            </div>
+            <div class="footer"><button>确认</button></div>
+        </div>
+
+        <div class="section" id="j_type_4">
+            <div class="header">
+                <h3>设置介绍</h3>
+                <a class="dialog-c js-close">×</a>
+            </div>
+            <div class="content">
+                <textarea class="j-cnt" value="" placeholder="请输入全景介绍内容"></textarea>
+            </div>
+            <div class="footer"><button>确认</button></div>
+        </div>
+
+        <div class="section" id="j_type_5">
+            <div class="header">
+                <h3>设置关联文化</h3>
+                <a class="dialog-c js-close">×</a>
+            </div>
+            <div class="content">
+                <input type="text" id="j_culture_input" value="" placeholder="请输入搜索值"/>
+                <div id="j_item"></div>
+            </div>
+            <div class="footer"><button>确认</button></div>
+        </div>
+    </div>
+</div>
+<!--<div class="ctrl">
+    <div id="play_btn"></div>
+    <div id="progress">
+        <div class="mask"></div>
+        <div class="cur"></div>
+    </div>
+    <div id="time">-15:30</div>
+</div>-->
+<script>
+    var PANO_CFG_PATH = "/Panorama/";
+    var PANO_IMG_PATH = "/pano/";
+</script>
+<script src="/lib/jquery.js"></script>
+<script src="/lib/P_min.js"></script>
+<script src="/assets/js/app/pano_editer.js"></script>
+<!--<script src="http://l.hq.cn/lib/control/Editer.js"></script>-->
+<script>
+    var id = P.hash.get("panoid"),
+        heading = P.hash.get("heading") || 0,
+        pitch = P.hash.get("pitch") || 0;
+    if(id){
+        var p = P.pano("pano",{
+            "pano":id ,
+            "pov":{'heading':heading,'pitch':pitch}
+            //,disableDefaultUI:true
+            ,poiControl:false
+            ,albumControl:false
+            ,hashControl:true
+            ,addressControl:false
+            ,infoControl:false
+        });
+
+        p._addControl( editer(p).el );
+    }
+
+</script>
+</body>
+</html>

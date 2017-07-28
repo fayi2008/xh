@@ -1,0 +1,101 @@
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+    <title>微信安全支付</title>
+
+    <script type="text/javascript">
+
+        var flag = false;
+        function disablePay(v){
+            if(v === null)
+                $('btn-pay').removeAttribute('disabled');
+            else
+                $('btn-pay').setAttribute('disabled','disabled');
+        }
+
+        function $(id){
+            return document.getElementById(id);
+        }
+
+        //调用微信JS api 支付
+        function jsApiCall()
+        {
+            WeixinJSBridge.invoke(
+                    'getBrandWCPayRequest',
+                    {$jsApiParameters},
+            function(res){
+                //WeixinJSBridge.log(res.err_msg);
+                //alert(JSON.stringify());
+              // alert(JSON.stringify(res));
+
+                if(res.err_msg.indexOf('ok')>=0)
+                {
+                    //alert('{$url}');
+                    location.href='{$url}';
+                }else if(~res.err_msg.indexOf('cancel')){
+                    disablePay(null);
+                }else{
+                	//alert('{$url_error}');
+                    if('{$url_error}'!='')
+                    {
+                        location.href='{$url_error}';
+                    }else{
+                        alert(res.err_code+res.err_desc+res.err_msg);
+                    }
+                }
+            }
+        );
+        }
+
+        function callpay()
+        {
+            disablePay();
+            if (typeof WeixinJSBridge == "undefined"){
+                if( document.addEventListener ){
+                    document.addEventListener('WeixinJSBridgeReady', jsApiCall, false);
+                }else if (document.attachEvent){
+                    document.attachEvent('WeixinJSBridgeReady', jsApiCall);
+                    document.attachEvent('onWeixinJSBridgeReady', jsApiCall);
+                }
+            }else{
+                jsApiCall();
+            }
+        }
+    </script>
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link type="text/css" rel="stylesheet" href="/assets/css/dcpCss.css">
+    <style type="text/css">
+        #btn-pay[disabled]{
+            opacity: .65;
+        }
+    </style>
+</head>
+<body onload="callpay()">
+
+<div class="wrap">
+    <div class="nav">
+        <!--<a class="navBack" ></a>-->
+        <a class="navFont" >微信支付</a>
+    </div>
+    <div class="paid">
+        <div class="paidInfo">
+            <span>¥</span>
+            <span>{:$total_fee/100}</span>元
+        </div>
+    </div>
+    <div class="wxBody">
+        <div class="information bt clearfix">
+            <div class="item1 wxbg">商品信息</div>
+            <div class="item2">{$title}</div>
+        </div>
+        <div class="beneficiary clearfix">
+            <div class="item1 wxbg1">收款方</div>
+            <div class="item2">{$hotel}</div>
+        </div>
+    </div>
+    <div class="bottom1">
+        <a id="btn-pay" href="javascript:callpay();" >确定付款</a>
+    </div>
+</div>
+</body>
+</html>

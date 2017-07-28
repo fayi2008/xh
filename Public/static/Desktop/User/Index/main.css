@@ -1,0 +1,353 @@
+body,html{
+    background-color: #f1f1f1;
+}
+body{
+    background:url(/static/Desktop/Img/order/top.png) no-repeat center top;
+    background-size: 100% 400px;
+
+}
+.main{
+    overflow: hidden;
+}
+.main-box{
+    width: 830px;
+    float: left;
+    margin-left: 20px;
+    position: relative;
+}
+.top{
+    width: 1000px;
+    margin: 0 auto;
+    padding-top: 20px;
+}
+.head{
+    width: 135px;
+    height: 135px;
+    border-radius: 135px;
+    border: 2px solid #fff;
+    margin: 50px auto;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    background-position: center;
+    background-size: cover;
+    -ms-behavior: url(/static/Desktop/Public/backgroundsize.min.htc);
+    behavior: url(/static/Desktop/Public/backgroundsize.min.htc);
+}
+.head .update{
+    display: none;
+    position: absolute;
+    bottom:0px;
+    left: 0px;
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    background-color: #000;
+    opacity: 0.8;
+    color: #fff;
+}
+.head:hover .update{
+    display: block;
+}
+.name-box{
+    width: 100%;
+    text-align: center;
+    margin-bottom: 50px;
+}
+.name{
+    color: #fff;
+    text-align: center;
+    font-size: 18px;
+    height: 40px;
+    line-height: 40px;
+    display: inline-block;
+    margin: 0 auto;
+}
+.signout{
+    display: inline-block;
+
+    color: #fff;
+    cursor: pointer;
+}
+
+
+
+.bar{
+    width: 150px;
+    float: left;
+    background-color: #fff;
+
+}
+.bar>a{
+    display: block;
+    color: #000;
+    margin-bottom: 5px;
+    text-align: center;
+    background-color: #fff;
+    height: 40px;
+    line-height: 40px;
+    position: relative;
+}
+.bar>a.checked{
+    background-color: #3f89ec;
+    color: #fff;
+}
+.tool-box{
+    color: #000;
+    margin-bottom: 5px;
+    text-align: center;
+    background-color: #fff;
+
+    position: relative;
+}
+.tool-title{
+    height: 40px;
+    line-height: 40px;
+
+}
+.tool-name,.tool,.tool-box>a{
+    display: block;
+    color: #666;
+    height: 40px;
+    line-height: 40px;
+    cursor: pointer;
+    font-size: 12px;
+}
+.tool-box>a.checked{
+    background-color: #3f89ec;
+    color: #fff;
+}
+.hover-blue:hover{
+    background-color: #3f89ff;
+    color: #fff;
+}
+.update-box{
+    position: fixed;
+    background-color: #fff;
+    width: 600px;
+    left: 50%;
+    margin-left: -300px;
+    top: 50px;
+
+    z-index: 999999;
+    padding: 30px 50px;
+    box-sizing: border-box;
+}
+.update-title{
+    font-size: 20px;
+}
+.update-item {
+    padding: 10px 2px;
+    overflow: hidden;
+}
+
+.update-name{
+    float: left;
+    width: 25%;
+    height: 30px;
+    line-height: 30px;
+}
+.update-tool{
+    float: left;
+    width: 75%;
+    height: 30px;
+    line-height: 30px;
+}
+.update-tool>input{
+    height: 30px;
+    display: block;
+    width: 100%;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    padding-left: 10px;
+    box-sizing: border-box;
+}
+
+.update-tool .public_mobile{
+    height: 24px;
+    width: 24px;
+    margin:3px;
+}
+.update-but-box{
+    text-align: center;
+    margin-top: 20px;
+}
+.update-but{
+    display: inline-block;
+    width: 100px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.update-submit{
+    background-color: #3f89ec;
+    color: #fff;
+}
+.update-cancel{
+    color: #000;
+    margin-left: 50px;
+}
+.update-tips{
+    color: red;
+}
+/*/内容弹窗*/
+.submit-box{
+    position: fixed;
+    width: 300px;
+    top:100px;
+    left: 50%;
+    margin-left: -140px;
+    z-index: 99999;
+    padding: 20px;
+    background-color: #fff;
+}
+.submit-box-title{
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+}
+.image-box{
+    width: 300px;
+    height: 300px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url(/static/Desktop/Img/photo/add.jpg);
+    position: relative;
+}
+.image-box>input{
+    overflow: hidden;
+    width: 300px;
+    height: 300px;
+    position:absolute;
+    right:0;
+    top:0;
+    font-size:100px;
+    opacity: 0;
+    filter:Alpha(Opacity=0);
+}
+.image-box>#img{
+    overflow: hidden;
+}
+.image-box>#img>input{
+    overflow: hidden;
+    width: 300px;
+    height: 300px;
+    position:absolute;
+    right:0;
+    top:0;
+    font-size:54px;
+    opacity: 0;
+    filter:Alpha(Opacity=0);
+}
+#content{
+    display: block;
+    width: 300px;
+    height: 60px;
+    padding: 0;
+    margin: 0px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    margin-top: 10px;
+}
+.release-submit{
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    margin-top: 10px;
+    color: #fff;
+    cursor: pointer;
+    background-color: #3f89ec;
+}
+#image{
+    display: block;
+    width: 300px;
+    height: 300px;
+    opacity: 0;
+    cursor: pointer;
+}
+/**/
+
+.submit-box-close{
+    position: absolute;
+    top:-15px;
+    right: -15px;
+    width: 30px;
+    height: 30px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-image: url(/static/Desktop/Img/close.png);
+    background-position: center;
+    cursor: pointer;
+}
+
+.order{
+    width: 100px;
+    height: 100px;
+    position: fixed;
+    left: 50%;
+    margin-left: 510px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-image: url(/static/Desktop/Img/order/logo.png);
+    background-position: center;
+    cursor: pointer;
+    top: 80px;
+}
+
+
+.clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden}
+.clearfix{*zoom:1;}
+
+/**/
+.update-bar{
+    width: 100%;
+    height: 36px;
+    line-height: 36px;
+    overflow: hidden;
+}
+.update-bar>div{
+    height: 36px;
+    line-height: 36px;
+    float: left;
+    text-align: center;
+    width: 120px;
+    cursor: pointer;
+
+}
+.update-bar>div.checks{
+    background-color: #3f89ec;
+    color: #fff;
+}
+.u-box{
+    border-top: 1px solid #ccc;
+    padding-top: 10px;
+}
+.u1{
+    display: block;
+}
+.u2{
+    display: none;
+}
+.update-tool>input.yzm{
+    width: 70%;
+    float: left;
+}
+.send{
+    float: left;
+    width: 29%;
+    margin-left: 1%;
+    height: 30px;
+    text-align: center;
+    background-color: #3f89ec;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.update-submit2{
+    background-color: #3f89ec;
+    color: #fff;
+}

@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" href="assets/css/login.css"/>
+    <link rel="stylesheet" href="assets/css/main_tour.css"/>
+
+    <title>LOGOMAP</title>
+</head>
+<body>
+<div id="map_container"></div>
+
+<!--底部按钮-->
+<div class="article">
+
+    <div class="control">
+        <a id="j_toilet" class="icon-toilet">WC</a>
+        <a id="j_loc" class="icon-loc"></a>
+    </div>
+
+    <div class="nav show">
+        <div class="menu">
+            <a rel="1" class="food act" act-tips="1">找餐厅</a>
+            <a rel="0" class="hotel act" act-tips="1">找酒店</a>
+            <a rel="2" class="guide act" act-tips="2">找导游</a>
+            <a class="user" id="j_user">个人中心</a>
+        </div>
+        <div id="j_option" class="modal-options"></div>
+    </div>
+    <div class="mask"></div>
+</div>
+
+<div id="tips">
+    <a id="j_tips"></a>
+    <section>
+        <div id="j_tips_panel">请从下方选择您需要的服务</div>
+        <i></i>
+    </section>
+</div>
+<div id="cross"></div>
+
+<div id="infowindow" class="load-review">
+    <div class="article normal">
+        <div class="header">
+            <div class="mask" id="iw_mask"></div>
+            <div class="wrap">
+                <span id="iw_logo"></span>
+                <span id="iw_title"></span>
+                <p id="iw_address"></p>
+            </div>
+        </div>
+        <a class="close"></a>
+
+        <div class="section">
+            <div class="tab">
+                <ul>
+                    <li id="j_nav"><i class="icon navi"></i></li>
+                    <li><a href="" id="iw_phone"><i class="icon phone"></i></a></li>
+                    <!--<li id="iw_callme"><i class="icon callme"></i></li>-->
+                </ul>
+            </div>
+            <div id="iw_desc">旅舍很清静，有院子、有藤椅，老板是三个年轻的帅哥美女。</div>
+            <!--<div class="detail">查看详情</div>-->
+        </div>
+        <div class="footer">
+            <span class="want food" data-type="1">我要吃</span>
+            <span class="want hotel" data-type="0">我要住</span>
+        </div>
+    </div>
+
+    <div class="article full">
+        <header>
+            <div id="flipsnap" data-photos="<% = this.images | photos %>"><img src="assets/img/1.jpg" /></div>
+            <a id="j_close" class="close"></a>
+        </header>
+        <div class="section main">
+            <div class="icon-address">深圳市南山区华侨城.深南大道9003号</div>
+            <div class="icon-phone">电话预定 400 920 1234</div>
+        </div>
+        <div class="section detail">
+            <ul class="tab clr">
+                <!--<li class="select">优惠信息</li>-->
+                <li class="select">详情介绍</li>
+                <li id="j_review">用户评价</li>
+            </ul>
+            <ul class="content">
+                <!--<li class="more select">-->
+                    <!--<div class="item">-->
+                        <!--<p>马可·波罗假日酒店提醒您:今日19点57分,将会进入“霜降”节气.霜降是秋季的最后一个节气,是秋季到冬季的过渡节气.秋晚地面上散热很... 2014杭州植物园菊花展时间:10月28日开始地点:杭州植物园(杭州市西湖区桃源岭1号)门票:10元交通:从酒店出发步行至东坡路平海路口站</p>-->
+                    <!--</div>-->
+                <!--</li>-->
+                <li class=""></li>
+                <li id="j_review_cnt" class="modal-review">
+                    loading
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</div>
+<div id="j_modal_nav" class="modal-nav">
+    <iframe></iframe>
+</div>
+<div id="j_modal_agree" class="mod-agree">
+    <div class="wrap">
+        <div class="header">
+            <h2>您已预约成功！</h2>
+            <p>您可以去个人中心对商户进行评价</p>
+        </div>
+        <div class="footer">
+            <button class="navi">导航过去</button>
+            <button class="user">个人中心</button>
+        </div>
+        <a class="close">×</a>
+    </div>
+</div>
+
+<div id="iw" class="article info">
+    <div class="title">
+        <h3>您的需求已发送<span class="t1">至商家</span><span class="t2"></span></h3>
+        <p>请等待电话与您联系</p>
+    </div>
+    <div class="close"></div>
+    <div class="panel"></div>
+
+</div>
+
+<script type="text/template" id="tpl_option_0">
+    <div class="condition">
+        <ul>
+            <li class="select">住宿类型</li>
+            <li>人均消费</li>
+        </ul>
+    </div>
+
+    <div class="content">
+        <ul filter-key="type" filter-type="radio">
+            <li data-id="0" class="select">不限</li>
+            <li data-id="1">民宿客栈</li>
+            <li data-id="2">三星以下酒店</li>
+            <li data-id="3">四五星酒店</li>
+        </ul>
+        <ul filter-key="price" filter-type="radio">
+            <li data-id="0" class="select">不限</li>
+            <li data-id="1">100元以内</li>
+            <li data-id="2">100-200元</li>
+            <li data-id="3">200元以上</li>
+        </ul>
+    </div>
+    <div class="footer">
+        <button class="close"><span>取 消</span></button>
+        <button class="submit"><span>确 定</span></button>
+    </div>
+</script>
+
+<script type="text/template" id="tpl_option_1">
+    <div class="condition">
+        <ul>
+            <li class="select">就餐环境</li>
+            <li>人均消费</li>
+        </ul>
+    </div>
+
+    <div class="content">
+        <ul filter-key="type" filter-type="radio">
+            <li data-id="0" class="select">不限</li>
+            <li data-id="1">农家菜馆</li>
+            <li data-id="2">特色餐馆</li>
+            <li data-id="3">酒店餐馆</li>
+            <li data-id="4">本地小吃</li>
+        </ul>
+        <ul filter-key="price" filter-type="radio">
+            <li data-id="0" class="select">不限</li>
+            <li data-id="1">40元以内</li>
+            <li data-id="2">40-60元</li>
+            <li data-id="3">60元以上</li>
+        </ul>
+    </div>
+    <div class="footer">
+        <button class="close"><span>取 消</span></button>
+        <button class="submit"><span>确 定</span></button>
+    </div>
+</script>
+<script type="text/template" id="tpl_option_2">
+    <div class="guide">
+        <div class="guide-time">
+            <span id="j_guide_time">什么时候出发</span>
+
+            <input filter-key="time" filter-type="input" id="j_guide_picker" class="datepicker" type="datetime"/>
+        </div>
+    </div>
+    <div class="footer">
+        <button class="close"><span>取 消</span></button>
+        <button class="submit"><span>确 定</span></button>
+    </div>
+</script>
+
+<script type="text/template" id="tpl_info">
+<div class="header">
+    <span><% = this.name %> <em>距离<% = this.dist %></em></span>
+    <div class="logo" style="background-image: url(<% = this.icon %>)">
+        <span class="star" data-star="<% = (this.score / this.sum) %>"></span>
+    </div>
+    <span><% = this.addr[0] %> <em><% = this.addr[1] %></em></span>
+</div>
+<div class="footer">
+    <button id="j_switch" class="switch">换一家看看</button>
+    <button id="j_agree" class="agree">达成意向</button>
+</div>
+</script>
+
+<script type="text/template" id="tpl_tour">
+    <%
+        var data = this;for(var i in data){
+    %>
+    <div class="item" data-id="<% =data[i].id %>" data-rid="<% =data[i].request_id %>">
+        <div class="header"><img src="assets/img/avatar.png" alt=""/><span><% =data[i].name %> <em><% =data[i].level %></em></span>
+            <span class="star"><i></i>3.0</span>
+        </div>
+        <div class="more">
+            <ul>
+                <li><span>性别 :</span><% =data[i].sex %></li>
+                <li><span>年龄 :</span><% =data[i].age %></li>
+                <li><span>语种 :</span><% =data[i].lang %></li>
+                <li><span>单位 :</span><% =data[i].work_unit %></li>
+                <li><span>导游证编号 :</span><% =data[i].guide_no %></li>
+            </ul>
+            <a class="callme" href="tel:<% =data[i].tel %>">呼叫</a>
+
+            <div class="review" style="display: block">
+                <h3>游客评价</h3>
+                <div class="cnt modal-review">加载中</div>
+            </div>
+        </div>
+    </div>
+    <% } %>
+</script>
+
+<script type="text/template" id="tpl_review">
+    <%
+        if(this.status == 0){ return "";}
+        for(var i in this.data){
+    %>
+    <div class="item">
+        <h4><% =this.data[i].name %><span class="star" data-star="<% =this.data[i].score %>"><i></i></span></h4>
+
+        <p><% =this.data[i].evaluation %></p>
+        <span class="time"><% =this.data[i].date %></span>
+    </div>
+    <% } %>
+</script>
+
+</body>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=8lO6Y9WE9ea11T0bAVwQfmmX"></script>
+<script type="text/javascript" src="assets/app/jquery-2.1.4.min.js?{$js_version}"></script>
+<script type="text/javascript" src="assets/app/lm/lm.core.js?{$js_version}"></script>
+<script type="text/javascript" src="assets/app/lm/lm.utils.js?{$js_version}"></script>
+<script type="text/javascript" src="assets/app/lm/lm.main.js?{$js_version}"></script>
+<script type="text/javascript" src="assets/app/lm/lm.poi.js?{$js_version}"></script>
+<script type="text/javascript" src="assets/app/lm/lm.loc.js?{$js_version}"></script>
+<script type="text/javascript" src="assets/app/lm/lm.ui.js?{$js_version}"></script>
+<script type="text/javascript" src="assets/app/lm/lm.tour.js?{$js_version}"></script>
+<script type="text/javascript" src="assets/app/login.js?{$js_version}"></script>
+
+
+<script>
+ /*   $(function(){
+        $.LOGIN(function(v){
+
+        });
+    });*/
+</script>
+</html>

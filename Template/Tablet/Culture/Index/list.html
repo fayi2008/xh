@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta name="keywords" content="西湖,杭州西湖">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <title>杭州西湖</title>
+    <link href="/static/Tablet/Public/main.css" rel="stylesheet" type="text/css">
+    <link href="/static/public/swipe.css" rel="stylesheet" type="text/css">
+    <link href="/static/Tablet/Culture/Index/list.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="main">
+    <include file="../Template/Tablet/Home/Index/top.html"/>
+    <div class="tag-box"> <div class="tag"></div></div>
+    <div class="culture-c"></div>
+    <div class="culture-list">
+        <div class="last" data-page="0"></div>
+        <div class="culture-box">
+
+            <div class="culture-item">
+                <div class="culture-zz"></div>
+                <div class="culture-name"></div>
+            </div>
+            <div class="culture-item">
+                <div class="culture-zz"></div>
+                <div class="culture-name"></div>
+            </div>
+        </div>
+        <div class="next" data-page="0"></div>
+    </div>
+</div>
+</body>
+<script>
+    window.LIST_CATE = {$cate};
+    //console.log(LIST_CATE)
+</script>
+<script src="/static/public/jquery.js?{$js_version}"></script>
+<script src="/static/Tablet/Public/main.js?{$js_version}"></script>
+<script src="/static/Tablet/Culture/Index/list.js?{$js_version}"></script>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>游西湖</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="keywords" content="西湖,杭州西湖">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link href="/static/Mobile/css/m-comment-create.css" rel="stylesheet" type="text/css">
+    <link href="/static/Mobile/css/m-travels-detail.css" rel="stylesheet" type="text/css">
+    <link href="/static/Mobile/css/m-signin.css" rel="stylesheet" type="text/css">
+    <link href="/static/public/core.share.css" rel="stylesheet" type="text/css">
+</head>
+<body data-id="{$id}">
+    <div class="wrap">
+
+    </div>
+
+    <script type="text/template" id="comment">
+        <div class="comment-box">
+            <div class="box">
+                <textarea placeholder="写评论" name="" id="" cols="30" rows="10"></textarea>
+            </div>
+            <button>发表评论</button>
+        </div>
+    </script>
+    <script type="text/template" id="tpl">
+        <header>
+            <h3>{{this.title}}</h3>
+            <p>{{this.create_time+'000' | number | date("yyyy-MM-dd HH:mm:ss")}}</p>
+            <p class="author">作者: <i style="background: url({{this.head_img}}) no-repeat"></i> {{this.nickname}}</p>
+        </header>
+        <section>
+            {{this.content}}
+        </section>
+        <footer>
+            <div class="menu">
+                <a class="fav" data-id="{{this.id}}">{{this.support_num}}</a>
+                <a href="/travels/{{this.id}}/comment.html" class="comment">{{this.comment_count}}</a>
+                <a href='/travels/{{this.id}}/comment.html#!/create' class="comment-c">写评论</a>
+                <a class="share">分享</a>
+            </div>
+        </footer>
+    </script>
+    <script type="text/javascript">
+        var data = {$data};window.XH_SIGN="{$xh_sign}";
+    </script>
+    <script src="/static/public/jquery.js?{$js_version}"></script>
+    <script src="/static/public/core.base.js?{$js_version}"></script>
+    <script src="/static/public/core.mobile.js?{$js_version}"></script>
+    <script src="/static/Mobile/js/m-comment-create.js?{$js_version}"></script>
+    <script src="/static/Mobile/js/m-travels-detail.js?{$js_version}"></script>
+    <script src="/static/public/jquery.qrcode.min.js?{$js_version}"></script>
+</body>
+</html>

@@ -1,0 +1,303 @@
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <title> 资源文件结构</title>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+       <link href="/assets/css/bs3/dpl-min.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/css/bs3/bui-min.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/css/page-min.css" rel="stylesheet" type="text/css" />   <!-- 下面的样式，仅是为了显示代码，而不应该在项目中使用-->
+   <link href="/assets/css/prettify.css" rel="stylesheet" type="text/css" />
+       <link href="/assets/css/hqtec.css" rel="stylesheet"> 
+   <style type="text/css">
+    code {
+      padding: 0px 4px;
+      color: #d14;
+      background-color: #f7f7f9;
+      border: 1px solid #e1e1e8;
+    }
+   </style>
+ </head>
+ <body>
+  
+  <div class="container">
+    <div class="row">
+      <form id="J_Form" class="form-horizontal span24" action='/WapCollection/Collection/collection' method='post'>
+        <div class="row">
+          <div class="control-group span8">
+            <label class="control-label"><s>*</s>名称：</label>
+            <div class="controls">
+              <input name="TITLE" type="text" data-rules="{required:true}" class="input-normal control-text">
+            </div>
+          </div>
+  
+        </div>
+				<div class="row">
+					<div class="control-group span8">
+						<label class="control-label"><s>*</s>类型：</label>
+						<div class="controls">
+							<select data-rules="{required:true}" name="TYPE" id="TYPE"
+								class="input-normal">
+								<option value="">请选择</option>
+								<option value="1">资讯</option>
+								<option value="2">文化</option>
+							</select>
+						</div>
+					</div>
+				</div>
+
+
+
+
+		<div class="row">				
+					<label class="control-label control-image">图片url：</label>	
+						<div class="control-group span12">
+						<div id="J_Uploader">
+							<input type="hidden" name='THUMB' value='' id='THUMB'>
+						</div>
+
+					</div>
+				</div>
+
+				<div class="row">					
+					<label class="control-label control-image">相册：</label>
+						<div class="control-group span12">
+						<div id="J_Uploader2">
+							<input type="hidden" name='MANY_IMAGE' value='' id='MANY_IMAGE'>
+						</div>
+					</div>
+
+
+				</div>
+
+
+
+
+
+
+
+
+
+
+				
+  		     <div class="row"   >
+        <div class="control-group span24">
+          <label class="control-label">内容：</label>
+         <div class="controls" style='height: auto;margin-bottom: 15px;'>
+       		 <script id="editor" name="CONTENT" type="text/plain" style="width:700px;height:250px;"></script>
+		</div>
+        </div>
+    </div>  
+        
+  
+      <div class="row"></div>
+                 <div class="row">
+              <div class="form-actions offset3">
+                <button type="submit" class="button button-save">保存</button>
+               
+              </div>
+            </div>
+      </form>
+    </div>
+    
+
+  </div>
+  <script type="text/javascript" src="/assets/js/jquery-1.8.1.min.js?{$js_version}"></script>
+  <script type="text/javascript" src="/assets/js/bui-min.js?{$js_version}"></script>
+
+  <script type="text/javascript" src="/assets/js/config-min.js?{$js_version}"></script>
+  <script type="text/javascript">
+    BUI.use('common/page');
+  </script>
+  <!-- 仅仅为了显示代码使用，不要在项目中引入使用-->
+  <script type="text/javascript" src="/assets/js/prettify.js?{$js_version}"></script>
+  <script type="text/javascript">
+    $(function () {
+      prettyPrint();
+    });
+
+ 
+  </script> 
+    <script type="text/javascript">
+      BUI.use('bui/form',function(Form){
+          new Form.HForm({
+        srcNode : '#J_Form',
+        submitType : 'ajax',
+        callback : function(data){
+          if(data.status==1){
+        	  alert('添加成功');
+        	  window.location.href=data.url
+        	  
+          }
+        }
+      }).render();
+ 
+     
+ 
+      });
+    </script>
+
+        <script type="text/javascript">
+        BUI.use('bui/uploader',function (Uploader) {
+          
+      /**
+       * 返回数据的格式
+       *
+       *  默认是 {url : 'url'},否则认为上传失败
+       *  可以通过isSuccess 更改判定成功失败的结构
+       */
+       
+       //添加自定义主题
+       Uploader.Theme.addTheme('imageView', {
+         elCls: 'imageViewTheme',
+         //可以设定该主题统一的上传路径
+        // url: '../../../test/upload/upload.php',
+       
+         queue:{
+           //结果的模板，可以根据不同状态进进行设置
+           resultTpl: {
+             'default': '<div class="default">{name}</div>',
+             'success': '<div class="success"><img src="/upload/{file}" /></div>',
+             'error': '<div class="error"><span class="uploader-error">{msg}</span></div>',
+             'progress': '<div class="progress"><div class="bar" style="width:{loadedPercent}%"></div></div>'
+           }
+         }
+       });
+      var uploader = new Uploader.Uploader({
+    	 theme: 'imageView',
+        render: '#J_Uploader',
+        url : 'http://{$httphost}/index.php/WapCollection/Collection/upload/',
+        //可以直接在这里直接设置成功的回调
+        success: function(result){
+        },
+        isSuccess : function(result){
+        	
+            if(result.status){
+                return true;
+              }
+              return false;
+        },
+        //失败的回调
+        error: function(result){
+        },
+    	rules: {
+	          //文的类型
+	          ext: ['.png,.jpg','文件类型只能为{0}'],
+	          //上传的最大个数
+	          max: [1, '文件的最大个数不能超过{0}个'],
+	          //文件大小的最小值,这个单位是kb
+	          minSize: [10, '文件的大小不能小于{0}KB'],
+	          //文件大小的最大值,单位也是kb
+	          maxSize: [1024, '文件大小不能大于1M']
+	        }
+      }).render();
+ 
+      //上传成功时会触发
+      uploader.on('success', function(ev){
+        var result = ev.result;
+        $("#THUMB").val(result.file);
+       
+        
+      })
+ 
+      //上传成功时会触发
+      uploader.on('error', function(ev){
+        var result = ev.result;
+        alert('上传失败');
+      });
+    });
+        var file = [];
+		BUI
+				.use(
+						'bui/uploader',
+						function(Uploader) {
+
+							//添加自定义主题
+							Uploader.Theme
+									.addTheme(
+											'imageView',
+											{
+												elCls : 'imageViewTheme',
+												//可以设定该主题统一的上传路径
+												// url: '../../../test/upload/upload.php',
+
+												queue : {
+													//结果的模板，可以根据不同状态进进行设置
+													resultTpl : {
+														'default' : '<div class="default">{name}</div>',
+														'success' : '<div class="success"><img src="/upload/{file}"  /> <input name="MANY_IMAGE[]" value="{file}"/></div>',
+														'error' : '<div class="error"><span class="uploader-error">{msg}</span></div>',
+														'progress' : '<div class="progress"><div class="bar" style="width:{loadedPercent}%"></div></div>'
+													}
+												}
+											});
+
+							/**
+							 * 返回数据的格式
+							 *
+							 *  默认是 {url : 'url'},否则认为上传失败
+							 *  可以通过isSuccess 更改判定成功失败的结构
+							 */
+							var uploader = new Uploader.Uploader({
+								theme : 'imageView',
+								render : '#J_Uploader2',
+								// url : '/index.php/Panorama/admin/upload/',
+								url : 'http://{$httphost}/index.php/Gis/admin/upload/',
+								//可以直接在这里直接设置成功的回调
+								success : function(result) {
+								},
+								isSuccess : function(result) {
+
+									if (result.status) {
+										return true;
+									}
+									return false;
+								},
+								//失败的回调
+								error : function(result) {
+								},
+								rules : {
+									//文的类型
+									ext : [ '.png,.jpg', '文件类型只能为{0}' ],
+									//上传的最大个数
+									max : [ 50, '文件的最大个数不能超过{0}个' ],
+									//文件大小的最小值,这个单位是kb
+									minSize : [ 10, '文件的大小不能小于{0}KB' ],
+									//文件大小的最大值,单位也是kb
+									maxSize : [ 1024, '文件大小不能大于1M' ]
+								}
+							}).render();
+
+							//上传成功时会触发
+							uploader.on('success', function(ev) {
+								var result = ev.result;
+								file.push(result.file);
+
+							})
+
+							//上传成功时会触发
+							uploader.on('error', function(ev) {
+								var result = ev.result;
+								
+								BUI.Message.Alert('上传失败','error');
+							});
+						});
+
+    </script>
+    <script type="text/javascript" charset="utf-8"
+		src="/ueditor/ueditor.config.js?{$js_version}"></script>
+	<script type="text/javascript" charset="utf-8"
+		src="/ueditor/ueditor.all.min.js?{$js_version}">
+		
+	</script>
+    
+    <script type="text/javascript">
+		//实例化编辑器
+		//建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
+		var ue = UE.getEditor('editor');
+		
+
+	
+	</script>
+
+</body>
+</html> 

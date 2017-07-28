@@ -1,0 +1,123 @@
+body{
+    background:url("/static/Desktop/Img/order/top.png") no-repeat center top;
+    background-size: 100% auto;
+}
+.tool{
+    margin-top: 10px;
+}
+.main{
+    width: 1000px;
+    margin: 10px auto;
+}
+.status-list{
+    height: 70px;
+    background-color: #fff;
+}
+.status-list>div{
+    float: left;
+    box-sizing: border-box;
+    width: 33.3333%;
+    text-align: center;
+    height: 70px;
+    line-height: 70px;
+    position: relative;
+    font-size: 18px;
+    cursor: pointer;
+}
+.status-list>div.check{
+    color: #3f89ec;
+}
+.status-list>div.check:after{
+    position: absolute;
+    height: 2px;
+    background-color: #3f89ec;
+    bottom:0px;
+    width: 100px;
+    left: 50%;
+    margin-left: -50px;
+    content: '';
+}
+
+/*订单列表*/
+.item{
+    width: 1000px;
+    height: 210px;
+    padding-left: 220px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 160px;
+    position: relative;
+    margin-top: 20px;
+    background-color: #fff;
+    box-sizing: border-box;
+}
+.item-img{
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    left: 5px;
+    top:5px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-size: cover;
+    -ms-behavior: url(/static/Desktop/Public/backgroundsize.min.htc);
+    behavior: url(/static/Desktop/Public/backgroundsize.min.htc);
+
+}
+.item-content{
+    height: 200px;
+    width: 100%;
+    padding-top: 10px;
+    box-sizing: border-box;
+}
+.item-content>div{
+    height: 36px;
+    line-height: 36px;
+}
+.item-title{
+    display: inline-block;
+    width: 100px;
+}
+
+.item-show{
+
+    display: inline-block;
+    width: 200px;
+}
+.item-prize{
+    height: 155px;
+    width: 155px;
+    border-left: 1px solid #f5f4f4;
+    position: absolute;
+    right: 5px;
+    top:27.5px ;
+}
+
+.item-prize>div{
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    font-size: 18px;
+}
+.price{
+    color: #e64b4b;
+    font-weight: bold;
+}
+
+
+/*/订单列表*/
+.page{
+    position: relative;
+}
+
+.o-btn{
+    height: 40px;
+    line-height: 40px;
+    width: 80%;
+    margin-left: 10%;
+    border-radius: 2px;
+    background-color: #be1430;
+    color: #fff;
+    cursor: pointer;
+}

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>西湖</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="keywords" content="西湖,杭州西湖">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link href="/static/Mobile/css/m-map.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=8lO6Y9WE9ea11T0bAVwQfmmX"></script>
+
+</head>
+<body>
+    <div class="wrap">
+        <div class="map" id="j_map_container">
+
+        </div>
+        <div class="control">
+            <a class="culture"></a>
+            <a class="loc"></a>
+            <a class="here" id="j_center"></a>
+        </div>
+        <nav>
+            <a class="select" data-id="2">景点</a>
+            <a data-id="1">商铺</a>
+            <a data-id="3">公共</a>
+            <a data-id="4">厕所</a>
+            <a data-id="5">空中全景</a>
+        </nav>
+
+        <div class="search">
+            <input type="text" id="j_sug_key" name="key" placeholder="搜索景点"/>
+            <a class="close"></a>
+            <div class="suggest" id="j_sug_result">
+                <script type="text/template" id="tpl_suggest">
+                    <ul>
+                        <each this.data>
+                            <li data-id="{{id}}">
+                                <h4>{{name}}</h4>
+                                <span>{{address}}</span>
+                            </li>
+                        </each>
+                    </ul>
+                </script>
+            </div>
+        </div>
+
+        <section class="box-culture">
+            <script id="popup-culture" type="text/template">
+            <h3>{{this.pano.title}} <a class="ic-vol show" id="culture_vol"></a></h3>
+            <div>
+                <ul>
+                    <each this.pano.attrs>
+                        <iif value>
+                            <li><span>{{name}}</span>{{value}}</li>
+                        </iif>
+                    </each>
+                </ul>
+            </div>
+            <div class="menu">
+                <a href="/panorama#panoid={{this.pano.pano_key}}&x={{this.pano.h_lon}}&y={{this.pano.h_lat}}&z={{this.pano.z_index}}" class="button">相关全景</a>
+                <a href="/culture/{{this.pano.id}}.html" class="button">文化详情</a>
+            </div>
+            <a class="close">×</a>
+            </script>
+        </section>
+        <section class="infowindow">
+            <script id="popup" type="text/template">
+                <div class="header">
+                    <div style="background-image:url({{this.image}})" class="thumb"></div>
+                    <a class="close"></a>
+                </div>
+                <h3>{{this.name}}<a class="ic-vol" id="j_vol"></a><a class="ic-camera" id="j_camera"></a></h3>
+                <div class="cnt">{{this.content | left(64)}}</div>
+                <div class="menu">
+                    <a class="button pano" id="j_pano" href="/panorama#poi={{this.id}}">全景</a>
+                    <a class="button" id="j_nav" data-id="{{this.id}}">导航</a>
+                </div>
+            </script>
+        </section>
+        <section class="contact_box">
+            <div class="title"><a class="close"></a></div>
+            <ul id="j_subscribe_call">
+                <li class="contact_audio" >语音</li>
+                <li class="contact_vedio">视频</li>
+            </ul>
+        </section>
+        <section class="audio_confirm_box">
+                <h3></h3>
+                <div>
+                    <p>是否自动播放语音?</p>
+                </div>
+                <div class="menu">
+                    <a href="javascript:void(0);" class="button yes_btn">是</a>
+                    <a href="javascript:void(0);" class="button no_btn">否</a>
+                </div>
+                <a class="close">×</a>
+        </section>
+    </div>
+    <audio src="" id="j_audio" autoplay="autoplay"></audio>
+    <script>
+        window.USER_DATA = {:$user?$user:'[]'};
+        window.contact_phone="{:C('CONTACT_PHONE')}";
+        window.useapp="{$useapp}";
+    </script>
+    <script src="/static/public/jquery.js?{$js_version}"></script>
+    <script src="/static/public/core.base.js?{$js_version}"></script>
+    <script src="/static/public/core.map.js?{$js_version}"></script>
+    <script src="/static/Mobile/js/m-map.js?{$js_version}"></script>
+
+</body>
+</html>

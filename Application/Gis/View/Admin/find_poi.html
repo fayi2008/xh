@@ -1,0 +1,86 @@
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <title> 搜索表单</title>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/assets/css/bs3/dpl-min.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/css/bs3/bui-min.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/css/page-min.css" rel="stylesheet" type="text/css" />
+    
+ </head>
+ <body>
+  
+  <div class="container">
+  	 <div><input type="hidden" id="lon" value="{$lon}"></div>
+     <div><input type="hidden" id="lat" value="{$lat}"></div>
+     <div><input type="hidden" id="name" value="{$name}"></div>
+     <div><input type="hidden" id="address" value="{$address}"></div>
+    <!-- <div class="search-grid-container"> -->
+      <div id="allmap" style='width: 100%;height:600px;overflow: hidden;margin:0;font-family:"微软雅黑";'></div>
+    <!-- </div> -->
+  </div>
+  <script type="text/javascript" src="/assets/js/jquery-1.8.1.min.js?{$js_version}"></script>
+  <script type="text/javascript" src="/assets/js/bui-min.js?{$js_version}"></script>
+  <script type="text/javascript" src="/assets/js/config-min.js?{$js_version}"></script>
+  <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=8lO6Y9WE9ea11T0bAVwQfmmX"></script>
+<script type="text/javascript">
+/* 	var map = new BMap.Map("allmap");//在container容器中创建一个地图,参数container为div的id属性; */
+	var pi = 3.14159265358979324;
+	var a = 6378245.0;
+	var ee = 0.00669342162296594323;
+	var x_pi = 3.14159265358979324 * 3000.0 / 180.0;
+
+	var gcj2bd = function(y , x){
+		var z = Math.sqrt(x*x + y*y) + 0.00002 * Math.sin(y * x_pi);
+
+		var theta = Math.atan2(y, x) + 0.000003 * Math.cos(x * x_pi);
+		var bd_lon = z * Math.cos(theta) + 0.0065;
+		var bd_lat = z * Math.sin(theta) + 0.006;
+		return [bd_lat , bd_lon];
+	};
+
+	var nw = gcj2bd(parseFloat($("#lat").val()) , parseFloat($("#lon").val()));
+
+	var lon = nw[1];
+	var lat = nw[0];
+	//var lon = $("#lon").val();
+	//var lat = $("#lat").val();
+
+	var name = $("#name").val();
+	var address = $("#address").val();
+/* 	map.centerAndZoom(new BMap.Point(lon, lat), 11);//定位
+	 map.addControl(new BMap.MapTypeControl()); 
+	var local = new BMap.LocalSearch(map, {
+		renderOptions:{map: map}
+	}); */
+	
+	
+	var mapOption = {
+			mapType: BMAP_NORMAL_MAP,
+			maxZoom: 18,
+			drawMargin:0,
+			enableFulltimeSpotClick: true,
+			enableHighResolution:true
+		}
+	var map = new BMap.Map("allmap", mapOption);
+	var testpoint = new BMap.Point(lon, lat);
+	var marker=new BMap.Marker(testpoint);
+	marker.enableDragging();
+	map.addOverlay(marker);  
+	map.centerAndZoom(testpoint, 15);
+	var opts = {
+	  width : 200,     // 信息窗口宽度
+	  height: 100,     // 信息窗口高度
+	  title : name , // 信息窗口标题
+	  enableMessage:true,//设置允许信息窗发送短息
+	  message:""
+	}
+	var infoWindow = new BMap.InfoWindow(address, opts);  // 创建信息窗口对象 
+	marker.addEventListener("click", function(){          
+		map.openInfoWindow(infoWindow,testpoint); //开启信息窗口
+	});
+</script>
+ 
+</body>
+</html>  
+

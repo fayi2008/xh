@@ -1,0 +1,149 @@
+body,html{
+    background-color: #ededed;
+}
+.main{
+    width: 1000px;
+    margin: 0 auto;
+}
+.crumbs{
+    background-color: #fff;
+    margin-top: 20px;
+    height: 40px;
+    line-height: 40px;
+    padding-left: 20px;
+    box-shadow: 1px 1px 1px #aaa;
+}
+.way-detail-title{
+    width: 1000px;
+    overflow: hidden;
+    font-size: 20px;
+    height: 36px;
+    line-height: 36px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.way-detail-title>span{
+    font-size: 20px;
+}
+.collect{
+    width: 90px;
+    height: 36px;
+    float: right;
+    background-color: #ee4970;
+    margin-right:20px;
+    color: #fff;
+    text-align: center;
+    line-height: 36px;
+    font-size: 14px;
+    cursor: pointer;
+}
+.way-detail-box{
+    padding: 20px;
+    box-shadow: 1px 1px 1px #aaa;
+    background-color: #fff;
+    position: relative;
+}
+.line{
+    position: absolute;
+    width: 1px;
+    height: 80%;
+    left:41px;
+    top:41px;
+    background-image: url(/static/Desktop/Img/way/line.png);
+    background-position: center;
+    background-size: 100% auto;
+    background-repeat: repeat-y;
+    z-index: 9;
+}
+.way-day{
+    z-index: 99;
+    position: relative;
+    margin-top: 20px;
+}
+.way-day:before{
+    margin-top: 0;
+}
+.to-map{
+    float: right;
+    width: 90px;
+    height: 36px;
+    float: right;
+    background-color: #3f89ec;
+
+    color: #fff;
+    text-align: center;
+    line-height: 36px;
+    font-size: 14px;
+}
+.way-day-number{
+    display: inline-block;
+    width: 44px;
+    height: 44px;
+    border-radius: 44px;
+    line-height: 44px;
+    color: #fff;
+    text-align: center;
+    font-size: 20px;
+    background-color: #3f89ec;
+
+}
+.way-day-number-name{
+    font-size: 20px;
+    display: inline-block;
+    margin-left: 10px;
+}
+.way-day-name{
+    font-size: 16px;
+    display: inline-block;
+    margin-left: 5px;
+}
+.way-finger{
+    width: 16px;
+    height: 15px;
+    display: inline-block;
+    background-image: url(/static/Desktop/Img/way/way_finger.png);
+    background-position: center;
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+}
+.way-tour{
+    z-index: 99;
+    position: relative;
+    margin-top: 20px;
+}
+.way-tour-name-box{
+    height: 44px;
+    line-height: 44px;
+}
+.way-tour-name{
+    font-size: 26px;
+    margin-left: 5px;
+}
+.way-tour-time{
+    color: #a3a3a3;
+    margin-left: 5px;
+}
+.way-tour-tip{
+    width: 44px;
+    height: 44px;
+    display: inline-block;
+    color: transparent;
+    background-image: url(/static/Desktop/Img/way/detail_tips.png);
+    background-position: center;
+    background-size: auto;
+    background-repeat: no-repeat;
+}
+.way-tour-img{
+    padding-left: 44px;
+
+}
+.way-tour-img>img{
+    display: block;
+    max-width: 100%;
+}
+.way-tour-content{
+    padding-left: 44px;
+    line-height: 120%;
+    margin-top: 5px;
+
+}

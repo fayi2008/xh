@@ -1,0 +1,173 @@
+body,html{
+    background-color: #f1f1f1;
+}
+.main{
+
+    margin: 0 auto;
+}
+.crumbs{
+    width: 1000px;
+    margin: 0 auto;
+    background-color: #fff;
+    margin-top: 20px;
+    height: 40px;
+    line-height: 40px;
+    padding-left: 20px;
+    box-shadow: 1px 1px 1px #aaa;
+    box-sizing: border-box;
+}
+
+.box{
+    width: 1000px;
+    margin: 0 auto;
+    background-color: #fff;
+    margin-top: 20px;
+    padding: 30px;
+    box-sizing: border-box;
+}
+.title-box{
+    height: 50px;
+    line-height: 50px;
+    overflow: hidden;
+
+}
+.title-tool{
+    display: inline-block;
+    float: right;
+    overflow: hidden;
+}
+.title-tool>div,.title-tool>a{
+    display: inline-block;
+    width: 150px;
+    overflow: hidden;
+    height: 40px;
+    line-height: 40px;
+    margin-top: 5px;
+    background-color: #3f89ec;
+    text-align: center;
+    margin-right: 10px;
+    color: #fff;
+    border-radius: 5px;
+}
+.content-box,.comment-box,.comment-list{
+    margin-top: 20px;
+    overflow: hidden;
+}
+.comment-list>li{
+    padding-left: 100px;
+    position: relative;
+}
+.comment-list>li{
+    margin-bottom: 20px;
+}
+.content-view,.comment-item{
+    border: 1px solid #ccc;
+    padding: 20px;
+}
+.content-head,.comment-head,.comment-list-head{
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    border-radius: 80px;
+    left: 10px;
+    top:0px;
+    box-shadow: 0 0 1px #ccc;
+}
+.comment-list-head{
+    background-repeat:no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-size: cover;
+    -ms-behavior: url(/static/Desktop/Public/backgroundsize.min.htc);
+    behavior: url(/static/Desktop/Public/backgroundsize.min.htc);
+}
+.comment-submit{
+    width: 100px;
+    line-height: 40px;
+    height: 40px;
+    background-color: #3f89ec;
+    text-align: center;
+    margin-top: 10px;
+    color: #fff;
+    float: right;
+    cursor: pointer;
+}
+.plText{
+    height: 30px;
+    line-height: 30px;
+    padding-left: 10px;
+    background-color: #d9e7fb;
+    border-left: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    color: #3f89ec;
+}
+#plText{
+    width: 100%;
+    height: 100px;
+
+    border-left: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    border-top:none;
+    box-sizing: border-box;
+    display: block;
+    padding: 10px;
+    margin: 0px;
+
+
+}
+
+.dianzan{
+    color: #ffffff;
+    cursor: pointer;
+}
+.dianzan:before,.pinglun:before,.chuanjian:before{
+    content: '';
+    padding: 5px 10px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url(/static/Desktop/Img/travel/dz.png);
+    margin-right: 5px;
+}
+.pinglun:before{
+    background-image: url(/static/Desktop/Img/travel/pl.png);
+}
+.chuanjian:before{
+    background-image: url(/static/Desktop/Img/travel/bj.png);
+}
+.dianzan>span,.pinglun>span{
+    color: #ffffff;
+}
+.create_time{
+    color: #d9d9d9;
+    margin-left: 10px;
+}
+.comment-item-view{
+    margin-top: 10px;
+}
+.next-page{
+    text-align: center;
+    height: 36px;
+    border: 1px solid #ccc;
+    line-height: 36px;
+    cursor: pointer;
+}
+.times{
+    margin-left: 10px;
+    color: #ccc;
+}
+.content{
+    margin-top: 10px;
+}
+.img>img{
+    max-width: 100%;
+}
+.desc{
+    margin-top: 10px;
+}
+.data-author-title{
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+}

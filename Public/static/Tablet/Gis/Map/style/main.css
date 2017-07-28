@@ -1,0 +1,27 @@
+.top {
+  -webkit-box-shadow: 0 0 5px #ccc;
+          box-shadow: 0 0 5px #ccc;
+  z-index: 1;
+  position: relative;
+}
+.top .top-bar a:nth-child(2) {
+  color: #1d9c95;
+}
+.map {
+  padding-left: 0;
+  padding-top: 100px;
+}
+.map .cat {
+  top: auto;
+  bottom: 40px;
+}
+.map .cat h3:after {
+  -webkit-transform: rotate(-180deg);
+      -ms-transform: rotate(-180deg);
+          transform: rotate(-180deg);
+}
+.map .cat.active h3:after {
+  -webkit-transform: rotate(0deg);
+      -ms-transform: rotate(0deg);
+          transform: rotate(0deg);
+}

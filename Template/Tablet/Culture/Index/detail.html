@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta name="keywords" content="西湖,杭州西湖">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <title>杭州西湖</title>
+    <link href="/static/Tablet/Public/main.css" rel="stylesheet" type="text/css">
+    <link href="/static/public/swipe.css" rel="stylesheet" type="text/css">
+    <link href="/static/Tablet/Culture/Index/detail.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="main">
+    <include file="../Template/Tablet/Home/Index/top.html"/>
+    <div class="bar"></div>
+    <div class="culture-detail">
+        <div class="culture-detail-left">
+            <div class="datas-name">{:json_decode($data,true)['data']['title']}</div>
+            <div class="datas-pic-list">
+                <div class="datas-pic-left"></div>
+                <div class="datas-pic-right"></div>
+            </div>
+        </div>
+        <div class="culture-detail-right">
+            <div>
+                <div class="item-desc">
+                    <h1>简介</h1>
+                    <div class="item-desc-font"></div>
+                </div>
+                <div class="item-list">
+                    <div class="item-list-wh"><span class="item-list-wh-title"></span><span
+                            class="item-list-wh-desc"></span></div>
+                </div>
+                <div class="item-content"></div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    window.CULTURE = {$data};
+    //console.log(CULTURE)
+</script>
+<script src="/static/public/jquery.js?{$js_version}"></script>
+<script src="/static/public/iscroll.js?{$js_version}"></script>
+<script src="/static/Tablet/Public/main.js?{$js_version}"></script>
+<script src="/static/Tablet/Culture/Index/detail.js?{$js_version}"></script>
+</html>

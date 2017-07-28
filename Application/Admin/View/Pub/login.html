@@ -1,0 +1,170 @@
+<!doctype html>
+<html class="">
+	<head>
+		<meta charset="UTF-8" />
+		<title>系统后台</title>
+		<link href='__STATIC__/favicon.ico' rel='shortcut icon'>
+		<meta http-equiv="X-UA-Compatible" content="chrome=1,IE=edge" />
+		<meta name="robots" content="noindex,nofollow">
+		<link href="/assets/css/login.css{$js_debug}" rel="stylesheet" />
+		<!--<script type="text/javascript">
+			if (window.parent !== window.self) {
+				document.write = '';
+				window.parent.location.href = window.self.location.href;
+				setTimeout(function() {
+					document.body.innerHTML = '';
+				}, 0);
+			}
+		</script>-->
+	</head>
+	<body>
+    <!--<div class="logo"></div>-->
+		<div class="wrap gov" style="height:350px;">
+			<!--<h1><a target="_blank" href="__ROOT__">酒店后台管理中心</a></h1>-->
+			<form method="post" name="login" action="{:U('dologin')}" autoComplete="off" onsubmit="return false;">
+				<div class="login">
+					<ul>
+						<li>
+							<input class="input userName" id="J_admin_name"  name="username" type="text" placeholder="用户名" title="帐号名" />
+					        <div id="wrongName"></div>
+							</li>
+						<li>
+							<input class="input pwd" id="admin_pwd" type="password"  name="password"   placeholder="密码"/>
+
+
+                            <div id="wrongPwd"></div>
+							</li>
+						<!--<li id="J_verify_code" style='display:none'>-->
+							<!--<div>-->
+								<!--{:show_verify_img('length=4&height=50&width=238&size=26')}-->
+							<!--</div>-->
+						<!--</li>-->
+						<li>
+							<input class="input verify_code" id="verifyCode"  type="text" name="verify" placeholder="验证码" onfocus="disappearCode()" />
+                            <div id="J_verify_code">
+                                {:show_verify_img('length=4&height=42&width=100&size=14')}
+                            </div>
+                            <div id="wrongCode"></div>
+                            <div>
+                                <a  onclick="$('#J_verify_code').show().find('img').click()"><div id="refreshCode"  ></div></a>
+                            </div>
+
+                        </li>
+
+					</ul>
+                    <!--<input type="hidden" name="ajax" value="1" />-->
+
+                    <!--2016-03-04-->
+                    <!--<a href="{:U('sendMail')}"><div class="rememberPwd">忘记密码？</div></a>-->
+					<button type="submit" name="submit"  class="J_ajax_submit_btn btn" onclick="doAjax()">登录</button>
+
+				</div>
+                <!--<div class="copy-box">-->
+                    <!--<div><a href="http://www.hqtec.cn/">关于我们</a>|<a href="http://www.hqtec.cn/">帮助中心</a>|<a href="http://www.hqtec.cn/">联系我们</a></div>-->
+                    <!--<div><span>&copy</span>红权科技 版权所有</div>-->
+                <!--</div>-->
+			</form>
+		</div>
+
+        <!-- Link to Google CDN's jQuery + jQueryUI; fall back to local -->
+
+        <!--[if lt IE 9]>
+         <script src="/assets/js/jquery-1.8.1.min.js?{$js_version}"></script>
+        <![endif]-->
+        <!--[if gte IE 9]><!-->
+        <script src="/assets/js/jquery-1.8.1.min.js?{$js_version}"></script>
+        <!--<![endif]-->
+
+        <script src="/assets/js/jquery.placeholder.min.js?{$js_version}"></script>
+		<script>
+
+			(function() {
+				document.getElementById('J_admin_name').focus();
+			})();
+
+             //$('input,textarea').placeholder();
+
+
+            if (navigator.userAgent.toLowerCase().indexOf("chrome") >= 0) {
+                $(window).load(function(){
+                    $('input:-webkit-autofill').each(function(){
+                        var text = $(this).val();
+                        var name = $(this).attr('name');
+                        $(this).after(this.outerHTML).remove();
+                        $('input[name=' + name + ']').val(text);
+                    });
+                });
+            }
+
+            function disappearCode(){
+                $("#wrongCode").hide();
+            }
+
+
+            function checkRequire(msg){
+                if(msg['username'].length<1){
+                    showTip(document.getElementById('wrongName'),"用户名不能为空");
+                    return true;
+                }else if(msg['password']=="密码"|| msg['password'].length <1 ){
+                    showTip(document.getElementById('wrongPwd'),"密码不能为空");
+                    return true;
+                }else if(msg['verify'].length < 1){
+                    showTip(document.getElementById('wrongCode'),"填写验证码");
+                    return true;
+                }
+                return false;
+
+            }
+
+            function doAjax(){
+
+                var msg = {};
+                msg['username'] = $(".userName").val();
+                msg['password'] = $(".pwd").val();
+                msg['verify'] = $("#verifyCode").val();
+               if( !checkRequire(msg)){
+                $(".btn").attr("disabled","disabled");
+                msg['ajax'] = 1;       
+                $.ajax({
+                    'url': "{:U('dologin')}",
+                    'data': msg,
+                    'dataType': 'json',
+                    'type': "post",
+                    'success': function(data){
+                        $(".btn").attr("disabled",false);
+                        if(data['status']==1){
+                            window.location.href = data['url'];
+                        }else{
+                            if(data['info']=="验证码错误！")
+                            {
+                                showTip(document.getElementById('wrongCode'),data['info']);
+                            }else{
+                                showTip(document.getElementById('wrongName'),data['info']);
+                            }
+                            $('#J_verify_code').show().find('img').click();
+                        }
+                    },
+                    'error': function(data){
+                        $(".btn").attr("disabled",false);
+                    }
+
+                })
+               }
+
+
+            }
+
+            $("#wrongCode").click(function(){
+                $("#wrongCode").css("display","none");
+            });
+
+            function showTip(objName,inffo){
+                $("#wrongPwd").css("display","none");
+                $("#wrongName").css("display","none");
+                $("#wrongCode").css("display","none");
+                $(objName).show();
+                $(objName).text(inffo);
+            }
+		</script>
+	</body>
+</html>

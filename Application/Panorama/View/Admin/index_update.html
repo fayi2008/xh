@@ -1,0 +1,291 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>编辑全景</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link href="/assets/css/bs3/dpl-min.css" rel="stylesheet" type="text/css"/>
+    <link href="/assets/css/bs3/bui-min.css" rel="stylesheet" type="text/css"/>
+    <link href="/assets/css/page-min.css" rel="stylesheet" type="text/css"/>
+    <!-- 下面的样式，仅是为了显示代码，而不应该在项目中使用-->
+    <link href="/assets/css/prettify.css" rel="stylesheet" type="text/css"/>
+    <style type="text/css">
+        code {
+            padding: 0px 4px;
+            color: #d14;
+            background-color: #f7f7f9;
+            border: 1px solid #e1e1e8;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <form id="J_Form" class="form-horizontal span24"
+              action='/Panorama/admin/index' method='put'>
+            <div class="row">
+                <div class="control-group span8">
+                    <label class="control-label"><s>*</s>全景名称：</label>
+                    <div class="controls">
+                        <input name="TITLE" type="text" data-rules="{required:true}"
+                               class="input-normal control-text" value="{$pano.title}">
+                    </div>
+                </div>
+                <div class="control-group span8">
+                    <label class="control-label">全景标志位key</label>
+
+                    <div class="controls">
+                        <input name="PANO_KEY" type="text"
+                               class="input-normal control-text" value="{$pano.pano_key}" disabled="disabled">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="control-group span8">
+                    <label class="control-label"><s>*</s>poi：</label>
+
+                    <div class="controls">
+                        <select data-rules="{required:true}" name="POI_ID" id="POI_ID">
+                            <option value=''>请选择</option>
+                            <foreach name="poi" item="v" key="k">
+                                <option value="{$v.id}"
+                                <php>if( $v['id'] == $pano['poi_id']) echo 'selected' ;</php>
+                                >{$v.name}</option>
+                            </foreach>
+                        </select>
+                        <input type="hidden" name="LAST_POI_ID" value="{$pano['poi_id']}">
+                        <input type="hidden" name="POST_STATUS" value="{$pano['post_status']}">
+                    </div>
+                </div>
+                <div class="control-group span8">
+                    <label class="control-label">分组：</label>
+
+                    <div class="controls">
+                        <select name="GROUP_ID" id="GROUP_ID">
+                            <option value=''>请选择</option>
+                            <foreach name="group" item="v" key="k">
+                                <option value="{$v.id}"
+                                <php>if( $v['id'] == $pano['group_id']) echo 'selected' ;</php>
+                                >{$v.name}</option>
+                            </foreach>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <label class="control-label">图片：</label>
+                <div class="control-group span12">
+                    <div id="J_Uploader2">
+                        <input type='hidden' id='IMAGE_URI' name='IMAGE_URI' value='{$pano.image_uri}'>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="control-group span8">
+                    <label class="control-label"><s>*</s>纬度：</label>
+                    <div class="controls">
+                        <input name="LAT" type="text" data-rules="{required:true}" class="input-normal control-text"
+                               value="{$pano.lat}">
+                    </div>
+                </div>
+                <div class="control-group span8">
+                    <label class="control-label"><s>*</s>经度：</label>
+
+                    <div class="controls">
+                        <input name="LON" type="text" data-rules="{required:true}" class="input-normal control-text"
+                               value="{$pano.lon}">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="control-group span8">
+                    <label class="control-label"><s>*</s>时光机：</label>
+                    <div class="controls">
+                        <select data-rules="{required:true}" name="SEASON" id="SEASON">
+                            <option value="0" {:$pano['season']==0?'selected':''}>一年四季</option>
+                            <option value="1" {:$pano['season']==1?'selected':''}>春</option>
+                            <option value="2" {:$pano['season']==2?'selected':''}>夏</option>
+                            <option value="3" {:$pano['season']==3?'selected':''}>秋</option>
+                            <option value="4" {:$pano['season']==4?'selected':''}>冬</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="control-group span8">
+                    <label class="control-label">排序</label>
+
+                    <div class="controls">
+                        <input name="LISTORDER" type="text"
+                               class="input-normal control-text" value="{$pano.listorder}">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="control-group span15">
+                    <label class="control-label">场景描述：</label>
+
+                    <div class="controls control-row4">
+                        <textarea name="INTRODUCTION" class="input-large" data-tip="{text:'请填写描述信息！'}" type="text">{$pano.introduction}</textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-actions offset3">
+                    <button type="submit" class="button button-primary">保存</button>
+                </div>
+            </div>
+            <input type="hidden" name="ID" value="{$pano.id}">
+        </form>
+    </div>
+
+
+</div>
+<script type="text/javascript" src="/assets/js/jquery-1.8.1.min.js?{$js_version}"></script>
+<script type="text/javascript" src="/assets/js/bui-min.js?{$js_version}"></script>
+
+<script type="text/javascript" src="/assets/js/config-min.js?{$js_version}"></script>
+<script type="text/javascript">
+    BUI.use('common/page');
+</script>
+<!-- 仅仅为了显示代码使用，不要在项目中引入使用-->
+<script type="text/javascript" src="/assets/js/prettify.js?{$js_version}"></script>
+<script type="text/javascript">
+    $(function () {
+        prettyPrint();
+    });
+</script>
+<script type="text/javascript">
+    BUI.use('bui/form', function (Form) {
+        new Form.HForm({
+            srcNode: '#J_Form',
+            submitType: 'ajax',
+            callback: function (data) {
+                if (data.status == 1) {
+                    BUI.Message.Alert('编辑成功',function(){
+                        window.location.href = data.data + "?id={$pano['poi_id']}";
+                    }, 'success');
+                } else {
+                    BUI.Message.Alert('编辑失败', 'error');
+                }
+
+            }
+        }).render();
+
+    });
+</script>
+
+
+<script type="text/javascript">
+    BUI.use(
+            'bui/uploader',
+            function (Uploader) {
+
+                /**
+                 * 返回数据的格式
+                 *
+                 *  默认是 {url : 'url'},否则认为上传失败
+                 *  可以通过isSuccess 更改判定成功失败的结构
+                 */
+                    //添加自定义主题
+                Uploader.Theme.addTheme('imageView', {
+                    elCls: 'imageViewTheme',
+                    //可以设定该主题统一的上传路径
+                    // url: '../../../test/upload/upload.php',
+                    url: 'http://{$httphost}/index.php/Gis/admin/upload/',
+                    queue: {
+                        //结果的模板，可以根据不同状态进进行设置
+                        resultTpl: {
+                            'default': '<div class="default">{name}</div>',
+                            'success': '<div class="success"><img style="width: 100%;height: 100%;" src="/pano/{file}" /></div>',
+                            'error': '<div class="error"><span class="uploader-error">{msg}</span></div>',
+                            'progress': '<div class="progress"><div class="bar" style="width:{loadedPercent}%"></div></div>'
+                        }, listeners : {
+                        itemremoved: function(ev){
+                            $("#IMAGE_URI").val('');
+                        }
+                    }
+                    }
+                });
+                var uploader = new Uploader.Uploader(
+                        {
+                            theme: 'imageView',
+                            render: '#J_Uploader2',
+                            url: 'http://{$httphost}/index.php/panorama/admin/uploadthumb?pano_key={$pano.pano_key}',
+                            //可以直接在这里直接设置成功的回调
+                            success: function (result) {
+                            },
+                            isSuccess: function (result) {
+
+                                if (result.status) {
+                                    return true;
+                                }
+                                return false;
+                            },
+                            //失败的回调
+                            error: function (result) {
+                            },
+                            rules: {
+                                //文的类型
+                                ext: ['.png,.jpg', '文件类型只能为{0}'],
+                                //上传的最大个数
+                                max: [1, '文件的最大个数不能超过{0}个'],
+                                //文件大小的最小值,这个单位是kb
+                                minSize: [10, '文件的大小不能小于{0}KB'],
+                                //文件大小的最大值,单位也是kb
+                                maxSize: [1024, '文件大小不能大于1M']
+                            }
+
+                        }).render();
+
+                //上传成功时会触发
+                uploader.on('success', function (ev) {
+                    var result = ev.result;
+                    $("#IMAGE_URI").val(result.file);
+
+                })
+                //上传文件改变时
+                uploader.on('change', function (ev) {
+                    var items = ev.items;
+                    var queue=uploader.get('queue');
+                    for (var i in items) {
+                        if (items[i].error == true) {
+                            queue.clearItems();
+                            BUI.Message.Alert(items[i].name + items[i].msg,'error');
+                        }else{
+                            queue.setItems([items[i]]);
+                        }
+                    }
+                })
+
+                //上传失败时会触发
+                uploader.on('error', function (ev) {
+                    var result = ev.result;
+                    BUI.Message.Alert('上传失败', 'error');
+                });
+                //获取上传文件的对列
+                var queue = uploader.get('queue');
+                //设置文件的回显
+                queue.setItems([
+                    {success: true, name: "{$pano.image_uri}", ext: '.jpg', file: "{$pano.image_uri}"}
+                ]);
+            });
+</script>
+<script type="text/javascript">
+    $('#POI_ID').on('change', function () {
+        var poi_id = $("#POI_ID").val();
+        $("#GROUP_ID").empty();
+        $("#GROUP_ID").append("<option value='0'>请选择</option>");
+        $.ajax({
+            url: "/Panorama/admin/cateList.json" + '?id=' + poi_id,
+            type: "GET",
+            success: function (data) {
+                var json = JSON.parse(data);
+                for (var i = 0; i < json.length; i++) {
+                    $("#GROUP_ID").append("<option value='" + json[i].id + "'>" + json[i].name + "</option>");
+                }
+
+            }
+        });
+    })
+</script>
+</body>
+</html>

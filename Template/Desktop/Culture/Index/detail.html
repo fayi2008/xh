@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta name="keywords" content="西湖,杭州西湖">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <title>{:json_decode($data,true)['data']['title']}</title>
+    <link href="/static/Desktop/Public/main.css" rel="stylesheet" type="text/css">
+    <link href="/static/Desktop/Public/login.css" rel="stylesheet" type="text/css">
+    <link href="/static/Desktop/Culture/Index/detail.css" rel="stylesheet" type="text/css">
+
+</head>
+<body>
+<include file="../Template/Desktop/Home/Index/top.html"/>
+<div class="top">
+    <!--<a href="/"></a>-->
+</div>
+<div class="crumbs">
+    <a href="/culture/list.html">文化</a> ＞ {:json_decode($data,true)['data']['title']}
+</div>
+<div class="main">
+    <div class="item-top"></div>
+    <div class="item">
+        <div class="item-box">
+            <div class="item-left">
+                <div class="item-head"></div>
+                <div class="item-name"></div>
+                <div class="item-cate"></div>
+
+                <div class="item-wh-list-title">目录</div>
+                <div class="item-wh-list"></div>
+            </div>
+            <div class="item-right">
+                <div class="item-desc item-pic">
+                    <h1>相册</h1>
+                    <div class="item-desc-pic">
+                        <div class="item-desc-pic-left"></div>
+                        <div class="item-desc-pic-box">
+                            <div class="item-desc-pics">
+
+
+                            </div>
+                        </div>
+                        <div class="item-desc-pic-right"></div>
+                    </div>
+                </div>
+                <div class="item-desc">
+                    <h1>简介</h1>
+                    <div class="item-desc-font"></div>
+                    <!--<audio class="video-culture" controls="controls" autoplay="autoplay">-->
+                        <!--对不起 您的浏览器太低了无法播放语音-->
+                    <!--</audio>-->
+
+
+                </div>
+                <div class="item-list">
+                    <div class="item-list-wh"><span class="item-list-wh-title"></span><span class="item-list-wh-desc"></span></div>
+                </div>
+                <div class="item-content"></div>
+                <div class="item-tuijian ">
+                    <h1>推荐文化</h1>
+                    <div class="data-tuijian"></div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="item-bottom"></div>
+</div>
+</div>
+</body>
+<script>
+    window.CULTURE={$data};
+
+</script>
+<script src="/static/public/jquery.js?{$js_version}"></script>
+<!--[if IE 8 ]><script src="/static/Desktop/Public/html5media.min.js?{$js_version}"></script><![endif]-->
+<script src="/static/public/iscroll.js?{$js_version}"></script>
+<script src="/static/Desktop/Public/main.js?{$js_version}"></script>
+<script src="/static/Desktop/Public/login.js?{$js_version}"></script>
+<script src="/static/Desktop/Culture/Index/detail.js?{$js_version}"></script>
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?21a3095477990ab53b7d2a97f78155eb";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+</html>

@@ -1,0 +1,187 @@
+
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <title> 审核用户信息</title>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+       <link href="/assets/css/bs3/dpl-min.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/css/bs3/bui-min.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/css/page-min.css" rel="stylesheet" type="text/css" />  
+    <link href="/assets/css/hqtec.css" rel="stylesheet">
+   <style type="text/css">
+    code {
+      padding: 0px 4px;
+      color: #d14;
+      background-color: #f7f7f9;
+      border: 1px solid #e1e1e8;
+    }
+   </style>
+ </head>
+ <body>
+  
+  <div class="container">
+    <form id ="J_Form" class="form-horizontal" action='/User/admin/index' method='put'>
+      <h3>基本信息</h3>
+  
+      <div class="row">
+      	 <div class="control-group span12">
+          <label class="control-label">ID：</label>
+          <div class="controls">
+            <input name="ID" type="text" class="span6 span-width control-text" value='{$data.id}' disabled="disabled" >  
+          </div>        
+        </div>
+        <div class="control-group span12">
+          <label class="control-label">用户昵称：</label>
+          <div class="controls">
+            <input type="text" name='NICKNAME' class="control-text" value='{$data.nickname}' disabled="disabled">
+          </div>
+        </div>
+      </div>
+      
+      
+       <div class="row">
+      	 <div class="control-group span12">
+          <label class="control-label">注册手机：</label>
+          <div class="controls">
+            <input name="MOBILe" type="text" class="span6 span-width control-text" value='{$data.mobile}' disabled="disabled" >  
+          </div>        
+        </div>
+       <!--  <div class="control-group span12">
+          <label class="control-label">注册邮箱：</label>
+          <div class="controls">
+            <input type="text" name='EMAIL' class="control-text" value='{$data.email}' disabled="disabled">
+          </div>
+        </div>-->
+      </div>
+      
+     <!--  <div class="row">
+      	 <div class="control-group span12">
+          <label class="control-label">用户账号：</label>
+          <div class="controls">
+            <input name="ACCOUNT" type="text" class="span6 span-width control-text" value='{$data.account}' disabled="disabled" >  
+          </div>        
+        </div>
+          <div class="control-group span12">
+      		 <label class="control-label">性别：</label>
+            <div class="controls">
+              		<input name="module" disabled="disabled" type={:$data['sex']==1? '"text"':'"hidden"'} value='男'/>
+            		<input name="module" disabled="disabled" type={:$data['sex']==0? '"text"':'"hidden"'}  value='女'/>
+            </div>
+        </div> 
+      </div>-->
+      
+
+      
+       <div class="row">
+      	 <div class="control-group span12">
+          <label class="control-label">最新登录时间：</label>
+          <div class="controls">
+            <input name="LAST_LOGIN_TIME" type="text" class="span6 span-width control-text" value='{$data.last_login_time}' disabled="disabled" >  
+          </div>        
+        </div>
+        <div class="control-group span12">
+          <label class="control-label">注册时间</label>
+          <div class="controls">
+            <input type="text" name='CREATE_TIME' class="control-text" value='{$data.create_time}' disabled="disabled">
+          </div>
+        </div>
+      </div>
+     <div class="row">
+          <div class="control-group span12">
+          <label class="control-label">最近登录ip</label>
+          	<div class="controls">
+            	<input type="text" name='LAST_LOGIN_IP' class="control-text" value='{$data.last_login_ip}' disabled="disabled">
+          	</div>
+         </div>
+         <div class="control-group span12">
+          <label class="control-label"><s>*</s>审核状态</label>
+          <div class="controls">
+            	<select name='STATUS'>
+            		<option value=0   {:$data['status']==0?'selected':''}>禁用</option>
+            		<option value=1   {:$data['status']==1?'selected':''} >通过</option>
+            	</select>
+          </div>
+        </div>
+      </div>
+   
+
+      <div class="row">
+      	 <div class="control-group span24">
+	    <label class="control-label">头像：</label>
+	   	 <div class="control-group span12">
+	      <div id="J_Uploader" >
+              <img src="/upload/{$data.head_img}" height="100" width="100" />
+	      	<input type='hidden' id='IMG' name='HEAR_IMG' value='{$data.head_img}' disabled="disabled">
+	      </div>
+	    </div></div>
+     </div>
+       
+      <hr/>
+     
+      
+      <div class="row">
+        <div class="form-actions offset3">
+         <input type="hidden" name="ID" value="{$data.id}">
+         
+          <button type="submit" class="button button-save">保存</button>
+          <!-- <button type="reset" class="button">重置</button> -->
+        </div>
+      </div>
+    </form>
+    
+   
+     
+     <!-- 配置文件 -->
+   	<script type="text/javascript" charset="utf-8" src="/ueditor/ueditor.config.js?{$js_version}"></script>
+    <!-- 编辑器源码文件 -->
+    <script type="text/javascript" charset="utf-8" src="/ueditor/ueditor.all.min.js?{$js_version}"> </script>
+    <!-- 实例化编辑器 -->
+    <script type="text/javascript">
+        var editor = UE.getEditor('container');
+    </script> 
+    
+
+    
+  <script type="text/javascript" src="/assets/js/jquery-1.8.1.min.js?{$js_version}"></script>
+  <script type="text/javascript" src="/assets/js/bui-min.js?{$js_version}"></script>
+
+  <script type="text/javascript" src="/assets/js/config-min.js?{$js_version}"></script>
+  <script type="text/javascript">
+    BUI.use('common/page');
+  </script>
+  <script type="text/javascript">
+    BUI.use('bui/form',function (Form) {
+      var form = new Form.HForm({
+        srcNode : '#J_Form'
+      }).render();
+    });
+  </script>
+  	<script type="text/javascript">
+		BUI.use('bui/form', function(Form) {
+			new Form.HForm({
+				srcNode : '#J_Form',
+				submitType : 'ajax',
+				callback : function(data) {
+					if (data.status == 1) {
+						BUI.Message.Alert('编辑成功',function(){
+							top.topManager.reloadPage('guest');
+							top.topManager.closePage();
+						},'success');
+						
+					} else {
+						if(data.msg){
+							alert(data.msg);
+						}else{
+							alert('编辑失败');
+							
+						}
+						
+					}
+					//window.location.href = data.url
+				}
+			}).render();
+
+		});
+	</script>
+</body>
+</html>  

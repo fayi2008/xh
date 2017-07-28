@@ -1,0 +1,293 @@
+body {
+    background-color: #f1f1f1;
+}
+
+.crumbs {
+    width: 1000px;
+    margin: 0 auto;
+    background-color: #fff;
+    margin-top: 20px;
+    height: 40px;
+    line-height: 40px;
+    padding-left: 20px;
+    box-shadow: 1px 1px 1px #aaa;
+    box-sizing: border-box;
+}
+
+.shop-content {
+    width: 1000px;
+    margin: 0 auto;
+    background-color: #fff;
+    margin-top: 20px;
+    box-sizing: border-box;
+    padding: 20px;
+    box-shadow: 0px 0px 1px #aaa;
+}
+
+.shop-image {
+    overflow: hidden;
+}
+
+.shop-image > image {
+    width: 100%;
+}
+
+.shop-name {
+    font-size: 26px;
+    color: #535353;
+    height: 40px;
+    line-height:40px;
+}
+
+.shop-tool {
+
+}
+
+.shop-addr {
+    color: #818181;
+
+}
+
+.shop-tel {
+    color: #818181;
+}
+
+.shop-desc {
+    color: #bab7b6;
+    margin-top: 20px;
+
+}
+
+.shop-cate-name {
+    height: 50px;
+    line-height: 50px;
+    border-bottom: 1px solid #ccc;
+}
+
+.shop-cate-goods {
+    overflow: hidden;
+    padding: 1px;
+
+}
+.shop-goods{
+    width: 220px;
+    height: 315px;
+    float: left;
+    margin-left: 26px;
+    margin-top: 20px;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 1px #aaa;
+    display: block;
+    cursor: pointer;
+}
+.shop-goods.no-left{
+    margin-left: 0px;
+}
+.goods-img{
+    height:220px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    -ms-behavior: url(/static/Desktop/Public/backgroundsize.min.htc);
+    behavior: url(/static/Desktop/Public/backgroundsize.min.htc);
+}
+.goods-name{
+    padding: 20px 10px 10px 10px;
+    white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+}
+.goods-price{
+    color: #fd3c3c;
+    font-size: 16px;
+    padding: 10px;
+}
+
+.d3tips{
+    margin-left: 10px;
+    padding: 0px 10px;
+    background-image: url(/static/Desktop/Img/d3_h.png);
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+
+    -ms-behavior: url(/static/Desktop/Public/backgroundsize.min.htc);
+    behavior: url(/static/Desktop/Public/backgroundsize.min.htc);
+}
+/*map*/
+#contact{
+    height: 457px;
+    margin-bottom: 20px;
+}
+#contact .title{
+    font-size: 20px;
+    font-weight: bold;
+}
+.map{
+    width: 720px;
+    height: 420px;
+    line-height: 420px;
+    font-size: 30px;
+    text-align: center;
+    float: left;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+.contact-right{
+    float: left;
+    width: 200px;
+    height: 397px;
+    padding-left: 20px;
+}
+.addr{
+    line-height: 150%;
+}
+.main2{
+    background-color: #fff;
+    width: 1000px;
+    margin: 0 auto;
+    position: relative;
+    margin-top: 20px;
+    box-sizing: border-box;
+    padding: 20px;
+}
+
+/*ПаІб*/
+.pic-box{
+    position: relative;
+    height: 200px;
+    margin-top: 10px;
+}
+
+.pic-box>div{
+    float: left;
+    height: 200px;
+}
+.pic-left{
+    width: 30px;
+    background-color: #dedede;
+    background-image: url(/static/Desktop/Img/left.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: auto;
+    cursor: pointer;
+}
+.pic-right{
+    width: 30px;
+    background-color: #dedede;
+    background-image: url(/static/Desktop/Img/right.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: auto;
+    cursor: pointer;
+}
+.pic-left:hover,.pic-right:hover{
+    background-color: #217ff0;
+}
+.pic-list{
+    height: 220px;
+    width: 900px;
+    position: relative;
+    overflow: hidden;
+}
+.pic-lists{
+    height: 200px;
+    position: absolute;
+    width: 900px;
+    top:0px;
+    left: 0px;
+    transition: all 0.4s ease-in;
+    -webkit-transition: all 0.4s ease-in;
+    -moz-transition: all 0.4s ease-in;
+
+}
+.pic-item{
+    height: 200px;
+    width: 900px;
+    overflow: hidden;
+    position: relative;
+    float: left;
+}
+.pic-item>li{
+    border: 2px solid #fff;
+    box-sizing: border-box;
+    height: 200px;
+    width: 180px;
+    float: left;
+    cursor: pointer;
+    background-image: url(/static/img/test.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    transition: all 0.2s ease-in;
+    -webkit-transition: all 0.2s ease-in;
+    -moz-transition: all 0.2s ease-in;
+}
+.pic-item>li:hover{
+    border: 2px solid #217ff0;
+
+}
+.news-loading{
+
+    opacity: 0.7\0;
+}
+.pic-alert{
+    position:fixed;
+    top:10vh;
+    left: 50%;
+    margin-left: -550px;
+    width: 1100px;
+    background-color: #000;
+    box-shadow: 0 0 2px #fff;
+    z-index: 9999999;
+    padding: 10px;
+    height: 80vh;
+    box-sizing: border-box;
+    padding-right: 300px;
+}
+.pa-img-show{
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: auto;
+    width: 790px;
+    height: 100%;
+}
+.pa-img-list{
+    position: absolute;
+    width: 280px;
+    height: 100%;
+    overflow:hidden;
+    right: 10px;
+    top:0px;
+}
+.pa-img-list>ul{
+    overflow: hidden;
+    padding-bottom: 10px;
+}
+.pa-img-list>ul>li{
+    float: left;
+    width: 70px;
+    height: 70px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+.pa-img-list>ul>li.choose{
+    box-sizing: border-box;
+    border: 3px solid #217ff0;
+}
+.close{
+    position: absolute;
+    background-color: #000;
+    width: 50px;
+    cursor: pointer;
+    height: 50px;
+    top:0px;
+    right: -51px;
+    background-image: url(/static/Desktop/Img/ic_close.png);
+    background-position: center;
+    background-repeat: no-repeat;
+
+}

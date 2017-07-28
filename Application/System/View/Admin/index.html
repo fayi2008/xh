@@ -1,0 +1,141 @@
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <title>管理员管理</title>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/assets/css/bs3/dpl-min.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/css/bs3/bui-min.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/css/page-min.css" rel="stylesheet" type="text/css" />
+ </head>
+ <body>
+  
+  <div class="container">
+ 
+    <form id="searchForm" class="form-horizontal">
+      <div class="row">
+        <div class="control-group span8">
+          <label class="control-label">账号：</label>
+          <div class="controls">
+            <input type="text" class="control-text" name="ACCOUNT">
+          </div>
+        </div>
+        <div class="control-group span8">
+          <label class="control-label">角色：</label>
+          <div class="controls" >
+            <select  id="" name="ROLE_ID">
+              <option value="0">全部</option>
+                <volist name="roles"  id="vo">
+                    <option value="{$vo.id}">{$vo.name}</option>
+                </volist>
+            </select>
+          </div>
+        </div>
+          <div class="span3"><button  type="submit" id="btnSearch" class="button button-small  button-primary">搜索</button></div>
+      </div>
+
+    </form>
+ 
+    <div class="search-grid-container">
+      <div id="grid"></div>
+    </div>
+  </div>
+  <script type="text/javascript" src="/assets/js/jquery-1.8.1.min.js?{$js_version}"></script>
+  <script type="text/javascript" src="/assets/js/bui-min.js?{$js_version}"></script>
+  <script type="text/javascript" src="/assets/js/config-min.js?{$js_version}"></script>
+<script type="text/javascript">
+    var    Grid = BUI.Grid,
+            Store = BUI.Data.Store,
+            columns = [
+                { title: 'ID',width: 50,  sortable: true, dataIndex: 'id'},
+                { title: '帐号', width: 100, sortable: true, dataIndex: 'account' },
+                { title: '昵称', width: 150, sortable: false, dataIndex: 'nickname'},
+                { title: '角色', width: 100,sortable: true,  dataIndex: 'role_name'},
+                { title: '邮件',width: 100, sortable: true,  dataIndex: 'email'},
+                { title: '电话', width: 100,sortable: true,  dataIndex: 'mobile'},
+                { title: '操作',renderer:function(value,obj){
+                    var str='<a href="/system/admin/edit.html?id='+obj.id+'">编辑</a> ' +
+                            '<a href="javascript:deleteItem('+obj.id+')">删除</a>';
+
+                    return str;
+                }}
+            ];
+
+    var store = new Store({
+                url : '/System/Admin.json',
+                autoLoad:true,
+                pageSize:10,
+                remoteSort: true
+            }),
+            grid = new Grid.Grid({
+                render:'#grid',
+                loadMask: true,
+                forceFit:true,
+                columns : columns,
+                store: store,
+                plugins : [Grid.Plugins.AutoFit], //勾选插件、自适应宽度插件
+                // 顶部工具栏
+                tbar:{
+                    items:[{text : '添加管理员',btnCls : 'button  button-success',handler:function(){
+                        top.topManager.openPage({
+                            id : 'admin/add',
+                            title : '添加管理员',
+                            href : '/system/admin/add.html'
+                        });
+                    }
+                    }]
+                },
+                // 底部工具栏
+                bbar : {
+                    //items 也可以在此配置
+                    // pagingBar:表明包含分页栏
+                    pagingBar:true
+                }
+            });
+    grid.render();
+
+
+    function deleteItem(id)
+    {
+        BUI.Message.Confirm('是否删除该项？',function(){
+            $.ajax({
+                type: "delete",
+                url: "/system/admin.json?id="+id,
+                dataType: "json",
+                success: function(data){
+                    if(data.success==true)
+                    {
+                        BUI.Message.Alert('删除成功',function(){
+                            if(top.topManager){
+                                //打开左侧菜单中配置过的页面
+                                top.topManager.openPage({
+                                    id : 'admin',
+                                    reload : 'true'
+                                });
+                            }
+                        },'success');
+                    }else{
+                        BUI.Message.Alert('删除失败！'+data.msg,'error');
+                    }
+                }
+            });
+
+        },'question');
+    }
+
+  //创建表单，表单中的日历，不需要单独初始化
+  var form = new BUI.Form.HForm({
+      srcNode : '#searchForm'
+  }).render();
+
+  form.on('beforesubmit',function(ev) {
+      //序列化成对象
+      var obj = form.serializeToObject();
+      obj.start = 0; //返回第一页
+      store.load(obj);
+      return false;
+  });
+</script>
+ 
+</body>
+</html>  
+

@@ -1,0 +1,387 @@
+/*write by fay time:2014-09-09 10:03*/
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    list-style: none;
+    -webkit-transition-timing-function: ease-in-out;
+    -moz-transition-timing-function: ease-in-out;
+    -ms-transition-timing-function: ease-in-out;
+    -o-transition-timing-function: ease-in-out;
+    transition-timing-function: ease-in-out;
+    font-size: 16px;
+}
+
+*:focus {
+    outline: none;
+}
+
+*, *:before, *:after {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+ol, ul, li {
+
+    padding: 0;
+    margin: 0;
+    display: block;
+
+}
+
+u, i {
+
+    font-weight: normal;
+    font-style: normal;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0px;
+
+}
+
+fieldset, img {
+    border: 0;
+
+}
+
+html {
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    width: 100%;
+    position: relative;
+
+}
+
+input, select, textarea {
+    -webkit-appearance: none;
+    border: none;
+    border-radius: 0;
+}
+
+a {
+
+    text-decoration: none;
+}
+
+a:link {
+
+    text-decoration: none;
+}
+
+a:visited {
+
+    text-decoration: none;
+}
+
+body {
+    background-color: #e6e6e6;
+}
+
+.order-list {
+    margin-top: 10px;
+}
+
+.order-list > li {
+    margin-bottom: 10px;
+    background-color: #fff;
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
+    box-shadow: 0 0 1px #999;
+    color:#000;
+}
+
+.btn {
+    box-shadow: 0 0 1px #999;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    width: 47%;
+    border-radius: 3px;
+    display: inline-block;
+    font-size: 16px;
+
+}
+
+.btn-blud {
+    background-color: #14c327;
+    color: #fff;
+}
+
+.btn-yel {
+    background-color: #ff8e1b;
+    color: #fff;
+}
+
+.btn-red {
+    background-color: #ff0a09;
+    color: #fff;
+}
+
+.btn-box {
+    padding-top: 20px;
+    text-align: center;
+}
+
+.order-refuse, .refuse-to {
+    margin-left: 6%;
+}
+
+.next-page {
+    padding: 10px 0;
+    text-align: center;
+    box-shadow: 0 0 1px #999;
+    margin: 0 10px;
+    background-color: #fff;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    display: none;
+}
+
+.no-order {
+    color: red;
+    text-align: right;
+    padding: 0 10px 10px 10px;
+}
+
+.yes-order {
+    color: green;
+    text-align: right;
+    padding: 0 10px 10px 10px;
+}
+
+.show-time {
+    text-align: right;
+    font-size: 14px;
+
+}
+
+.show {
+
+    font-size: 16px;
+    padding: 10px;
+}
+
+.show i {
+    color: #075dd4;
+
+    font-size: 16px;
+}
+
+.refesh {
+    position: fixed;
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+    bottom: 15px;
+    right: 15px;
+    background-color: rgba(255, 255, 255, 0.5);
+    background-image: url(/pages/logomap/assets/img/reload.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 80% auto;
+    box-shadow: 0 0 1px #000;
+}
+.title{
+    border-bottom: 1px solid #ccc;
+    padding: 10px;
+    font-weight: bold;
+}
+.tel:visited{
+    color: #fff;
+}
+.tel:link{
+    color: #fff;
+}
+.qiang>title{
+    background-color: #ff0a09;
+    color: #fff;
+}
+.noorder-box{
+    height: 40px;
+    width: 100%;
+    padding-left: 10px;
+    box-sizing:border-box;
+    line-height: 40px;
+    text-align: left;
+    background-color: #fff;
+    margin-top: 10px;
+
+}
+
+.isorder{
+    border-radius: 30px;
+    display: block;
+    background-color: #14c327;
+    box-shadow: 0 0 5px rgba(0,0,0,1);
+    width: 60px;
+    height: 30px;
+    margin-top: 5px;
+    position: relative;
+    float: right;
+    margin-right: 5px;
+}
+.isorder:before{
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-radius: 30px;
+    background-color: #fff;
+    content: '';
+    left: 0px;
+    top:0px;
+    -webkit-transition:100ms ease-in ;
+}
+.isorder.noorder{
+    background-color: #ccc;
+
+}
+
+.isorder.noorder:before{
+    left: 30px;
+}
+.type{
+    overflow: hidden;
+    height: 40px;
+    background-color: #fff;
+}
+.type>li{
+    float: left;
+    width: 50%;
+    text-align: center;
+    height: 40px;
+    line-height: 40px;
+    color: #333;
+    position: relative;
+}
+.type>li.cur{
+    color: #14c327;
+
+}
+.type>li.cur:before{
+    position: absolute;
+    height: 3px;
+    bottom: 0px;
+    left: 5%;
+    width: 90%;
+    background-color: #14c327;
+    content: '';
+}
+.today{
+    display: block;
+}
+.history{
+    display: none;
+}
+.three,.one{
+    width: 100%;
+    padding: 0px;
+    border: 0px;
+    overflow: hidden;
+    border-top: 1px solid #ccc;
+}
+.three>span{
+    display: block;
+    width: 50%;
+    border: 0px;
+    border-radius: 0px;
+    box-sizing: border-box;
+    float: left;
+    padding: 0;
+    margin: 0px;
+    background-color: #fff;
+}
+.three>span:first-child{
+    color: #14c327;
+    border-left: 1px solid #ccc;
+}
+.three>span:nth-child(2){
+    color:#ff0a09;
+}
+.one>span{
+    display: block;
+    border: 0px;
+    padding: 0;
+    width: 100%;
+    border-radius: 0px;
+    box-sizing: border-box;
+    float: left;
+    margin: 0px;
+}
+.two{
+    margin-bottom: 10px;
+}
+.two>a{
+    box-sizing: border-box;
+}
+.poi-box{
+
+    padding:10px 10px;
+
+}
+.red-font{
+    color: red;
+}
+.blue-font{
+    color: #0a7bee;
+}
+.four{
+    position: relative;
+    height: 40px;
+    line-height: 40px;
+    margin-top: 20px;
+}
+.four>span{
+    display: block;
+    width: 100%;
+    text-align: center;
+    height: 40px;
+    line-height: 40px;
+}
+.four>input{
+    opacity: 0;
+    text-align: center;
+    width: 100%;
+    display: block;
+    height: 40px;
+    position: absolute;
+    top:0;
+    left: 0;
+}
+.user,.show-sum{
+    border-radius: 5px;
+    color: #fff;
+    padding: 10px;
+    margin: 10px;
+    background-color: rgba(0,0,0,0.5);
+    word-wrap: break-word;
+    word-break:break-all;
+    white-space:normal;
+
+    overflow: hidden;
+}
+.new-dingdan{
+    position: fixed;
+    top:0;
+    left: 5%;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: rgba(0,0,0,0.2);
+    width: 90%;
+    display: none;
+}
+
+
+.c_g{color:rgb(7,181,26);}
+.c_r{color:rgb(255,10,9);}
+
+
+.status {
+    text-align: right;
+    padding: 0 10px 10px 10px;
+}

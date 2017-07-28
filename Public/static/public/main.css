@@ -1,0 +1,265 @@
+body,html{
+    background-color: #fff;
+    color: #000;
+    font-size: 14px;
+    font-family: 'Arial','微软雅黑','simsun';
+}
+.main{
+    position: relative;
+}
+.top{
+    height: 90px;
+    width: 100%;
+    position: fixed;
+    background-color: #fff;
+    z-index: 9999;
+    border-bottom: 1px solid #eee;
+}
+.top>.top-item{
+    width: 1100px;
+    margin: 0 auto;
+    height: 90px;
+    position: relative;
+}
+.top .logo{
+    float: left;
+    height: 47px;
+    margin-top: 21.5px;
+}
+.top .logo img{
+    height: 100%;
+    display: block;
+}
+.top .city{
+    display: none;
+    height: 90px;
+    float: left;
+    line-height: 90px;
+    color: #000;
+    cursor: pointer;
+    position: relative;
+    margin-left: 20px;
+    width: 60px;
+    text-align: center;
+}
+.top .city:hover{
+    text-decoration: underline;
+
+}
+.top .city .city-span{
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    height: 20px;
+    line-height: 20px;
+}
+.top .city .city-span:before{
+    position: absolute;
+    content: '';
+    height: 12px;
+    width: 1px;
+    background-color: #000;
+    left: 0px;
+    top:50%;
+    margin-top: -6px;
+}
+.top .city .city-span:after{
+    position: absolute;
+    content: '';
+    height: 12px;
+    width: 11px;
+    background-image: url(/static/img/city.png);
+    background-size: auto;
+    background-position: center;
+    background-repeat: no-repeat;
+    right: 0px;
+    top:50%;
+    margin-top: -6px;
+}
+.top .city-select{
+    position: absolute;
+    left: 405px;
+    padding: 5px;
+    top:55px;
+    background-color: #fff;
+    box-shadow: 0 0 1px #ccc;
+}
+.top .city-select>li{
+    width: 80px;
+    height: 30px;
+    line-height: 30px;
+    float: left;
+    text-align: center;
+    background-color: #f1f1f1;
+    color: #000;
+    margin-left: 10px;
+    cursor: pointer;
+}
+.top .city-select>li:first-child{
+    margin-left: 0px;
+}
+.top .city-select>li:hover{
+    background-color: #217ff0;
+    color: #fff;
+}
+.top .bar{
+    float: right;
+    height: 45px;
+    margin-top: 22.5px;
+}
+.top .bar a {
+     float: left;
+     display: block;
+     color: #000;
+     width: 120px;
+     cursor: pointer;
+     position: relative;
+     height: 45px;
+    line-height: 42px;
+ }
+.top .bar a:hover{
+    color: #217ff0;
+}
+.top .bar a:hover:after{
+    height: 2px;
+    bottom: -5px;
+    left: 50%;
+    width: 100px;
+    margin-left: -50px;
+    content: '';
+    background-color: #217ff0;
+    position: absolute;
+}
+
+.top .bar a.checked{
+    color: #217ff0;
+}
+.top .bar a.checked:after{
+    height: 2px;
+    bottom: -5px;
+    left: 50%;
+    width: 100px;
+    margin-left: -50px;
+    content: '';
+    background-color: #217ff0;
+    position: absolute;
+}
+.top .bar a h3,.top .bar a h5{
+    display: block;
+    width: 100%;
+    font-size: 18px;
+    font-weight: normal;
+    text-align: center;
+}
+
+.top .bar a h5{
+    font-size: 12px;
+    padding-top:3px;
+}
+.bottom{
+    background-color: #2f2f2f;
+    color: #fff;
+    text-align: center;
+    padding-top: 45px;
+    padding-bottom: 45px;
+    z-index: 99999;
+    position: relative;
+}
+.bottom-box{
+    height: 60px;
+    width: 1000px;
+    margin:0 auto;
+}
+.bottom-box>div{
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+}
+.content{
+    font-size: 16px;
+}
+.copy{
+    font-family:arial;
+}
+
+
+/*load*/
+.load{
+    position: fixed;
+    top:0px;
+    height: 2px;
+    background-color: #fff;
+    width: 100%;
+}
+.load>.percent{
+    height: 2px;
+    background-color: #217ff0;
+    width: 0;
+    transition: all 1s ease-in;
+    -webkit-transition: all 1s ease-in;
+    -moz-transition: all 1s ease-in;
+}
+
+/*back-top*/
+.back-top
+{
+    cursor: pointer;
+    position: fixed;
+    width: 50px;
+    height: 50px;
+    background-image: url(/static/img/ic_to_top2.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    bottom:150px;
+    left: 50%;
+    margin-left: 560px;
+}
+.no-more{
+    text-align: center;
+    color: #333;
+    font-size: 20px;
+    height: 400px;
+}
+
+/*mark*/
+.logo-mark{
+    position: absolute;
+    left:50%;
+    margin-left: 560px;
+    width: 120px;
+    top:10px;
+    z-index: 99999;
+    transition: all 0.3s ease-in;
+    -webkit-transition: all 0.3s ease-in;
+    -moz-transition: all 0.3s ease-in;
+}
+.logomap-mark{
+    width: 120px;
+    height: 120px;
+    background-image: url(/static/img/mark.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.logo-mark .marks-tips{
+    position: relative;
+    height: 20px;
+    width: 100%;
+
+
+    background-color: #fff;
+    text-align: center;
+    padding-bottom: 5px;
+}
+
+.hotel-mark{
+    width: 120px;
+    height: 120px;
+    background-image: url(/static/img/mark.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+

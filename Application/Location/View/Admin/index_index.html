@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>图形展示</title>
+    <link href="/assets/css/bs3/dpl-min.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/css/bs3/bui-min.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/css/page-min.css" rel="stylesheet" type="text/css" />
+    <style>
+       .header{
+           position: relative;
+           padding: 5px;
+           margin-bottom: 10px;
+           height: 40px;
+           padding-left: 5%;
+           
+       }
+	   #poi{
+		   font-size: 14px;
+		   width: 120px;
+		  
+	   }
+        #canvas{
+            position: relative;
+            width: 90%;
+            margin:0 5%; 
+            height: 500px;
+            border: 1px solid #D7D7D7;
+        }
+		.days{
+			color: #737373;
+			cursor: pointer;
+			height: 20px;
+			font-size: 14px;
+			line-height: 20px;
+			padding: 5px 12px;
+		}
+        .days.select{
+        color:#5187d0;
+        }
+	   .total{
+		   height: 40px;
+		   line-height: 40px;
+		   font-size: 1.5em;
+		   margin-left: 5%;
+	   }
+	   input.submit,input.down{
+		   margin: 0 5px;
+	   }
+	   table {
+		   margin: 0 5%;
+		   width: 90%;
+		   border: 1px solid #D7D7D7;
+	   }
+	   thead {
+		   background-color: #f4f4f4;
+	   }
+	   tbody tr{
+			background-color: #d3d7ee;
+		   	border-bottom: 1px solid #eee;
+	   }
+	   tbody tr:last-child {
+		   border-bottom: 0px solid #eee;
+	   }
+	   table tr th{
+		   height: 40px;
+		   border-right: 1px solid #eee;
+	   }
+	   table tr th:last-child{
+		   border-right: 1px solid #D7D7D7;
+	   }
+	   table thead th{
+		   font-size: 16px;
+	   }
+		table tbody th{
+			font-size: 14px;
+			font-weight: normal;
+		}
+    </style>
+</head>
+<body>
+ 
+<div class="detail-section">
+    <div class="header">
+        <select class="select span3" id="poi">
+	        <foreach name="data" item="vo" key="k" >
+	  			<option value='{$vo.id}' >{$vo.name}</option>
+			</foreach>
+        </select>
+		<div class="timer">
+			<div class="seven span days select" data-type='seven'>最近七天</div>
+			<div class="month span days"  data-type='month'>最近一个月</div>
+		</div>
+
+        <div class="control-group span14">
+            <label class="days span">起止日期：</label>
+            <div class="controls span">
+                <input type="text" class=" calendar" name="startDate" id='start_date'>
+                <span> - </span>
+                <input id='end_date' name="endDate" type="text" class=" calendar">
+            	<input type="button" value="查询" class="submit button button-primary" >
+            	<input type="button" value="下载" class="down button button-primary">
+            </div>
+        </div>
+
+    </div>
+    <div class="total">统计图表</div>  
+    <div id="canvas">
+ 
+    </div>
+	<div class="total">数据统计</div>
+     <div id="table">
+   		
+ 
+   </div>
+   <div id="tab">
+   </div>
+	
+</div>
+ <br/>
+ <br/>
+   <script type="text/javascript" src="/assets/js/jquery-1.8.1.min.js?{$js_version}"></script>
+  <script type="text/javascript" src="/assets/js/bui-min.js?{$js_version}"></script>
+ <script type="text/javascript" src="/assets/js/config-min.js?{$js_version}"></script>
+  <script type="text/javascript">
+/*  BUI.use('bui/form',function (Form) {
+    var form = new Form.HForm({
+      srcNode : '#J_Form'
+    });
+
+    form.render();
+  });*/
+  </script>
+<script src="http://g.tbcdn.cn/bui/acharts/1.0.32/acharts-min.js?{$js_version}"></script>
+
+<!-- https://g.alicdn.com/bui/acharts/1.0.29/acharts-min.js -->
+ 
+ <script type="text/javascript">
+ /*------------初始化日历插件--------------------*/
+ BUI.use('bui/calendar',function(Calendar){
+ var now=new Date();
+ var today=now.getFullYear()+'-'+(now.getMonth()+1)+'-'+now.getDate();
+//  var minDate=(now.getFullYear()-1)+'-'+(now.getMonth()+1)+'-'+now.getDate();
+ 	//console.log(today);
+   var datepicker = new Calendar.DatePicker({
+     trigger:'#start_date',
+     dateMask : 'yyyy/mm/dd',
+     autoRender : true,
+     minDate : '',
+     maxDate :today
+   });
+   var datepicker1 = new Calendar.DatePicker({
+       trigger:'#end_date',
+       dateMask : 'yyyy/mm/dd',
+       autoRender : true,
+       minDate : '',
+       maxDate :today
+     });
+
+ });
+
+ //---------------图表初始化-----/
+ 
+ 
+
+</script>
+
+
+
+<script type="text/javascript">
+
+	var charter = (function(){
+		var args = {} , chart , firstRun = true;
+		
+		function initChart(data){
+			$('#canvas').empty();
+		  chart = new AChart({
+		      theme : AChart.Theme.Smooth5,
+		      id : 'canvas',
+		      forceFit : true, //自适应宽度
+		      /*width : 950,*/
+		      height : 500,
+		      plotCfg : {
+		        margin : [60,50,80] //画板的边距
+		      },
+		      title : {
+		          text : '景点访问人数统计图'
+		      },
+		      subTitle : {
+		        text : ''
+		      },
+		      
+		      xAxis : {
+		        type : 'time',
+		        formatter : function  (value) {
+		          return AChart.Date.format(new Date(value),'yyyy-mm-dd');
+		        }
+		      },
+		      yAxis : {
+		          title : {
+		            text : '访问人数',
+		            rotate : -90
+		          }
+		        }, 
+		      tooltip : {
+		          valueSuffix : '人',
+		          shared : true, //是否多个数据序列共同显示信息
+		          crosshairs :true //是否出现基准线
+		      },
+		  
+		      series :data
+		    });
+		  
+		  	chart.render();
+		 }
+		
+		
+		function render(){
+			if(checkDate())
+				$.getJSON('/location/admin/index_get_json', args ,function  (ret) {
+					
+					initChart(ret.data);
+					
+				//	$('#table').empty();
+				//	var html='<table border="1" style="width:100%">';
+				//	var temp,one='<tr><th>编号</th></th>',two='<tr><th>景点名称',three='<tr><th>总数量</th>';
+				//	for(i=0;i<ret.sum.length;i++)
+				//	{	
+				//		temp=ret.sum[i];
+				//		one=one+'<th>'+temp.id+'</th>';
+				//		two=two+'<th>'+temp.name+'</th>';
+				//		three=three+'<th>'+temp.sum+'</th>';
+				//		//html=html+'<tr><th>'+temp.id+'</th> <th>'+temp.name+'</th><th>'+temp.sum+'</th></tr>';
+				//	}	
+				//	html=html+one+two+three; 
+				//	html=html+'</table>';
+				//	$('#table').append(html);
+					
+					
+					$('#table').empty();
+					var html='<table><thead><th>编号</th><th>景点名称</th><th>总数量</th></thead>';
+					var temp;
+					for(i=0;i<ret.sum.length;i++)
+					{	
+						temp=ret.sum[i];
+						html=html+'<tr><th>'+temp.id+'</th> <th>'+temp.name+'</th><th>'+temp.sum+'</th></tr>';
+					}	
+					   
+					html=html+'</table>';
+					$('#table').append(html);
+					//console.log(chart.getSeries());
+					//firstRun = false;
+					//chart.changeData(data)
+					//chart.set('series',data);
+					//chart.render();
+					
+				});
+		}
+		
+		function bind(){
+			$('.timer').on('click','.days',function (){
+				 var el = $(this);
+				 el.addClass('select').siblings().removeClass('select');
+				 $('#start_date').val('');
+				 $('#end_date').val('');
+				 updateRange( el.attr('data-type') );
+				 render();
+			});
+			
+			$('#poi').on('change',function(){
+				updatePoi();
+				render();
+			});
+			
+			$('input.submit').on('click',function(){
+				
+			    $('.days.select').removeClass('select');
+			    render(); 
+			});
+			$('input.down').on('click',function(){
+				downChart();
+			});
+			
+			$('.calendar').on('change' , function(){
+				$('.days.select').removeClass('select');
+				args.s_date = $('#start_date').val();
+				args.e_date = $('#end_date').val();
+			});
+		}
+		
+		function downChart(){
+			
+			if( checkDate() ){
+				var url = "/Location/Admin/down_get.html"+'?s_date='+args.s_date+'&e_date='+args.e_date;
+	            window.location.href=url;
+			}
+		}
+		
+		function checkDate(){
+			var startTime = new Date(args.s_date).getTime();
+			var endTime = new Date(args.e_date).getTime();
+			if(!startDate||!endDate){
+				BUI.Message.Alert('起止日期不能为空！');
+				return false;
+			}
+			if(startTime>endTime){
+				BUI.Message.Alert('开始日期不能大于结束日期');
+				return false;
+			}
+			if(endTime-startTime>86400*1000*60){
+				BUI.Message.Alert('起止时间不能大于60天！');
+				return false;
+			}
+			return true;
+		}
+		
+		
+		function updatePoi(){
+			args.p_str = $('#poi').val();
+		}
+		
+		function updateRange(days){
+			var now = new Date().getTime();
+			 var endTime=new Date(now-86400*1000);
+			 if('seven'==days){
+				startTime=new Date(now-86400*1000*8);
+			 }else if('month'===days){
+			 	startTime=new Date(now-86400*1000*31); 
+			 }
+			 startDate=startTime.getFullYear()+'-'+(startTime.getMonth()+1)+'-'+startTime.getDate();
+			 endDate=endTime.getFullYear()+'-'+(endTime.getMonth()+1)+'-'+endTime.getDate();
+			 args.s_date = startDate;
+			 args.e_date = endDate;
+		}
+		
+		return function(){
+			updatePoi();
+			updateRange('seven');
+			bind();
+			initChart();
+			render();
+		};
+		
+	}())
+	/*------------初始化统计图表--------------------*/
+	$(function(){
+		 charter();
+	}); 
+	
+</script>
+</body>
+</html>

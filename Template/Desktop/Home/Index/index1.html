@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta name="keywords" content="西湖,杭州西湖">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <title>杭州西湖</title>
+    <link href="/static/Desktop/Public/main.css" rel="stylesheet" type="text/css">
+    <link href="/static/public/swipe.css" rel="stylesheet" type="text/css">
+    <link href="/static/Desktop/Public/login.css" rel="stylesheet" type="text/css">
+    <link href="/static/Desktop/Home/Index/index.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<include file="../Template/Desktop/Home/Index/top.html"/>
+<div class="">
+
+</div>
+<div class="way-box">
+    <div class="title">路线推荐</div>
+    <div class="more"><a href="/way">更多</a></div>
+    <div class="way-list">
+
+    </div>
+</div>
+<div class="culture-box">
+    <div class="title">文化知识</div>
+    <div class="more"><a href="/culture/list.html">更多</a></div>
+    <div class="culture-list">
+        <div class="culture-type-box">
+            <div class="culture-type-img">
+                <a class="culture-type-name">
+                    <div class="culture-type-title"></div>
+                    <div class="culture-type-desc"></div>
+                </a>
+
+            </div>
+            <div class="culture-type-list">
+
+
+            </div>
+        </div>
+        <div class="culture-show-new">最新推荐</div>
+        <div class="culture-show-list">
+
+        </div>
+    </div>
+</div>
+
+<div class="photo-box">
+    <div class="title">西湖印象</div>
+    <div class="more"><a href="/photo">更多</a></div>
+    <div class="photo-list">
+
+    </div>
+</div>
+<div class="travels-box">
+    <div class="title">精彩游记</div>
+    <div class="more"><a href="/travels">更多</a></div>
+    <div class="travels-list">
+
+
+    </div>
+</div>
+<include file="../Template/Desktop/Home/Index/bottom.html"/>
+</body>
+<script>
+    USER_CONFIG = {:$user?$user:'[]'};
+    window.INDEX = {$data};
+
+</script>
+<script src="/static/public/jquery.js?{:time();}"></script>
+<!--[if (gte IE 8)&(!IE)]><!--> <script src="/static/public/swipe.js?{:time();}"></script><![endif]-->
+
+<script src="/static/Desktop/Public/main.js?{:time();}"></script>
+<script src="/static/Desktop/Public/login.js?{:time();}"></script>
+<script src="/static/Desktop/Home/Index/index.js?{:time();}"></script>
+
+<!--[if (gte IE 8)&(!IE) ]><!-->
+<script>
+    $(function(){
+        new Swiper(".swipe-bar", {
+            speed: 1e3,
+            autoplay: 2e3,
+            pagination: ".swiper-pagination",
+            paginationClickable: true
+        });
+    })
+
+</script>
+<![endif]-->
+
+</html>

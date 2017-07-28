@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>添加管理员</title>
+    <link href="/assets/css/bs3/dpl-min.css" rel="stylesheet">
+    <link href="/assets/css/bs3/bui-min.css" rel="stylesheet">
+    <link href="/assets/css/page-min.css" rel="stylesheet">
+    <link href="/assets/css/hqtec.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <form id="J_Form" class="form-horizontal" action="/system/admin.json" method="post">
+        <div class="row">
+            <div class="control-group span8">
+                <label class="control-label">帐号：</label>
+
+                <div class="controls">
+                    <input name="ACCOUNT" type="text" data-rules="{required:true}" data-messages="{required:'帐号不能为空'}"
+                           class="input-normal control-text" data-tip="{text:'请输入帐号'}" value="{$data.account}">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="control-group span15">
+                <label class="control-label">密码：</label>
+                <div class="controls">
+                    <input name="PASSWORD" type="password" data-rules="{required:true}" data-messages="{required:'密码不能为空'}" id="pass1" class="input-normal control-text"  data-tip="{text:'请输入密码'}" value="">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="control-group span15">
+                <label class="control-label">重复密码：</label>
+
+                <div class="controls">
+                    <input name="REPASSWORD" type="password"  class="input-normal control-text" data-rules="{equalTo:'#pass1'}" data-messages="{equalTo:'两次输入密码不一致'}" data-tip="{text:'请再输入一遍密码'}" value="">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="control-group span15">
+                <label class="control-label">昵称：</label>
+
+                <div class="controls">
+                    <input name="NICKNAME" type="text"  class="input-normal control-text" data-tip="{text:'请输入昵称,例如：小明'}" value="{$data.nickname}">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="control-group span15">
+                <label class="control-label">邮箱：</label>
+                <div class="controls">
+                    <input name="EMAIL" type="text"  class="input-normal control-text" data-tip="{text:'请输入邮箱'}"  data-rules="{email:true,required:true}" value="{$data.email}">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="control-group span15">
+                <label class="control-label">电话：</label>
+                <div class="controls control-row4">
+                    <input name="MOBILE" type="text"  class="input-normal control-text" data-tip="{text:'请输入电话'}" value="{$data.mobile}" data-rules="{regexp:[/^\d+$/,'不是有效的号码']}">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="control-group span15">
+                <label class="control-label">角色：</label>
+
+                <div class="controls">
+                    <select name="ROLE_ID" class="input-normal">
+                        <volist name="roles"  id="vo">
+                            <option value="{$vo.id}">{$vo.name}</option>
+                        </volist>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row form-actions newactions-bar">
+            <div class="span13 offset3 ">
+                <button type="submit" class="button button-save">保存</button>
+                <button type="reset" class="button button-reset">重置</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script src="/assets/js/jquery-1.8.1.min.js?{$js_version}"></script>
+<script src="/assets/js/bui.js?{$js_version}"></script>
+<script type="text/javascript" src="/assets/js/config-min.js?{$js_version}"></script>
+<script type="text/javascript">
+    var Form = BUI.Form
+    new Form.HForm({
+        srcNode: '#J_Form',
+        submitType: 'ajax',
+        callback: function (data) {
+            if(data.success==true)
+            {
+                BUI.Message.Confirm('操作成功！是否离开本页？',function(){
+                    if(top.topManager){
+                        //打开左侧菜单中配置过的页面
+                        top.topManager.openPage({
+                            id : 'admin',
+                            reload : 'true'
+                        });
+                    }
+                },'success');
+            }else{
+                BUI.Message.Alert('操作失败！'+data.msg,'error');
+            }
+        }
+    }).render();
+
+</script>
+<!-- script end -->
+</div>
+</body>
+</html>

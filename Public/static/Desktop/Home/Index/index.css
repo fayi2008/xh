@@ -1,0 +1,794 @@
+.top {
+    padding-top: 60px;
+    width: 100%;
+    position: relative;
+    background: url(/static/Desktop/Img/index/new/topbg.jpg) repeat-x center;
+    overflow: hidden;
+
+}
+
+.dong {
+    margin: 0 auto;
+    height: 725px;
+    width: 1040px;
+}
+
+.dong-box {
+    width: 15600px;
+    height: 725px;
+}
+
+.dong-list {
+    width: 5200px;
+    height: 725px;
+    float: left;
+}
+
+.dong-item {
+    float: left;
+    height: 725px;
+    width: 1040px;
+    position: relative;
+}
+
+.item1 {
+    background: url(/static/Desktop/Img/index/new/1.png) no-repeat center;
+
+}
+
+.item2 {
+    background: url(/static/Desktop/Img/index/new/2.png) no-repeat center;
+}
+
+.item3 {
+    background: url(/static/Desktop/Img/index/new/3.png) no-repeat center;
+}
+
+.item4 {
+    background: url(/static/Desktop/Img/index/new/4.png) no-repeat center;
+}
+
+.item5 {
+    background: url(/static/Desktop/Img/index/new/5.png) no-repeat center;
+}
+
+.item-a {
+    position: absolute;
+    cursor: pointer;
+    width: 62px;
+    height: 177px;
+    display: block;
+    right: 100px;
+    top:220px;
+    cursor: pointer;
+}
+
+/*公用头部 和 更多按钮*/
+.box {
+    height: 700px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.title {
+    width: 1000px;
+    margin: 0 auto;
+    margin-top: 60px;
+    margin-bottom: 35px;
+    overflow: hidden;
+}
+
+.title-img {
+    height: 82px;
+    width: 272px;
+    background-repeat: no-repeat;
+    background-position: left top;
+    float: left;
+}
+
+.news-box .title-img {
+    background-image: url(/static/Desktop/Img/index1/news.png);
+}
+
+.photo-box .title-img {
+    background-image: url(/static/Desktop/Img/index1/photo.png);
+}
+
+.way-box .title-img {
+    background-image: url(/static/Desktop/Img/index1/ways.png);
+}
+
+.culture-box .title-img {
+    background-image: url(/static/Desktop/Img/index1/culture.png);
+}
+
+.travels-box .title-img {
+    background-image: url(/static/Desktop/Img/index1/travel.png);
+}
+.photo-box .title > a{
+    border: 2px solid #fff;
+    color: #fff;
+}
+.title > a {
+    float: right;
+    width: 80px;
+    border: 2px solid #36acec;
+    height: 30px;
+    line-height: 30px;
+    display: block;
+    text-align: center;
+    border-radius: 40px;
+    color: #36acec;
+    font-size: 14px;
+    margin-top: 24px;
+}
+
+/*.more:after {*/
+/*content: '';*/
+/*margin-left: 5px;*/
+/*padding: 5px 8px;*/
+/*background-repeat: no-repeat;*/
+/*background-size: contain;*/
+/*background-image: url(/static/Desktop/Img/index/ic_more.png);*/
+/*background-position: center;*/
+/*}*/
+/*新闻*/
+.news-box {
+    background-color: #fff;
+}
+
+.news-list {
+    width: 1000px;
+    margin: 0 auto;
+    overflow: hidden;
+    position: relative;
+}
+
+.new-pic {
+    width: 453px;
+    float: left;
+}
+
+.new-pic-box {
+    width: 453px;
+    height: 388px;
+    overflow: hidden;
+}
+
+.new-pic-list {
+    height: 388px;
+    width: 1359px;
+}
+
+.l-r {
+    margin-top: 21px;
+    overflow: hidden;
+    text-align: center;
+}
+
+.l-r > div {
+    display: block;
+    float: left;
+}
+
+.new-pic-left {
+    width: 23px;
+    height: 41px;
+    margin-left: 140px;
+    cursor: pointer;
+    background: url(/static/Desktop/Img/index1/new_left.png) no-repeat center;
+}
+
+.new-pic-num {
+    width: 139px;
+    text-align: center;
+    height: 41px;
+    line-height: 41px;
+}
+
+.new-pic-right {
+    width: 23px;
+    height: 41px;
+    cursor: pointer;
+    background: url(/static/Desktop/Img/index1/new_right.png) no-repeat center;
+}
+
+.new-pic-item {
+    width: 453px;
+    height: 388px;
+    position: relative;
+    float: left;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-size: cover;
+    -ms-behavior: url(/static/Desktop/Public/backgroundsize.min.htc);
+    behavior: url(/static/Desktop/Public/backgroundsize.min.htc);
+}
+
+.new-pic-title {
+    display: block;
+    overflow: hidden;
+    text-align: center;
+    width: 100%;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    padding: 10px;
+    color: #fff;
+    box-sizing: border-box;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.new-box {
+    margin-left: 51px;
+    float: left;
+    width: 496px;
+}
+
+.new-box > a {
+    height: 70px;
+    display: block;
+    width: 100%;
+    border-bottom: 1px solid #eaeaea;
+    margin-top: 25px;
+    color: #565656;
+    cursor: pointer;
+}
+
+.new-box > a:first-child {
+    margin-top: 5px;
+}
+
+.new-box > a:hover {
+    color: #36acec;
+}
+
+.new-time {
+    float: left;
+    width: 83px;
+    border-right: 1px solid #eaeaea;
+    box-sizing: border-box;
+    padding-left: 5px;
+    padding-right: 5px;
+    color: #36acec;
+}
+
+.new-day {
+    height: 39px;
+    border-bottom: 1px dotted #36acec;
+    text-align: center;
+    line-height: 39px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.new-year {
+    height: 29px;
+    text-align: center;
+    line-height: 29px;
+
+}
+
+.new-titile {
+    float: left;
+    width: 412px;
+    padding-left: 12px;
+    padding-top: 11px;
+    box-sizing: border-box;
+    font-size: 16px;
+    font-weight: bold;
+
+}
+
+/*路线部分*/
+.way-box {
+    position: relative;
+    background-color: #fff;
+
+}
+
+.culture-box, .travels-box {
+    background-color: #fff;
+    position: relative;
+}
+
+.way-list {
+    width: 1000px;
+    margin: 0 auto;
+    overflow: hidden;
+    padding: 5px;
+}
+.way-list>a:hover{
+    box-shadow: 0 0 5px #36acec;
+}
+.way-item {
+    float: left;
+    display: block;
+    background-color: #fff;
+
+
+    box-sizing: border-box;
+    border: 2px solid #eaeaea;
+    height: 224px;
+}
+.way-item0{
+    width: 1000px;
+
+}
+.way-item1{
+    width: 491px;
+    margin-right: 18px;
+    margin-top: 18px;
+}
+.way-item2{
+    width: 491px;
+    margin-top: 18px;
+}
+.way-item-img{
+    width: 249px;
+    height: 220px;
+}
+.way-item0 .way-item-img{
+    width: 591px;
+
+}
+.way-item0 .way-item-name{
+    width: 405px;
+
+}
+
+
+.way-item-img {
+    float: left;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-size: cover;
+    -ms-behavior: url(/static/Desktop/Public/backgroundsize.min.htc);
+    behavior: url(/static/Desktop/Public/backgroundsize.min.htc);
+}
+
+.way-item-name {
+    height: 220px;
+    box-sizing: border-box;
+    position: relative;
+    width: 238px;
+    padding: 25px 20px 25px 20px;
+    float: left;
+
+}
+
+.way-item-title {
+    font-size: 20px;
+    font-weight: bold;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eaeaea;
+}
+.way-item-intro{
+    color: #717171;
+    padding-top: 10px;
+    height: 135px;
+    overflow: hidden;
+}
+.way-item-tip-list {
+
+}
+
+.way-item-tip {
+    display: inline-block;
+    margin-right: 5px;
+    font-size: 12px;
+    padding: 4px 9px;
+    border-radius: 3px;
+    background-color: #f4b55a;
+    color: #fff;
+}
+
+.way-item-fire {
+    margin-left: 10px;
+}
+
+.way-item-fire:before {
+    content: '';
+    margin-right: 5px;
+    padding: 5px 5px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-image: url(/static/Desktop/Img/way/way_fire.png);
+    background-position: center;
+}
+
+/*/路线部分*/
+
+/*文化知识*/
+.culture-box{
+    background: url(/static/Desktop/Img/index1/culbg.jpg) no-repeat center;
+}
+.culture-list{
+    width: 1000px;
+    margin: 0 auto;
+    height: 410px;
+
+}
+.culture-item{
+    width: 269px;
+    height: 410px;
+    float: left;
+    position: relative;
+    margin-left: -87px;
+    box-sizing: border-box;
+    display: block;
+    cursor: pointer;
+}
+.culture-item:first-child{
+    margin-left: 0;
+}
+.cul-name{
+    width: 118px;
+    height: 32px;
+    line-height: 32px;
+    box-sizing: border-box;
+    text-align: center;
+    color: #36acec;
+    border: 1px solid #36acec;
+    margin-left: 77px;
+
+}
+.culture-item1 .cul-name{
+    margin-bottom: 0px;
+
+}
+.culture-item1{
+    padding-top: 170px;
+
+}
+
+.cul-img{
+    width: 269px;
+    height: 237px;
+    display: block;
+}
+.cul-img1{
+    background: url(/static/Desktop/Img/index1/cul/1.png) no-repeat center;
+}
+.cul-img2{background: url(/static/Desktop/Img/index1/cul/2.png) no-repeat center;}
+.cul-img3{background: url(/static/Desktop/Img/index1/cul/3.png) no-repeat center;}
+.cul-img4{background: url(/static/Desktop/Img/index1/cul/4.png) no-repeat center;}
+.cul-img5{background: url(/static/Desktop/Img/index1/cul/5.png) no-repeat center;}
+/*/文化知识*/
+/* photo */
+.photo-box {
+    background: url(/static/Desktop/Img/index1/photobg.jpg) no-repeat center;
+
+}
+
+.photo-list {
+    overflow: hidden;
+    width: 1000px;
+    margin: 0 auto;
+}
+
+
+.photo-item {
+    box-sizing: border-box;
+    border: 5px solid #fff;
+    float: left;
+    position: relative;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-size: cover;
+    -ms-behavior: url(/static/Desktop/Public/backgroundsize.min.htc);
+    behavior: url(/static/Desktop/Public/backgroundsize.min.htc);
+
+}
+
+.photo-item1 {
+    border: none;
+    width: 341px;
+    height: 240px;
+    box-sizing: border-box;
+    padding-right: 50px;
+    padding-left: 10px;
+    font-size: 20px;
+    color: #fff;
+}
+.photo-item1>span{
+    font-size: 36px;
+    color: #ffcf69;
+}
+.photo-item2 {
+    width: 371px;
+    height: 240px;
+    margin-right: 15px;
+}
+
+.photo-item3 {
+    width: 273px;
+    height: 240px;
+}
+
+.photo-item4 {
+    height: 185px;
+    margin-right: 15px;
+    width: 375px;
+    margin-top: 15px;
+}
+
+.photo-item5 {
+    height: 185px;
+    width: 231px;
+    margin-right: 15px;
+    margin-top: 15px;
+}
+
+.photo-item6 {
+    height: 185px;
+    width: 177px;
+    margin-right: 15px;
+    margin-top: 15px;
+}
+
+.photo-item7 {
+    height: 185px;
+    width: 172px;
+    margin-top: 15px;
+}
+.photo-titile{
+    position: absolute;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+    text-align: center;
+    bottom: 0px;
+    left: 0;
+    display: none;
+    color: #fff;
+    background-color: rgba(0,0,0,0.5);
+}
+.photo-item:hover .photo-titile{
+    display: block;
+}
+
+/* /photo */
+
+/*文章*/
+.travels-box {
+    overflow: hidden;
+    background-color: #fff;
+}
+
+.travels-list {
+    width: 1000px;
+    overflow: hidden;
+    margin: 0 auto;
+    padding: 10px;
+
+}
+
+.travels-item {
+    display: block;
+    width: 320px;
+    margin-left: 20px;
+    float: left;
+    box-sizing: border-box;
+    border: 1px solid #ccc \0;
+    box-shadow: 0 0 1px #333;
+    padding: 10px;
+    border-radius: 3px;
+}
+
+.travels-item:hover {
+    box-shadow: 0 0 10px #0366b1;
+
+}
+
+.travels-item:first-child {
+    margin-left: 0px;
+}
+
+.travels-item-content {
+    padding: 10px 0;
+}
+
+.travels-item-img {
+    height: 300px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+
+    background-size: cover;
+    -ms-behavior: url(/static/Desktop/Public/backgroundsize.min.htc);
+    behavior: url(/static/Desktop/Public/backgroundsize.min.htc);
+}
+
+.travels-item-title {
+    font-size: 18px;
+    font-weight: bold;
+    height: 20px;
+    line-height: 20px;
+    overflow: hidden;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.travels-item-desc {
+    color: #939393;
+    line-height: 150%;
+    min-height: 24px;
+}
+
+.travels-item-tool {
+    padding-bottom: 10px;
+    overflow: hidden;
+    padding-top: 5px;
+}
+
+.zan {
+    float: left;
+    color: #6c8ab1;
+}
+
+.zan:before {
+    content: '';
+    padding: 5px 8px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-image: url(/static/Desktop/Img/index/xin.png);
+    background-position: center;
+}
+
+.pl {
+    float: left;
+    color: #6c8ab1;
+    margin-left: 10px;
+}
+
+.pl:before {
+    content: '';
+    padding: 5px 8px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-image: url(/static/Desktop/Img/index/pl.png);
+    background-position: center;
+}
+
+.travels-item-author {
+    padding: 5px 10px;
+    overflow: hidden;
+    border-top: 1px solid #ccc;
+}
+
+.travels-item-avatar {
+    float: left;
+    width: 30px;
+    height: 30px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    border-radius: 30px;
+    background-image: url(/static/Desktop/Img/way/index_top.jpg);
+    background-size: cover;
+    -ms-behavior: url(/static/Desktop/Public/backgroundsize.min.htc);
+    behavior: url(/static/Desktop/Public/backgroundsize.min.htc);
+}
+
+.travels-item-author-name {
+    float: left;
+    height: 30px;
+    line-height: 30px;
+    padding-left: 10px;
+}
+
+.travels-item-day {
+    float: right;
+    height: 30px;
+    line-height: 30px;
+}
+
+/*/文章*/
+
+/**/
+.content-box{
+    width: 209px;
+    height: 387px;
+    position: fixed;
+    bottom: 0px;
+    right: 0px;
+
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    border-radius: 30px;
+    background-image: url(/static/Desktop/Img/index1/content.png);
+    background-size: cover;
+    -ms-behavior: url(/static/Desktop/Public/backgroundsize.min.htc);
+    behavior: url(/static/Desktop/Public/backgroundsize.min.htc);
+    z-index: 9999;
+
+}
+.tel-box{
+    margin-top: 95px;
+    font-size: 16px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+.tel-tips{
+    padding: 1px 15px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    border-radius: 30px;
+    background-image: url(/static/Desktop/Img/index1/tel.jpg);
+    -ms-behavior: url(/static/Desktop/Public/backgroundsize.min.htc);
+    behavior: url(/static/Desktop/Public/backgroundsize.min.htc);
+    margin-right: 10px;
+}
+
+.qq-box{
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-top: 10px;
+    font-size: 16px;
+}
+.qq-tips{
+     padding: 1px 15px;
+     background-repeat: no-repeat;
+     background-size: contain;
+     background-position: center;
+     border-radius: 30px;
+     background-image: url(/static/Desktop/Img/index1/qq.jpg);
+     -ms-behavior: url(/static/Desktop/Public/backgroundsize.min.htc);
+     behavior: url(/static/Desktop/Public/backgroundsize.min.htc);
+     margin-right: 10px;
+ }
+.wx-box{
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-top: 10px;
+    font-size: 16px;
+}
+.wx-tips{
+    padding: 1px 15px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    border-radius: 30px;
+    background-image: url(/static/Desktop/Img/index1/wx.jpg);
+    -ms-behavior: url(/static/Desktop/Public/backgroundsize.min.htc);
+    behavior: url(/static/Desktop/Public/backgroundsize.min.htc);
+    margin-right: 10px;
+}
+.wx-img{
+    width: 100%;
+    margin-top: 10px;
+}
+.wx-img>img{
+    width: 100%;
+}
+.c-small{
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    z-index: 99999;
+    width: 30px;
+    height: 30px;
+    font-size: 20px;
+    text-align: center;
+    line-height: 30px;
+    cursor: pointer;
+}
+.c-big{
+    position: fixed;
+    bottom: 0px;
+    right: 0px;
+    z-index: 99999;
+    width: 30px;
+    height: 30px;
+    font-size: 24px;
+    text-align: center;
+    line-height: 30px;
+    cursor: pointer;
+}

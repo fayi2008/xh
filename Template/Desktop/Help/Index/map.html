@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta name="keywords" content="西湖,杭州西湖">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <title>网站地图</title>
+    <link href="/static/Desktop/Public/main.css" rel="stylesheet" type="text/css">
+    <link href="/static/Desktop/Help/Index/contact.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<include file="../Template/Desktop/Home/Index/newtop.html"/>
+<div class="main_box">
+    <div class="main_con clear">
+        <div class="mian_left">
+            <ul>
+                <li><a href="contact.html">联系我们</a></li>
+                <li><a href="faq.html">常见问题</a></li>
+                <li><a href="link.html">友情链接</a></li>
+                <li class="last"><a href="#" class="select">网站地图</a></li>
+            </ul>
+        </div>
+        <div class="main_right">
+            <div class="map_box">
+                <ul>
+                    <li>
+                        <div class="map_tit">社交</div>
+                        <div class="map_titer">
+                            <span class="current">印象</span><span>游记</span>
+                        </div>
+                        <div class="map_con_box">
+                            <div class="map_con">
+                                <a href="/photo">最新印象</a>
+                                <a href="/photo?ordertype=support_num">人气最高</a>
+                                <a href="/photo?ordertype=comment_count">评论最多</a>
+                            </div>
+                            <div class="map_con" style="display: none;">
+                                <a href="/travels">最新游记</a>
+                                <a href="/travels/?start=0&ordertype=support_num">人气最高</a>
+                                <a href="/travels/?start=0&ordertype=comment_count">评论最多</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="map_tit">文化</div>
+                        <div class="map_titer">
+                            <span class="current">文化知识</span><span>新闻资讯</span>
+                        </div>
+                        <div class="map_con_box">
+                            <div class="map_con">
+                                <a href="/culture/list.html">全部</a>
+                                <a href="/culture/list.html?start=0&type=32">景观</a>
+                                <a href="/culture/list.html?start=0&type=66">物产特产</a>
+                                <a href="/culture/list.html?start=0&type=36">艺术文化</a>
+                                <a href="/culture/list.html?start=0&type=33">历史文化</a>
+                                <a href="/culture/list.html?start=0&type=67">互动应用</a>
+                                <a href="/culture/list.html?start=0&type=79">现代文化</a>
+                                <a href="/culture/list.html?start=0&type=74">民俗民风</a>
+                                <a href="/culture/list.html?start=0&type=35">民间文化</a>
+                                <a href="/culture/list.html?start=0&type=34">故事传说</a>
+                                <a href="/culture/list.html?start=0&type=77">道德伦理文化</a>
+                                <a href="/culture/list.html?start=0&type=31">人物</a>
+                                <a href="/culture/list.html?start=0&type=75">语言符号</a>
+                            </div>
+                            <div class="map_con" style="display: none;">
+                                <a href="/culture/news/list.html">全部</a>
+                                <a href="/culture/news/list.html?start=0&cate=44">西湖资讯</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="map_tit">地图</div>
+                        <div class="map_con">
+                            <a href="/gis/map">自然风景</a>
+                            <a href="/gis/map">西湖美景</a>
+                            <a href="/gis/map">西湖十景</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="map_tit">线路</div>
+                        <div class="map_titer">
+                            <span class="current">推荐路线</span><span>定制路线</span>
+                        </div>
+                        <div class="map_con_box">
+                            <div class="map_con">
+                                <a href="/way">最新路线</a>
+                                <a href="/way/?start=0&day=0&ordertype=hot&type=1">最热路线</a>
+                            </div>
+                            <div class="map_con" style="display: none;">
+                                <a href="/way/choice.html">路线偏好</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="map_tit">商务</div>
+                        <div class="map_con">
+                            <a href="/business">美食</a>
+                            <a href="/business/?start=0&tag=1">住宿</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="map_tit">个人中心</div>
+                        <div class="map_con">
+                            <a href="/user">收藏路线</a>
+                            <a href="/user/photo.html">我的印象</a>
+                            <a href="/user/travels.html">我的游记</a>
+                            <a href="/user/comment.html">我的评论</a>
+                            <a href="/user/order.html">我的订单</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div style="clear: both"></div>
+    </div>
+</div>
+</body>
+<script src="http://www.lanrenzhijia.com/ajaxjs/jquery.min.js?{$js_version}"></script>
+<script>
+    $(function(){
+        window.onload = function()
+        {
+            var $li = $('.map_titer span');
+            $li.click(function(){
+                var $this = $(this);
+                var $ul = $this.parent('.map_titer').next('.map_con_box').find(' div');
+                var $t = $this.index();
+                $(this).parents('li').find('span').removeClass();
+                $this.addClass('current');
+                $ul.css('display','none');
+                $ul.eq($t).css('display','block');
+            })
+        }
+    })
+</script>
+</html>

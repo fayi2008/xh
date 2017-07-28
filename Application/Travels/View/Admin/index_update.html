@@ -1,0 +1,190 @@
+
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <title> 审核照片信息</title>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+       <link href="/assets/css/bs3/dpl-min.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/css/bs3/bui-min.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/css/page-min.css" rel="stylesheet" type="text/css" />  
+     <link href="/assets/css/hqtec.css" rel="stylesheet" type="text/css">
+   <style type="text/css">
+    code {
+      padding: 0px 4px;
+      color: #d14;
+      background-color: #f7f7f9;
+      border: 1px solid #e1e1e8;
+    }
+   </style>
+ </head>
+ <body>
+  
+  <div class="container">
+    <form id ="J_Form" class="form-horizontal" action='/Travels/admin/index' method='put'>
+      <h3>基本信息</h3>
+  
+      <div class="row">
+      	 <div class="control-group span12">
+          <label class="control-label">ID：</label>
+          <div class="controls">
+            <input name="ID" type="text" class="control-text" value='{$data.id}' disabled="disabled" >  
+          </div>        
+        </div>
+        <div class="control-group span12">
+          <label class="control-label">游记标题：</label>
+          <div class="controls">
+            <input type="text" name='TITLE' class="control-text" value='{$data.title}' disabled="disabled">
+          </div>
+        </div>       
+      </div>
+     
+     <div class="row">
+          	 <div class="control-group span12">
+          <label class="control-label"><s>*</s>评论权限</label>
+          <div class="controls">
+            	<select name='COMMENT_STATUS' class="input-normal">
+            		<option value=0   {:$data['comment_status']==0?'selected':''}>拒绝</option>
+            		<option value=1   {:$data['comment_status']==1?'selected':''} >允许</option>
+            	</select>
+          </div>
+        </div>
+      
+         <div class="control-group span12">
+          <label class="control-label"><s>*</s>审核状态</label>
+          <div class="controls" >
+            	<select name='STATUS' class="input-normal">
+            		<option value=2   {:$data['status']==2?'selected':''}>未通过</option>
+            		<option value=1   {:$data['status']==1?'selected':''} >通过</option>
+            	</select>
+          </div>
+        </div>
+      </div>
+      
+     <div class="row">
+    	<div class="control-group span12">
+          <label class="control-label">地址</label>
+          <div class="controls">
+            <input type="text" name='ADDRESS' class="control-text" value='{$data.address}' disabled="disabled">
+          </div>
+        </div>
+        <div class="control-group span12">
+          <label class="control-label">评论数：</label>
+          <div class="controls">
+            <input type="text" name='COMMENT_COUNT' class="control-text" value='{$data.comment_count}' disabled="disabled">
+          </div>
+        </div>
+      </div>
+      
+      
+       <div class="row">
+    	<div class="control-group span12">
+          <label class="control-label">上传者</label>
+          <div class="controls">
+            <input type="text" name='NICKNAME' class="control-text" value='{$data.nickname}' disabled="disabled">
+          </div>
+        </div>
+        <div class="control-group span12">
+          <label class="control-label">创建时间</label>
+          <div class="controls">
+            <input type="text" name='CRAETE_TIME' class="control-text" value='{$data.create_time}' disabled="disabled">
+          </div>
+        </div>
+      </div>
+    
+   	<div class='row'>
+   		 <div class="control-group span24">
+          <label class="control-label">描述：</label>
+          <div class="controls control-row4">
+            <textarea name="DESC" id="" class="span8 span-width" disabled="disabled">
+            {$data.excerpt}
+            </textarea>
+          </div>
+        </div>
+   	</div>
+
+     <div class="row">
+     	 <div class="control-group span24">
+		    <label class="control-label">缩略图：</label>
+		   	 <div class="control-group span12">
+		      <div id="J_Uploader" >
+		      	<input type='hidden' id='IMG' name='THUMB' value='{$data.thumb}' disabled="disabled">
+		      	
+		      </div>
+		     </div>
+    	</div>
+    </div>
+     
+    <div class="row"   >
+        <div class="control-group span24">
+          <label class="control-label">内容：</label>
+         <div class="controls" style='height: auto;margin-bottom: 15px;'>
+		 <!-- 加载编辑器的容器 -->
+       		 <script id="container" name="CONTENT" type="text/plain" style="width:650px;height:250px;">{$data.content}</script>
+		</div>
+        </div>
+    </div>
+      <hr/>
+      <div class="row">
+        <div class="form-actions offset3">
+         <input type="hidden" name="ID" value="{$data.id}">
+         
+          <button type="submit" class="button button-save">保存</button>
+         <!--  <button type="reset" class="button button-reset">重置</button> -->
+        </div>
+      </div>
+    </form>
+</div>
+       <!-- 配置文件 -->
+   	<script type="text/javascript" charset="utf-8" src="/ueditor/ueditor.config.js?{$js_version}"></script>
+    <!-- 编辑器源码文件 -->
+    <script type="text/javascript" charset="utf-8" src="/ueditor/ueditor.all.min.js?{$js_version}"> </script>
+    <!-- 实例化编辑器 -->
+    <script type="text/javascript">
+        var editor = UE.getEditor('container');
+       
+    </script>   
+    
+    
+    
+  <script type="text/javascript" src="/assets/js/jquery-1.8.1.min.js?{$js_version}"></script>
+  <script type="text/javascript" src="/assets/js/bui-min.js?{$js_version}"></script>
+
+  <script type="text/javascript" src="/assets/js/config-min.js?{$js_version}"></script>
+  <script type="text/javascript">
+    BUI.use('common/page');
+  </script>
+  <script type="text/javascript">
+    BUI.use('bui/form',function (Form) {
+      var form = new Form.HForm({
+        srcNode : '#J_Form'
+      }).render();
+    });
+  </script>
+  	<script type="text/javascript">
+		BUI.use('bui/form', function(Form) {
+			new Form.HForm({
+				srcNode : '#J_Form',
+				submitType : 'ajax',
+				callback : function(data) {
+					if (data.status == 1) {
+						BUI.Message.Alert('编辑成功!',function(){
+							top.topManager.reloadPage('travels');
+							top.topManager.closePage();
+						}, 'success');
+						
+					} else {
+						if(data.msg){
+							BUI.Message.Alert(data.msg, 'error');
+						}else{
+							BUI.Message.Alert('编辑失败!', 'error');
+						}
+						
+					}
+					//window.location.href = data.url
+				}
+			}).render();
+
+		});
+	</script>
+</body>
+</html>  

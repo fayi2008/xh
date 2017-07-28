@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>krpano</title>
+    <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, minimal-ui" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta http-equiv="x-ua-compatible" content="IE=edge" />
+    <style>
+        @-ms-viewport { width: device-width; }
+        @media only screen and (min-device-width: 800px) { html { overflow:hidden; } }
+        html { height:100%; }
+        body { height:100%; overflow:hidden; margin:0; padding:0; font-family:Arial, Helvetica, sans-serif; font-size:14px;}
+        *{ font-family: 'microsoft yahei'; font-size：14px;font-style: normal;}
+        #pano{width:100%;height:100%;}
+
+    </style>
+</head>
+<body>
+<div id="pano"></div>
+<!--<div class="ctrl">
+    <div id="play_btn"></div>
+    <div id="progress">
+        <div class="mask"></div>
+        <div class="cur"></div>
+    </div>
+    <div id="time">-15:30</div>
+</div>-->
+<script>
+    var PANO_CFG_PATH = "http://pano.hq.cn/Panorama/";
+    var PANO_IMG_PATH = "/pano/";
+</script>
+<script src="/static/public/jquery.js"></script>
+<script src="http://l.hq.cn/src/krpano/P_debug.js"></script>
+<script>
+    P.base_lib  = "http://l.hq.cn/src/krpano/";
+    var id = P.hash.get("panoid") || '330101AA140123100324950',
+            heading = P.hash.get("heading") || 0,
+            pitch = P.hash.get("pitch") || 0;
+
+    var p = P.pano("pano",{
+        "pano":id ,
+        "pov":{'heading':heading,'pitch':pitch}
+        //,"disableDefaultUI":true
+    });
+</script>
+</body>
+</html>

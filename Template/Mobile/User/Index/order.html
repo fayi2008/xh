@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>我的订单</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="keywords" content="西湖,杭州西湖">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link href="/static/Mobile/css/m-user.css" rel="stylesheet" type="text/css">
+</head>
+<body class="order" page="order">
+    <div class="wrap">
+        <nav>
+            <ul>
+                <li data-type="1" class="select"><a><span>已支付</span></a></li>
+                <li data-type="0" ><a><span>未支付</span></a></li>
+                <li data-type="3"><a><span>已完成</span></a></li>
+            </ul>
+        </nav>
+
+        <section>
+            <script type="text/template" id="tpl">
+            <each this.data.rows>
+            <div class="item" data-id="{{id}}">
+                <ul>
+                    <li><em>商品名</em><span> : {{origin_data.name}}</span></li>
+                    <li><em>订单号</em><span> : {{id}}</span></li>
+                    <li><em>购买数量</em><span> : {{num}}</span></li>
+                    <li><em>预订人</em><span> : {{booking_name}}</span></li>
+                    <li><em>预订电话</em><span> : {{mobile}}</span></li>
+                    <li><em>成交时间</em><span> : {{book_time+'000' | number | date('yyyy-MM-dd HH:mm:ss')}}</span></li>
+                </ul>
+                <div class="price">
+                    <em>总价</em>：￥<strong>{{origin_data.price}}</strong>
+                    <iif trading_status == '0'>
+                    <span class="pay">
+                        <!--<a data-id class="order-cancel">取消</a>-->
+                        <a data-id="{{id}}" class="order-pay" data-type="">支付</a>
+                    </span>
+                    </iif>
+
+                    <iif trading_status == '1'>
+                        <span class="pay">
+                        <a data-id="{{id}}" class="order-confirm">确认收货</a>
+                        </span>
+                    </iif>
+                </div>
+            </div>
+            </each>
+            </script>
+        </section>
+    </div>
+    <script type="text/javascript">
+        window.USER_DATA = {:$user?$user:'[]'};window.XH_SIGN="{$xh_sign}";
+    </script>
+    <script src="/static/public/jquery.js?{$js_version}"></script>
+    <script src="/static/public/core.base.js?{$js_version}"></script>
+    <script src="/static/public/core.mobile.js?{$js_version}"></script>
+    <script src="/static/Mobile/js/m-user.js?{$js_version}"></script>
+</body>
+</html>

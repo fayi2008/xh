@@ -1,0 +1,25 @@
+.container {
+    margin-left: 0;
+    margin-top: 0;
+    width: auto;
+    padding: 20px 20px 0 20px;
+}
+.detail-page, .form-page, .search-page {
+    padding: 0;
+}
+.bui-grid-hd-empty{
+    width: 0px;
+}
+.bui-grid-cell-empty{
+    width: 0px;
+}
+.bui-simple-list.bui-select-list{
+    max-height: 200px;
+    overflow: auto;
+}
+.bui-grid-tbar,.bui-grid-bbar{
+    height: 40px;
+}
+.bui-grid-bbar .bui-grid-button-bar{
+    margin: 6px;
+}

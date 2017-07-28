@@ -1,0 +1,104 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>角色管理</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link href="/assets/css/bs3/dpl-min.css" rel="stylesheet" type="text/css"/>
+    <link href="/assets/css/bs3/bui-min.css" rel="stylesheet" type="text/css"/>
+    <link href="/assets/css/page-min.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+
+<div class="container">
+    <div class="search-grid-container">
+        <div id="grid"></div>
+    </div>
+</div>
+<script type="text/javascript" src="/assets/js/jquery-1.8.1.min.js?{$js_version}"></script>
+<script type="text/javascript" src="/assets/js/bui-min.js?{$js_version}"></script>
+<script type="text/javascript" src="/assets/js/config-min.js?{$js_version}"></script>
+<script type="text/javascript">
+    var Grid = BUI.Grid,
+            Store = BUI.Data.Store,
+            columns = [
+                {title: 'ID', width: 50, sortable: true, dataIndex: 'id'},
+                {title: '角色名称', width: 100, sortable: true, dataIndex: 'name'},
+                {title: '备注', width: 150, sortable: false, dataIndex: 'remark'},
+                {title: '成员数量', width: 100, sortable: true, dataIndex: 'num'},
+                {title: '排序', width: 100, sortable: true, dataIndex: 'listorder'},
+                {
+                    title: '操作', renderer: function (value, obj) {
+                    var str = '<a href="/system/role/edit.html?id=' + obj.id + '">编辑</a> ' +
+                            '<a href="javascript:deleteItem(' + obj.id + ')">删除</a> ' +
+                            '<a href="/system/access/index.html?role_id=' + obj.id + '">权限管理</a>';
+                    return str;
+                }
+                }
+            ];
+
+    var store = new Store({
+                url: '/System/Role.json',
+                autoLoad: true
+            }),
+            grid = new Grid.Grid({
+                render: '#grid',
+                loadMask: true,
+                forceFit: true,
+                columns: columns,
+                store: store,
+                plugins: [Grid.Plugins.AutoFit], //勾选插件、自适应宽度插件
+                // 顶部工具栏
+                tbar: {
+                    items: [{
+                        text: '添加角色',
+                        btnCls: 'button button-success',
+                        handler: function () {
+                            top.topManager.openPage({
+                                id: 'role/add',
+                                title: '添加角色',
+                                href: '/system/role/add.html'
+                            });
+                        }
+                    }]
+                },
+                // 底部工具栏
+                bbar: {
+                    //items 也可以在此配置
+                    // pagingBar:表明包含分页栏
+                    pagingBar: false
+                }
+            });
+    grid.render();
+
+
+    function deleteItem(id) {
+        BUI.Message.Confirm('是否删除该项？', function () {
+            $.ajax({
+                type: "delete",
+                url: "/system/role.json?id=" + id,
+                dataType: "json",
+                success: function (data) {
+                    if (data.success == true) {
+                        BUI.Message.Alert('删除成功', function () {
+                            if (top.topManager) {
+                                //打开左侧菜单中配置过的页面
+                                top.topManager.openPage({
+                                    id: 'role',
+                                    reload: 'true'
+                                });
+                            }
+                        }, 'success');
+                    } else {
+                        BUI.Message.Alert('删除失败！' + data.msg, 'error');
+                    }
+                }
+            });
+
+        }, 'question');
+    }
+
+
+</script>
+</body>
+</html>  
+

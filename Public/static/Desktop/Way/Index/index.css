@@ -1,0 +1,220 @@
+body,html{
+    background-color: #ededed;
+}
+/* 顶部bar */
+.top{
+
+    height: 420px;
+    background-image: url(/static/Desktop/Img/way/index_top.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+    background-size: cover;
+    -ms-behavior: url(/static/Desktop/Public/backgroundsize.min.htc);
+    behavior: url(/static/Desktop/Public/backgroundsize.min.htc);
+}
+.top .title1{
+    color: #fff;
+    font-size: 32px;
+    position: absolute;
+    top:170px;
+    left: 30%;
+}
+.top .title2{
+    color: #fff;
+    font-size: 24px;
+    position: absolute;
+    left: 35%;
+    top:210px;
+}
+.top .title3{
+    color: #fff;
+    font-size: 14px;
+    position: absolute;
+    top:250px;
+    left: 35%;
+}
+
+.to-customized{
+    display: block;
+    border-radius: 6px;
+    width: 130px;
+    height: 40px;
+    background-color: #3f89ec;
+    color: #fff;
+    line-height: 40px;
+    text-align: center;
+    position: absolute;
+    left: 35%;
+    top:300px;
+    cursor: pointer;
+}
+/* /顶部bar */
+/* 列表 */
+.content{
+    overflow: hidden;
+    background-color: #ededed;
+}
+.content-box{
+    width: 1000px;
+    margin: 0 auto;
+    padding-bottom: 60px;
+    position: relative;
+}
+
+/* 筛选bar */
+.tips-bar{
+    height: 40px;
+    line-height: 40px;
+    margin-top: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 1px #333;
+}
+.sort-type{
+    width: 235px;
+    border-right: 1px solid #cccccc;
+
+    float: left;
+    overflow: hidden;
+}
+.sort-type>div{
+    width: 116px;
+    text-align: center;
+    height: 40px;
+    line-height: 40px;
+    float: left;
+    cursor: pointer;
+}
+.sort-type>div.checked{
+    background-color: #3f89ec;
+    color: #fff;
+}
+.sort-type>div:first-child{
+    border-right: 1px solid #cccccc;
+}
+
+.filter{
+    float: left;
+
+}
+.filter-title{
+    width: 117px;
+    text-align: center;
+    height: 40px;
+    line-height: 40px;
+    float: left;
+}
+.filter-condition{
+    float: left;
+    height: 40px;
+    overflow: hidden;
+}
+.filter-condition>li{
+    float: left;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    width: 80px;
+    margin-left: 18px;
+    margin-top: 5px;
+    cursor: pointer;
+}
+.filter-condition>li.check{
+    background-color: #3f89ec;
+    color: #fff;
+}
+.filter-condition>li:hover{
+    background-color: #3f89ec;
+    color: #fff;
+}
+/* /筛选bar */
+
+.list-item{
+    display: block;
+    color: #000;
+    background-color: #fff;
+    margin-top: 20px;
+    height: 210px;
+    padding-left: 270px;
+    position: relative;
+    box-shadow: 0 0 1px #333;
+}
+.list-item:hover{
+    box-shadow: 0 0 10px #0366b1;
+}
+.way-img{
+    position: absolute;
+    left: 0px;
+    top:0px;
+    width: 270px;
+    height: 210px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-size: cover;
+    -ms-behavior: url(/static/Desktop/Public/backgroundsize.min.htc);
+    behavior: url(/static/Desktop/Public/backgroundsize.min.htc);
+}
+.item-content{
+    height: 210px;
+    box-sizing: border-box;
+    padding: 30px 30px 0 30px;
+}
+
+.way-name{
+    font-size: 22px;
+}
+.way-type{
+    font-size: 12px;
+    padding: 4px 9px;
+    border-radius: 3px;
+    background-color: #f4b55a;
+    color: #fff;
+    margin-left: 10px;
+}
+.way-bar{
+    margin-top: 20px;
+}
+.way-item-name{
+    font-size: 16px;
+    display: inline-block;
+    height: 22px;
+    line-height: 25px;
+}
+.way-item-name:before{
+    content: '0';
+    color: transparent;
+    height: 22px;
+    width: 20px;
+    display: inline-block;
+    background-image: url(/static/Desktop/Img/way/way_tips.png);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin-right: 2px;
+    background-size: cover;
+    -ms-behavior: url(/static/Desktop/Public/backgroundsize.min.htc);
+    behavior: url(/static/Desktop/Public/backgroundsize.min.htc);
+}
+.way-finger{
+    width: 16px;
+    height: 20px;
+    display: inline-block;
+    background-image: url(/static/Desktop/Img/way/way_finger.png);
+    background-position: center;
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    margin: 0 5px;
+}
+.way-content{
+    font-size: 14px;
+    margin-top: 30px;
+    height: 60px;
+    line-height: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+/* /列表 */

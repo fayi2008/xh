@@ -1,0 +1,211 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>类目修改</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="/assets/css/bs3/dpl-min.css" rel="stylesheet" type="text/css" />
+<link href="/assets/css/bs3/bui-min.css" rel="stylesheet" type="text/css" />
+<link href="/assets/css/page-min.css" rel="stylesheet" type="text/css" />
+<!-- 下面的样式，仅是为了显示代码，而不应该在项目中使用-->
+<link href="/assets/css/prettify.css" rel="stylesheet" type="text/css" />
+<link href="/assets/css/hqtec.css" rel="stylesheet">
+<style type="text/css">
+code {
+	padding: 0px 4px;
+	color: #d14;
+	background-color: #f7f7f9;
+	border: 1px solid #e1e1e8;
+}
+</style>
+</head>
+<body>
+
+	<div class="container">
+		<div class="row">
+			<form id="J_Form" class="form-horizontal span24"
+				action='/Culture/admin/category' method='put'>
+		 <h3>基本信息</h3>
+      <div class="row">
+        <div class="control-group span12">
+          <label class="control-label"><s>*</s>类目名称：</label>
+          <div class="controls">
+            <input name="NAME" type="text" class="span8 span-width control-text" data-rules="{required:true}" value="{$data.name}">
+          </div>
+        </div>
+      </div>
+      
+          <div class="row">
+        <div class="control-group span12">
+          <label class="control-label">排序：</label>
+          <div class="controls">
+           <input name="LISTORDER" type="text" class="span8 span-width control-text" value="{$data.listorder}">
+          </div>
+        </div>
+      </div>     
+      
+       <div class="row">
+        <div class="control-group span12">
+          <label class="control-label">备注：</label>
+          <div class="controls">
+          	<input type="text" name="REMARK" id="DEFAULT" class="span8 span-width control-text" value="{$data.remark}">
+            <!-- <textarea name="DESC" id="DESC" class="span8 span-width"></textarea> -->
+          </div>
+        </div>
+      </div> 
+       
+       <div class="row">
+     	 <div class="control-group span24">
+		    <label class="control-label">缩略图：</label>
+		   	 <div class="control-group span12">
+		      <div id="J_Uploader" >
+		      	<input type='hidden' id='IMG' name='THUMBNAILS' value="{$data.thumbnails}" >	      	
+		      </div>
+		     </div>
+    	</div>
+    	</div>
+      
+        <input type="hidden" name="ID" value="{$data.id}">
+	  <div class="row">
+		<div class="form-actions offset3">
+			<button type="submit" class="button button-save">保存</button>
+			
+		</div>
+	  </div>
+	</form>
+</div>
+
+
+	</div>
+	<script type="text/javascript" src="/assets/js/jquery-1.8.1.min.js?{$js_version}"></script>
+	<script type="text/javascript" src="/assets/js/bui-min.js?{$js_version}"></script>
+
+	<script type="text/javascript" src="/assets/js/config-min.js?{$js_version}"></script>
+	<script type="text/javascript">
+		BUI.use('common/page');
+	</script>
+	
+	<script type="text/javascript">
+		BUI.use('bui/form', function(Form) {
+			new Form.HForm({
+				srcNode : '#J_Form',
+				submitType : 'ajax',
+				callback : function(data) {
+					if (data.status == 1) {
+						BUI.Message.Alert('保存成功',function (){
+							window.location.href = data.url;
+							
+						},'success');
+						
+						//top.topManager.closePage();				
+					} else {
+						if(null==data.msg){
+							BUI.Message.Alert('保存失败','error');
+						}else{
+							BUI.Message.Alert(data.msg,'error');
+						}
+						
+					}
+					
+				}
+			}).render();
+
+		});
+		
+	</script>
+	  <!-- //img图片上传 处理的js    开始 --> 
+<script type="text/javascript">
+     BUI.use('bui/uploader',function (Uploader) {  
+      //添加自定义主题
+      
+      Uploader.Theme.addTheme('imageView', {
+        elCls: 'imageViewTheme',
+        //可以设定该主题统一的上传路径
+       // url: '../../../test/upload/upload.php',
+      	url: 'http://{$httphost}/index.php/Gis/admin/upload/',
+        queue:{
+          //结果的模板，可以根据不同状态进进行设置
+          resultTpl: {
+            'default': '<div class="default">{name}</div>',
+            'success': '<div class="success"><img style="width: 100%;height: 100%;" id="image" src="/upload/{file}" /></div>',
+            'error': '<div class="error"><span class="uploader-error">{msg}</span></div>',
+            'progress': '<div class="progress"><div class="bar" style="width:{loadedPercent}%"></div></div>'
+          },
+          listeners : {
+        	  itemremoved: function(ev){       	
+		    	  $("#image").attr("src","");
+		    	  $("#IMG").val("");
+		      }           
+            }
+        }
+      });
+ 
+      var uploader = new Uploader.Uploader({
+        //指定使用主题
+        theme: 'imageView',
+        render: '#J_Uploader',
+        //不设时使用主题配置的上传路径
+       // url: '../../../test/upload/upload.php'
+        url: 'http://{$httphost}/index.php/Gis/admin/upload/',
+        //上传成功时触发
+  	 	isSuccess: function(result){
+	           if(result.status && result.file){
+	        	   $("#IMG").val(result.file);
+	        	   var file=result.file;
+	        	   
+	        	   if(file.indexOf('http://')<0){	             		   
+	           		   $('#IMG').val(file);
+	           	       result.file=file;
+	           	       
+	       		  	}
+	             return true;
+	           }
+	           return false;
+        }
+      }).render();
+         //上传文件改变时
+         uploader.on('change', function (ev) {
+             var items = ev.items;
+             var queue=uploader.get('queue');
+             for (var i in items) {
+                 if (items[i].error == true) {
+                     queue.clearItems();
+                     BUI.Message.Alert(items[i].name + items[i].msg,'error');
+                 }else{
+                     queue.setItems([items[i]]);
+                 }
+             }
+         })
+    //上传失败时会触发
+		uploader.on('error', function(ev) {
+			var result = ev.result;
+			if(result.info){
+				BUI.Message.Alert('上传失败：'+result.info,'error');
+			}else{
+				
+				BUI.Message.Alert('上传失败：','error');
+			}
+			
+		});
+    //获取上传文件的对列
+      var queue = uploader.get('queue');
+      //设置文件的回显
+      var file='{$data.thumbnails}';
+   /*    if(file.indexOf('http://')<0){
+             file=file;
+	  }
+       */
+      var name = '{$data.thumbnails}';
+      var item;
+		if(name){
+			item = [{success: true, name: name, ext:'.jpg', file:name}]
+		}else{
+			item = '';
+		}
+
+	      queue.setItems(item);
+    
+    
+    });
+    </script>	
+   
+</html>

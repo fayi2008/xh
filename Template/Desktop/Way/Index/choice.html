@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta name="keywords" content="西湖,杭州西湖">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <title>定制线路</title>
+    <link href="/static/Desktop/Public/main.css" rel="stylesheet" type="text/css">
+    <link href="/static/Desktop/Public/login.css" rel="stylesheet" type="text/css">
+    <link href="/static/Desktop/Way/Index/choice.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<include file="../Template/Desktop/Home/Index/top.html"/>
+<div class="main">
+    <div class="crumbs">
+        <a href="/way/choice.html">定制线路</a>  ＞  路线偏好
+    </div>
+    <div class="choice-box1">
+        <div class="choice-box-title">请选择路线偏好？</div>
+        <ul class="choice-list">
+        </ul>
+        <div class="add-tour">添加必游景点</div>
+        <div class="to-way-list">生成路线</div>
+    </div>
+    <div class="choice-box2">
+        <div class="choice-box2-title">已选择的线路偏好</div>
+        <ul class="choice-box2-tag">
+        </ul>
+        <div class="choice-box2-title">已选择的必游景点</div>
+        <ul class="choice-box2-tour tour1">
+        </ul>
+        <!--<div class="choice-box2-title">已经为您找到的线路为：0条</div>-->
+        <div class="choice-box2-title">请添加必游景点</div>
+        <div class="choice-box2-input"><input type="text" class="choice-box2-name" placeholder="搜索"><div class="input-close"></div></div>
+        <div class="choice-box2-title tour2-title">推荐景点</div>
+        <ul class="choice-box2-tour tour2">
+        </ul>
+        <div class="choice-btn-box">
+            <div class="to-last">上一步</div>
+            <div class="to-way-list">生成路线</div>
+        </div>
+
+    </div>
+
+</div>
+</body>
+<script>
+   WAY_CHOICE_DATA={$data};
+</script>
+<script src="/static/public/jquery.js?{$js_version}"></script>
+<script src="/static/Desktop/Public/main.js?{$js_version}"></script>
+<script src="/static/Desktop/Public/login.js?{$js_version}"></script>
+<script src="/static/Desktop/Way/Index/choice.js?{$js_version}"></script>
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?21a3095477990ab53b7d2a97f78155eb";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+</html>

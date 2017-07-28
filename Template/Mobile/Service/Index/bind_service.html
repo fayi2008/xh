@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-touch-fullscreen" content="YES">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta http-equiv="Expires" content="-1"/>
+    <link rel="stylesheet" href="/pages/logomap_1/assets/css/bind.css"/>
+    <script type="text/javascript" src="/pages/logomap_1/assets/app/jquery-2.1.4.min.js?{$js_version}"></script>
+    <title>绑定账号</title>
+</head>
+<body>
+    <div class="main">
+        <div>请输入邀请码来绑定您的账号</div>
+        <input class="" id="key">
+        <div class="btn btn-blud submit">确认</div>
+    </div>
+
+<script>
+    function ajax(){
+        $('.submit').on('click',function(){
+
+            var key= $.trim($('#key').val())
+            $.ajax({
+                url: "/oauth/user/do_bind_service",
+                dataType: "json",
+                type: "post",
+                data:{key:key}
+            }).done(function(rs){
+                if(rs.status){
+                    alert(rs.info)
+                }else{
+                    alert(rs.info)
+                }
+            })
+        })
+    }
+    $(function(){
+        ajax();
+    })
+</script>
+</body>
+</html>

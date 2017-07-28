@@ -1,0 +1,98 @@
+.main{
+    position: relative;
+
+    width: 1000px;
+    margin: 0 auto;
+}
+.page{
+    position: relative;
+    width: 1000px;
+    margin: 10px auto;
+}
+.comment-travels-box{
+
+
+}
+
+.comment-travels-item{
+
+    margin-bottom: 20px;
+    display: block;
+    box-sizing: border-box;
+}
+
+.comment-travels-item>div{
+    background-color: #fff;
+    padding: 20px 20px 20px 20px;
+    height: 220px;
+    box-sizing: border-box;
+    position: relative;
+    box-shadow: 0 0 2px #666;
+    position: relative;
+}
+.comment-travels-time{
+    height: 30px;
+    line-height: 30px;
+}
+.comment-travels-times{
+    color: #939393;
+}
+.comment-travels-content{
+    color: #939393;
+    line-height: 20px;
+    padding:10px 0;
+    height: 60px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.comment-travels-author-box{
+    background-color: #faf6f0;
+    padding: 10px;
+    padding-left: 70px;
+    position: relative;
+    height: 50px;
+    display: block;
+}
+.comment-travels-author-img{
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top:10px;
+    left: 10px;
+    background-size: cover;
+}
+.comment-travels-author-title{
+    font-size: 20px;
+    display: block;
+    cursor: pointer;
+}
+.comment-travels-author-tools{
+    overflow: hidden;
+    position: absolute;
+    left: 70px;
+    width: 360px;
+    bottom: 10px;
+
+}
+.comment-travels-author-name{
+    float: left;
+}
+.comment-travels-author-tool{
+    overflow: hidden;
+    float: right;
+}
+
+
+.del{
+    position: absolute;
+    float: none;
+    text-align: right;
+    color: #6c8ab1;
+    cursor: pointer;
+    height: 20px;
+    line-height: 20px;
+    right: 20px;
+    top:20px;
+}

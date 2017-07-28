@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>发表信息</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="keywords" content="西湖,杭州西湖">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link href="/static/Mobile/css/m-news-build.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="wrap">
+    <section>
+        <div>
+            <input type="text" id="j_title" placeholder="标题"/>
+        </div>
+        <div>
+            <select id="j_select">
+                <option selected="selected">选择新闻频道</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+            </select>
+        </div>
+        <div>
+            <textarea id="j_content" placeholder="内容"></textarea>
+        </div>
+    </section>
+    <section class="thumb">
+        <ul>
+            <li id="j_add" class="btn-add">
+                <input type="file" name="image" id="j_file_field" accept="image/png, image/jpeg" />
+            </li>
+        </ul>
+    </section>
+    <footer>
+        <button>发表新闻</button>
+    </footer>
+</div>
+<script src="/static/public/jquery.js?{$js_version}"></script>
+<script src="/static/public/core.base.js?{$js_version}"></script>
+<script src="/static/Mobile/js/getlogin.js?{$js_version}"></script>
+<script src="/static/Mobile/js/m-news-build.js?{$js_version}"></script>
+
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>文化旅游管理系统</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
+    <link href="/assets/css/bs3/dpl-min.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/css/bs3/bui-min.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/css/main-min.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/css/hqtec.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="header">
+    <div class="dl-title">
+            <span class="lp-title-port">　</span><span class="dl-title-text">文化旅游　</span>
+    </div>
+    <div class="dl-log">欢迎您，<span class="dl-log-user">{$user.nickname}</span>
+        <?php if(C('KNOWLEDGE_URL')){ ?><a href="{:C('KNOWLEDGE_URL')}" class="dl-log-quit" target="_blank">【知识库】</a><?php } ?>
+        <?php if(C('CONTACT_CENTER_URL')){ ?><a class="dl-log-quit" href="{:C('CONTACT_CENTER_URL')}" target="_blank">【呼叫中心】</a><?php } ?>
+        <a href="/admin/pub/logout" title="退出系统" class="dl-log-quit">[退出]</a>
+    </div>
+</div>
+<div class="content">
+    <div class="dl-main-nav">
+        <div class="dl-inform"><div class="dl-inform-title">贴心小秘书<s class="dl-inform-icon dl-up"></s></div></div> 
+        <!-- <div style="margin-bottom:0px">欢迎您，</div>    -->
+        <ul id="J_Nav"  class="nav-list ks-clear" style="margin-left:142px;">       
+            <volist name="submenus" key='k' id="vo">
+                <li class="nav-item <if condition='$k eq 1'>dl-selected</if>"><div class="nav-item-inner nav-{:$vo['icon']?$vo['icon']:'order'}">{$vo.name}</div></li>
+            </volist>
+        </ul>
+    </div>
+    <ul id="J_NavContent" class="dl-tab-conten">
+
+    </ul>
+</div>
+<script type="text/javascript" src="/assets/js/jquery-1.8.1.min.js?{$js_version}"></script>
+<script type="text/javascript" src="/assets/js/bui.js?{$js_version}"></script>
+<script type="text/javascript" src="/assets/js/config.js?{$js_version}"></script>
+
+<script>
+    BUI.use('common/main',function(){
+        var config = {$menu_json};
+        new PageUtil.MainPage({
+            modulesConfig : config
+        });
+    });
+</script>
+</body>
+</html>

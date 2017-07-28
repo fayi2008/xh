@@ -1,0 +1,110 @@
+.main{
+    width: 1000px;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+.list-item{
+    display: block;
+    color: #000;
+    background-color: #fff;
+    margin-bottom: 20px;
+    height: 210px;
+    padding-left: 270px;
+    position: relative;
+}
+
+.way-img{
+    position: absolute;
+    left: 0px;
+    top:0px;
+    width: 270px;
+    height: 210px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: block;
+    background-size: cover;
+    -ms-behavior: url(/static/Desktop/Public/backgroundsize.min.htc);
+    behavior: url(/static/Desktop/Public/backgroundsize.min.htc);
+}
+.item-content{
+    height: 210px;
+    box-sizing: border-box;
+    padding: 30px 30px 0 30px;
+}
+
+.way-name{
+    font-size: 22px;
+}
+.way-type{
+    font-size: 12px;
+    padding: 4px 9px;
+    border-radius: 3px;
+    background-color: #f4b55a;
+    color: #fff;
+    margin-left: 10px;
+}
+.way-bar{
+    margin-top: 20px;
+}
+.way-item-name{
+    font-size: 16px;
+    display: inline-block;
+    height: 22px;
+    line-height: 25px;
+}
+.way-item-name:before{
+    content: '0';
+    color: transparent;
+    height: 22px;
+    width: 20px;
+    display: inline-block;
+    background-image: url(/static/Desktop/Img/way/way_tips.png);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin-right: 2px;
+    background-size: cover;
+    -ms-behavior: url(/static/Desktop/Public/backgroundsize.min.htc);
+    behavior: url(/static/Desktop/Public/backgroundsize.min.htc);
+}
+.way-finger{
+    width: 16px;
+    height: 20px;
+    display: inline-block;
+    background-image: url(/static/Desktop/Img/way/way_finger.png);
+    background-position: center;
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    margin: 0 5px;
+}
+.way-content{
+    font-size: 14px;
+    margin-top: 15px;
+    overflow: hidden;
+    height: 40px;
+}
+.del{
+    position: absolute;
+    bottom:20px;
+    right: 20px;
+    color: #6c8ab1;
+    cursor: pointer;
+    height: 20px;
+    line-height: 20px;
+}
+
+.del:before{
+    content: '';
+    padding: 5px 7px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-image: url(/static/Desktop/Img/user/del.png);
+    background-position: center;
+    margin-right: 5px;
+}
+
+
+.page{
+    position: relative;
+}

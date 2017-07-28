@@ -1,0 +1,70 @@
+.comment-bar {
+    width: 1000px;
+    margin: 0 auto;
+    height: 60px;
+    line-height: 60px;
+    position: relative;
+    margin-top: 20px;
+}
+
+.comment-bar > div {
+    margin: 0 auto;
+    width: 300px;
+    height: 40px;
+
+    border-radius: 20px;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+.comment-bar > div > a {
+    display: block;
+    float: left;
+    text-align: center;
+    width: 50%;
+    line-height: 40px;
+    height: 40px;
+    background-color: #d0b692;
+    color: #fff;
+    cursor: pointer;
+}
+
+.comment-bar > div > a.check{
+    background-color: #a08c70;
+}
+
+
+
+.zan{
+    float: left;
+    color: #6c8ab1;
+    cursor: pointer;
+    margin-right: 10px;
+    height: 20px;
+    line-height: 20px;
+}
+.zan:before{
+    content: '';
+    padding: 5px 8px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-image: url(/static/Desktop/Img/index/xin.png);
+    background-position: center;
+    margin-right: 5px;
+}
+.del{
+    float: left;
+    color: #6c8ab1;
+    cursor: pointer;
+    height: 20px;
+    line-height: 20px;
+}
+.del:before{
+    content: '';
+    padding: 5px 7px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-image: url(/static/Desktop/Img/user/del.png);
+    background-position: center;
+    margin-right: 5px;
+}

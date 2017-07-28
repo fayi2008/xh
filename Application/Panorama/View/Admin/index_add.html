@@ -1,0 +1,343 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>资源文件结构</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="/assets/css/bs3/dpl-min.css" rel="stylesheet" type="text/css" />
+<link href="/assets/css/bs3/bui-min.css" rel="stylesheet" type="text/css" />
+<link href="/assets/css/page-min.css" rel="stylesheet" type="text/css" />
+<!-- 下面的样式，仅是为了显示代码，而不应该在项目中使用-->
+<link href="/assets/css/prettify.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+code {
+	padding: 0px 4px;
+	color: #d14;
+	background-color: #f7f7f9;
+	border: 1px solid #e1e1e8;
+}
+</style>
+</head>
+<body>
+
+	<div class="container">
+		<div class="row">
+			<form id="J_Form" class="form-horizontal span24"
+				action='/Panorama/admin/index' method='post'>
+				<div class="row">
+					<div class="control-group span8">
+						<label class="control-label"><s>*</s>全景名称：</label>
+						<div class="controls">
+							<input name="TITLE" type="text" data-rules="{required:true}"
+								class="input-normal control-text" >
+						</div>
+					</div>
+				
+				</div>
+				
+				
+					  <div class="row">
+         	<div class="control-group span8">
+						<label class="control-label"><s>*</s>poi：</label>
+						<div class="controls">
+							<select data-rules="{required:true}" name="POI_ID" id="POI_ID"><option value=''>请选择</option>
+                <foreach name="poi" item="v" key="k" >
+                         
+                         <option value="{$v.id}"   >{$v.name}</option>
+                       
+                         </foreach>
+                </select>
+						</div>
+					</div>
+					
+					
+						<div class="control-group span8">
+						<label class="control-label">分组：</label>
+						<div class="controls">
+							<select  name="GROUP_ID" id = "GROUP_ID"><option value=''>请选择</option>
+                <foreach name="group" item="v" key="k" >
+                       
+                         <option value="{$v.id}"   >{$v.name}</option>
+                       
+                         </foreach>
+                </select>
+						</div>
+					</div>
+        </div>
+				
+				
+				   <div class="row">
+      <label class="control-label">背景音乐：</label>
+    <div class="span8">
+      <div id="J_Uploader">
+      <input type="hidden"  name='VOICE' value='' id='VOICE'>
+      </div>
+    </div>
+    
+    
+  </div>
+				<div class="row">
+      <label class="control-label">图片url：</label>
+    <div class="span8">
+      <div id="J_Uploader2">
+      <input type="hidden"  name='IMAGE_URI' value='' id='IMAGE_URI'>
+      </div>
+    </div>
+    
+    
+  </div>
+  
+     <div class="row">
+         <div class="control-group span8">
+            <label class="control-label"><s>*</s>纬度：</label>
+            <div class="controls">
+              <input name="LAT" type="text" data-rules="{required:true}" class="input-normal control-text" >
+            </div>
+          </div>
+          
+          <div class="control-group span8">
+            <label class="control-label"><s>*</s>经度：</label>
+            <div class="controls">
+              <input name="LON" type="text" data-rules="{required:true}" class="input-normal control-text" >
+            </div>
+          </div>
+        </div>
+				<div class="row">
+					<div class="control-group span8">
+						<label class="control-label">排序</label>
+						<div class="controls">
+							<input name="LISTORDER" type="text"
+								class="input-normal control-text" >
+						</div>
+					</div>
+
+
+				</div>
+				
+				  <div class="row">
+          <div class="control-group span15">
+            <label class="control-label">内容：</label>
+            <div class="controls control-row4">
+              <textarea name="INTRODUCTION" class="input-large" data-tip="{text:'请填写描述信息！'}" type="text">{$pano.introduction}</textarea>
+            </div>
+          </div>
+        </div>
+        		  <div class="row">
+          <div class="control-group span15">
+            <label class="control-label">地址：</label>
+            <div class="controls control-row4">
+             <input name="ADDRESS" type="text"  class="input-normal control-text" >
+            </div>
+          </div>
+        </div>
+        
+          		  <div class="row">
+          <div class="control-group span15">
+            <label class="control-label">导航：</label>
+            <div class="controls control-row4">
+             <input name="NAV_URL" type="text"  class="input-normal control-text" >
+            </div>
+          </div>
+        </div>
+        
+        		  <div class="row">
+          <div class="control-group span15">
+            <label class="control-label">TEL：</label>
+            <div class="controls control-row4">
+             <input name="TEL" type="text"  class="input-normal control-text" >
+            </div>
+          </div>
+        </div>
+				<div class="row">
+					<div class="form-actions offset3">
+						<button type="submit" class="button button-primary">保存</button>
+						<button type="reset" class="button">重置</button>
+					</div>
+				</div>
+				 
+			</form>
+		</div>
+
+
+	</div>
+	<script type="text/javascript" src="/assets/js/jquery-1.8.1.min.js?{$js_version}"></script>
+	<script type="text/javascript" src="/assets/js/bui-min.js?{$js_version}"></script>
+
+	<script type="text/javascript" src="/assets/js/config-min.js?{$js_version}"></script>
+	<script type="text/javascript">
+		BUI.use('common/page');
+	</script>
+	<!-- 仅仅为了显示代码使用，不要在项目中引入使用-->
+	<script type="text/javascript" src="/assets/js/prettify.js?{$js_version}"></script>
+	<script type="text/javascript">
+		$(function() {
+			prettyPrint();
+		});
+	</script>
+	<script type="text/javascript">
+		BUI.use('bui/form', function(Form) {
+			new Form.HForm({
+				srcNode : '#J_Form',
+				submitType : 'ajax',
+				callback : function(data) {
+					if (data.status == 1) {
+						BUI.Message.Alert('添加成功', 'success');
+
+					} else {
+						BUI.Message.Alert('添加失败', 'error');
+					}
+					window.location.href = data.data + "?id={$poi[0]['id']}";
+				}
+			}).render();
+
+		});
+	</script>
+
+	<script type="text/javascript">
+		BUI.use(
+						'bui/uploader',
+						function(Uploader) {
+
+							/**
+							 * 返回数据的格式
+							 *
+							 *  默认是 {url : 'url'},否则认为上传失败
+							 *  可以通过isSuccess 更改判定成功失败的结构
+							 */
+							var uploader = new Uploader.Uploader(
+									{
+										render : '#J_Uploader',
+										url : 'http://{$httphost}/index.php/Gis/admin/upload/',
+										//可以直接在这里直接设置成功的回调
+										success : function(result) {
+										},
+										isSuccess : function(result) {
+
+											if (result.status) {
+												return true;
+											}
+											return false;
+										},
+										//失败的回调
+										error : function(result) {
+										},
+										rules: {
+									          //文的类型
+									          ext: ['.mp3','文件类型只能为{0}'],
+									          //上传的最大个数
+									          max: [1, '文件的最大个数不能超过{0}个'],
+									          //文件大小的最小值,这个单位是kb
+									          minSize: [10, '文件的大小不能小于{0}KB'],
+									          //文件大小的最大值,单位也是kb
+									          maxSize: [1024, '文件大小不能大于1M']
+									        }
+									}).render();
+
+							//上传成功时会触发
+							uploader.on('success', function(ev) {
+								var result = ev.result;
+								$("#VOICE").val(result.file);
+
+							})
+
+							//上传成功时会触发
+							uploader.on('error', function(ev) {
+								var result = ev.result;
+								BUI.Message.Alert('上传失败', 'error');
+							});
+						});
+	</script>
+	
+	<script type="text/javascript">
+		BUI
+				.use(
+						'bui/uploader',
+						function(Uploader) {
+							
+						    //添加自定义主题
+						      Uploader.Theme.addTheme('imageView', {
+						        elCls: 'imageViewTheme',
+						        //可以设定该主题统一的上传路径
+						       // url: '../../../test/upload/upload.php',
+						     
+						        queue:{
+						          //结果的模板，可以根据不同状态进进行设置
+						          resultTpl: {
+						            'default': '<div class="default">{name}</div>',
+						            'success' : '<div class="success"><img src="/upload/{file}" /></div>',
+						            'error': '<div class="error"><span class="uploader-error">{msg}</span></div>',
+						            'progress': '<div class="progress"><div class="bar" style="width:{loadedPercent}%"></div></div>'
+						          }
+						        }
+						      });
+
+							/**
+							 * 返回数据的格式
+							 *
+							 *  默认是 {url : 'url'},否则认为上传失败
+							 *  可以通过isSuccess 更改判定成功失败的结构
+							 */
+							var uploader = new Uploader.Uploader(
+									{   theme: 'imageView',
+										render : '#J_Uploader2',
+										// url : '/index.php/Panorama/admin/upload/',
+										 url : 'http://{$httphost}/index.php/Gis/admin/upload/',
+										//可以直接在这里直接设置成功的回调
+										success : function(result) {
+										},
+										isSuccess : function(result) {
+
+											if (result.status) {
+												return true;
+											}
+											return false;
+										},
+										//失败的回调
+										error : function(result) {
+										},   
+										rules: {
+									          //文的类型
+									          ext: ['.png,.jpg','文件类型只能为{0}'],
+									          //上传的最大个数
+									          max: [1, '文件的最大个数不能超过{0}个'],
+									          //文件大小的最小值,这个单位是kb
+									          minSize: [10, '文件的大小不能小于{0}KB'],
+									          //文件大小的最大值,单位也是kb
+									          maxSize: [1024, '文件大小不能大于1M']
+									        }
+									}).render();
+
+							//上传成功时会触发
+							uploader.on('success', function(ev) {
+								var result = ev.result;
+								$("#IMAGE_URI").val(result.file);
+
+							})
+
+							//上传成功时会触发
+							uploader.on('error', function(ev) {
+								var result = ev.result;
+								BUI.Message.Alert('上传失败', 'error');
+							});
+						});
+	</script>
+	<script type = "text/javascript">
+	$('#POI_ID').on('change',function(){
+            var poi_id = $("#POI_ID").val();
+            $.ajax({
+             url: "/Panorama/admin/cateList.json"+'?id='+poi_id,
+             type: "GET",
+             success: function(data){
+                         $("#GROUP_ID").empty();
+                         $("#GROUP_ID").append("<option value='0'>请选择</option>");
+                         var json=JSON.parse(data);
+                         for(var i=0;i<json.length;i++)
+                         {
+                            $("#GROUP_ID").append("<option value='"+ json[i].id +"'>"+ json[i].name +"</option>");
+                         }
+
+                      }
+            });
+        })
+	</script>
+</body>
+</html>

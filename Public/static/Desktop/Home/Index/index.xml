@@ -1,0 +1,16 @@
+<krpano version="1.16">
+	
+	<include url="skin/defaultskin.xml" />
+	
+	<view hlookat="0" vlookat="0" maxpixelzoom="1.0" fovmax="150" limitview="auto" />
+
+	<preview url="index.tiles/preview.jpg" />
+
+	<image>
+		<cube url="index.tiles/pano_%s.jpg" />
+		<mobile>
+			<cube url="index.tiles/mobile_%s.jpg" />
+		</mobile>
+	</image>
+
+</krpano>

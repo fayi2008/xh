@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>西湖 图片墙</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="keywords" content="西湖,杭州西湖">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link href="/static/Mobile/css/m-photo.css" rel="stylesheet" type="text/css">
+    <link href="/static/public/core.share.css" rel="stylesheet" type="text/css">
+
+</head>
+<body>
+    <script type="text/template" id="tpl">
+        <%
+            for(var i=0; i<2; i++){
+        %>
+        <div class="col">
+            <each this[i]>
+            <div class="item">
+                <img src="{{file_url | img}}" alt=""/>
+                <h4><i style="background-image:url({{head_img | img}})"></i>{{nickname}}</h4>
+                <p>{{description}}</p>
+                <span class="footer">
+                    <a data-id="{{id}}" class="fav">{{support_num}}</a>
+                    <a href="/photo/{{id}}/comment.html" data-id="{{id}}" class="comment">{{comment_count}}</a>
+                    <a data-id="{{id}}" class="share"></a>
+                </span>
+            </div>
+            </each>
+        </div>
+        <% } %>
+    </script>
+    <div class="wrap">
+        <nav>
+            <ul id="j_order">
+                <li data-type="id" class="select"><span>最新发布</span></li>
+                <li data-type="support_num"><span>人气最高</span></li>
+                <li data-type="comment_count"><span>评论最多</span></li>
+            </ul>
+        </nav>
+        <aside>
+            <button class="top"></button>
+            <button class="reload"></button>
+            <button class="create"></button>
+        </aside>
+        <section id="j_cnt" class="scroll">
+
+        </section>
+        <footer class="loading">正在加载...</footer>
+    </div>
+    <script>window.USER_DATA = {:$user?$user:'[]'};window.XH_SIGN="{$xh_sign}";</script>
+    <script src="/static/public/jquery.js?{$js_version}"></script>
+    <script src="/static/public/core.base.js?{$js_version}"></script>
+    <script src="/static/public/core.mobile.js?{$js_version}"></script>
+    <script src="/static/Mobile/js/m-photo.js?{$js_version}"></script>
+    <script src="/static/public/jquery.qrcode.min.js?{$js_version}"></script>
+
+</body>
+</html>

@@ -1,0 +1,486 @@
+
+.swipe-bar {
+    height: 530px;
+    width: 100%;
+}
+
+.slide1 {
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url(/static/Desktop/Img/index/top/top1.jpg);
+    background-size: cover;
+    -ms-behavior: url(/static/Desktop/Public/backgroundsize.min.htc);
+    behavior: url(/static/Desktop/Public/backgroundsize.min.htc);
+}
+
+.slide2 {
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url(/static/Desktop/Img/index/top/top2.jpg);
+    background-size: cover;
+    -ms-behavior: url(/static/Desktop/Public/backgroundsize.min.htc);
+    behavior: url(/static/Desktop/Public/backgroundsize.min.htc);
+}
+
+.slide3 {
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url(/static/Desktop/Img/index/top/top3.jpg);
+    background-size: cover;
+    -ms-behavior: url(/static/Desktop/Public/backgroundsize.min.htc);
+    behavior: url(/static/Desktop/Public/backgroundsize.min.htc);
+}
+
+/*公用头部 和 更多按钮*/
+.title {
+    font-size: 28px;
+    text-align: center;
+    padding-top: 50px;
+}
+
+.more {
+    font-size: 16px;
+    color: #3f89ec;
+    text-align: center;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.more > a {
+    color: #3f89ec;
+}
+
+.more:after {
+    content: '';
+    margin-left: 5px;
+    padding: 5px 8px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-image: url(/static/Desktop/Img/index/ic_more.png);
+    background-position: center;
+}
+
+/*路线部分*/
+.way-box, .photo-box {
+    position: relative;
+    background-color: #f1f1f1;
+
+}
+
+.culture-box, .travels-box {
+    background-color: #fff;
+    position: relative;
+}
+
+.way-list {
+    width: 1000px;
+    margin: 0 auto;
+    overflow: hidden;
+    padding: 20px 5px;
+}
+
+.way-item {
+    float: left;
+    width: 320px;
+    margin-left: 20px;
+    display: block;
+    height: 320px;
+    background-color: #fff;
+    box-shadow: 0 0 1px #666;
+    margin-top: 20px;
+}
+
+.way-item.no-left {
+    margin-left: 0px;
+}
+.way-item:hover{
+    box-shadow: 0 0 10px #0366b1;
+}
+.way-item-img {
+    height: 240px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-size: cover;
+    -ms-behavior: url(/static/Desktop/Public/backgroundsize.min.htc);
+    behavior: url(/static/Desktop/Public/backgroundsize.min.htc);
+}
+
+.way-item-name {
+    height: 80px;
+    box-sizing: border-box;
+    padding: 10px;
+    position: relative;
+}
+
+.way-item-title {
+    overflow: hidden;
+    height: 24px;
+    line-height: 24px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.way-item-tip-list{
+
+}
+.way-item-tip {
+    display: inline-block;
+    margin-right: 5px;
+    font-size: 12px;
+    padding: 4px 9px;
+    border-radius: 3px;
+    background-color: #f4b55a;
+    color: #fff;
+}
+
+.way-item-fire {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    color: #e64b4b;
+}
+
+.way-item-fire:before {
+    content: '';
+    margin-right: 5px;
+    padding: 5px 5px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-image: url(/static/Desktop/Img/way/way_fire.png);
+    background-position: center;
+}
+
+/*/路线部分*/
+
+/*文化知识*/
+
+.culture-list {
+    width: 1000px;
+    margin: 0 auto;
+    margin-top: 50px;
+}
+
+.culture-type-box {
+    overflow: hidden;
+    box-shadow: 0 0 1px #000;
+}
+
+.culture-type-name {
+    display: block;
+}
+
+.culture-type-img {
+
+    width: 800px;
+    float: left;
+    height: 400px;
+    position: relative;
+    display: block;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-size: cover;
+    -ms-behavior: url(/static/Desktop/Public/backgroundsize.min.htc);
+    behavior: url(/static/Desktop/Public/backgroundsize.min.htc);
+}
+
+.culture-type-name {
+    position: absolute;
+    bottom: 50px;
+    left: 0px;
+    width: 600px;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.culture-type-title {
+    padding: 10px;
+    font-size: 18px;
+    color: #333;
+}
+
+.culture-type-desc {
+    padding: 10px;
+}
+
+.culture-type-list {
+    float: left;
+    width: 200px;
+    height: 400px;
+    overflow: hidden;
+}
+
+.culture-type-item {
+    width: 100px;
+    height: 100px;
+    float: left;
+    line-height: 100px;
+    background-color: #272727;
+    color: #fff;
+    text-align: center;
+    box-sizing: border-box;
+    border-bottom: 1px solid #3d3d3d;
+    cursor: pointer;
+}
+
+.culture-type-item:hover {
+    background-color: #3f89ec;
+}
+
+.culture-type-item.item-r {
+    border-left: 1px solid #3d3d3d;
+}
+
+.culture-type-item.item-more {
+    width: 200px;
+    border-bottom: none;
+}
+
+.culture-type-item-title {
+    display: inline;
+    color: #fff;
+}
+
+.culture-show-new {
+    text-align: center;
+    height: 30px;
+    line-height: 30px;
+    padding: 20px 0;
+    font-size: 20px;
+}
+
+.culture-show-list {
+    width: 1000px;
+    padding-top: 10px;
+    padding-right: 10px;
+
+    height: 315px;
+    overflow: hidden;
+    padding-bottom: 20px;
+}
+
+.culture-show-list > a {
+    box-shadow: 0 0 1px #000;
+    display: block;
+    width: 220px;
+    margin-left: 40px;
+    height: 315px;
+    float: left;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-size: cover;
+    -ms-behavior: url(/static/Desktop/Public/backgroundsize.min.htc);
+    behavior: url(/static/Desktop/Public/backgroundsize.min.htc);
+
+}
+.culture-show-list > a:hover{
+    box-shadow: 0 0 10px #0366b1;
+}
+.culture-show-list > a:first-child {
+    margin-left: 0;
+}
+
+.culture-show {
+    position: relative;
+    width: 220px;
+    height: 315px;
+    background: url(/static/Desktop/Img/wh/shu.png) repeat-y left top;
+
+}
+
+.culture-show-name {
+    position: absolute;
+    padding: 10px;
+    bottom: 50px;
+    left: 0;
+    width: 100%;
+    color: #fff;
+    box-sizing: border-box;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+/*/文化知识*/
+/* photo */
+.photo-list {
+    overflow: hidden;
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+.photo-list > a {
+    width: 20%;
+    float: left;
+    display: block;
+    height: 210px;
+    overflow: hidden;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    box-sizing: border-box;
+    border: 1px solid #fff;
+    background-size: cover;
+    -ms-behavior: url(/static/Desktop/Public/backgroundsize.min.htc);
+    behavior: url(/static/Desktop/Public/backgroundsize.min.htc);
+}
+.photo-list > a .photo-item{
+    display: none;
+    height: 100%;
+    width: 100%;
+    opacity: 0.8;
+    background-color: #3f89ec;
+}
+.photo-item-name {
+    display: table-cell;
+    height: 100%;
+
+    color: #fff;
+    text-align: center;
+
+    width: 100%;
+    vertical-align: middle;
+}
+
+.photo-list > a:hover .photo-item {
+    display: table;
+
+}
+
+/* /photo */
+
+/*文章*/
+.travels-box {
+    overflow: hidden;
+    background-color: #fff;
+}
+
+.travels-list {
+    width: 1000px;
+    overflow: hidden;
+    margin: 0 auto;
+    padding: 10px;
+    padding-top: 50px;
+}
+
+.travels-item {
+    display: block;
+    width: 320px;
+    margin-left: 20px;
+    float: left;
+    box-sizing: border-box;
+    border: 1px solid #ccc \0;
+    box-shadow: 0 0 1px #333;
+}
+.travels-item:hover{
+    box-shadow: 0 0 10px #0366b1;
+
+}
+.travels-item:first-child {
+    margin-left: 0px;
+}
+
+.travels-item-content {
+    padding: 10px;
+}
+
+.travels-item-img {
+    height: 320px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+
+    background-size: cover;
+    -ms-behavior: url(/static/Desktop/Public/backgroundsize.min.htc);
+    behavior: url(/static/Desktop/Public/backgroundsize.min.htc);
+}
+
+.travels-item-title {
+    font-size: 18px;
+    font-weight: bold;
+    height: 20px;
+    line-height: 20px;
+    overflow: hidden;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.travels-item-desc {
+    color: #939393;
+    line-height: 150%;
+    min-height: 24px;
+}
+
+.travels-item-tool {
+    padding-bottom: 10px;
+    overflow: hidden;
+    padding-top: 5px;
+}
+
+.zan {
+    float: left;
+    color: #6c8ab1;
+}
+
+.zan:before {
+    content: '';
+    padding: 5px 8px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-image: url(/static/Desktop/Img/index/xin.png);
+    background-position: center;
+}
+
+.pl {
+    float: left;
+    color: #6c8ab1;
+    margin-left: 10px;
+}
+
+.pl:before {
+    content: '';
+    padding: 5px 8px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-image: url(/static/Desktop/Img/index/pl.png);
+    background-position: center;
+}
+
+.travels-item-author {
+    padding: 5px 10px;
+    overflow: hidden;
+    border-top: 1px solid #ccc;
+}
+
+.travels-item-avatar {
+    float: left;
+    width: 30px;
+    height: 30px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    border-radius: 30px;
+    background-image: url(/static/Desktop/Img/way/index_top.jpg);
+    background-size: cover;
+    -ms-behavior: url(/static/Desktop/Public/backgroundsize.min.htc);
+    behavior: url(/static/Desktop/Public/backgroundsize.min.htc);
+}
+
+.travels-item-author-name {
+    float: left;
+    height: 30px;
+    line-height: 30px;
+    padding-left: 10px;
+}
+
+.travels-item-day {
+    float: right;
+    height: 30px;
+    line-height: 30px;
+}
+
+/*/文章*/
+

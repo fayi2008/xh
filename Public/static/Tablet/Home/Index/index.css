@@ -1,0 +1,161 @@
+body{
+    min-width: 1280px;
+}
+.main{
+    background: url(/static/Tablet/Img/index.jpg) no-repeat center;
+    position: relative;
+    width: 1280px;
+    height: 1024px;
+    margin:  0 auto;
+}
+.logo{
+    width: 221px;
+    height: 57px;
+    position: absolute;
+    background: url(/static/Tablet/Img/logo.png) no-repeat center;
+    top:50px;
+    left: 20px;
+}
+.wz{
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top:300px;
+    font-size: 42px;
+    font-weight: bold;
+    color: #1e322a;
+    text-align: center;
+}
+.to-map{
+    position: absolute;
+    width: 250px;
+    height: 280px;
+
+    top: 460px;
+    left: 300px;
+    cursor: pointer;
+}
+.to-culture{
+    position: absolute;
+    width: 250px;
+    height: 280px;
+
+    top:460px;
+    left: 765px;
+    cursor: pointer;
+}
+
+
+/**/
+.content-box *{
+    color: rgb(85, 85, 85);
+    font-family: Verdana, Arial, Helvetica, 'microsoft yahei', simsun;
+}
+.content-box{
+    width: 209px;
+    height: 387px;
+    position: fixed;
+    bottom: 20px;
+    right: 0px;
+
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    border-radius: 30px;
+    background-image: url(/static/Desktop/Img/index1/content.png);
+    background-size: cover;
+    -ms-behavior: url(/static/Desktop/Public/backgroundsize.min.htc);
+    behavior: url(/static/Desktop/Public/backgroundsize.min.htc);
+    z-index: 9999;
+
+}
+.version{
+    bottom: 0px;
+    right: 0px;
+    z-index: 9999;
+    position: fixed;
+    padding-right: 20px;
+}
+.tel-box{
+    margin-top: 95px;
+    font-size: 16px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+.tel-tips{
+    padding: 1px 15px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    border-radius: 30px;
+    background-image: url(/static/Desktop/Img/index1/tel.jpg);
+    -ms-behavior: url(/static/Desktop/Public/backgroundsize.min.htc);
+    behavior: url(/static/Desktop/Public/backgroundsize.min.htc);
+    margin-right: 10px;
+}
+
+.qq-box{
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-top: 10px;
+    font-size: 16px;
+}
+.qq-tips{
+     padding: 1px 15px;
+     background-repeat: no-repeat;
+     background-size: contain;
+     background-position: center;
+     border-radius: 30px;
+     background-image: url(/static/Desktop/Img/index1/qq.jpg);
+     -ms-behavior: url(/static/Desktop/Public/backgroundsize.min.htc);
+     behavior: url(/static/Desktop/Public/backgroundsize.min.htc);
+     margin-right: 10px;
+ }
+.wx-box{
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-top: 10px;
+    font-size: 16px;
+}
+.wx-tips{
+    padding: 1px 15px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    border-radius: 30px;
+    background-image: url(/static/Desktop/Img/index1/wx.jpg);
+    -ms-behavior: url(/static/Desktop/Public/backgroundsize.min.htc);
+    behavior: url(/static/Desktop/Public/backgroundsize.min.htc);
+    margin-right: 10px;
+}
+.wx-img{
+    width: 100%;
+    margin-top: 10px;
+}
+.wx-img>img{
+    width: 100%;
+}
+.c-small{
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    z-index: 99999;
+    width: 30px;
+    height: 30px;
+    font-size: 20px;
+    text-align: center;
+    line-height: 30px;
+    cursor: pointer;
+}
+.c-big{
+    position: fixed;
+    bottom: 0px;
+    right: 0px;
+    z-index: 99999;
+    width: 30px;
+    height: 30px;
+    font-size: 24px;
+    text-align: center;
+    line-height: 30px;
+    cursor: pointer;
+}
